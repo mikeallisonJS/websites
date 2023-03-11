@@ -1,0 +1,51 @@
+@import '../variables';
+
+mat-sidenav-container {
+  height: 100%;
+  width: 100%;
+}
+.content {
+  position: absolute;
+  top: $headerHeight;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  z-index: 1;
+  div.scroll-area {
+    height: calc(100vh - 128px);
+    overflow-y: auto;
+  }
+}
+
+.cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: block;
+  background: url('../assets/compressed/images/captain-1024.webp');
+  background-position-x: 51%;
+  background-position-y: 50%;
+  background-size: cover;
+  z-index: 0;
+  &.scrolled {
+    opacity: 0.1;
+  }
+}
+
+.footer {
+  position: absolute;
+  z-index: 3;
+  bottom: 0;
+  width: 100%;
+  height: $footerHeight;
+  background-color: #f5f5f5;
+}
+
+.hamburger {
+  top: 5px;
+  left: 5px;
+  position: absolute;
+  z-index: 3;
+}

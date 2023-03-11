@@ -1,0 +1,43 @@
+<h1>Past Events</h1>
+
+<div
+  fxLayout="row"
+  fxLayout-xs="column"
+  fxFlexAlign="space-around"
+  class="container"
+>
+  <div fxFlex="33" class="row" *ngFor="let index of [0, 1, 2]">
+    <picture *ngFor="let image of images[index]">
+      <source
+        srcset="/assets/compressed/flyers/{{image}}-256.webp"
+        media="(max-width: 512px)"
+        type="image/webp"
+      />
+      <source
+        srcset="/assets/compressed/flyers/{{image}}-512.webp"
+        media="(max-width: 1024px)"
+        type="image/webp"
+      />
+      <source
+        srcset="/assets/compressed/flyers/{{image}}-1024.webp"
+        media="(max-width: 2048px)"
+        type="image/webp"
+      />
+      <img
+        alt="flyer - {{ image }}"
+        src="/assets/compressed/flyers/{{ image }}-1024.webp"
+        loading="lazy"
+        (click)="select($event)"
+      />
+    </picture>
+  </div>
+</div>
+<div class="cover shade" *ngIf="selectedImage" (click)="closeCover()"></div>
+<div class="cover overlay" *ngIf="selectedImage" (click)="closeCover()">
+  <a (click)="closeCover()" class="pull-left">
+    <mat-icon color="primary" style="cursor: pointerx">cancel</mat-icon>
+  </a>
+  <div class="container">
+    <img [src]="selectedImage" alt="selected flyer" />
+  </div>
+</div>

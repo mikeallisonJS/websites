@@ -1,0 +1,88 @@
+@import 'angular';
+@import 'variables';
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Raleway, sans-serif;
+  position: fixed;
+}
+
+/* workaround until I figure out what is wrong with Angular's import */
+app-root {
+  display: block;
+  height: 100%;
+  width: 100%;
+  app-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: block;
+  }
+
+  app-home,
+  app-links,
+  app-music {
+    display: block;
+    height: $contentHeight;
+    width: 100%;
+  }
+
+  app-links,
+  app-music,
+  app-donate {
+    .container {
+      padding-top: $contentPadding;
+      padding-bottom: $contentPadding;
+      .content {
+        max-width: 90vw;
+        border-radius: 5px;
+        background-color: $dark-background;
+        color: $light-text;
+        padding: $contentPadding;
+        h1 {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    hr {
+      border-color: $light-text;
+    }
+    a[mat-list-item] {
+      color: $light-text;
+      fa-icon {
+        width: 28px;
+        margin-right: 5px;
+      }
+    }
+  }
+}
+
+.container {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}

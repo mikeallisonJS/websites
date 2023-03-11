@@ -1,0 +1,23 @@
+img.photo {
+  height: 650px;
+}
+
+div.container:first-child {
+  position: relative;
+  padding-top: 80px;
+  width: 940px;
+  margin-bottom: 30px;
+}
+
+div.overText {
+  background-color: rgb(202, 202, 202);
+  position: absolute;
+  bottom: 157px;
+  right: 0;
+  padding: 40px;
+  width: 390px;
+}
+
+app-bio h1 {
+  text-align: left;
+}

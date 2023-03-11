@@ -1,0 +1,74 @@
+@import '../../variables';
+
+.main-toolbar {
+  .spacer {
+    flex: 1 1 auto;
+  }
+  .toolbar-btn {
+    font-size: 16px;
+    margin-right: 5px;
+    cursor: pointer;
+  }
+}
+
+.media-footer {
+  position: absolute;
+  overflow: hidden;
+  width: 100%;
+  .media-action-bar {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    div.transport {
+      flex: 0;
+      width: 200px;
+      white-space: nowrap;
+      button.mat-mdc-button,
+      span.mat-ripple,
+      span.mat-mdc-button {
+        width: 32px !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+      }
+    }
+    div.info {
+      display: block;
+      flex: 1 1 auto;
+      height: 100%;
+      width: 100%;
+      > div {
+        width: calc(100vw - 224px);
+        position: absolute;
+        &.track-data {
+          font-size: 18px;
+          bottom: 29px;
+          display: flex;
+          > div {
+            flex-direction: column;
+            display: block;
+            &.title {
+              flex: 1 1 auto;
+            }
+            &.counter {
+              padding-right: 10px;
+              flex: 0 0 auto;
+            }
+          }
+        }
+        &.track-slider {
+          bottom: -5px;
+          /* TODO(mdc-migration): The following rule targets internal classes of slider that may no longer apply for the MDC version. */
+          /* TODO(mdc-migration): The following rule targets internal classes of slider that may no longer apply for the MDC version. */
+          mat-slider {
+            width: 100%;
+          }
+        }
+      }
+    }
+    .mat-icon {
+      height: 48px !important;
+      width: 48px !important;
+      font-size: 48px !important;
+    }
+  }
+}

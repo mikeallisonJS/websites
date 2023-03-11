@@ -1,0 +1,20 @@
+@import '../../variables';
+
+.logo-wrapper {
+  $logoHeight: 22vh;
+  text-align: center;
+  padding-top: calc(#{$contentHeight} - #{$logoHeight});
+  width: 100%;
+  img.logo {
+    height: $logoHeight;
+    max-width: 90vw;
+    object-fit: contain;
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 0.3s, opacity 0.3s linear;
+    &.scrolled {
+      visibility: hidden;
+      opacity: 0;
+    }
+  }
+}
