@@ -81,7 +81,13 @@
     >
       LINKS
     </a>
-    <a mat-tab-link href="https://captainssounds.com" target="_blank">
+    <a
+      mat-tab-link
+      [routerLink]="'shop'"
+      routerLinkActive
+      #rla5="routerLinkActive"
+      [active]="rla5.isActive"
+    >
       STORE
     </a>
   </nav>

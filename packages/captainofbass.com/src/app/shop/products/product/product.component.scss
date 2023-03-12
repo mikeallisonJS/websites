@@ -1,0 +1,7 @@
+mat-card-header {
+  mat-card-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}

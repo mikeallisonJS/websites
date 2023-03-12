@@ -1,0 +1,7 @@
+<div fxLayout="row wrap" fxLayoutGap="16px">
+  <app-shop-products-product
+    fxFlex="30%"
+    *ngFor="let product of products | async"
+    [product]="product"
+  />
+</div>

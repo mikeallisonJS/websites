@@ -1,0 +1,12 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      {{ product.title }}
+    </mat-card-title>
+  </mat-card-header>
+  <img
+    mat-card-image
+    src="{{ product.featuredImage.url }}"
+    (click)="select()"
+  />
+</mat-card>

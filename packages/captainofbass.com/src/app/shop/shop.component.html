@@ -1,0 +1,13 @@
+<mat-drawer-container autosize>
+  <mat-drawer
+    mode="side"
+    position="end"
+    [opened]="shopService.selectedProductId"
+    ><app-shop-drawer />
+  </mat-drawer>
+  <div class="scroll-container">
+    <div class="container">
+      <app-shop-products />
+    </div>
+  </div>
+</mat-drawer-container>

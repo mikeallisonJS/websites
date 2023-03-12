@@ -19,6 +19,7 @@ import { PlayerModule } from './player/player.module'
 import { HomeModule } from './home/home.module'
 import { EpkModule } from './epk/epk.module'
 import { MusicModule } from './music/music.module'
+import { ShopModule } from './shop/shop.module'
 
 @NgModule({
   declarations: [AppComponent],
@@ -34,6 +35,7 @@ import { MusicModule } from './music/music.module'
     HeaderModule,
     HomeModule,
     LinksModule,
+    ShopModule,
     MatButtonModule,
     MatIconModule,
     MatSidenavModule,

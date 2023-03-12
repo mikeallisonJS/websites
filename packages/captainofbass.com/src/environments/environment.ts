@@ -4,6 +4,10 @@
 
 export const environment = {
   production: false,
+  shopify: {
+    storefrontToken: '42ee0862ded040f489113cf7caf2a224',
+    domain: 'captain-productions.myshopify.com'
+  },
   firebase: {
     apiKey: 'AIzaSyCpvNvEH6qN0oPTeYV2TdEfiPo-cyVP8YA',
     authDomain: 'thecaptain-31e80.firebaseapp.com',

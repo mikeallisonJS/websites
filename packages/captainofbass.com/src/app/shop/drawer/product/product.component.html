@@ -1,0 +1,11 @@
+<div *ngIf="product | async">
+  <!-- <img src="{{ image() }}" style="width: 20vw" /> -->
+  <div>{{ product.title }}</div>
+  <!-- <div *ngFor="let option of product.options">
+    <mat-select>
+      <mat-option *ngFor="let value of option.values | async" [value]="value">
+        {{ value }}
+      </mat-option>
+    </mat-select>
+  </div> -->
+</div>
