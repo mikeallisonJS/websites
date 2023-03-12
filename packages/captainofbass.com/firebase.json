@@ -1,0 +1,42 @@
+{
+  "hosting": [
+    {
+      "target": "thecaptain",
+      "public": "dist/packages/captainofbass.com",
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+      "redirects": [
+        {
+          "source": "ableton",
+          "destination": "https://captainssounds.com",
+          "type": 301
+        },
+        {
+          "source": "i-am-captain",
+          "destination": "https://captain.fanlink.to/i-am-captain",
+          "type": 301
+        },
+        {
+          "source": "live",
+          "destination": "https://captainofbass.tv",
+          "type": 301
+        },
+        {
+          "source": "store",
+          "destination": "https://captainssounds.com",
+          "type": 301
+        },
+        {
+          "source": "youtube",
+          "destination": "https://www.youtube.com/c/captainofbass",
+          "type": 301
+        }
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    }
+  ]
+}
