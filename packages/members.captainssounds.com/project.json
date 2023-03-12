@@ -9,7 +9,7 @@
       "executor": "@angular-devkit/build-angular:browser",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/packages/members.captainssounds.com",
+        "outputPath": "packages/members.captainssounds.com/dist",
         "index": "packages/members.captainssounds.com/src/index.html",
         "main": "packages/members.captainssounds.com/src/main.ts",
         "polyfills": ["zone.js"],

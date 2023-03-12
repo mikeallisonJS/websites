@@ -9,7 +9,7 @@
       "executor": "@angular-devkit/build-angular:browser",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/packages/captainofbass.com",
+        "outputPath": "packages/captainofbass.com/dist",
         "index": "packages/captainofbass.com/src/index.html",
         "main": "packages/captainofbass.com/src/main.ts",
         "polyfills": ["zone.js"],
