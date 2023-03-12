@@ -1,16 +1,14 @@
 {
   "projects": {
-    "prod": "thecaptain-31e80",
-    "default": "thecaptain-31e80"
+    "default": "captains-sounds-members"
   },
   "targets": {
-    "thecaptain-31e80": {
+    "captains-sounds-members": {
       "hosting": {
-        "thecaptain": [
-          "thecaptain-31e80"
+        "captains-sounds-members": [
+          "captains-sounds-members"
         ]
       }
     }
-  },
-  "etags": {}
+  }
 }

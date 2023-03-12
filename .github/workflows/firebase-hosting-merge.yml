@@ -37,7 +37,7 @@ jobs:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_THECAPTAIN_31E80 }}'
           channelId: live
           projectId: thecaptain-31e80
-          entryPoint: packages/captainofbass.com
+          entryPoint: packages/captainofbass.com/firebase.json
 
       - name: Build members.captainssounds.com
         run: nx build members.captainssounds.com
@@ -51,4 +51,4 @@ jobs:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_CAPTAINS_SOUNDS_MEMBERS }}'
           channelId: live
           projectId: captains-sounds-members
-          entryPoint: packages/members.captainssounds.com
+          entryPoint: packages/members.captainssounds.com/firebase.json
