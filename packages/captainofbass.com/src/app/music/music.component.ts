@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component } from '@angular/core'
 import { PlayerService } from '../player/player.service'
 import { songs, Song } from '../songs'
 

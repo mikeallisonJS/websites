@@ -1,0 +1,4 @@
+$contentPadding: 16px;
+$headerHeight: 64px;
+$footerHeight: 64px;
+$contentHeight: calc(100vh - #{$footerHeight + $headerHeight});

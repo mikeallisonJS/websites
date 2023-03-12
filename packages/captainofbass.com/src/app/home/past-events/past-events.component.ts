@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core'
+import { Component, HostListener } from '@angular/core'
 
 const images = [
   'uv-23-1',

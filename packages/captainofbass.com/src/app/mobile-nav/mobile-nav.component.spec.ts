@@ -1,24 +1,24 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { MobileNavComponent } from './mobile-nav.component';
+import { MobileNavComponent } from './mobile-nav.component'
 
 describe('MobileNavComponent', () => {
-  let component: MobileNavComponent;
-  let fixture: ComponentFixture<MobileNavComponent>;
+  let component: MobileNavComponent
+  let fixture: ComponentFixture<MobileNavComponent>
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [MobileNavComponent],
-    }).compileComponents();
-  });
+      declarations: [MobileNavComponent]
+    }).compileComponents()
+  })
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MobileNavComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    fixture = TestBed.createComponent(MobileNavComponent)
+    component = fixture.componentInstance
+    fixture.detectChanges()
+  })
 
   it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+    expect(component).toBeTruthy()
+  })
+})

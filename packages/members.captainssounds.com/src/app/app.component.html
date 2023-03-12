@@ -1,1 +1,10 @@
-<websites-nx-welcome></websites-nx-welcome> <router-outlet></router-outlet>
+<app-header></app-header>
+<div
+  class="cover"
+  [class.scrolled]="scrollService.scrollPos > 0 || router.url !== '/'"
+></div>
+<div [@routeAnimations]="prepareRoute(outlet)" class="content">
+  <div class="scroll-area" (scroll)="scrollHandler($event)">
+    <router-outlet #outlet="outlet"></router-outlet>
+  </div>
+</div>

@@ -7,7 +7,8 @@
   "features": {
     "ghcr.io/devcontainers-contrib/features/angular-cli:2": {},
     "ghcr.io/devcontainers-contrib/features/firebase-cli:2": {},
-    "ghcr.io/devcontainers-contrib/features/nx-npm:1": {}
+    "ghcr.io/devcontainers-contrib/features/nx-npm:1": {},
+    "ghcr.io/devcontainers-contrib/features/zsh-plugins:0": {}
   },
   "customizations": {
     "vscode": {

@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core'
 import { AudioService, StreamState } from './audio.service'
-import { Observable } from 'rxjs'
 import { Song, songs } from '../songs'
 
 @Injectable({
@@ -8,7 +7,7 @@ import { Song, songs } from '../songs'
 })
 export class PlayerService {
   files = songs
-  currentFile: any = {}
+  currentFile: { index: number; file?: Song } = { index: 0 }
   state?: StreamState = undefined
   constructor(public audioService: AudioService) {
     // listen to stream state
@@ -17,7 +16,6 @@ export class PlayerService {
     })
     this.currentFile = { index: 0, file: this.files[0] }
   }
-  init() {}
   openFile(file: Song, index: number) {
     this.currentFile = { index, file }
     // this.audioService.stop();
@@ -37,6 +35,7 @@ export class PlayerService {
     return this.audioService.pause()
   }
   play() {
+    if (this.currentFile.file === undefined) return
     if (this.audioService.audioObj.currentTime === 0) {
       return this.audioService.playStream(this.currentFile.file.url).subscribe()
     } else {

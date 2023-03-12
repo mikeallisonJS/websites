@@ -1,24 +1,24 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { PastEventsComponent } from './past-events.component';
+import { PastEventsComponent } from './past-events.component'
 
 describe('PastEventsComponent', () => {
-  let component: PastEventsComponent;
-  let fixture: ComponentFixture<PastEventsComponent>;
+  let component: PastEventsComponent
+  let fixture: ComponentFixture<PastEventsComponent>
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [PastEventsComponent],
-    }).compileComponents();
-  });
+      declarations: [PastEventsComponent]
+    }).compileComponents()
+  })
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PastEventsComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    fixture = TestBed.createComponent(PastEventsComponent)
+    component = fixture.componentInstance
+    fixture.detectChanges()
+  })
 
   it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+    expect(component).toBeTruthy()
+  })
+})

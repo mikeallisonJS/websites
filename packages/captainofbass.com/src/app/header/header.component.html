@@ -1,9 +1,9 @@
 <div *ngIf="router.url !== '/'" class="cover"></div>
 <mat-toolbar
-  [class.topScroll]="scrollService.scrollPos === 0 && router.url == '/'"
+  [class.topScroll]="scrollService.scrollPos === 0 && router.url === '/'"
 >
   <div class="logo" fxShow fxHide.sm fxHide.xs>
-    <picture *ngIf="!(router.url == '/' && scrollService.scrollPos == 0)">
+    <picture *ngIf="!(router.url === '/' && scrollService.scrollPos === 0)">
       <source
         srcset="/assets/compressed/images/cpt-border-256.webp"
         media="(max-width: 512px)"
@@ -28,7 +28,7 @@
     </picture>
   </div>
   <div class="mobile-logo" fxShow fxHide.gt-sm>
-    <picture *ngIf="!(router.url == '/' && scrollService.scrollPos == 0)">
+    <picture *ngIf="!(router.url === '/' && scrollService.scrollPos === 0)">
       <source
         srcset="/assets/compressed/images/cpt-border-256.webp"
         media="(max-width: 512px)"

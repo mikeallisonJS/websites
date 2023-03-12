@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { ScrollService } from '../scroll.service';
-import { animate, style, transition, trigger } from '@angular/animations';
+import { Component, OnInit } from '@angular/core'
+import { Router } from '@angular/router'
+import { ScrollService } from '@websites/common'
+import { animate, style, transition, trigger } from '@angular/animations'
 
 @Component({
   selector: 'app-header',
@@ -11,14 +11,12 @@ import { animate, style, transition, trigger } from '@angular/animations';
     trigger('fadeInOut', [
       transition(':enter', [
         style({ opacity: 0 }),
-        animate(500, style({ opacity: 1 })),
+        animate(500, style({ opacity: 1 }))
       ]),
-      transition(':leave', [animate(300, style({ opacity: 0 }))]),
-    ]),
-  ],
+      transition(':leave', [animate(300, style({ opacity: 0 }))])
+    ])
+  ]
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
   constructor(public router: Router, public scrollService: ScrollService) {}
-
-  ngOnInit(): void {}
 }
