@@ -18,6 +18,9 @@ jobs:
       - name: npm install
         run: npm ci
 
+      - name: nx Install
+        run: npm install -g nx --silent
+
       - name: Get affected apps
         run: echo "apps=$(nx affected:apps --plain --base=HEAD~1 --head=HEAD)" >> $GITHUB_OUTPUT
         id: affected-apps
