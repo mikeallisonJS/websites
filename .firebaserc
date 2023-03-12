@@ -11,6 +11,13 @@
           "thecaptain-31e80"
         ]
       }
+    },
+    "captains-sounds-members": {
+      "hosting": {
+        "captains-sounds-members": [
+          "captains-sounds-members"
+        ]
+      }
     }
   },
   "etags": {}

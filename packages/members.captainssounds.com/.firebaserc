@@ -1,0 +1,16 @@
+{
+  "projects": {
+    "prod": "thecaptain-31e80",
+    "default": "thecaptain-31e80"
+  },
+  "targets": {
+    "thecaptain-31e80": {
+      "hosting": {
+        "thecaptain": [
+          "thecaptain-31e80"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}
