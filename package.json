@@ -58,7 +58,6 @@
     "@fortawesome/fontawesome-svg-core": "^6.3.0",
     "@fortawesome/free-brands-svg-icons": "^6.3.0",
     "@fortawesome/free-solid-svg-icons": "^6.3.0",
-    "@simondotm/nx-firebase": "^1.0.0",
     "lodash-es": "^4.17.21",
     "ngx-flexible-layout": "^15.0.1",
     "rxjs": "~7.8.0",

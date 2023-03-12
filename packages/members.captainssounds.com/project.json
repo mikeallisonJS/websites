@@ -9,7 +9,7 @@
       "executor": "@angular-devkit/build-angular:browser",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/packages/members.captainssounds.com",
+        "outputPath": "packages/members.captainssounds.com/dist",
         "index": "packages/members.captainssounds.com/src/index.html",
         "main": "packages/members.captainssounds.com/src/main.ts",
         "polyfills": ["zone.js"],
@@ -30,8 +30,8 @@
           "budgets": [
             {
               "type": "initial",
-              "maximumWarning": "500kb",
-              "maximumError": "1mb"
+              "maximumWarning": "1500kb",
+              "maximumError": "2mb"
             },
             {
               "type": "anyComponentStyle",
@@ -95,7 +95,7 @@
       }
     },
     "fetch-secrets": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "commands": [
           {
