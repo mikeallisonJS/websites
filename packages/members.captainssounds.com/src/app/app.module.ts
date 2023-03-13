@@ -16,6 +16,7 @@ import { provideFirestore, getFirestore } from '@angular/fire/firestore'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { HomeModule } from './home/home.module'
 import { HeaderModule } from './header/header.module'
+import { LoginModule } from './login/login.module'
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,12 +24,13 @@ import { HeaderModule } from './header/header.module'
     BrowserModule,
     HomeModule,
     HeaderModule,
+    LoginModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAnalytics(() => getAnalytics()),
     provideAuth(() => getAuth()),
-    provideFirestore(() => getFirestore()),
-    BrowserAnimationsModule
+    provideFirestore(() => getFirestore())
   ],
   providers: [ScreenTrackingService, UserTrackingService],
   bootstrap: [AppComponent]
