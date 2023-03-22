@@ -2,9 +2,9 @@ const { src, dest } = require('gulp')
 const sharpResponsive = require('gulp-sharp-responsive')
 
 const compress = () => {
-  const projects = ['captainofbass.com', 'members.caotainofbass.com']
+  const projects = ['captainofbass.com', 'members.captainssounds.com']
   projects.forEach((project) => {
-    const folders = ['images', 'flyers']
+    const folders = ['images', 'flyers', 'products']
     folders.forEach((folder) =>
       src(`packages/${project}/src/assets/${folder}/*.{png,jpg,jpeg,JPG}`)
         .pipe(

@@ -6,10 +6,8 @@
   left: 0;
   width: 100%;
   overflow: hidden;
+  height: $contentHeight;
   z-index: 1;
-  div.scroll-area {
-    overflow-y: auto;
-  }
 }
 
 .cover {

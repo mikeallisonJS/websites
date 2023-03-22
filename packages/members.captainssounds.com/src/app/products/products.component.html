@@ -1,0 +1,90 @@
+<mat-drawer-container>
+  <mat-drawer mode="side" opened class="sidenav">
+    <nav mat-tab-nav-bar [tabPanel]="productsTabPanel">
+      <a
+        *ngFor="let category of categories"
+        mat-tab-link
+        class="category-link"
+        [routerLink]="['/products', {category}]"
+        [active]="selectedCategory === category"
+      >
+        {{ category | titlecase }}
+      </a>
+    </nav>
+  </mat-drawer>
+  <mat-drawer
+    opened
+    mode="over"
+    position="end"
+    [opened]="selectedProduct !== null"
+    style="width: 30vw"
+    (closed)="selectedProduct = null"
+  >
+    <app-product
+      *ngIf="selectedProduct !== null"
+      [product]="selectedProduct"
+    ></app-product>
+  </mat-drawer>
+  <mat-drawer-content class="scroll-area">
+    <mat-tab-nav-panel #productsTabPanel>
+      <div class="scroll-area" fxLayout="column">
+        <div class="container">
+          <h1>{{ selectedCategory | titlecase }}</h1>
+          <div fxLayoutAlign="start" fxLayout="row wrap" fxLayoutGap="1.5vw">
+            <mat-card
+              class="product-card"
+              *ngFor="
+                let product of products
+                  | filterBy : ['category'] : selectedCategory
+              "
+            >
+              <a
+                [routerLink]="[{ id: product.id, category: selectedCategory }]"
+              >
+                <picture mat-card-image *ngIf="product.images[0]">
+                  <source
+                    srcset="
+                      /assets/compressed/products/{{product.images[0].compressedName}}-256.webp
+                    "
+                    media="(max-width: 512px)"
+                    type="image/webp"
+                  />
+                  <source
+                    srcset="
+                      /assets/compressed/products/{{product.images[0].compressedName}}-512.webp
+                    "
+                    media="(max-width: 1024px)"
+                    type="image/webp"
+                  />
+                  <source
+                    srcset="
+                      /assets/compressed/products/{{product.images[0].compressedName}}-1024.webp
+                    "
+                    media="(max-width: 2048px)"
+                    type="image/webp"
+                  />
+                  <img
+                    [src]="product.images[0].url"
+                    [alt]="product.name"
+                    width="100%"
+                  />
+                </picture>
+                <div
+                  style="width: 100%; background-color: #efefef; height: 17.5vw"
+                  *ngIf="!product.images[0]"
+                >
+                  <h1 style="text-align: center; padding: 16px 0">No Image</h1>
+                </div>
+                <mat-card-footer>
+                  <mat-card-title style="padding: 0 0 8px 8px">
+                    {{ product.name }}
+                  </mat-card-title>
+                </mat-card-footer>
+              </a>
+            </mat-card>
+          </div>
+        </div>
+      </div>
+    </mat-tab-nav-panel>
+  </mat-drawer-content>
+</mat-drawer-container>

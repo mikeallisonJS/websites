@@ -50,7 +50,7 @@
       />
     </picture>
   </div>
-  <nav mat-tab-nav-bar fxShow fxHide.xs>
+  <nav mat-tab-nav-bar fxShow fxHide.xs [tabPanel]="tabPanel">
     <a
       mat-tab-link
       [routerLink]="['/']"
@@ -61,16 +61,16 @@
     >
       HOME
     </a>
-    <!-- <a
+    <a
       mat-tab-link
-      [routerLink]="'music'"
+      [routerLink]="'offer'"
       routerLinkActive
       #rla2="routerLinkActive"
       [active]="rla2.isActive"
     >
-      MUSIC
+      OFFER
     </a>
-    <a
+    <!-- <a
       mat-tab-link
       [routerLink]="'links'"
       routerLinkActive

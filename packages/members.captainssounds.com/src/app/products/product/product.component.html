@@ -1,0 +1,33 @@
+<picture mat-card-image *ngIf="product.images[0]">
+  <source
+    srcset="
+      /assets/compressed/products/{{product.images[selectedImage].compressedName}}-256.webp
+    "
+    media="(max-width: 512px)"
+    type="image/webp"
+  />
+  <source
+    srcset="
+      /assets/compressed/products/{{product.images[selectedImage].compressedName}}-512.webp
+    "
+    media="(max-width: 1024px)"
+    type="image/webp"
+  />
+  <source
+    srcset="
+      /assets/compressed/products/{{product.images[selectedImage].compressedName}}-1024.webp
+    "
+    media="(max-width: 2048px)"
+    type="image/webp"
+  />
+  <img
+    [src]="product.images[selectedImage].url"
+    [alt]="product.name"
+    style="width: 30vw"
+  />
+</picture>
+<div style="padding: 0 0 16px 16px">
+  <h1>{{ product.name }}</h1>
+  <p>{{ product.description }}</p>
+  <a [href]="product.links[0]" mat-raised-button>Download Now!</a>
+</div>

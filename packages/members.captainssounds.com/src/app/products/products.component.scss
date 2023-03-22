@@ -1,0 +1,17 @@
+@import '../../variables';
+
+mat-drawer-container {
+  min-height: $contentHeight;
+  .product-card {
+    margin-bottom: 8px;
+    a,
+    a:visited {
+      color: inherit;
+      text-decoration: none;
+    }
+    width: 20vw;
+    mat-card-title {
+      height: 64px;
+    }
+  }
+}

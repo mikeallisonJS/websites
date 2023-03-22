@@ -13,9 +13,12 @@ import {
 } from '@angular/fire/analytics'
 import { provideAuth, getAuth } from '@angular/fire/auth'
 import { provideFirestore, getFirestore } from '@angular/fire/firestore'
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { HomeModule } from './home/home.module'
 import { HeaderModule } from './header/header.module'
+import { OfferModule } from './offer/offer.module'
+import { UatModule } from './uat/uat.module'
+import { AppThemeModule } from './app-theme.module'
+import { ProductsModule } from './products/products.module'
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,12 +26,15 @@ import { HeaderModule } from './header/header.module'
     BrowserModule,
     HomeModule,
     HeaderModule,
+    OfferModule,
+    UatModule,
+    ProductsModule,
     AppRoutingModule,
+    AppThemeModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAnalytics(() => getAnalytics()),
     provideAuth(() => getAuth()),
-    provideFirestore(() => getFirestore()),
-    BrowserAnimationsModule
+    provideFirestore(() => getFirestore())
   ],
   providers: [ScreenTrackingService, UserTrackingService],
   bootstrap: [AppComponent]
