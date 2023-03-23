@@ -1,0 +1,11 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        VARIANT: 18
+    volumes:
+      - ..:/workspaces:delegated
+    command: sleep infinity
