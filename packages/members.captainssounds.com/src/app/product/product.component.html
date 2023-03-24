@@ -29,5 +29,13 @@
 <div style="padding: 0 0 16px 16px">
   <h1>{{ product.name }}</h1>
   <p>{{ product.description }}</p>
-  <a [href]="product.links[0]" mat-raised-button>Download Now!</a>
+  <a
+    [href]="sanitizer.bypassSecurityTrustUrl(product.links[0])"
+    mat-raised-button
+    target="_blank"
+  >
+    <span *ngIf="product.links[0].includes('mediafire'); else view"
+      >Download Now!</span
+    ><ng-template #view> View </ng-template></a
+  >
 </div>

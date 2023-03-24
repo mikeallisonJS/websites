@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
 import { HomeComponent } from './home/home.component'
-import { OfferComponent } from './offer/offer.component'
+import { LinksComponent } from './links/links.component'
+import { RegisterComponent } from './register/register.component'
 import { ProductsComponent } from './products/products.component'
 import { UatComponent } from './uat/uat.component'
 
@@ -12,12 +13,16 @@ const routes: Routes = [
     component: ProductsComponent
   },
   {
-    path: 'offer',
-    component: OfferComponent
+    path: 'register',
+    component: RegisterComponent
   },
   {
     path: 'uat',
     component: UatComponent
+  },
+  {
+    path: 'links',
+    component: LinksComponent
   }
 ]
 

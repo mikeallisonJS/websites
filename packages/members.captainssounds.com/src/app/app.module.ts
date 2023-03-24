@@ -15,10 +15,11 @@ import { provideAuth, getAuth } from '@angular/fire/auth'
 import { provideFirestore, getFirestore } from '@angular/fire/firestore'
 import { HomeModule } from './home/home.module'
 import { HeaderModule } from './header/header.module'
-import { OfferModule } from './offer/offer.module'
+import { RegisterModule } from './register/register.module'
 import { UatModule } from './uat/uat.module'
 import { AppThemeModule } from './app-theme.module'
 import { ProductsModule } from './products/products.module'
+import { LinksModule } from './links/links.module'
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,7 +27,8 @@ import { ProductsModule } from './products/products.module'
     BrowserModule,
     HomeModule,
     HeaderModule,
-    OfferModule,
+    LinksModule,
+    RegisterModule,
     UatModule,
     ProductsModule,
     AppRoutingModule,

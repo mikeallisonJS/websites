@@ -1,0 +1,37 @@
+<mat-drawer-container>
+  <mat-drawer mode="side" opened class="sidenav">
+    <nav mat-tab-nav-bar [tabPanel]="ncTabPanel">
+      <a
+        *ngFor="let category of categories"
+        mat-tab-link
+        class="category-link"
+        [routerLink]="[{category}]"
+        [active]="selectedCategory === category"
+      >
+        {{ category | titlecase }}
+      </a>
+    </nav>
+  </mat-drawer>
+  <mat-drawer
+    opened
+    mode="over"
+    position="end"
+    [opened]="selectedItem !== null"
+    style="width: 30vw"
+    (closed)="selectedItem = null"
+  >
+    <ng-content select="[detail]" />
+  </mat-drawer>
+  <mat-drawer-content class="scroll-area">
+    <mat-tab-nav-panel #ncTabPanel>
+      <div class="scroll-area" fxLayout="column">
+        <div class="container">
+          <h1>{{ selectedCategory | titlecase }}</h1>
+          <div fxLayoutAlign="start" fxLayout="row wrap" fxLayoutGap="1.5vw">
+            <ng-content select="[list]" />
+          </div>
+        </div>
+      </div>
+    </mat-tab-nav-panel>
+  </mat-drawer-content>
+</mat-drawer-container>

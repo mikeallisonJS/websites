@@ -2,9 +2,7 @@
 // README at: https://github.com/devcontainers/templates/tree/main/src/typescript-node
 {
   "name": "Websites",
-  "dockerComposeFile": "docker-compose.yml",
-  "service": "app",
-  "workspaceFolder": "/workspaces",
+  "dockerFile": "Dockerfile",
   "features": {
     "ghcr.io/devcontainers-contrib/features/angular-cli:2": {},
     "ghcr.io/devcontainers-contrib/features/firebase-cli:2": {},

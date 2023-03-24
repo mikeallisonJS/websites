@@ -5,19 +5,13 @@ import { filter } from 'rxjs'
 import { Product } from '../product/product.interface'
 
 @Component({
-  selector: 'app-products',
-  templateUrl: './products.component.html',
-  styleUrls: ['./products.component.scss']
+  selector: 'app-links',
+  templateUrl: './links.component.html',
+  styleUrls: ['./links.component.scss']
 })
-export class ProductsComponent {
+export class LinksComponent {
   firestore: Firestore = inject(Firestore)
-  categories = [
-    'effect racks',
-    'instruments',
-    'samples',
-    'templates',
-    'bonus content'
-  ]
+  categories = ['bonus content']
   selectedCategory: string
   products: Product[] = []
   selectedProduct: Product | null = null
@@ -28,7 +22,7 @@ export class ProductsComponent {
       .subscribe(() => {
         this.setParams()
       })
-    const aCollection = collection(this.firestore, 'products')
+    const aCollection = collection(this.firestore, 'links')
     collectionData(aCollection, {
       idField: 'id'
     }).subscribe((products) => {
@@ -38,7 +32,7 @@ export class ProductsComponent {
   }
   setParams() {
     this.selectedCategory =
-      this.route?.snapshot.paramMap.get('category') || 'effect racks'
+      this.route?.snapshot.paramMap.get('category') || 'bonus content'
     const selectedProductId =
       this.route?.snapshot.paramMap.get('id') || undefined
     this.selectedProduct =

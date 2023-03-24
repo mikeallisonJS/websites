@@ -1,20 +1,20 @@
 import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
-import { NgPipesModule } from 'ngx-pipes'
-import { ProductsComponent } from './products.component'
-import { AppThemeModule } from '../app-theme.module'
+import { LinksComponent } from './links.component'
 import { NavigationContainerModule } from '../navigation-container/navigation-container.module'
 import { ProductModule } from '../product/product.module'
+import { NgPipesModule } from 'ngx-pipes'
+import { AppThemeModule } from '../app-theme.module'
 
 @NgModule({
-  declarations: [ProductsComponent],
+  declarations: [LinksComponent],
   imports: [
     CommonModule,
     AppThemeModule,
-    NgPipesModule,
     NavigationContainerModule,
+    NgPipesModule,
     ProductModule
   ],
-  exports: [ProductsComponent]
+  exports: [LinksComponent]
 })
-export class ProductsModule {}
+export class LinksModule {}
