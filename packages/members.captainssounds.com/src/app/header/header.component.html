@@ -59,7 +59,16 @@
       #rla="routerLinkActive"
       [active]="rla.isActive"
     >
-      HOME
+      REGISTER
+    </a>
+    <a
+      mat-tab-link
+      [routerLink]="'login'"
+      routerLinkActive
+      #rla5="routerLinkActive"
+      [active]="rla5.isActive"
+    >
+      LOGIN
     </a>
     <a
       mat-tab-link
@@ -78,15 +87,6 @@
       [active]="rla4.isActive"
     >
       LINKS
-    </a>
-    <a
-      mat-tab-link
-      [routerLink]="'register'"
-      routerLinkActive
-      #rla5="routerLinkActive"
-      [active]="rla5.isActive"
-    >
-      REGISTER
     </a>
   </nav>
 </mat-toolbar>

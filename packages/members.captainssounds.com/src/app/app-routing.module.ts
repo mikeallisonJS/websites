@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
-import { HomeComponent } from './home/home.component'
 import { LinksComponent } from './links/links.component'
 import { RegisterComponent } from './register/register.component'
 import { ProductsComponent } from './products/products.component'
 import { UatComponent } from './uat/uat.component'
+import { SpecialOfferComponent } from './special-offer/special-offer.component'
+import { LoginComponent } from './login/login.component'
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
   {
     path: 'products',
     component: ProductsComponent
   },
   {
-    path: 'register',
+    path: '',
     component: RegisterComponent
   },
   {
@@ -23,6 +23,14 @@ const routes: Routes = [
   {
     path: 'links',
     component: LinksComponent
+  },
+  {
+    path: 'special-offer',
+    component: SpecialOfferComponent
+  },
+  {
+    path: 'login',
+    component: LoginComponent
   }
 ]
 

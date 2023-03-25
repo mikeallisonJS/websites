@@ -13,23 +13,27 @@ import {
 } from '@angular/fire/analytics'
 import { provideAuth, getAuth } from '@angular/fire/auth'
 import { provideFirestore, getFirestore } from '@angular/fire/firestore'
-import { HomeModule } from './home/home.module'
 import { HeaderModule } from './header/header.module'
 import { RegisterModule } from './register/register.module'
 import { UatModule } from './uat/uat.module'
 import { AppThemeModule } from './app-theme.module'
 import { ProductsModule } from './products/products.module'
 import { LinksModule } from './links/links.module'
+import { SpecialOfferModule } from './special-offer/special-offer.module'
+import { LoginModule } from './login/login.module'
+import { AuthService } from './auth.service'
+import { FIREBASE_OPTIONS } from '@angular/fire/compat'
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    HomeModule,
     HeaderModule,
     LinksModule,
+    LoginModule,
     RegisterModule,
     UatModule,
+    SpecialOfferModule,
     ProductsModule,
     AppRoutingModule,
     AppThemeModule,
@@ -38,7 +42,12 @@ import { LinksModule } from './links/links.module'
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore())
   ],
-  providers: [ScreenTrackingService, UserTrackingService],
+  providers: [
+    ScreenTrackingService,
+    UserTrackingService,
+    AuthService,
+    { provide: FIREBASE_OPTIONS, useValue: environment.firebase }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
