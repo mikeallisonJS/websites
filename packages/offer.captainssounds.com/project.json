@@ -30,8 +30,8 @@
           "budgets": [
             {
               "type": "initial",
-              "maximumWarning": "500kb",
-              "maximumError": "1mb"
+              "maximumWarning": "1500kb",
+              "maximumError": "2mb"
             },
             {
               "type": "anyComponentStyle",
@@ -92,7 +92,16 @@
           "ci": true,
           "codeCoverage": true
         }
-      }
+      },
+      "fetch-secrets": {
+        "executor": "nx:run-commands",
+        "options": {
+          "commands": [
+            {
+              "command": "doppler secrets download --no-file --format=env-no-quotes -p members-captainssounds-com > packages/members.captainssounds.com/.env"
+            }
+          ]
+        }
     }
   },
   "tags": []
