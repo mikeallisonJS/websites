@@ -14,7 +14,7 @@
         "headers": [
           {
             "key": "Access-Control-Allow-Origin",
-            "value": "*"
+            "value": "www.aweber.com"
           }
         ]
       }

@@ -8,6 +8,8 @@ name: Deploy to Firebase Hosting on merge
       - main
 jobs:
   build_and_deploy:
+    env:
+      NX_BRANCH: ${{ secrets.NX_BRANCH}}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
