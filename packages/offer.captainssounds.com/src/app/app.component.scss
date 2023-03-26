@@ -8,6 +8,10 @@
   overflow: hidden;
   height: $contentHeight;
   z-index: 1;
+  div.scroll-area {
+    height: calc(100vh - $headerHeight);
+    overflow-y: auto;
+  }
 }
 
 .cover {
