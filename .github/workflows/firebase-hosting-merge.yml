@@ -37,7 +37,7 @@ jobs:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_THECAPTAIN_31E80 }}'
           channelId: live
           projectId: thecaptain-31e80
-          entryPoint: packages/captainofbass.com/firebase.json
+          entryPoint: packages/captainofbass.com
 
       - name: Build members.captainssounds.com
         run: nx build members.captainssounds.com
@@ -51,7 +51,7 @@ jobs:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_CAPTAINS_SOUNDS_MEMBERS }}'
           channelId: live
           projectId: captains-sounds-members
-          entryPoint: packages/members.captainssounds.com/firebase.json
+          entryPoint: packages/members.captainssounds.com
 
       - name: Build offer.captainssounds.com
         run: nx build offer.captainssounds.com
@@ -65,4 +65,4 @@ jobs:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_CAPTAINS_SOUNDS_OFFER }}'
           channelId: live
           projectId: offer-captainssounds-com
-          entryPoint: packages/offer.captainssounds.com/firebase.json
+          entryPoint: packages/offer.captainssounds.com

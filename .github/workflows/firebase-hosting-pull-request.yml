@@ -34,7 +34,7 @@ jobs:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_THECAPTAIN_31E80 }}'
           projectId: thecaptain-31e80
-          entryPoint: packages/captainofbass.com/firebase.json
+          entryPoint: packages/captainofbass.com
 
       - name: Build members.captainssounds.com
         run: nx build members.captainssounds.com
@@ -47,7 +47,7 @@ jobs:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_CAPTAINS_SOUNDS_MEMBERS }}'
           projectId: captains-sounds-members
-          entryPoint: packages/members.captainssounds.com/firebase.json
+          entryPoint: packages/members.captainssounds.com
 
       - name: Build offer.captainssounds.com
         run: nx build offer.captainssounds.com
@@ -60,4 +60,4 @@ jobs:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_CAPTAINS_SOUNDS_OFFER }}'
           projectId: offer-captainssounds-com
-          entryPoint: packages/offer.captainssounds.com/firebase.json
+          entryPoint: packages/offer.captainssounds.com
