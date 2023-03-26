@@ -9,7 +9,7 @@
       "executor": "@angular-devkit/build-angular:browser",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/packages/offer.captainssounds.com",
+        "outputPath": "packages/offer.captainssounds.com/dist",
         "index": "packages/offer.captainssounds.com/src/index.html",
         "main": "packages/offer.captainssounds.com/src/main.ts",
         "polyfills": ["zone.js"],
@@ -19,7 +19,10 @@
           "packages/offer.captainssounds.com/src/favicon.ico",
           "packages/offer.captainssounds.com/src/assets"
         ],
-        "styles": ["packages/offer.captainssounds.com/src/styles.scss"],
+        "styles": [
+          "@angular/material/prebuilt-themes/purple-green.css",
+          "packages/offer.captainssounds.com/src/styles.scss"
+        ],
         "scripts": []
       },
       "configurations": {
@@ -27,8 +30,8 @@
           "budgets": [
             {
               "type": "initial",
-              "maximumWarning": "500kb",
-              "maximumError": "1mb"
+              "maximumWarning": "1500kb",
+              "maximumError": "2mb"
             },
             {
               "type": "anyComponentStyle",
@@ -89,6 +92,16 @@
           "ci": true,
           "codeCoverage": true
         }
+      }
+    },
+    "fetch-secrets": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          {
+            "command": "doppler secrets download --no-file --format=env-no-quotes -p members-captainssounds-com > packages/members.captainssounds.com/.env"
+          }
+        ]
       }
     }
   },

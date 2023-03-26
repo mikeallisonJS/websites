@@ -1,4 +1,5 @@
 import { Component } from '@angular/core'
+import { Router, RouterOutlet } from '@angular/router'
 
 @Component({
   selector: 'websites-root',
@@ -6,5 +7,13 @@ import { Component } from '@angular/core'
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'offer.captainssounds.com'
+  constructor(public router: Router) {}
+
+  prepareRoute(outlet: RouterOutlet) {
+    return (
+      outlet &&
+      outlet.activatedRouteData &&
+      outlet.activatedRouteData['animation']
+    )
+  }
 }
