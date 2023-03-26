@@ -2,7 +2,11 @@ const { src, dest } = require('gulp')
 const sharpResponsive = require('gulp-sharp-responsive')
 
 const compress = () => {
-  const projects = ['captainofbass.com', 'members.caotainofbass.com']
+  const projects = [
+    'captainofbass.com',
+    'members.captainssounds.com',
+    'offer.captainssounds.com'
+  ]
   projects.forEach((project) => {
     const folders = ['images', 'flyers']
     folders.forEach((folder) =>

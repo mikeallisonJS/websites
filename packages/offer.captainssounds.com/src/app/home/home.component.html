@@ -1,0 +1,66 @@
+<div class="container">
+  <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="16px">
+    <picture>
+      <source
+        srcset="/assets/compressed/images/essential-racks-3-box-256.webp"
+        media="(max-width: 512px)"
+        type="image/webp"
+      />
+      <source
+        srcset="/assets/compressed/images/essential-racks-3-box-512.webp"
+        media="(max-width: 1024px)"
+        type="image/webp"
+      />
+      <source
+        srcset="/assets/compressed/images/essential-racks-3-box-1024.webp"
+        media="(max-width: 2048px)"
+        type="image/webp"
+      />
+      <img
+        src="/assets/images/essential-racks-3-box.png"
+        alt="essential-racks-3-box"
+        style="width: 30vw"
+      />
+    </picture>
+
+    <div>
+      <h1>Get 20 Ableton Racks FREE!</h1>
+      <h3>
+        Enter your name & e-mail address below. Then click the button below to
+        instantly receive the latest link to the racks...
+      </h3>
+      <form [formGroup]="form" (submit)="submit()">
+        <div>
+          <mat-form-field appearance="fill">
+            <mat-label>Artist Name</mat-label>
+            <input matInput formControlName="artistName" />
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" formControlName="email" />
+          </mat-form-field>
+        </div>
+        <div class="buttons">
+          <button
+            mat-raised-button
+            color="primary"
+            type="submit"
+            [disabled]="form.invalid"
+          >
+            Send Me The Racks!
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <p>
+    Your information is safe with us and will not be shared with any third
+    party. We deliver via email to ensure you always have an easy way to access
+    the download no matter where you are now, as well as have access to the
+    racks later. We'll send an initial offer, but mostly we just send out
+    notifications of free downloads & contests. Honestly, we hate spam as much
+    as anybody, and we'd prefer to keep you around.
+  </p>
+</div>
