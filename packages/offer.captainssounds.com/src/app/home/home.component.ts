@@ -24,12 +24,17 @@ export class HomeComponent {
 
   async submit() {
     this.disabled = true
-    await this.http.post('https://www.aweber.com/scripts/addlead.pl', {
-      name: this.form.controls['artistName'].value,
-      email: this.form.controls['email'].value,
-      listname: 'captainssounds'
-    })
-    this.router.navigate(['/special-offer'])
-    this.disabled = false
+    await this.http
+      .post<{ ok: boolean }>('https://www.aweber.com/scripts/addlead.pl', {
+        name: this.form.controls['artistName'].value,
+        email: this.form.controls['email'].value,
+        listname: 'captainssounds'
+      })
+      .subscribe((result) => {
+        this.disabled = false
+        if (result.ok) {
+          this.router.navigate(['/special-offer'])
+        }
+      })
   }
 }
