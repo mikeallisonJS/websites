@@ -10,7 +10,7 @@
     ],
     "headers": [
       {
-        "source": "**/*.@(js)",
+        "source": "index.html",
         "headers": [
           {
             "key": "Access-Control-Allow-Origin",
