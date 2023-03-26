@@ -1,0 +1,7 @@
+[
+  {
+    "origin": ["https://www.aweber.com"],
+    "method": ["POST"],
+    "maxAgeSeconds": 3600
+  }
+]
