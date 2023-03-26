@@ -23,6 +23,7 @@ import { SpecialOfferModule } from './special-offer/special-offer.module'
 import { LoginModule } from './login/login.module'
 import { AuthService } from './auth.service'
 import { FIREBASE_OPTIONS } from '@angular/fire/compat'
+import { AweberService } from './aweber.service'
 
 @NgModule({
   declarations: [AppComponent],
@@ -46,6 +47,7 @@ import { FIREBASE_OPTIONS } from '@angular/fire/compat'
     ScreenTrackingService,
     UserTrackingService,
     AuthService,
+    AweberService,
     { provide: FIREBASE_OPTIONS, useValue: environment.firebase }
   ],
   bootstrap: [AppComponent]

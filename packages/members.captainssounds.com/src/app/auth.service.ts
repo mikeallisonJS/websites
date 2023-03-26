@@ -1,18 +1,25 @@
 import { Injectable, NgZone } from '@angular/core'
-import * as auth from 'firebase/auth'
-import { Firestore, collection, collectionData } from '@angular/fire/firestore'
-import { AngularFireAuth } from '@angular/fire/compat/auth'
-// import {
-//   AngularFirestore,
-//   AngularFirestoreDocument
-// } from '@angular/fire/compat/firestore'
+import { Firestore, doc, setDoc } from '@angular/fire/firestore'
+import {
+  Auth,
+  AuthProvider,
+  authState,
+  createUserWithEmailAndPassword,
+  GoogleAuthProvider,
+  sendEmailVerification,
+  sendPasswordResetEmail,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  signOut,
+  User
+} from '@angular/fire/auth'
 import { Router } from '@angular/router'
 
 export interface UserData {
   uid: string
   email: string
   displayName: string
-  photoURL: string
+  photoURL: string | null
   emailVerified: boolean
 }
 
@@ -22,57 +29,56 @@ export interface UserData {
 export class AuthService {
   userData: UserData
   constructor(
-    public afs: Firestore, // Inject Firestore service
-    public afAuth: AngularFireAuth, // Inject Firebase auth service
+    public firestore: Firestore, // Inject Firestore service
+    public auth: Auth, // Inject Firebase auth service
     public router: Router,
     public ngZone: NgZone // NgZone service to remove outside scope warning
   ) {
-    /* Saving user data in localstorage when 
-    logged in and setting up null when logged out */
-    this.afAuth.authState.subscribe((user) => {
+    authState(this.auth).subscribe((user) => {
       if (user) {
         this.userData = user as UserData
         localStorage.setItem('user', JSON.stringify(this.userData))
-        // return JSON.parse(localStorage.getItem('user')!)
       }
       localStorage.removeItem('user')
-      // JSON.parse(localStorage.getItem('user')!)
     })
   }
-  // Sign in with email/password
-  async SignIn(email: string, password: string) {
-    const result = await this.afAuth
-      .signInWithEmailAndPassword(email, password)
-      .catch((error) => {
-        window.alert(error.message)
-      })
+  async signIn(email: string, password: string) {
+    const result = await signInWithEmailAndPassword(
+      this.auth,
+      email,
+      password
+    ).catch((error) => {
+      window.alert(error.message)
+    })
     if (result?.user == null) return result
     this.setUserData(result.user)
-    this.afAuth.authState.subscribe((user) => {
+    authState(this.auth).subscribe((user) => {
       if (user) {
         this.router.navigate(['products'])
       }
     })
   }
-  // Sign up with email/password
   async signUp(email: string, password: string) {
-    const result = await this.afAuth
-      .createUserWithEmailAndPassword(email, password)
-      .catch((error) => window.alert(error))
+    const result = await createUserWithEmailAndPassword(
+      this.auth,
+      email,
+      password
+    ).catch((error) => window.alert(error))
     if (result?.user == null) return result
     this.sendVerificationMail()
     this.setUserData(result.user)
     return result
   }
   async sendVerificationMail() {
-    const currentUser = await this.afAuth.currentUser
-    await currentUser?.sendEmailVerification()
+    const currentUser = await this.auth.currentUser
+    if (currentUser == null) return
+    await sendEmailVerification(currentUser)
     this.router.navigate(['verify-email-address'])
   }
   async forgotPassword(passwordResetEmail: string) {
-    await this.afAuth
-      .sendPasswordResetEmail(passwordResetEmail)
-      .catch((error) => window.alert(error))
+    await sendPasswordResetEmail(this.auth, passwordResetEmail).catch((error) =>
+      window.alert(error)
+    )
     window.alert('Password reset email sent, check your inbox.')
   }
   get isLoggedIn(): boolean {
@@ -82,38 +88,33 @@ export class AuthService {
     return user.emailVerified !== false ? true : false
   }
   googleAuth() {
-    return this.authLogin(new auth.GoogleAuthProvider()).then(() => {
-      this.router.navigate(['products'])
-    })
+    this.authLogin(new GoogleAuthProvider())
   }
-  async authLogin(provider: any) {
-    const result = await this.afAuth
-      .signInWithPopup(provider)
-      .catch((error) => window.alert(error))
-    this.setUserData(result?.user as UserData)
+  async authLogin(provider: AuthProvider) {
+    const result = await signInWithPopup(this.auth, provider).catch((error) =>
+      window.alert(error)
+    )
+    if (result?.user == null) return result
+    this.setUserData(result?.user)
     this.router.navigate(['products'])
     return result
   }
-  setUserData(user: UserData) {
-    const userRef: AngularFirestoreDocument<UserData> = this.afs.doc(
-      `users/${user.uid}`
-    )
-    const userData: User = {
+  setUserData(user: User) {
+    const userRef = doc(this.firestore, `users/${user.uid}`)
+    const userData: UserData = {
       uid: user.uid,
-      email: user.email,
-      displayName: user.displayName,
+      email: user.email ?? '',
+      displayName: user.displayName ?? 'No Name',
       photoURL: user.photoURL,
       emailVerified: user.emailVerified
     }
-    return userRef.set(userData, {
+    return setDoc(userRef, userData, {
       merge: true
     })
   }
-  // Sign out
-  SignOut() {
-    return this.afAuth.signOut().then(() => {
-      localStorage.removeItem('user')
-      this.router.navigate(['sign-in'])
-    })
+  async signOut() {
+    await signOut(this.auth)
+    localStorage.removeItem('user')
+    this.router.navigate(['login'])
   }
 }

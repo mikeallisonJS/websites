@@ -7,7 +7,7 @@
       <form
         [formGroup]="form"
         (submit)="
-          authService.SignIn(
+          authService.signIn(
             form.controls['email'].value,
             form.controls['password'].value
           )
