@@ -92,16 +92,17 @@
           "ci": true,
           "codeCoverage": true
         }
-      },
-      "fetch-secrets": {
-        "executor": "nx:run-commands",
-        "options": {
-          "commands": [
-            {
-              "command": "doppler secrets download --no-file --format=env-no-quotes -p members-captainssounds-com > packages/members.captainssounds.com/.env"
-            }
-          ]
-        }
+      }
+    },
+    "fetch-secrets": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          {
+            "command": "doppler secrets download --no-file --format=env-no-quotes -p members-captainssounds-com > packages/members.captainssounds.com/.env"
+          }
+        ]
+      }
     }
   },
   "tags": []
