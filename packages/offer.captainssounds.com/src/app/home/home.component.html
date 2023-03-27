@@ -29,26 +29,44 @@
         Enter your name & e-mail address below. Then click the button below to
         instantly receive the latest link to the racks...
       </h3>
-      <form [formGroup]="form" (submit)="submit()">
+      <form
+        method="post"
+        accept-charset="UTF-8"
+        action="https://www.aweber.com/scripts/addlead.pl"
+      >
         <div>
           <mat-form-field appearance="fill">
             <mat-label>Artist Name</mat-label>
-            <input matInput formControlName="artistName" />
+            <input matInput name="name" />
           </mat-form-field>
         </div>
         <div>
           <mat-form-field appearance="fill">
             <mat-label>Email</mat-label>
-            <input matInput type="email" formControlName="email" />
+            <input matInput type="email" name="email" />
           </mat-form-field>
         </div>
+        <input type="hidden" name="meta_web_form_id" value="289414031" />
+        <input type="hidden" name="meta_split_id" value="" />
+        <input type="hidden" name="listname" value="awlist5507214" />
+        <input
+          type="hidden"
+          name="redirect"
+          value="https://offer.captainssounds.com/special-offer"
+          id="redirect_83651d41713bb5829ec6af826ff1037b"
+        />
+
+        <input
+          type="hidden"
+          name="meta_adtracking"
+          value="Captain 5 Free Racks Form"
+        />
+        <input type="hidden" name="meta_message" value="1" />
+        <input type="hidden" name="meta_required" value="name,email" />
+        <input type="hidden" name="meta_forward_vars" value="1" />
+        <input type="hidden" name="meta_tooltip" value="" />
         <div class="buttons">
-          <button
-            mat-raised-button
-            color="primary"
-            type="submit"
-            [disabled]="form.invalid"
-          >
+          <button mat-raised-button color="primary" type="submit">
             Send Me The Racks!
           </button>
         </div>

@@ -8,6 +8,8 @@ name: Deploy to Firebase Hosting on merge
       - main
 jobs:
   build_and_deploy:
+    env:
+      NX_BRANCH: ${{ secrets.NX_BRANCH}}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -25,9 +27,11 @@ jobs:
         run: echo "apps=$(nx affected:apps --plain --base=HEAD~1 --head=HEAD)" >> $GITHUB_OUTPUT
         id: affected-apps
 
-      - name: Build captainofbass.com
-        run: nx build captainofbass.com
-        if: contains(steps.affected-apps.outputs.apps, 'captainofbass.com')
+      - name: Build affected apps
+        uses: mansagroup/nrwl-nx-action@v3
+        with:
+          targets: build
+          nxCloud: true
 
       - name: Deploy capainofbass.com
         uses: FirebaseExtended/action-hosting-deploy@v0
@@ -39,10 +43,6 @@ jobs:
           projectId: thecaptain-31e80
           entryPoint: packages/captainofbass.com
 
-      - name: Build members.captainssounds.com
-        run: nx build members.captainssounds.com
-        if: contains(steps.affected-apps.outputs.apps, 'members.captainssounds.com')
-
       - name: Deploy members.captainssounds.com
         uses: FirebaseExtended/action-hosting-deploy@v0
         if: contains(steps.affected-apps.outputs.apps, 'members.captainssounds.com')
@@ -52,10 +52,6 @@ jobs:
           channelId: live
           projectId: captains-sounds-members
           entryPoint: packages/members.captainssounds.com
-
-      - name: Build offer.captainssounds.com
-        run: nx build offer.captainssounds.com
-        if: contains(steps.affected-apps.outputs.apps, 'offer.captainssounds.com')
 
       - name: Deploy offer.captainssounds.com
         uses: FirebaseExtended/action-hosting-deploy@v0
