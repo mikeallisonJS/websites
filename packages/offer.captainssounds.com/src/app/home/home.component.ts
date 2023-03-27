@@ -35,6 +35,7 @@ export class HomeComponent {
       email: this.form.controls['email'].value
     }).subscribe((result) => {
       this.disabled = false
+      console.log(result)
       if (result.result) {
         this.router.navigate(['/special-offer'])
       }
