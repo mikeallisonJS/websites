@@ -1,14 +1,27 @@
 import { NgModule } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
+import { RouterModule } from '@angular/router'
+import { MatTabsModule } from '@angular/material/tabs'
+import { MatToolbarModule } from '@angular/material/toolbar'
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app'
+// import {
+//   provideAnalytics,
+//   getAnalytics,
+//   ScreenTrackingService,
+//   UserTrackingService
+// } from '@angular/fire/analytics'
+import {
+  provideFunctions,
+  getFunctions,
+  connectFunctionsEmulator
+} from '@angular/fire/functions'
 
 import { AppComponent } from './app.component'
-import { RouterModule } from '@angular/router'
 import { appRoutes } from './app.routes'
 import { HomeModule } from './home/home.module'
 import { SpecialOfferModule } from './special-offer/special-offer.module'
-import { MatTabsModule } from '@angular/material/tabs'
-import { MatToolbarModule } from '@angular/material/toolbar'
 import { AppThemeModule } from './app-theme.module'
+import { environment } from '../environments/environment'
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,9 +32,18 @@ import { AppThemeModule } from './app-theme.module'
     HomeModule,
     SpecialOfferModule,
     RouterModule.forRoot(appRoutes),
-    AppThemeModule
+    AppThemeModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    // provideAnalytics(() => getAnalytics())
+    provideFunctions(() => {
+      const functions = getFunctions()
+      if (environment.useEmulators) {
+        connectFunctionsEmulator(functions, 'localhost', 5001)
+      }
+      return functions
+    })
   ],
-  providers: [],
+  // providers: [ScreenTrackingService, UserTrackingService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

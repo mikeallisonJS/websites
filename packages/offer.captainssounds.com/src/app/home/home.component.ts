@@ -1,7 +1,8 @@
 import { Component } from '@angular/core'
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms'
-import { HttpClient } from '@angular/common/http'
 import { Router } from '@angular/router'
+import { Functions, httpsCallableData } from '@angular/fire/functions'
+import { Observable } from 'rxjs'
 
 @Component({
   selector: 'websites-home',
@@ -11,30 +12,29 @@ import { Router } from '@angular/router'
 export class HomeComponent {
   form: FormGroup
   disabled = false
+  aweberSignUp: (data: { name: string; email: string }) => Observable<boolean>
   constructor(
-    private http: HttpClient,
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private functions: Functions
   ) {
     this.form = this.formBuilder.group({
       artistName: new FormControl(''),
       email: new FormControl('')
     })
+    this.aweberSignUp = httpsCallableData(this.functions, 'aweberSignUp')
   }
 
   async submit() {
     this.disabled = true
-    await this.http
-      .post<{ ok: boolean }>('https://www.aweber.com/scripts/addlead.pl', {
-        name: this.form.controls['artistName'].value,
-        email: this.form.controls['email'].value,
-        listname: 'captainssounds'
-      })
-      .subscribe((result) => {
-        this.disabled = false
-        if (result.ok) {
-          this.router.navigate(['/special-offer'])
-        }
-      })
+    await this.aweberSignUp({
+      name: this.form.controls['artistName'].value,
+      email: this.form.controls['email'].value
+    }).subscribe((result) => {
+      this.disabled = false
+      if (result) {
+        this.router.navigate(['/special-offer'])
+      }
+    })
   }
 }

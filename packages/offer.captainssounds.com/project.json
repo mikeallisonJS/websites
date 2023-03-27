@@ -39,7 +39,13 @@
               "maximumError": "4kb"
             }
           ],
-          "outputHashing": "all"
+          "outputHashing": "all",
+          "fileReplacements": [
+            {
+              "replace": "packages/offer.captainssounds.com/src/environments/environment.ts",
+              "with": "packages/offer.captainssounds.com/src/environments/environment.prod.ts"
+            }
+          ]
         },
         "development": {
           "buildOptimizer": false,
@@ -52,7 +58,7 @@
       },
       "defaultConfiguration": "production"
     },
-    "serve": {
+    "serve-angular": {
       "executor": "@angular-devkit/build-angular:dev-server",
       "configurations": {
         "production": {
@@ -63,6 +69,31 @@
         }
       },
       "defaultConfiguration": "development"
+    },
+    "serve": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          {
+            "command": "nx serve-angular offer.captainssounds.com --configuration=production"
+          },
+          {
+            "command": "bash packages/offer.captainssounds.com/emulator.sh"
+          }
+        ],
+        "parallel": true
+      }
+    },
+    "deploy-functions": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          {
+            "command": "npm run build && npm run deploy"
+          }
+        ],
+        "cwd": "packages/offer.captainssounds.com/functions"
+      }
     },
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
