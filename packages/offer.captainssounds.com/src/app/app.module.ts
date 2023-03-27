@@ -10,11 +10,7 @@ import { initializeApp, provideFirebaseApp } from '@angular/fire/app'
 //   ScreenTrackingService,
 //   UserTrackingService
 // } from '@angular/fire/analytics'
-import {
-  provideFunctions,
-  getFunctions
-  // connectFunctionsEmulator
-} from '@angular/fire/functions'
+// import { provideFunctions, getFunctions } from '@angular/fire/functions'
 
 import { AppComponent } from './app.component'
 import { appRoutes } from './app.routes'
@@ -33,9 +29,9 @@ import { environment } from '../environments/environment'
     SpecialOfferModule,
     RouterModule.forRoot(appRoutes),
     AppThemeModule,
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideFirebaseApp(() => initializeApp(environment.firebase))
     // provideAnalytics(() => getAnalytics())
-    provideFunctions(() => getFunctions())
+    // provideFunctions(() => getFunctions())
   ],
   // providers: [ScreenTrackingService, UserTrackingService],
   bootstrap: [AppComponent]
