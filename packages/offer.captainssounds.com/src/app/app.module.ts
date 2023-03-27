@@ -12,8 +12,8 @@ import { initializeApp, provideFirebaseApp } from '@angular/fire/app'
 // } from '@angular/fire/analytics'
 import {
   provideFunctions,
-  getFunctions,
-  connectFunctionsEmulator
+  getFunctions
+  // connectFunctionsEmulator
 } from '@angular/fire/functions'
 
 import { AppComponent } from './app.component'
@@ -35,13 +35,7 @@ import { environment } from '../environments/environment'
     AppThemeModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     // provideAnalytics(() => getAnalytics())
-    provideFunctions(() => {
-      const functions = getFunctions()
-      if (environment.useEmulators) {
-        connectFunctionsEmulator(functions, 'localhost', 5001)
-      }
-      return functions
-    })
+    provideFunctions(() => getFunctions())
   ],
   // providers: [ScreenTrackingService, UserTrackingService],
   bootstrap: [AppComponent]
