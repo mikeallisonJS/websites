@@ -1,16 +1,23 @@
 .container {
-  margin-top: 32px;
-  margin-bottom: 32px;
-  > div {
-    margin-bottom: 32px;
-  }
-  mat-form-field {
-    width: 100%;
-  }
-  .buttons {
+  height: 100%;
+  .inner-container {
+    width: 300px;
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    transform: translate(0, -50%);
     text-align: center;
-    button {
-      margin: 16px;
+    .buttons {
+      margin-bottom: 16px;
+      color: white;
+    }
+    mat-card-title {
+      color: white;
+    }
+    .links {
+      text-align: start;
+      color: white;
+      cursor: pointer;
     }
   }
 }

@@ -4,16 +4,18 @@ import { LinksComponent } from './links/links.component'
 import { RegisterComponent } from './register/register.component'
 import { ProductsComponent } from './products/products.component'
 import { UatComponent } from './uat/uat.component'
-import { SpecialOfferComponent } from './special-offer/special-offer.component'
 import { LoginComponent } from './login/login.component'
+import { AuthService } from './auth.service'
+import { AuthGuard } from './auth.guard'
 
 const routes: Routes = [
   {
     path: 'products',
-    component: ProductsComponent
+    component: ProductsComponent,
+    canActivate: [AuthGuard]
   },
   {
-    path: '',
+    path: 'register',
     component: RegisterComponent
   },
   {
@@ -22,14 +24,11 @@ const routes: Routes = [
   },
   {
     path: 'links',
-    component: LinksComponent
+    component: LinksComponent,
+    canActivate: [AuthGuard]
   },
   {
-    path: 'special-offer',
-    component: SpecialOfferComponent
-  },
-  {
-    path: 'login',
+    path: '',
     component: LoginComponent
   }
 ]
@@ -38,4 +37,6 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule {
+  constructor(private authService: AuthService) {}
+}

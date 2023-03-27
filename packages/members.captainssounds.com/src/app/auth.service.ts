@@ -1,5 +1,5 @@
 import { Injectable, NgZone } from '@angular/core'
-import { Firestore, doc, setDoc } from '@angular/fire/firestore'
+import { Firestore, doc, setDoc, getDoc } from '@angular/fire/firestore'
 import {
   Auth,
   AuthProvider,
@@ -16,7 +16,7 @@ import {
 import { Router } from '@angular/router'
 
 export interface UserData {
-  uid: string
+  _id: string
   email: string
   displayName: string
   photoURL: string | null
@@ -36,8 +36,11 @@ export class AuthService {
   ) {
     authState(this.auth).subscribe((user) => {
       if (user) {
-        this.userData = user as UserData
-        localStorage.setItem('user', JSON.stringify(this.userData))
+        const userRef = doc(this.firestore, `users/${user.uid}`)
+        getDoc(userRef).then((doc) => {
+          this.userData = doc.data() as UserData
+          localStorage.setItem('user', JSON.stringify(this.userData))
+        })
       }
       localStorage.removeItem('user')
     })
@@ -102,7 +105,7 @@ export class AuthService {
   setUserData(user: User) {
     const userRef = doc(this.firestore, `users/${user.uid}`)
     const userData: UserData = {
-      uid: user.uid,
+      _id: user.uid,
       email: user.email ?? '',
       displayName: user.displayName ?? 'No Name',
       photoURL: user.photoURL,

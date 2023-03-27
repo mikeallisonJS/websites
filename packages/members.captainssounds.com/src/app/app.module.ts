@@ -19,7 +19,6 @@ import { UatModule } from './uat/uat.module'
 import { AppThemeModule } from './app-theme.module'
 import { ProductsModule } from './products/products.module'
 import { LinksModule } from './links/links.module'
-import { SpecialOfferModule } from './special-offer/special-offer.module'
 import { LoginModule } from './login/login.module'
 import { AuthService } from './auth.service'
 import { FIREBASE_OPTIONS } from '@angular/fire/compat'
@@ -34,7 +33,6 @@ import { AweberService } from './aweber.service'
     LoginModule,
     RegisterModule,
     UatModule,
-    SpecialOfferModule,
     ProductsModule,
     AppRoutingModule,
     AppThemeModule,
