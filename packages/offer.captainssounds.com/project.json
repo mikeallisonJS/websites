@@ -39,7 +39,13 @@
               "maximumError": "4kb"
             }
           ],
-          "outputHashing": "all"
+          "outputHashing": "all",
+          "fileReplacements": [
+            {
+              "replace": "packages/offer.captainssounds.com/src/environments/environment.ts",
+              "with": "packages/offer.captainssounds.com/src/environments/environment.prod.ts"
+            }
+          ]
         },
         "development": {
           "buildOptimizer": false,
@@ -76,6 +82,17 @@
           }
         ],
         "parallel": true
+      }
+    },
+    "deploy-functions": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          {
+            "command": "npm run build && npm run deploy"
+          }
+        ],
+        "cwd": "packages/offer.captainssounds.com/functions"
       }
     },
     "extract-i18n": {
