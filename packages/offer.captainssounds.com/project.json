@@ -52,7 +52,7 @@
       },
       "defaultConfiguration": "production"
     },
-    "serve": {
+    "serve-angular": {
       "executor": "@angular-devkit/build-angular:dev-server",
       "configurations": {
         "production": {
@@ -63,6 +63,20 @@
         }
       },
       "defaultConfiguration": "development"
+    },
+    "serve": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          {
+            "command": "nx serve-angular offer.captainssounds.com --configuration=production"
+          },
+          {
+            "command": "bash packages/offer.captainssounds.com/emulator.sh"
+          }
+        ],
+        "parallel": true
+      }
     },
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
