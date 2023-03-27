@@ -12,7 +12,10 @@ import { Observable } from 'rxjs'
 export class HomeComponent {
   form: FormGroup
   disabled = false
-  aweberSignUp: (data: { name: string; email: string }) => Observable<boolean>
+  aweberSignUp: (data: {
+    name: string
+    email: string
+  }) => Observable<{ result: boolean }>
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
@@ -32,7 +35,7 @@ export class HomeComponent {
       email: this.form.controls['email'].value
     }).subscribe((result) => {
       this.disabled = false
-      if (result) {
+      if (result.result) {
         this.router.navigate(['/special-offer'])
       }
     })
