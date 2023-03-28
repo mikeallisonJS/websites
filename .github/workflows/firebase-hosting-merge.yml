@@ -32,6 +32,7 @@ jobs:
         with:
           targets: build
           nxCloud: true
+          args: --c=production
 
       - name: Deploy capainofbass.com
         uses: FirebaseExtended/action-hosting-deploy@v0
