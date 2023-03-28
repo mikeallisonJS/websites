@@ -4,12 +4,12 @@ import { RouterModule } from '@angular/router'
 import { MatTabsModule } from '@angular/material/tabs'
 import { MatToolbarModule } from '@angular/material/toolbar'
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app'
-// import {
-//   provideAnalytics,
-//   getAnalytics,
-//   ScreenTrackingService,
-//   UserTrackingService
-// } from '@angular/fire/analytics'
+import {
+  provideAnalytics,
+  getAnalytics,
+  ScreenTrackingService,
+  UserTrackingService
+} from '@angular/fire/analytics'
 // import { provideFunctions, getFunctions } from '@angular/fire/functions'
 
 import { AppComponent } from './app.component'
@@ -29,11 +29,11 @@ import { environment } from '../environments/environment'
     SpecialOfferModule,
     RouterModule.forRoot(appRoutes),
     AppThemeModule,
-    provideFirebaseApp(() => initializeApp(environment.firebase))
-    // provideAnalytics(() => getAnalytics())
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAnalytics(() => getAnalytics())
     // provideFunctions(() => getFunctions())
   ],
-  // providers: [ScreenTrackingService, UserTrackingService],
+  providers: [ScreenTrackingService, UserTrackingService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -16,6 +16,22 @@
     "
   >
     <a [routerLink]="[{ id: product.id, category: selectedCategory }]">
+      <mat-icon
+        fontIcon="done"
+        *ngIf="
+          product &&
+          (authService.userData.products?.includes(product.id) || product.free)
+        "
+        color="primary"
+        style="
+          position: absolute;
+          z-index: 5;
+          font-size: 48px;
+          height: 48px;
+          width: 48px;
+          margin-left: 8px;
+        "
+      />
       <picture mat-card-image *ngIf="product.images[0]">
         <source
           srcset="

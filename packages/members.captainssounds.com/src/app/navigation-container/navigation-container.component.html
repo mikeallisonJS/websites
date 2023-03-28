@@ -18,7 +18,7 @@
     position="end"
     [opened]="selectedItem !== null"
     style="width: 30vw"
-    (closed)="selectedItem = null"
+    (closed)="router.navigate([{ category: selectedCategory }])"
   >
     <ng-content select="[detail]" />
   </mat-drawer>

@@ -1,0 +1,7 @@
+<div class="container">
+  <h1>Account Details</h1>
+  <h2 *ngIf="authService.userData.displayName">
+    {{ authService.userData.displayName }}
+  </h2>
+  <h2 *ngIf="authService.userData.email">{{ authService.userData.email }}</h2>
+</div>

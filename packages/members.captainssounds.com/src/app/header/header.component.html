@@ -92,5 +92,15 @@
     >
       LINKS
     </a>
+    <a
+      mat-tab-link
+      [routerLink]="'account'"
+      routerLinkActive
+      #rla5="routerLinkActive"
+      [active]="rla5.isActive"
+      *ngIf="auth.isLoggedIn"
+    >
+      ACCOUNT
+    </a>
   </nav>
 </mat-toolbar>

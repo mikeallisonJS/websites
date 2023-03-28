@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core'
-import { ActivatedRoute } from '@angular/router'
+import { Router } from '@angular/router'
 import { Product } from '../product/product.interface'
 
 @Component({
@@ -11,5 +11,5 @@ export class NavigationContainerComponent {
   @Input() categories: string[]
   @Input() selectedItem: Product | null = null
   @Input() selectedCategory: string
-  constructor(private route: ActivatedRoute) {}
+  constructor(protected router: Router) {}
 }

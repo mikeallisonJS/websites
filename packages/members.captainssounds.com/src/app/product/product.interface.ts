@@ -7,6 +7,7 @@ export interface Product {
   id: string
   name: string
   description: string
-  links: string[]
   images: ProductImage[]
+  free: boolean
+  purchaseUrl: string
 }

@@ -21,6 +21,7 @@ export interface UserData {
   displayName: string
   photoURL: string | null
   emailVerified: boolean
+  products?: string[]
 }
 
 @Injectable({

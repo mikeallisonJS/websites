@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core'
 import { Firestore, collection, collectionData } from '@angular/fire/firestore'
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router'
 import { filter } from 'rxjs'
+import { AuthService } from '../auth.service'
 import { Product } from '../product/product.interface'
 
 @Component({
@@ -11,17 +12,15 @@ import { Product } from '../product/product.interface'
 })
 export class ProductsComponent {
   firestore: Firestore = inject(Firestore)
-  categories = [
-    'effect racks',
-    'instruments',
-    'samples',
-    'templates',
-    'bonus content'
-  ]
+  categories = ['effect racks', 'instruments', 'samples', 'templates']
   selectedCategory: string
   products: Product[] = []
   selectedProduct: Product | null = null
-  constructor(private router: Router, private route: ActivatedRoute) {
+  constructor(
+    router: Router,
+    private route: ActivatedRoute,
+    protected authService: AuthService
+  ) {
     this.setParams()
     router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
