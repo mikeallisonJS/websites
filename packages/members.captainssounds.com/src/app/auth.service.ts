@@ -119,6 +119,6 @@ export class AuthService {
   async signOut() {
     await signOut(this.auth)
     localStorage.removeItem('user')
-    this.router.navigate(['login'])
+    this.router.navigate(['/login'])
   }
 }
