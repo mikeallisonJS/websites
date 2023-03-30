@@ -8,7 +8,7 @@ const compress = () => {
     'offer.captainssounds.com'
   ]
   projects.forEach((project) => {
-    const folders = ['images', 'flyers']
+    const folders = ['images', 'flyers', 'products']
     folders.forEach((folder) =>
       src(`packages/${project}/src/assets/${folder}/*.{png,jpg,jpeg,JPG}`)
         .pipe(

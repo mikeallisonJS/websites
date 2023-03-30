@@ -1,7 +1,9 @@
-import { Component } from '@angular/core'
+import { Component, Input } from '@angular/core'
 import { Router } from '@angular/router'
 import { ScrollService } from '@websites/common'
 import { animate, style, transition, trigger } from '@angular/animations'
+import { MatTabNavPanel } from '@angular/material/tabs'
+import { AuthService } from '../auth.service'
 
 @Component({
   selector: 'app-header',
@@ -18,5 +20,10 @@ import { animate, style, transition, trigger } from '@angular/animations'
   ]
 })
 export class HeaderComponent {
-  constructor(public router: Router, public scrollService: ScrollService) {}
+  @Input() tabPanel?: MatTabNavPanel
+  constructor(
+    public router: Router,
+    public scrollService: ScrollService,
+    protected auth: AuthService
+  ) {}
 }

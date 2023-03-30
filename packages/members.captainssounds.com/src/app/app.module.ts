@@ -13,24 +13,43 @@ import {
 } from '@angular/fire/analytics'
 import { provideAuth, getAuth } from '@angular/fire/auth'
 import { provideFirestore, getFirestore } from '@angular/fire/firestore'
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { HomeModule } from './home/home.module'
 import { HeaderModule } from './header/header.module'
+import { RegisterModule } from './register/register.module'
+import { UatModule } from './uat/uat.module'
+import { AppThemeModule } from './app-theme.module'
+import { ProductsModule } from './products/products.module'
+import { LinksModule } from './links/links.module'
+import { LoginModule } from './login/login.module'
+import { AuthService } from './auth.service'
+import { FIREBASE_OPTIONS } from '@angular/fire/compat'
+import { AweberService } from './aweber.service'
+import { AccountModule } from './account/account.module'
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    HomeModule,
+    AccountModule,
     HeaderModule,
+    LinksModule,
+    LoginModule,
+    RegisterModule,
+    UatModule,
+    ProductsModule,
     AppRoutingModule,
+    AppThemeModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAnalytics(() => getAnalytics()),
     provideAuth(() => getAuth()),
-    provideFirestore(() => getFirestore()),
-    BrowserAnimationsModule
+    provideFirestore(() => getFirestore())
   ],
-  providers: [ScreenTrackingService, UserTrackingService],
+  providers: [
+    ScreenTrackingService,
+    UserTrackingService,
+    AuthService,
+    AweberService,
+    { provide: FIREBASE_OPTIONS, useValue: environment.firebase }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
