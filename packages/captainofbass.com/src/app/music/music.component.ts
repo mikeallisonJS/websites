@@ -10,7 +10,7 @@ import { songs, Song } from '../songs'
 export class MusicComponent {
   public files = songs
   constructor(public playerService: PlayerService) {}
-  select(song: Song, index: number) {
+  select(song: Song, index: number): void {
     this.playerService.openFile(song, index)
   }
 }

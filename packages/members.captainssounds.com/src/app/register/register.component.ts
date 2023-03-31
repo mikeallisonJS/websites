@@ -26,7 +26,7 @@ export class RegisterComponent implements OnInit {
       verifyPassword: new FormControl('')
     })
   }
-  async submit() {
+  async submit(): Promise<void> {
     this.disabled = true
     await this.http.post('https://www.aweber.com/scripts/addlead.pl', {
       name: this.form.controls['artistName'].value,

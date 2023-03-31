@@ -8,7 +8,7 @@ import { Component, EventEmitter, Output } from '@angular/core'
 export class MobileNavComponent {
   @Output() sidenavClose = new EventEmitter()
 
-  public onSidenavClose = () => {
+  onSidenavClose(): void {
     this.sidenavClose.emit()
   }
 }

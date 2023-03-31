@@ -6,7 +6,7 @@ import { orderBy } from 'lodash-es'
   name: 'byTitle'
 })
 export class ByTitlePipe implements PipeTransform {
-  transform(songs: Song[]) {
-    return orderBy(songs, ['title'], ['asc'])
+  transform(songs: Song[]): Song[] {
+    return orderBy<Song>(songs, ['title'], ['asc'])
   }
 }

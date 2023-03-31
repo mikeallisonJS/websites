@@ -15,16 +15,16 @@ export class PlayerComponent implements OnInit {
   ngOnInit(): void {
     this.audioService.loadStream(this.playerService.files[0]?.url)
   }
-  isFirstPlaying() {
+  isFirstPlaying(): boolean {
     return this.playerService.currentFile.index === 0
   }
-  isLastPlaying() {
+  isLastPlaying(): boolean {
     return (
       this.playerService.currentFile.index ===
       this.playerService.files.length - 1
     )
   }
-  onSliderChangeEnd(value: number) {
+  onSliderChangeEnd(value: number): void {
     this.audioService.seekTo(value)
   }
 }

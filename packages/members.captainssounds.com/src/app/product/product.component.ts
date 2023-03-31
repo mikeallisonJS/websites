@@ -1,10 +1,4 @@
-import {
-  Component,
-  Input,
-  OnChanges,
-  OnInit,
-  SimpleChanges
-} from '@angular/core'
+import { Component, Input, OnChanges } from '@angular/core'
 import { Firestore, getDoc } from '@angular/fire/firestore'
 import { DomSanitizer } from '@angular/platform-browser'
 import { doc } from '@firebase/firestore'

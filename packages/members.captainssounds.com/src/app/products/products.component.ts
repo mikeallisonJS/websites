@@ -35,7 +35,7 @@ export class ProductsComponent {
       this.setParams()
     })
   }
-  setParams() {
+  setParams(): void {
     this.selectedCategory =
       this.route?.snapshot.paramMap.get('category') || 'effect racks'
     const selectedProductId =

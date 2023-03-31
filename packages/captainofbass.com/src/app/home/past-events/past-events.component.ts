@@ -51,17 +51,16 @@ export class PastEventsComponent {
     })
   }
 
-  select(e: Event) {
+  select(e: Event): void {
     this.selectedImage = (e.target as HTMLImageElement).src
   }
 
-  closeCover() {
+  closeCover(): void {
     this.selectedImage = undefined
   }
 
-  @HostListener('document:keydown.escape', ['$event']) onKeydownHandler(
-    event: KeyboardEvent
-  ) {
+  @HostListener('document:keydown.escape', ['$event'])
+  onKeydownHandler(): void {
     this.closeCover()
   }
 }
