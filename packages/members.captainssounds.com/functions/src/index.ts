@@ -7,9 +7,6 @@ import { xor } from 'lodash'
 admin.initializeApp(functions.config().firebase)
 const db = admin.firestore()
 
-// // Start writing functions
-// // https://firebase.google.com/docs/functions/typescript
-
 const corsHelper = cors({ origin: 'https://offer.captainssounds.com' })
 
 export interface UserData {
@@ -28,7 +25,9 @@ function isSimilarArray(a: string[], b: string[]) {
 export const getPurchases = functions.https.onRequest((request, response) => {
   corsHelper(request, response, () => {
     const { uid } = request.body
+    if (uid == null) response.status(404).send('Bad input')
     const userDoc = db.doc(`users/${uid}`)
+    if (userDoc == null) response.status(404).send('User not found')
     userDoc.get().then((userData) => {
       const user = userData.data() as UserData
       // don't bother if they already have everything
