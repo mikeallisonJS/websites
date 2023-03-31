@@ -7,4 +7,13 @@
   <button mat-raised-button color="primary" (click)="authService.signOut()">
     Sign Out
   </button>
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="checkPurchases()"
+    [disabled]="checkDisabled"
+    *ngIf="admin"
+  >
+    Unlock Purchases
+  </button>
 </div>

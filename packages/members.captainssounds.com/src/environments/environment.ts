@@ -6,7 +6,7 @@ export const environment = {
     apiKey: 'AIzaSyCiGuzr59Pd-J31sR5822qKZ5j4B4_UgnQ',
     authDomain: 'captains-sounds-members.firebaseapp.com',
     messagingSenderId: '677900921521',
-    measurementId: 'G-QNTJFS0CCJ'
+    measurementId: 'G-QNTJFS0CCJ',
   },
   production: false
 }

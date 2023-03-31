@@ -23,7 +23,8 @@ import { LoginModule } from './login/login.module'
 import { AuthService } from './auth.service'
 import { FIREBASE_OPTIONS } from '@angular/fire/compat'
 import { AweberService } from './aweber.service'
-import { AccountModule } from './account/account.module'
+import { AccountModule } from './account/account.module';
+import { provideFunctions,getFunctions } from '@angular/fire/functions'
 
 @NgModule({
   declarations: [AppComponent],
@@ -41,7 +42,8 @@ import { AccountModule } from './account/account.module'
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAnalytics(() => getAnalytics()),
     provideAuth(() => getAuth()),
-    provideFirestore(() => getFirestore())
+    provideFirestore(() => getFirestore()),
+    provideFunctions(() => getFunctions())
   ],
   providers: [
     ScreenTrackingService,

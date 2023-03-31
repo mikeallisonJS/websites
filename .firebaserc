@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "captains-sounds-members": {
+      "hosting": {
+        "members.captainssounds.com": [
+          "captains-sounds-members"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "captains-sounds-members"
+  }
+}
