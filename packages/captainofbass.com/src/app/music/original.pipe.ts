@@ -5,7 +5,7 @@ import { Song } from '../songs'
   name: 'original'
 })
 export class OriginalPipe implements PipeTransform {
-  transform(songs: Song[]) {
+  transform(songs: Song[]): Song[] {
     return songs?.filter(
       (song) => song.artist === 'Captain' || song.artist === 'Mike Allison'
     )

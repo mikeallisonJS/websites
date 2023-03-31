@@ -30,7 +30,7 @@ export class LinksComponent {
       this.setParams()
     })
   }
-  setParams() {
+  setParams(): void {
     this.selectedCategory =
       this.route?.snapshot.paramMap.get('category') || 'bonus content'
     const selectedProductId =

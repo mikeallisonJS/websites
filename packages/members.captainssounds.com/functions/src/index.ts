@@ -7,7 +7,7 @@ import { xor } from 'lodash'
 admin.initializeApp(functions.config().firebase)
 const db = admin.firestore()
 
-const corsHelper = cors({ origin: 'https://offer.captainssounds.com' })
+const corsHelper = cors({ origin: 'https://members.captainssounds.com' })
 
 export interface UserData {
   _id: string

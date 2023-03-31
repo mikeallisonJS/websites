@@ -2,7 +2,6 @@ import { Injectable, NgZone } from '@angular/core'
 import { Firestore, doc, setDoc, getDoc } from '@angular/fire/firestore'
 import {
   Auth,
-  AuthProvider,
   authState,
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
@@ -41,49 +40,48 @@ export class AuthService {
         getDoc(userRef).then((doc) => {
           this.userData = doc.data() as UserData
           localStorage.setItem('user', JSON.stringify(this.userData))
+          JSON.parse(localStorage.getItem('user') ?? '{}')
+          this.router.navigate(['account'])
         })
       }
       localStorage.removeItem('user')
+      JSON.parse(localStorage.getItem('user') ?? '{}')
+      this.router.navigate([''])
     })
   }
-  async signIn(email: string, password: string) {
-    const result = await signInWithEmailAndPassword(
-      this.auth,
-      email,
-      password
-    ).catch((error) => {
-      window.alert(error.message)
-    })
-    if (result?.user == null) return result
-    this.setUserData(result.user)
-    authState(this.auth).subscribe((user) => {
-      if (user) {
-        this.router.navigate(['products'])
-      }
-    })
+  signIn(email: string, password: string): void {
+    signInWithEmailAndPassword(this.auth, email, password)
+      .then((result) => {
+        if (result?.user == null) return
+        this.setUserData(result.user)
+      })
+      .catch((error) => {
+        window.alert(error.message)
+      })
   }
-  async signUp(email: string, password: string) {
-    const result = await createUserWithEmailAndPassword(
-      this.auth,
-      email,
-      password
-    ).catch((error) => window.alert(error))
-    if (result?.user == null) return result
-    this.sendVerificationMail()
-    this.setUserData(result.user)
-    return result
+  signUp(email: string, password: string): void {
+    createUserWithEmailAndPassword(this.auth, email, password)
+      .then((result) => {
+        if (result?.user == null) return result
+        this.sendVerificationMail()
+        this.setUserData(result.user)
+        return result
+      })
+      .catch((error) => window.alert(error))
   }
-  async sendVerificationMail() {
-    const currentUser = await this.auth.currentUser
+  sendVerificationMail(): void {
+    const currentUser = this.auth.currentUser
     if (currentUser == null) return
-    await sendEmailVerification(currentUser)
-    this.router.navigate(['verify-email-address'])
+    sendEmailVerification(currentUser).then(() => {
+      this.router.navigate(['verify-email-address'])
+    })
   }
-  async forgotPassword(passwordResetEmail: string) {
-    await sendPasswordResetEmail(this.auth, passwordResetEmail).catch((error) =>
-      window.alert(error)
-    )
-    window.alert('Password reset email sent, check your inbox.')
+  forgotPassword(passwordResetEmail: string): void {
+    sendPasswordResetEmail(this.auth, passwordResetEmail)
+      .then(() => {
+        window.alert('Password reset email sent, check your inbox.')
+      })
+      .catch((error) => window.alert(error))
   }
   get isLoggedIn(): boolean {
     const userObj = localStorage.getItem('user')
@@ -91,19 +89,17 @@ export class AuthService {
     const user = JSON.parse(userObj)
     return user.emailVerified !== false ? true : false
   }
-  googleAuth() {
-    this.authLogin(new GoogleAuthProvider())
+  googleAuth(): void {
+    signInWithPopup(this.auth, new GoogleAuthProvider())
+      .then((result) => {
+        if (result?.user == null) return result
+        this.setUserData(result?.user)
+        this.router.navigate(['products'])
+        return result
+      })
+      .catch((error) => window.alert(error))
   }
-  async authLogin(provider: AuthProvider) {
-    const result = await signInWithPopup(this.auth, provider).catch((error) =>
-      window.alert(error)
-    )
-    if (result?.user == null) return result
-    this.setUserData(result?.user)
-    this.router.navigate(['products'])
-    return result
-  }
-  setUserData(user: User) {
+  setUserData(user: User): void {
     const userRef = doc(this.firestore, `users/${user.uid}`)
     const userData: UserData = {
       _id: user.uid,
@@ -112,13 +108,11 @@ export class AuthService {
       photoURL: user.photoURL,
       emailVerified: user.emailVerified
     }
-    return setDoc(userRef, userData, {
+    setDoc(userRef, userData, {
       merge: true
     })
   }
-  async signOut() {
-    await signOut(this.auth)
-    localStorage.removeItem('user')
-    this.router.navigate(['/login'])
+  signOut(): void {
+    signOut(this.auth)
   }
 }

@@ -11,7 +11,7 @@ export class AppComponent {
   title = 'Captain'
   constructor(public router: Router, public scrollService: ScrollService) {}
 
-  prepareRoute(outlet: RouterOutlet) {
+  prepareRoute(outlet: RouterOutlet): boolean {
     return (
       outlet &&
       outlet.activatedRouteData &&
@@ -19,7 +19,7 @@ export class AppComponent {
     )
   }
 
-  scrollHandler(e: Event) {
+  scrollHandler(e: Event): void {
     this.scrollService.scrollPos = (e.target as Element).scrollTop
   }
 }

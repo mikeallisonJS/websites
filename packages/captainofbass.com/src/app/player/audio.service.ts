@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core'
 import { Observable, BehaviorSubject, Subject } from 'rxjs'
 import { takeUntil } from 'rxjs/operators'
 
-function secondsToHHmmss(secs: number) {
+function secondsToHHmmss(secs: number): string {
   const sec_num = parseInt(secs.toString(), 10) // don't forget the second param
   const hours = Math.floor(sec_num / 3600)
   const minutes = Math.floor((sec_num - hours * 3600) / 60)
@@ -58,7 +58,7 @@ export class AudioService {
     this.state
   )
 
-  private streamObservable(url: string, play = true) {
+  private streamObservable(url: string, play = true): Observable<Event> {
     return new Observable((observer) => {
       // Play audio
       this.audioObj.src = url
@@ -67,7 +67,7 @@ export class AudioService {
         this.audioObj.play()
       }
 
-      const handler = (event: Event) => {
+      const handler = (event: Event): void => {
         this.updateStateEvents(event)
         observer.next(event)
       }
@@ -89,7 +89,7 @@ export class AudioService {
     obj: HTMLAudioElement,
     events: string[],
     handler: (event: Event) => void
-  ) {
+  ): void {
     events.forEach((event) => {
       obj.addEventListener(event, handler)
     })
@@ -99,39 +99,39 @@ export class AudioService {
     obj: HTMLAudioElement,
     events: string[],
     handler: (event: Event) => void
-  ) {
+  ): void {
     events.forEach((event) => {
       obj.removeEventListener(event, handler)
     })
   }
 
-  loadStream(url: string) {
+  loadStream(url: string): Observable<Event> | null {
     return url
       ? this.streamObservable(url, false).pipe(takeUntil(this.stop$))
       : null
   }
 
-  playStream(url: string) {
+  playStream(url: string): Observable<Event> {
     return this.streamObservable(url).pipe(takeUntil(this.stop$))
   }
 
-  play() {
+  play(): Promise<void> {
     return this.audioObj.play()
   }
 
-  pause() {
-    return this.audioObj.pause()
+  pause(): void {
+    this.audioObj.pause()
   }
 
-  stop() {
-    return this.stop$.next(undefined)
+  stop(): void {
+    this.stop$.next(undefined)
   }
 
-  seekTo(seconds: number) {
+  seekTo(seconds: number): void {
     this.audioObj.currentTime = seconds
   }
 
-  formatTime(time: number) {
+  formatTime(time: number): string {
     return secondsToHHmmss(time)
   }
 
@@ -160,7 +160,7 @@ export class AudioService {
     this.stateChange.next(this.state)
   }
 
-  private resetState() {
+  private resetState(): void {
     this.state = {
       playing: false,
       readableCurrentTime: '',

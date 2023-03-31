@@ -9,7 +9,7 @@ import { Router, RouterOutlet } from '@angular/router'
 export class AppComponent {
   constructor(public router: Router) {}
 
-  prepareRoute(outlet: RouterOutlet) {
+  prepareRoute(outlet: RouterOutlet): boolean {
     return (
       outlet &&
       outlet.activatedRouteData &&
