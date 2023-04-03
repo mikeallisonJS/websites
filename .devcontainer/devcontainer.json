@@ -12,7 +12,8 @@
   "customizations": {
     "vscode": {
       "extensions": [
-        "github.copilot",
+        "github.copilot-nightly",
+        "github.copilot-labs",
         "eamodio.gitlens",
         "syler.sass-indented",
         "esbenp.prettier-vscode",
