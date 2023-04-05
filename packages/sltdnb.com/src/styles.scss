@@ -1,4 +1,62 @@
-/* You can add global styles to this file, and also import other style files */
+@import 'variables';
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+.container {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+.sidenav {
+  .mat-mdc-tab-links {
+    flex-direction: column !important;
+  }
+}
+
+.scroll-area {
+  overflow-y: auto;
+  height: $contentHeight;
+}
+
+.category-link.mdc-tab-indicator--active {
+  .mdc-tab-indicator__content--underline {
+    color: white !important;
+    border-color: white !important;
+  }
+  > span.mdc-tab__content > span.mdc-tab__text-label {
+    color: white !important;
+  }
+}

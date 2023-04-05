@@ -3,54 +3,22 @@
   [class.topScroll]="scrollService.scrollPos === 0 && router.url === '/'"
 >
   <div class="logo" fxShow fxHide.sm fxHide.xs>
-    <picture *ngIf="!(router.url === '/' && scrollService.scrollPos === 0)">
-      <source
-        srcset="/assets/compressed/images/cpt-border-256.webp"
-        media="(max-width: 512px)"
-        type="image/webp"
-      />
-      <source
-        srcset="/assets/compressed/images/cpt-border-512.webp"
-        media="(max-width: 1024px)"
-        type="image/webp"
-      />
-      <source
-        srcset="/assets/compressed/images/cpt-border-1024.webp"
-        media="(max-width: 2048px)"
-        type="image/webp"
-      />
-      <img
-        [@fadeInOut]
-        class="logo"
-        src="/assets/images/cpt-border.png"
-        alt="logo"
-      />
-    </picture>
+    <img
+      [@fadeInOut]
+      class="logo"
+      src="/assets/images/sltdnb-h.svg"
+      alt="logo"
+      *ngIf="!(router.url === '/' && scrollService.scrollPos === 0)"
+    />
   </div>
   <div class="mobile-logo" fxShow fxHide.gt-sm>
-    <picture *ngIf="!(router.url === '/' && scrollService.scrollPos === 0)">
-      <source
-        srcset="/assets/compressed/images/cpt-border-256.webp"
-        media="(max-width: 512px)"
-        type="image/webp"
-      />
-      <source
-        srcset="/assets/compressed/images/cpt-border-512.webp"
-        media="(max-width: 1024px)"
-        type="image/webp"
-      />
-      <source
-        srcset="/assets/compressed/images/cpt-border-1024.webp"
-        media="(max-width: 2048px)"
-        type="image/webp"
-      />
-      <img
-        [@fadeInOut]
-        class="logo"
-        src="/assets/images/cpt-border.png"
-        alt="logo"
-      />
-    </picture>
+    <img
+      [@fadeInOut]
+      class="logo"
+      src="/assets/images/sltdnb-h.svg"
+      alt="logo"
+      *ngIf="!(router.url === '/' && scrollService.scrollPos === 0)"
+    />
   </div>
   <nav mat-tab-nav-bar fxShow fxHide.sm fxHide.xs>
     <a

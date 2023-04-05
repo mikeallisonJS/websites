@@ -1,0 +1,21 @@
+@import '../../variables';
+
+div.cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 64px;
+  background-color: black;
+  opacity: 0.3;
+  z-index: 1;
+}
+
+mat-toolbar {
+  div.logo {
+    height: $headerHeight;
+    img.logo {
+      height: $headerHeight;
+    }
+  }
+}
