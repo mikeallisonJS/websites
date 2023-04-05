@@ -1,6 +1,6 @@
 /* eslint-disable */
 export default {
-  displayName: 'sltdnb',
+  displayName: 'sltdnb.com',
   preset: '../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   coverageDirectory: '../../coverage/packages/sltdnb',

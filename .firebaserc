@@ -6,9 +6,16 @@
           "captains-sounds-members"
         ]
       }
+    },
+    "sltdnb-com": {
+      "hosting": {
+        "sltdnb.com": [
+          "sltdnb-com"
+        ]
+      }
     }
   },
   "projects": {
-    "default": "captains-sounds-members"
+    "default": "sltdnb-com"
   }
 }

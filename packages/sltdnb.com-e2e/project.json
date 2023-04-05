@@ -1,5 +1,5 @@
 {
-  "name": "sltdnb-e2e",
+  "name": "sltdnb.com-e2e",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/sltdnb-e2e/src",
   "projectType": "application",
@@ -26,5 +26,5 @@
     }
   },
   "tags": [],
-  "implicitDependencies": ["sltdnb"]
+  "implicitDependencies": ["sltdnb.com"]
 }

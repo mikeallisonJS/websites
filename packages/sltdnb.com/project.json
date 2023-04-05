@@ -1,25 +1,32 @@
 {
-  "name": "sltdnb",
+  "name": "sltdnb.com",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "sourceRoot": "packages/sltdnb/src",
+  "sourceRoot": "packages/sltdnb.com/src",
   "prefix": "websites",
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
-        "outputPath": "dist/packages/sltdnb",
-        "index": "packages/sltdnb/src/index.html",
-        "main": "packages/sltdnb/src/main.ts",
-        "polyfills": ["zone.js"],
-        "tsConfig": "packages/sltdnb/tsconfig.app.json",
+        "outputPath": "packages/sltdnb.com/dist",
+        "index": "packages/sltdnb.com/src/index.html",
+        "main": "packages/sltdnb.com/src/main.ts",
+        "polyfills": [
+          "zone.js"
+        ],
+        "tsConfig": "packages/sltdnb.com/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
-          "packages/sltdnb/src/favicon.ico",
-          "packages/sltdnb/src/assets"
+          "packages/sltdnb.com/src/favicon.ico",
+          "packages/sltdnb.com/src/assets"
         ],
-        "styles": ["packages/sltdnb/src/styles.scss"],
+        "styles": [
+          "@angular/material/prebuilt-themes/purple-green.css",
+          "packages/sltdnb.com/src/styles.scss"
+        ],
         "scripts": []
       },
       "configurations": {
@@ -44,7 +51,13 @@
           "vendorChunk": true,
           "extractLicenses": false,
           "sourceMap": true,
-          "namedChunks": true
+          "namedChunks": true,
+          "fileReplacements": [
+            {
+              "replace": "packages/sltdnb.com/src/environments/environment.ts",
+              "with": "packages/sltdnb.com/src/environments/environment.development.ts"
+            }
+          ]
         }
       },
       "defaultConfiguration": "production"
@@ -53,10 +66,10 @@
       "executor": "@angular-devkit/build-angular:dev-server",
       "configurations": {
         "production": {
-          "browserTarget": "sltdnb:build:production"
+          "browserTarget": "sltdnb.com:build:production"
         },
         "development": {
-          "browserTarget": "sltdnb:build:development"
+          "browserTarget": "sltdnb.com:build:development"
         }
       },
       "defaultConfiguration": "development"
@@ -64,24 +77,28 @@
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
-        "browserTarget": "sltdnb:build"
+        "browserTarget": "sltdnb.com:build"
       }
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
         "lintFilePatterns": [
-          "packages/sltdnb/**/*.ts",
-          "packages/sltdnb/**/*.html"
+          "packages/sltdnb.com/**/*.ts",
+          "packages/sltdnb.com/**/*.html"
         ]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
       "options": {
-        "jestConfig": "packages/sltdnb/jest.config.ts",
+        "jestConfig": "packages/sltdnb.com/jest.config.ts",
         "passWithNoTests": true
       },
       "configurations": {
@@ -89,6 +106,16 @@
           "ci": true,
           "codeCoverage": true
         }
+      }
+    },
+    "deploy": {
+      "executor": "@angular/fire:deploy",
+      "options": {
+        "prerender": false,
+        "ssr": false,
+        "browserTarget": "sltdnb.com:build:production",
+        "firebaseProject": "sltdnb-com",
+        "firebaseHostingSite": "sltdnb-com"
       }
     }
   },
