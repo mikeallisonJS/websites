@@ -5,7 +5,8 @@ const compress = () => {
   const projects = [
     'captainofbass.com',
     'members.captainssounds.com',
-    'offer.captainssounds.com'
+    'offer.captainssounds.com',
+    'sltdnb.com'
   ]
   projects.forEach((project) => {
     const folders = ['images', 'flyers', 'products']

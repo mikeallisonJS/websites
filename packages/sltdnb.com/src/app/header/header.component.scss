@@ -14,6 +14,8 @@ div.cover {
 mat-toolbar {
   div.logo {
     height: $headerHeight;
+    flex: 1 1 auto;
+    flex-direction: column;
     img.logo {
       height: $headerHeight;
     }

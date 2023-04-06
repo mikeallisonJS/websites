@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core'
 import { MatCardModule } from '@angular/material/card'
-import { MatSidenavModule } from '@angular/material/sidenav'
 import { MatTabsModule } from '@angular/material/tabs'
 import { MatButtonModule } from '@angular/material/button'
 import { MatIconModule } from '@angular/material/icon'
@@ -12,10 +11,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { RouterModule } from '@angular/router'
 import { FlexLayoutModule } from 'ngx-flexible-layout'
 import { ScrollingModule } from '@angular/cdk/scrolling'
+import { CommonModule } from '@angular/common'
 
 @NgModule({
   imports: [
     BrowserAnimationsModule,
+    CommonModule,
     FlexLayoutModule,
     MatButtonModule,
     MatCardModule,
@@ -30,6 +31,7 @@ import { ScrollingModule } from '@angular/cdk/scrolling'
   ],
   exports: [
     BrowserAnimationsModule,
+    CommonModule,
     FlexLayoutModule,
     MatButtonModule,
     MatCardModule,
