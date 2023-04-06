@@ -63,3 +63,13 @@ jobs:
           channelId: live
           projectId: offer-captainssounds-com
           entryPoint: packages/offer.captainssounds.com
+
+      - name: Deploy sltdnb.com
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        if: contains(steps.affected-apps.outputs.apps, 'sltdnb.com')
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_SLTDNB }}'
+          channelId: live
+          projectId: sltdnb-com
+          entryPoint: packages/sltdnb.com

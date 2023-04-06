@@ -1,0 +1,34 @@
+<div *ngIf="router.url !== '/'" class="cover"></div>
+<mat-toolbar
+  [class.topScroll]="scrollService.scrollPos === 0 && router.url === '/'"
+>
+  <div class="logo" fxShow fxHide.sm fxHide.xs>
+    <img
+      [@fadeInOut]
+      class="logo"
+      src="/assets/images/sltdnb-h.svg"
+      alt="logo"
+    />
+  </div>
+  <div class="mobile-logo" fxShow fxHide.gt-sm>
+    <img
+      [@fadeInOut]
+      class="logo"
+      src="/assets/images/sltdnb-h.svg"
+      alt="logo"
+      *ngIf="!(router.url === '/' && scrollService.scrollPos === 0)"
+    />
+  </div>
+  <nav mat-tab-nav-bar fxShow fxHide.sm fxHide.xs>
+    <a
+      mat-tab-link
+      [routerLink]="['/']"
+      routerLinkActive
+      [routerLinkActiveOptions]="{ exact: true }"
+      #rla="routerLinkActive"
+      [active]="rla.isActive"
+    >
+      HOME
+    </a>
+  </nav>
+</mat-toolbar>
