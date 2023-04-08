@@ -18,10 +18,7 @@
     <a [routerLink]="[{ id: product.id, category: selectedCategory }]">
       <mat-icon
         fontIcon="done"
-        *ngIf="
-          product &&
-          (authService.userData.products?.includes(product.id) || product.free)
-        "
+        *ngIf="product && ownsProduct(product)"
         color="primary"
         style="
           position: absolute;
