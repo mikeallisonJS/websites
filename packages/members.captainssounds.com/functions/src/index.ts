@@ -2,9 +2,19 @@ import * as functions from 'firebase-functions'
 import * as admin from 'firebase-admin'
 import { uatEmails } from './uat-emails'
 import { xor } from 'lodash'
+import {shopifyApi, LATEST_API_VERSION} from '@shopify/shopify-api
 
 admin.initializeApp(functions.config().firebase)
 const db = admin.firestore()
+
+const shopify = shopifyApi({
+  // The next 4 values are typically read from environment variables for added security
+  apiKey: 'APIKeyFromPartnersDashboard',
+  apiSecretKey: 'APISecretFromPartnersDashboard',
+  scopes: ['read_products'],
+  hostName: 'ngrok-tunnel-address',
+  ...
+})
 
 export interface UserData {
   _id: string
