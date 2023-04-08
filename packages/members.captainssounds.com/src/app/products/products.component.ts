@@ -4,6 +4,7 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router'
 import { filter } from 'rxjs'
 import { AuthService } from '../auth.service'
 import { Product } from '../product/product.interface'
+import { intersection } from 'lodash-es'
 
 @Component({
   selector: 'app-products',
@@ -42,5 +43,13 @@ export class ProductsComponent {
       this.route?.snapshot.paramMap.get('id') || undefined
     this.selectedProduct =
       this.products.find(({ id }) => id === selectedProductId) || null
+  }
+  ownsProduct(product: Product): boolean {
+    return (
+      intersection(this.authService.userData.products, [
+        product,
+        'ultimate-ableton-templates'
+      ]).length > 0 || product.free
+    )
   }
 }
