@@ -1,7 +1,7 @@
 import { Component } from '@angular/core'
 import { Functions, httpsCallableData } from '@angular/fire/functions'
 import { ActivatedRoute } from '@angular/router'
-import { AuthService } from '../auth.service'
+import { AuthService, UserData } from '../auth.service'
 
 @Component({
   selector: 'app-account',
@@ -17,12 +17,14 @@ export class AccountComponent {
   ) {}
   checkPurchases(): void {
     this.checkDisabled = true
-    const checkPurchases = httpsCallableData(this.functions, 'getPurchases')
-    checkPurchases({ uid: this.authService.userData._id }).subscribe(
-      (result) => {
-        this.checkDisabled = false
-        console.log(result)
-      }
-    )
+    const checkPurchases = httpsCallableData<
+      void,
+      { message: string; user?: UserData }
+    >(this.functions, 'getPurchases')
+    checkPurchases().subscribe((result) => {
+      if (result.message != 'ok') alert(result.message)
+      else alert(`${result.user?.products?.length ?? 0} products found`)
+      this.checkDisabled = false
+    })
   }
 }

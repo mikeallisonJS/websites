@@ -23,7 +23,11 @@ import { LoginModule } from './login/login.module'
 import { AuthService } from './auth.service'
 import { FIREBASE_OPTIONS } from '@angular/fire/compat'
 import { AccountModule } from './account/account.module'
-import { provideFunctions, getFunctions } from '@angular/fire/functions'
+import {
+  provideFunctions,
+  getFunctions,
+  connectFunctionsEmulator
+} from '@angular/fire/functions'
 
 @NgModule({
   declarations: [AppComponent],
@@ -42,7 +46,12 @@ import { provideFunctions, getFunctions } from '@angular/fire/functions'
     provideAnalytics(() => getAnalytics()),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
-    provideFunctions(() => getFunctions())
+    provideFunctions(() => {
+      const functions = getFunctions()
+      if (!environment.production)
+        connectFunctionsEmulator(functions, 'localhost', 5001)
+      return functions
+    })
   ],
   providers: [
     ScreenTrackingService,

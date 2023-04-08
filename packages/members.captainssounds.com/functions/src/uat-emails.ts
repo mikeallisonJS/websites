@@ -146,5 +146,6 @@ export const uatEmails = [
   'ShaunGaryDonkin1988@hotmail.co.uk',
   'shardulmehta.tbot@gmail.com',
   'willpugh42@gmail.com',
-  'tom.glas11@gmail.com'
+  'tom.glas11@gmail.com',
+  'dj.mikeallison@gmail.com'
 ]
