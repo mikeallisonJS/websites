@@ -4,10 +4,11 @@
     "lint": "eslint --ext .js,.ts .",
     "build": "tsc",
     "build:watch": "tsc --watch",
-    "serve": "npm run build && firebase emulators:start --only functions",
-    "shell": "npm run build && firebase functions:shell",
+    "serve": "CLOUD_RUNTIME_CONFIG=\"$(DOPPLER_PROJECT=members-captainssounds-com DOPPLER_CONFIG=dev doppler secrets download --no-file | jq '{doppler: .}')\" npm run build && firebase emulators:start --only functions",
+    "shell": "CLOUD_RUNTIME_CONFIG=\"$(DOPPLER_PROJECT=members-captainssounds-com DOPPLER_CONFIG=dev doppler secrets download --no-file | jq '{doppler: .}')\" npm run build && firebase functions:shell",
+    "secrets-sync": "firebase functions:config:unset doppler && firebase functions:config:set doppler=\"$(DOPPLER_PROJECT=members-captainssounds-com DOPPLER_CONFIG=prd doppler secrets download --no-file)\"",
     "start": "npm run shell",
-    "deploy": "firebase deploy --only functions",
+    "deploy": "npm run secrets-sync && firebase deploy --only functions",
     "logs": "firebase functions:log"
   },
   "engines": {
@@ -15,6 +16,7 @@
   },
   "main": "lib/index.js",
   "dependencies": {
+    "@shopify/shopify-api": "^6.2.0",
     "cors": "^2.8.5",
     "firebase-admin": "^11.5.0",
     "firebase-functions": "^4.2.0",

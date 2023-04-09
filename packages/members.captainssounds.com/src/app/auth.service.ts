@@ -41,19 +41,21 @@ export class AuthService {
           this.userData = doc.data() as UserData
           localStorage.setItem('user', JSON.stringify(this.userData))
           JSON.parse(localStorage.getItem('user') ?? '{}')
-          this.router.navigate(['account'])
+          // this.router.navigate(['account'])
         })
       }
       localStorage.removeItem('user')
       JSON.parse(localStorage.getItem('user') ?? '{}')
-      this.router.navigate([''])
+      // this.router.navigate([''])
     })
   }
   signIn(email: string, password: string): void {
     signInWithEmailAndPassword(this.auth, email, password)
       .then((result) => {
         if (result?.user == null) return
-        this.setUserData(result.user)
+        this.setUserData(result.user).then(() => {
+          this.router.navigate(['products'])
+        })
       })
       .catch((error) => {
         window.alert(error.message)
@@ -84,10 +86,8 @@ export class AuthService {
       .catch((error) => window.alert(error))
   }
   get isLoggedIn(): boolean {
-    const userObj = localStorage.getItem('user')
-    if (userObj == null) return false
-    const user = JSON.parse(userObj)
-    return user.emailVerified !== false ? true : false
+    if (this.userData == null) return false
+    return this.userData.emailVerified !== false ? true : false
   }
   googleAuth(): void {
     signInWithPopup(this.auth, new GoogleAuthProvider())
@@ -99,7 +99,7 @@ export class AuthService {
       })
       .catch((error) => window.alert(error))
   }
-  setUserData(user: User): void {
+  setUserData(user: User): Promise<void> {
     const userRef = doc(this.firestore, `users/${user.uid}`)
     const userData: UserData = {
       _id: user.uid,
@@ -108,11 +108,17 @@ export class AuthService {
       photoURL: user.photoURL,
       emailVerified: user.emailVerified
     }
-    setDoc(userRef, userData, {
+    return setDoc(userRef, userData, {
       merge: true
+    }).then(() => {
+      const orderRef = doc(this.firestore, `orders/${user.email}`)
+      return getDoc(orderRef).then((order) => {
+        userData.products = order.get('products') ?? []
+      })
     })
   }
   signOut(): void {
     signOut(this.auth)
+    this.router.navigate([''])
   }
 }

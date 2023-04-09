@@ -4,17 +4,6 @@
     {{ authService.userData.displayName }}
   </h2>
   <h2 *ngIf="authService.userData?.email">{{ authService.userData.email }}</h2>
-  <div class="buttons">
-    <h5>Your email must match your purchasing email</h5>
-    <button
-      mat-raised-button
-      color="primary"
-      (click)="checkPurchases()"
-      [disabled]="checkDisabled"
-    >
-      Unlock Purchases
-    </button>
-  </div>
   <div>
     <button mat-raised-button color="primary" (click)="authService.signOut()">
       Sign Out
