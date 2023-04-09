@@ -28,12 +28,14 @@ import {
   getFunctions,
   connectFunctionsEmulator
 } from '@angular/fire/functions'
+import { AdminModule } from './admin/admin.module'
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
     AccountModule,
+    AdminModule,
     HeaderModule,
     LinksModule,
     LoginModule,

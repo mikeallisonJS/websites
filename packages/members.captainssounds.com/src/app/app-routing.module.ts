@@ -8,12 +8,17 @@ import { LoginComponent } from './login/login.component'
 import { AuthService } from './auth.service'
 import { AuthGuard } from './auth.guard'
 import { AccountComponent } from './account/account.component'
+import { AdminComponent } from './admin/admin.component'
 
 const routes: Routes = [
   {
     path: 'account',
     component: AccountComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'admin',
+    component: AdminComponent
   },
   {
     path: 'products',
