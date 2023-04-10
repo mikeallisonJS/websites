@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core'
-import { CommonModule } from '@angular/common'
+import { ReactiveFormsModule } from '@angular/forms'
 import { ForgotPasswordComponent } from './forgot-password.component'
+import { AppThemeModule } from '../app-theme.module'
 
 @NgModule({
   declarations: [ForgotPasswordComponent],
-  imports: [CommonModule]
+  imports: [AppThemeModule, ReactiveFormsModule]
 })
 export class ForgotPasswordModule {}

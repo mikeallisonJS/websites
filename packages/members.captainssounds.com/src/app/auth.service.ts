@@ -13,6 +13,7 @@ import {
   User
 } from '@angular/fire/auth'
 import { Router } from '@angular/router'
+import { MatSnackBar } from '@angular/material/snack-bar'
 
 export interface UserData {
   _id: string
@@ -32,7 +33,8 @@ export class AuthService {
     public firestore: Firestore, // Inject Firestore service
     public auth: Auth, // Inject Firebase auth service
     public router: Router,
-    public ngZone: NgZone // NgZone service to remove outside scope warning
+    public ngZone: NgZone, // NgZone service to remove outside scope warning
+    private snackBar: MatSnackBar
   ) {
     authState(this.auth).subscribe((user) => {
       if (user) {
@@ -57,9 +59,7 @@ export class AuthService {
           this.router.navigate(['products'])
         })
       })
-      .catch((error) => {
-        window.alert(error.message)
-      })
+      .catch((error) => this.snackBar.open(error.message, 'Dismiss'))
   }
   signUp(email: string, password: string): void {
     createUserWithEmailAndPassword(this.auth, email, password)
@@ -69,7 +69,7 @@ export class AuthService {
         this.setUserData(result.user)
         return result
       })
-      .catch((error) => window.alert(error))
+      .catch((error) => this.snackBar.open(error, 'Dismiss'))
   }
   sendVerificationMail(): void {
     const currentUser = this.auth.currentUser
@@ -81,9 +81,12 @@ export class AuthService {
   forgotPassword(passwordResetEmail: string): void {
     sendPasswordResetEmail(this.auth, passwordResetEmail)
       .then(() => {
-        window.alert('Password reset email sent, check your inbox.')
+        this.snackBar.open(
+          'Password reset email sent, check your inbox.',
+          'Dismiss'
+        )
       })
-      .catch((error) => window.alert(error))
+      .catch((error) => this.snackBar.open(error.message, 'Dismiss'))
   }
   get isLoggedIn(): boolean {
     if (this.userData == null) return false
@@ -97,7 +100,7 @@ export class AuthService {
         this.router.navigate(['products'])
         return result
       })
-      .catch((error) => window.alert(error))
+      .catch((error) => this.snackBar.open(error, 'Dismiss'))
   }
   setUserData(user: User): Promise<void> {
     const userRef = doc(this.firestore, `users/${user.uid}`)
