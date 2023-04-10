@@ -5,6 +5,7 @@ import { union, xor } from 'lodash'
 import * as crypto from 'crypto'
 import { Request } from 'firebase-functions/v1/https'
 import { shopifyOrders } from './shopifyOrders'
+import { gumroadSales } from './gumroadSales'
 
 admin.initializeApp(functions.config().firebase)
 const db = admin.firestore()
@@ -77,6 +78,18 @@ export const refreshShopifyOrders = functions.https.onCall(
       return { message: 'Bad input' }
     for (let key in shopifyOrders) {
       await addToOrder(key, shopifyOrders[key])
+    }
+    return { message: 'ok' }
+  }
+)
+
+export const refreshGumroadOrders = functions.https.onCall(
+  async (data, context) => {
+    const callerEmail = context?.auth?.token.email
+    if (callerEmail !== 'dj.mikeallison@gmail.com')
+      return { message: 'Bad input' }
+    for (let key in gumroadSales) {
+      await addToOrder(key, gumroadSales[key])
     }
     return { message: 'ok' }
   }

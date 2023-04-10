@@ -8,7 +8,7 @@ import { LoginComponent } from './login/login.component'
 import { AuthService } from './auth.service'
 import { AuthGuard } from './auth.guard'
 import { AccountComponent } from './account/account.component'
-// import { AdminComponent } from './admin/admin.component'
+import { AdminComponent } from './admin/admin.component'
 
 const routes: Routes = [
   {
@@ -16,10 +16,10 @@ const routes: Routes = [
     component: AccountComponent,
     canActivate: [AuthGuard]
   },
-  // {
-  //   path: 'admin',
-  //   component: AdminComponent
-  // },
+  {
+    path: 'admin',
+    component: AdminComponent
+  },
   {
     path: 'products',
     component: ProductsComponent,

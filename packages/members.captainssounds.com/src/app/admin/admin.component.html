@@ -1,6 +1,11 @@
-<button mat-raised-button color="primary" (click)="checkClickfunnels()">
-  Load Clickfunnels
-</button>
-<button mat-raised-button color="primary" (click)="checkShopify()">
-  Load Shopify
-</button>
+<div *ngIf="authService.userData?.email === 'dj.mikeallison@gmail.com'">
+  <button mat-raised-button color="primary" (click)="checkClickfunnels()">
+    Load Clickfunnels
+  </button>
+  <button mat-raised-button color="primary" (click)="checkShopify()">
+    Load Shopify
+  </button>
+  <button mat-raised-button color="primary" (click)="checkGumroad()">
+    Load Gumroad
+  </button>
+</div>

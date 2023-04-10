@@ -30,4 +30,13 @@ export class AdminComponent {
       alert(result.message)
     })
   }
+  checkGumroad(): void {
+    const checkPurchases = httpsCallableData<void, { message: string }>(
+      this.functions,
+      'refreshGumroadOrders'
+    )
+    checkPurchases().subscribe((result) => {
+      alert(result.message)
+    })
+  }
 }
