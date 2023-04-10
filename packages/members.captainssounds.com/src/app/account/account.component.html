@@ -4,6 +4,7 @@
     {{ authService.userData.displayName }}
   </h2>
   <h2 *ngIf="authService.userData?.email">{{ authService.userData.email }}</h2>
+  <h2>{{ authService.userData.products?.length ?? 0 }} Products owned.</h2>
   <div>
     <button mat-raised-button color="primary" (click)="authService.signOut()">
       Sign Out
