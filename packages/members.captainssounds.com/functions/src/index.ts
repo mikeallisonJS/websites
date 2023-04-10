@@ -111,7 +111,7 @@ export const shopifyOrderWebhook = functions.https.onRequest(
     if (verifyShopify(hmacHeader, req)) {
       const { body } = req
       if (body?.contact_email && body?.line_items?.length > 0) {
-        addToOrder(
+        await addToOrder(
           body.contact_email,
           body.line_items.map((item: any) => item.sku)
         )
@@ -120,5 +120,15 @@ export const shopifyOrderWebhook = functions.https.onRequest(
     } else {
       res.status(403).end()
     }
+  }
+)
+
+export const gumroadOrderWebhook = functions.https.onRequest(
+  async (req, res) => {
+    const { body } = req
+    if (body?.email && body?.permalink) {
+      await addToOrder(body.email, [body.permalink])
+    }
+    res.status(200).send('ok')
   }
 )
