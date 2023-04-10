@@ -1,11 +1,11 @@
 import * as functions from 'firebase-functions'
 import * as admin from 'firebase-admin'
-import { uatEmails } from './uatEmails'
+// import { uatEmails } from './uatEmails'
 import { union, xor } from 'lodash'
 import * as crypto from 'crypto'
 import { Request } from 'firebase-functions/v1/https'
-import { shopifyOrders } from './shopifyOrders'
-import { gumroadSales } from './gumroadSales'
+// import { shopifyOrders } from './shopifyOrders'
+// import { gumroadSales } from './gumroadSales'
 
 admin.initializeApp(functions.config().firebase)
 const db = admin.firestore()
@@ -25,37 +25,37 @@ function isSimilarArray(a: string[], b: string[]) {
   return a.length === b.length && xor(a, b).length === 0
 }
 
-export const getPurchases = functions.https.onCall(async (data, context) => {
-  const uid = context?.auth?.uid
-  if (uid == null) return { message: 'Bad input' }
-  const userDoc = db.doc(`users/${uid}`)
-  if (userDoc == null) return { message: 'User not found' }
-  const userData = await userDoc.get()
-  const user = userData.data() as UserData
-  // don't bother if they already have everything
-  if (!user.products?.includes('ultimate-ableton-templates')) {
-    const result = user.products ?? []
-    // check clickfunnels data
-    if (uatEmails.includes(user.email))
-      result.push('ultimate-ableton-templates')
-    if (isSimilarArray(result, user.products ?? []))
-      userDoc.set({ products: result }, { merge: true })
-  }
-  return { message: 'ok', user }
-})
+// export const getPurchases = functions.https.onCall(async (data, context) => {
+//   const uid = context?.auth?.uid
+//   if (uid == null) return { message: 'Bad input' }
+//   const userDoc = db.doc(`users/${uid}`)
+//   if (userDoc == null) return { message: 'User not found' }
+//   const userData = await userDoc.get()
+//   const user = userData.data() as UserData
+//   // don't bother if they already have everything
+//   if (!user.products?.includes('ultimate-ableton-templates')) {
+//     const result = user.products ?? []
+//     // check clickfunnels data
+//     if (uatEmails.includes(user.email))
+//       result.push('ultimate-ableton-templates')
+//     if (isSimilarArray(result, user.products ?? []))
+//       userDoc.set({ products: result }, { merge: true })
+//   }
+//   return { message: 'ok', user }
+// })
 
-export const refreshClickfunnelOrders = functions.https.onCall(
-  async (data, context) => {
-    const callerEmail = context?.auth?.token.email
-    if (callerEmail !== 'dj.mikeallison@gmail.com')
-      return { message: 'Bad input' }
-    for (let i = 0; i < uatEmails.length; i++) {
-      const email = uatEmails[i]
-      await addToOrder(email, ['ultimate-ableton-templates'])
-    }
-    return { message: 'ok' }
-  }
-)
+// export const refreshClickfunnelOrders = functions.https.onCall(
+//   async (data, context) => {
+//     const callerEmail = context?.auth?.token.email
+//     if (callerEmail !== 'dj.mikeallison@gmail.com')
+//       return { message: 'Bad input' }
+//     for (let i = 0; i < uatEmails.length; i++) {
+//       const email = uatEmails[i]
+//       await addToOrder(email, ['ultimate-ableton-templates'])
+//     }
+//     return { message: 'ok' }
+//   }
+// )
 
 async function addToOrder(email: string, products: string[]) {
   let orderRef = db.doc(`orders/${email}`)
@@ -71,29 +71,29 @@ async function addToOrder(email: string, products: string[]) {
     orderRef.set({ products: result }, { merge: true })
 }
 
-export const refreshShopifyOrders = functions.https.onCall(
-  async (data, context) => {
-    const callerEmail = context?.auth?.token.email
-    if (callerEmail !== 'dj.mikeallison@gmail.com')
-      return { message: 'Bad input' }
-    for (let key in shopifyOrders) {
-      await addToOrder(key, shopifyOrders[key])
-    }
-    return { message: 'ok' }
-  }
-)
+// export const refreshShopifyOrders = functions.https.onCall(
+//   async (data, context) => {
+//     const callerEmail = context?.auth?.token.email
+//     if (callerEmail !== 'dj.mikeallison@gmail.com')
+//       return { message: 'Bad input' }
+//     for (let key in shopifyOrders) {
+//       await addToOrder(key, shopifyOrders[key])
+//     }
+//     return { message: 'ok' }
+//   }
+// )
 
-export const refreshGumroadOrders = functions.https.onCall(
-  async (data, context) => {
-    const callerEmail = context?.auth?.token.email
-    if (callerEmail !== 'dj.mikeallison@gmail.com')
-      return { message: 'Bad input' }
-    for (let key in gumroadSales) {
-      await addToOrder(key, gumroadSales[key])
-    }
-    return { message: 'ok' }
-  }
-)
+// export const refreshGumroadOrders = functions.https.onCall(
+//   async (data, context) => {
+//     const callerEmail = context?.auth?.token.email
+//     if (callerEmail !== 'dj.mikeallison@gmail.com')
+//       return { message: 'Bad input' }
+//     for (let key in gumroadSales) {
+//       await addToOrder(key, gumroadSales[key])
+//     }
+//     return { message: 'ok' }
+//   }
+// )
 
 function verifyShopify(hmacHeader: string, req: Request): boolean {
   let computedHash = crypto
