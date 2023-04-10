@@ -1,9 +1,10 @@
 import * as functions from 'firebase-functions'
 import * as admin from 'firebase-admin'
-import { uatEmails } from './uat-emails'
+import { uatEmails } from './uatEmails'
 import { union, xor } from 'lodash'
-import { shopifyApi, LATEST_API_VERSION } from '@shopify/shopify-api'
 import * as crypto from 'crypto'
+import { Request } from 'firebase-functions/v1/https'
+import { shopifyOrders } from './shopifyOrders'
 
 admin.initializeApp(functions.config().firebase)
 const db = admin.firestore()
@@ -17,11 +18,6 @@ export interface UserData {
   photoURL: string | null
   emailVerified: boolean
   products?: string[]
-}
-
-interface OrderData {
-  _id: string
-  products: string[]
 }
 
 function isSimilarArray(a: string[], b: string[]) {
@@ -48,14 +44,14 @@ export const getPurchases = functions.https.onCall(async (data, context) => {
 })
 
 export const refreshClickfunnelOrders = functions.https.onCall(
-  (data, context) => {
+  async (data, context) => {
     const callerEmail = context?.auth?.token.email
     if (callerEmail !== 'dj.mikeallison@gmail.com')
       return { message: 'Bad input' }
-    uatEmails.forEach((email) => {
-      console.log(email)
-      addToOrder(email, ['ultimate-ableton-templates'])
-    })
+    for (let i = 0; i < uatEmails.length; i++) {
+      const email = uatEmails[i]
+      await addToOrder(email, ['ultimate-ableton-templates'])
+    }
     return { message: 'ok' }
   }
 )
@@ -67,9 +63,10 @@ async function addToOrder(email: string, products: string[]) {
     return
   }
   const orderData = await orderRef.get()
-  const order = orderData.data() as OrderData
-  const result = union(order?.products ?? [], products)
-  if (!isSimilarArray(result, order.products ?? []))
+  const order = orderData.data()
+  const existingProducts = order?.products ?? []
+  const result = union(existingProducts, products)
+  if (!isSimilarArray(result, existingProducts))
     orderRef.set({ products: result }, { merge: true })
 }
 
@@ -78,51 +75,27 @@ export const refreshShopifyOrders = functions.https.onCall(
     const callerEmail = context?.auth?.token.email
     if (callerEmail !== 'dj.mikeallison@gmail.com')
       return { message: 'Bad input' }
-    const shopify = shopifyApi({
-      // The next 4 values are typically read from environment variables for added security
-      apiKey: secrets.SHOPIFY_ADMIN_API_KEY,
-      apiSecretKey: secrets.SHOPIFY_ADMIN_API_SECRET,
-      scopes: ['read_orders'],
-      hostName: 'captain-productions.myshopify.com',
-      apiVersion: LATEST_API_VERSION,
-      isEmbeddedApp: false
-    })
-    let pageInfo: any = true
-    do {
-      const orders: any = await shopify.rest.Order.list({
-        ...pageInfo?.nextPage?.query,
-        api_version: LATEST_API_VERSION,
-        limit: 250,
-        fields: ['contact_email', 'line_items']
-      })
-      orders.forEach((order: any) => {
-        if (order?.contact_email && order?.line_items?.length > 0) {
-          addToOrder(
-            order.contact_email,
-            order.line_items.map((item: any) => item.sku)
-          )
-        }
-
-        pageInfo = orders.pageInfo
-      })
-    } while (pageInfo?.nextPage)
+    for (let key in shopifyOrders) {
+      await addToOrder(key, shopifyOrders[key])
+    }
     return { message: 'ok' }
   }
 )
 
+function verifyShopify(hmacHeader: string, req: Request): boolean {
+  let computedHash = crypto
+    .createHmac('sha256', secrets.SHOPIFY_WEBHOOK_HMAC)
+    .update(req.rawBody)
+    .digest('base64')
+  return crypto.timingSafeEqual(
+    Buffer.from(computedHash, 'base64'),
+    Buffer.from(hmacHeader, 'base64')
+  )
+}
 export const shopifyOrderWebhook = functions.https.onRequest(
   async (req, res) => {
     let hmacHeader = req.get('X-Shopify-Hmac-Sha256') as string
-    let computedHash = crypto
-      .createHmac('sha256', secrets.SHOPIFY_ADMIN_API_SECRET)
-      .update(req.rawBody)
-      .digest('base64')
-    if (
-      crypto.timingSafeEqual(
-        Buffer.from(computedHash, 'base64'),
-        Buffer.from(hmacHeader, 'base64')
-      )
-    ) {
+    if (verifyShopify(hmacHeader, req)) {
       const { body } = req
       if (body?.contact_email && body?.line_items?.length > 0) {
         addToOrder(
