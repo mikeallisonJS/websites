@@ -1,23 +1,29 @@
 .container {
   height: 100%;
+  width: 100%;
+  text-align: center;
+  display: flex;
   .inner-container {
-    width: 300px;
-    position: absolute;
-    top: 50%;
-    left: 40%;
-    transform: translate(0, -50%);
-    text-align: center;
-    .buttons {
-      margin-bottom: 16px;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    .inner-card {
       color: white;
-    }
-    mat-card-title {
-      color: white;
-    }
-    .links {
-      text-align: start;
-      color: white;
-      cursor: pointer;
+      width: 600px;
+      text-align: center;
+      .buttons {
+        margin-bottom: 16px;
+        color: white;
+      }
+      mat-card-title {
+        color: white;
+      }
+      .links {
+        text-align: start;
+        color: white;
+        cursor: pointer;
+      }
     }
   }
 }
