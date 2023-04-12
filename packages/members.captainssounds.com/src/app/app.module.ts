@@ -29,6 +29,7 @@ import {
   connectFunctionsEmulator
 } from '@angular/fire/functions'
 import { AdminModule } from './admin/admin.module'
+import { ForgotPasswordModule } from './forgot-password/forgot-password.module'
 
 @NgModule({
   declarations: [AppComponent],
@@ -36,6 +37,7 @@ import { AdminModule } from './admin/admin.module'
     BrowserModule,
     AccountModule,
     AdminModule,
+    ForgotPasswordModule,
     HeaderModule,
     LinksModule,
     LoginModule,

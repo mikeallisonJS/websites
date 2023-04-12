@@ -9,6 +9,7 @@ import { AuthService } from './auth.service'
 import { AuthGuard } from './auth.guard'
 import { AccountComponent } from './account/account.component'
 import { AdminComponent } from './admin/admin.component'
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component'
 
 const routes: Routes = [
   {
@@ -37,6 +38,10 @@ const routes: Routes = [
     path: 'links',
     component: LinksComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'forgot-password',
+    component: ForgotPasswordComponent
   },
   {
     path: '',

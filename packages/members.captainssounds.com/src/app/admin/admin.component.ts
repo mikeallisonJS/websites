@@ -1,6 +1,7 @@
 import { Component } from '@angular/core'
 import { AuthService } from '../auth.service'
 import { Functions, httpsCallableData } from '@angular/fire/functions'
+import { MatSnackBar, MatSnackBarRef } from '@angular/material/snack-bar'
 
 @Component({
   selector: 'app-admin',
@@ -10,7 +11,8 @@ import { Functions, httpsCallableData } from '@angular/fire/functions'
 export class AdminComponent {
   constructor(
     protected authService: AuthService,
-    private functions: Functions
+    private functions: Functions,
+    private snackBar: MatSnackBar
   ) {}
   checkClickfunnels(): void {
     const checkPurchases = httpsCallableData<void, { message: string }>(
@@ -18,7 +20,7 @@ export class AdminComponent {
       'refreshClickfunnelOrders'
     )
     checkPurchases().subscribe((result) => {
-      alert(result.message)
+      this.snackBar.open(result.message, 'Dismiss')
     })
   }
   checkShopify(): void {
@@ -27,7 +29,7 @@ export class AdminComponent {
       'refreshShopifyOrders'
     )
     checkPurchases().subscribe((result) => {
-      alert(result.message)
+      this.snackBar.open(result.message, 'Dismiss')
     })
   }
   checkGumroad(): void {
@@ -36,7 +38,7 @@ export class AdminComponent {
       'refreshGumroadOrders'
     )
     checkPurchases().subscribe((result) => {
-      alert(result.message)
+      this.snackBar.open(result.message, 'Dismiss')
     })
   }
 }

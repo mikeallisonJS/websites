@@ -12,6 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { RouterModule } from '@angular/router'
 import { FlexLayoutModule } from 'ngx-flexible-layout'
 import { ScrollingModule } from '@angular/cdk/scrolling'
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar'
 
 @NgModule({
   imports: [
@@ -24,6 +25,7 @@ import { ScrollingModule } from '@angular/cdk/scrolling'
     MatIconModule,
     MatInputModule,
     MatSidenavModule,
+    MatSnackBarModule,
     MatTabsModule,
     MatToolbarModule,
     RouterModule,
@@ -39,6 +41,7 @@ import { ScrollingModule } from '@angular/cdk/scrolling'
     MatIconModule,
     MatInputModule,
     MatSidenavModule,
+    MatSnackBarModule,
     MatTabsModule,
     MatToolbarModule,
     RouterModule,
