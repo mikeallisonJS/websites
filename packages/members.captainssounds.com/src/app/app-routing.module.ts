@@ -10,6 +10,7 @@ import { AuthGuard } from './auth.guard'
 import { AccountComponent } from './account/account.component'
 import { AdminComponent } from './admin/admin.component'
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component'
+import { ProductProductComponent } from './products/product/product.component'
 
 const routes: Routes = [
   {
@@ -23,8 +24,11 @@ const routes: Routes = [
   },
   {
     path: 'products',
-    component: ProductsComponent,
-    canActivate: [AuthGuard]
+    component: ProductsComponent
+  },
+  {
+    path: 'products/:id',
+    component: ProductProductComponent
   },
   {
     path: 'register',

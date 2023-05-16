@@ -30,6 +30,7 @@ import {
 } from '@angular/fire/functions'
 import { AdminModule } from './admin/admin.module'
 import { ForgotPasswordModule } from './forgot-password/forgot-password.module'
+import { ProductProductModule } from './products/product/product.module'
 
 @NgModule({
   declarations: [AppComponent],
@@ -44,6 +45,7 @@ import { ForgotPasswordModule } from './forgot-password/forgot-password.module'
     RegisterModule,
     UatModule,
     ProductsModule,
+    ProductProductModule,
     AppRoutingModule,
     AppThemeModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
