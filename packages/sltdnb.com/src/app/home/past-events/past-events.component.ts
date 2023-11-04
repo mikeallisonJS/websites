@@ -1,6 +1,9 @@
 import { Component, HostListener } from '@angular/core'
 
 const images = [
+  'sltdnb-23-9',
+  'sltdnb-23-7',
+  'sltdnb-23-5',
   'uv-23-1',
   'uv-22-12',
   'uv-22-9',
