@@ -46,3 +46,4 @@ firebase-debug.log
 
 # NX
 /migrations.json
+.nx/cache
