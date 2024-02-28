@@ -24,7 +24,7 @@ jobs:
         run: npm install -g nx --silent
 
       - name: Get affected apps
-        run: echo "apps=$(npx ts-node scripts/affected-apps.ts --projects packages/*)" >> $GITHUB_OUTPUT
+        run: echo "apps=$(npx ts-node scripts/affected-apps.ts --projects packages/* --base=origin/main --head=HEAD)" >> $GITHUB_OUTPUT
         id: affected-apps
 
       - name: Build affected apps
