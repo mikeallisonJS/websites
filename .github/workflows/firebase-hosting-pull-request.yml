@@ -11,9 +11,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
-          fetch-depth: 2
+          fetch-depth: 0
 
       - name: npm install
         run: npm ci
@@ -22,7 +22,9 @@ jobs:
         run: npm install -g nx --silent
 
       - name: Get affected apps
-        run: echo "apps=$(nx affected:apps --plain --base=HEAD~1 --head=HEAD)" >> $GITHUB_OUTPUT
+        run: |
+          echo "apps=$(npx ts-node scripts/affected-apps.ts --projects packages/* --base=origin/main --head=HEAD)" >> $GITHUB_OUTPUT
+          cat $GITHUB_OUTPUT
         id: affected-apps
 
       - name: Build affected apps
