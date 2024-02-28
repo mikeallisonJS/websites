@@ -19,7 +19,6 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": ["packages/sltdnb-e2e/**/*.{js,ts}"]
       }
