@@ -4,16 +4,32 @@
   "name": "Websites",
   "dockerFile": "Dockerfile",
   "features": {
-    "ghcr.io/devcontainers-contrib/features/angular-cli:2": {},
-    "ghcr.io/devcontainers-contrib/features/firebase-cli:2": {},
-    "ghcr.io/devcontainers-contrib/features/nx-npm:1": {},
-    "ghcr.io/devcontainers-contrib/features/zsh-plugins:0": {}
+    "ghcr.io/devcontainers-contrib/features/angular-cli:2": {
+      "version": "latest"
+    },
+    "ghcr.io/devcontainers-contrib/features/firebase-cli:2": {
+      "version": "latest"
+    },
+    "ghcr.io/devcontainers-contrib/features/nx-npm:1": {
+      "version": "latest"
+    },
+    "ghcr.io/devcontainers-contrib/features/zsh-plugins:0": {
+      "plugins": "ssh-agent npm",
+      "omzPlugins": "https://github.com/zsh-users/zsh-autosuggestions",
+      "username": "node"
+    },
+    "ghcr.io/devcontainers/features/node:1": {
+      "nodeGypDependencies": true,
+      "version": "lts",
+      "nvmVersion": "latest"
+    }
   },
   "customizations": {
     "vscode": {
       "extensions": [
         "github.copilot-nightly",
         "github.copilot-labs",
+        "github.vscode-github-actions",
         "eamodio.gitlens",
         "syler.sass-indented",
         "esbenp.prettier-vscode",
