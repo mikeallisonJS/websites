@@ -96,15 +96,7 @@ export default function PastEvents(): ReactElement {
         <CardContent>
           <Grid container>
             {images.map((image, index) => (
-              <Grid
-                item
-                md={4}
-                sm={12}
-                xs={12}
-                key={index}
-                spacing={5}
-                textAlign="center"
-              >
+              <Grid item md={4} sm={12} xs={12} key={index} textAlign="center">
                 <Image
                   src={`/images/flyers/${image}`}
                   alt={`flyer - ${image}`}
