@@ -16,17 +16,24 @@
         "name": "next"
       }
     ],
-    "types": ["jest", "node"]
+    "types": [
+      "jest",
+      "node"
+    ]
   },
   "include": [
     "**/*.ts",
     "**/*.tsx",
     "**/*.js",
     "**/*.jsx",
-    "../../packages/next-captainofbass.com/.next/types/**/*.ts",
-    "../../dist/packages/next-captainofbass.com/.next/types/**/*.ts",
     "next-env.d.ts",
+    "../../dist/packages/captainofbass.com/.next/types/**/*.ts",
     ".next/types/**/*.ts"
   ],
-  "exclude": ["node_modules", "jest.config.ts", "**/*.spec.ts", "**/*.test.ts"]
+  "exclude": [
+    "node_modules",
+    "jest.config.ts",
+    "**/*.spec.ts",
+    "**/*.test.ts"
+  ]
 }
