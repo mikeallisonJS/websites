@@ -1,84 +1,47 @@
 {
   "name": "captainofbass.com",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/captainofbass.com",
   "projectType": "application",
-  "sourceRoot": "packages/captainofbass.com/src",
-  "prefix": "websites",
+  "tags": [],
   "targets": {
     "build": {
-      "executor": "@angular-devkit/build-angular:browser",
+      "executor": "@nx/next:build",
       "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
       "options": {
-        "outputPath": "packages/captainofbass.com/dist",
-        "index": "packages/captainofbass.com/src/index.html",
-        "main": "packages/captainofbass.com/src/main.ts",
-        "polyfills": ["zone.js"],
-        "tsConfig": "packages/captainofbass.com/tsconfig.app.json",
-        "inlineStyleLanguage": "scss",
-        "assets": [
-          "packages/captainofbass.com/src/favicon.ico",
-          "packages/captainofbass.com/src/assets"
-        ],
-        "styles": [
-          "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-          "packages/captainofbass.com/src/styles.scss"
-        ],
-        "scripts": []
+        "outputPath": "dist/packages/captainofbass.com"
       },
       "configurations": {
-        "production": {
-          "budgets": [
-            {
-              "type": "initial",
-              "maximumWarning": "1500kb",
-              "maximumError": "2mb"
-            },
-            {
-              "type": "anyComponentStyle",
-              "maximumWarning": "2kb",
-              "maximumError": "4kb"
-            }
-          ],
-          "outputHashing": "all",
-          "fileReplacements": [
-            {
-              "replace": "packages/captainofbass.com/src/environments/environment.ts",
-              "with": "packages/captainofbass.com/src/environments/environment.prod.ts"
-            }
-          ]
-        },
         "development": {
-          "buildOptimizer": false,
-          "optimization": false,
-          "vendorChunk": true,
-          "extractLicenses": false,
-          "sourceMap": true,
-          "namedChunks": true
-        }
-      },
-      "defaultConfiguration": "production"
-    },
-    "serve": {
-      "executor": "@angular-devkit/build-angular:dev-server",
-      "configurations": {
-        "production": {
-          "buildTarget": "captainofbass.com:build:production"
+          "outputPath": "packages/captainofbass.com"
         },
-        "development": {
-          "buildTarget": "captainofbass.com:build:development"
-        }
-      },
-      "defaultConfiguration": "development"
-    },
-    "extract-i18n": {
-      "executor": "@angular-devkit/build-angular:extract-i18n",
-      "options": {
-        "buildTarget": "captainofbass.com:build"
+        "production": {}
       }
     },
-    "lint": {
-      "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"]
+    "serve": {
+      "executor": "@nx/next:server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "captainofbass.com:build",
+        "dev": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "captainofbass.com:build:development",
+          "dev": true
+        },
+        "production": {
+          "buildTarget": "captainofbass.com:build:production",
+          "dev": false
+        }
+      }
+    },
+    "export": {
+      "executor": "@nx/next:export",
+      "options": {
+        "buildTarget": "captainofbass.com:build:production"
+      }
     },
     "test": {
       "executor": "@nx/jest:jest",
@@ -87,16 +50,8 @@
         "jestConfig": "packages/captainofbass.com/jest.config.ts"
       }
     },
-    "fetch-secrets": {
-      "executor": "nx:run-commands",
-      "options": {
-        "commands": [
-          {
-            "command": "doppler secrets download --no-file --format=env-no-quotes -p captainofbass-com > packages/captainofbass.com/.env"
-          }
-        ]
-      }
+    "lint": {
+      "executor": "@nx/eslint:lint"
     }
-  },
-  "tags": []
+  }
 }
