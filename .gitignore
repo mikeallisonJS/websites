@@ -47,3 +47,7 @@ firebase-debug.log
 # NX
 /migrations.json
 .nx/cache
+
+# Next.js
+.next
+out

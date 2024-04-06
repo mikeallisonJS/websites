@@ -30,6 +30,11 @@
         "{workspaceRoot}/.eslintignore"
       ],
       "cache": true
+    },
+    "@nx/next:build": {
+      "cache": true,
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"]
     }
   },
   "namedInputs": {
@@ -61,6 +66,15 @@
     },
     "@nx/angular:component": {
       "style": "scss"
+    },
+    "@nx/next": {
+      "application": {
+        "style": "@emotion/styled",
+        "linter": "eslint"
+      }
+    },
+    "@nx/react": {
+      "library": {}
     }
   },
   "nxCloudAccessToken": "NDQzYjI1YjMtNGRiNy00NTRhLWFmMDMtNWJjYTY4MjY0YjJifHJlYWQtd3JpdGU="

@@ -15,7 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@websites/common": ["packages/common/src/index.ts"]
+      "@websites/common": ["packages/common/src/index.ts"],
+      "@websites/shared/react": ["packages/shared/react/src/index.ts"],
+      "@websites/shared/react/server": ["packages/shared/react/src/server.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

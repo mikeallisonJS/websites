@@ -3,17 +3,19 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/captainofbass.com-e2e/src",
   "projectType": "application",
+  "tags": [],
+  "implicitDependencies": ["angular-captainofbass.com"],
   "targets": {
     "e2e": {
       "executor": "@nx/cypress:cypress",
       "options": {
         "cypressConfig": "packages/captainofbass.com-e2e/cypress.config.ts",
-        "devServerTarget": "captainofbass.com:serve:development",
+        "devServerTarget": "angular-captainofbass.com:serve:development",
         "testingType": "e2e"
       },
       "configurations": {
         "production": {
-          "devServerTarget": "captainofbass.com:serve:production"
+          "devServerTarget": "angular-captainofbass.com:serve:production"
         }
       }
     },
@@ -21,7 +23,5 @@
       "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"]
     }
-  },
-  "tags": [],
-  "implicitDependencies": ["captainofbass.com"]
+  }
 }
