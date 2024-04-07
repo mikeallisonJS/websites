@@ -1,84 +1,47 @@
 {
   "name": "sltdnb.com",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/sltdnb.com",
   "projectType": "application",
-  "sourceRoot": "packages/sltdnb.com/src",
-  "prefix": "websites",
+  "tags": [],
   "targets": {
     "build": {
-      "executor": "@angular-devkit/build-angular:browser",
+      "executor": "@nx/next:build",
       "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
       "options": {
-        "outputPath": "packages/sltdnb.com/dist",
-        "index": "packages/sltdnb.com/src/index.html",
-        "main": "packages/sltdnb.com/src/main.ts",
-        "polyfills": ["zone.js"],
-        "tsConfig": "packages/sltdnb.com/tsconfig.app.json",
-        "inlineStyleLanguage": "scss",
-        "assets": [
-          "packages/sltdnb.com/src/favicon.ico",
-          "packages/sltdnb.com/src/assets"
-        ],
-        "styles": [
-          "@angular/material/prebuilt-themes/purple-green.css",
-          "packages/sltdnb.com/src/styles.scss"
-        ],
-        "scripts": []
+        "outputPath": "dist/packages/sltdnb.com"
       },
       "configurations": {
-        "production": {
-          "budgets": [
-            {
-              "type": "initial",
-              "maximumWarning": "500kb",
-              "maximumError": "1mb"
-            },
-            {
-              "type": "anyComponentStyle",
-              "maximumWarning": "2kb",
-              "maximumError": "4kb"
-            }
-          ],
-          "fileReplacements": [
-            {
-              "replace": "packages/sltdnb.com/src/environments/environment.ts",
-              "with": "packages/sltdnb.com/src/environments/environment.prod.ts"
-            }
-          ],
-          "outputHashing": "all"
-        },
         "development": {
-          "buildOptimizer": false,
-          "optimization": false,
-          "vendorChunk": true,
-          "extractLicenses": false,
-          "sourceMap": true,
-          "namedChunks": true
-        }
-      },
-      "defaultConfiguration": "production"
-    },
-    "serve": {
-      "executor": "@angular-devkit/build-angular:dev-server",
-      "configurations": {
-        "production": {
-          "buildTarget": "sltdnb.com:build:production"
+          "outputPath": "packages/sltdnb.com"
         },
-        "development": {
-          "buildTarget": "sltdnb.com:build:development"
-        }
-      },
-      "defaultConfiguration": "development"
-    },
-    "extract-i18n": {
-      "executor": "@angular-devkit/build-angular:extract-i18n",
-      "options": {
-        "buildTarget": "sltdnb.com:build"
+        "production": {}
       }
     },
-    "lint": {
-      "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"]
+    "serve": {
+      "executor": "@nx/next:server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "sltdnb.com:build",
+        "dev": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "sltdnb.com:build:development",
+          "dev": true
+        },
+        "production": {
+          "buildTarget": "sltdnb.com:build:production",
+          "dev": false
+        }
+      }
+    },
+    "export": {
+      "executor": "@nx/next:export",
+      "options": {
+        "buildTarget": "sltdnb.com:build:production"
+      }
     },
     "test": {
       "executor": "@nx/jest:jest",
@@ -87,16 +50,8 @@
         "jestConfig": "packages/sltdnb.com/jest.config.ts"
       }
     },
-    "deploy": {
-      "executor": "@angular/fire:deploy",
-      "options": {
-        "prerender": false,
-        "ssr": false,
-        "browserTarget": "sltdnb.com:build:production",
-        "firebaseProject": "sltdnb-com",
-        "firebaseHostingSite": "sltdnb-com"
-      }
+    "lint": {
+      "executor": "@nx/eslint:lint"
     }
-  },
-  "tags": []
+  }
 }

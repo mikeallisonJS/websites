@@ -49,23 +49,3 @@ jobs:
           channelId: live
           projectId: captains-sounds-members
           entryPoint: packages/members.captainssounds.com
-
-      - name: Deploy offer.captainssounds.com
-        uses: FirebaseExtended/action-hosting-deploy@v0
-        if: contains(steps.affected-apps.outputs.apps, 'offer.captainssounds.com')
-        with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_CAPTAINS_SOUNDS_OFFER }}'
-          channelId: live
-          projectId: offer-captainssounds-com
-          entryPoint: packages/offer.captainssounds.com
-
-      - name: Deploy sltdnb.com
-        uses: FirebaseExtended/action-hosting-deploy@v0
-        if: contains(steps.affected-apps.outputs.apps, 'sltdnb.com')
-        with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_SLTDNB }}'
-          channelId: live
-          projectId: sltdnb-com
-          entryPoint: packages/sltdnb.com

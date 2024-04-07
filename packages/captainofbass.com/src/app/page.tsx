@@ -1,8 +1,55 @@
 import { Box, Divider } from '@mui/material'
 import { ReactElement } from 'react'
-import PastEvents from '../components/pastEvents/pastEvents'
+import { PastEvents } from '@websites/shared/react'
 import Bio from '../components/bio/bio'
 import HomeLogo from '../components/homeLogo/homeLogo'
+
+const images = [
+  'dystopia-24-3.jpg',
+  'sltdnb-24-1.png',
+  'sltdnb-23-12.png',
+  'dnbal-23-10.jpeg',
+  'sltdnb-23-9.png',
+  'sltdnb-23-7.png',
+  'sltdnb-23-5.png',
+  'dnbal-23-4.jpeg',
+  'uv-23-2.png',
+  'uv-23-1.png',
+  'uv-22-12.png',
+  'dnbatthelake2.jpeg',
+  'dnbatthelake.jpeg',
+  'uv-22-5.png',
+  'eventhorizon.jpeg',
+  'uv-22-2.png',
+  'uv-21-12.png',
+  'welcomehome.png',
+  'skrillex.jpg',
+  'tittsworth.jpg',
+  'potd.JPG',
+  'redbull.jpg',
+  'mrk1.jpg',
+  'skynet.jpg',
+  'phace.JPG',
+  'potd2.JPG',
+  'vaski.jpg',
+  'ufo.JPG',
+  'teebee.jpg',
+  'yes.jpg',
+  'mwff.JPG',
+  'hybrid.JPG',
+  'yes2.JPG',
+  'nightrain.JPG',
+  'bassic.JPG',
+  'delano.JPG',
+  'unify.jpg',
+  'wildthings.JPG',
+  'pj.jpg',
+  'pleasure.jpg',
+  'food10.jpg',
+  'move.jpg',
+  'dfuse.jpg',
+  'tps.jpg'
+]
 
 export default function Index(): ReactElement {
   return (
@@ -11,7 +58,7 @@ export default function Index(): ReactElement {
       <Divider />
       <Bio />
       <Divider />
-      <PastEvents />
+      <PastEvents images={images} />
     </Box>
   )
 }

@@ -1,6 +1,5 @@
 'use client'
 import {
-  Box,
   Card,
   CardContent,
   CardHeader,
@@ -10,12 +9,13 @@ import {
   ListItemText,
   alpha
 } from '@mui/material'
+import { PageContainer } from '@websites/shared/react'
 import Link from 'next/link'
 import { ReactElement } from 'react'
 
 export default function Donate(): ReactElement {
   return (
-    <Box width="90vw" mt="80px" textAlign="center" mx="5vw" mb={10}>
+    <PageContainer>
       <Card
         sx={{
           background: (theme) => alpha(theme.palette.background.paper, 0.2),
@@ -51,6 +51,6 @@ export default function Donate(): ReactElement {
           </nav>
         </CardContent>
       </Card>
-    </Box>
+    </PageContainer>
   )
 }

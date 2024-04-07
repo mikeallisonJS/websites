@@ -1,6 +1,5 @@
 'use client'
 import {
-  Box,
   Card,
   CardContent,
   CardHeader,
@@ -25,10 +24,11 @@ import TwitterIcon from '@mui/icons-material/Twitter'
 import YoutubeIcon from '@mui/icons-material/YouTube'
 import Link from 'next/link'
 import { ReactElement } from 'react'
+import { PageContainer } from '@websites/shared/react'
 
 export default function Music(): ReactElement {
   return (
-    <Box width="90vw" mt="80px" textAlign="center" mx="5vw" mb={10}>
+    <PageContainer>
       <Card
         sx={{
           background: (theme) => alpha(theme.palette.background.paper, 0.2),
@@ -176,6 +176,6 @@ export default function Music(): ReactElement {
           </nav>
         </CardContent>
       </Card>
-    </Box>
+    </PageContainer>
   )
 }
