@@ -46,12 +46,3 @@ jobs:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_CAPTAINS_SOUNDS_MEMBERS }}'
           projectId: captains-sounds-members
           entryPoint: packages/members.captainssounds.com
-
-      - name: Deploy offer.captainssounds.com
-        uses: FirebaseExtended/action-hosting-deploy@v0
-        if: contains(steps.affected-apps.outputs.apps, 'offer.captainssounds.com')
-        with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_CAPTAINS_SOUNDS_OFFER }}'
-          projectId: offer-captainssounds-com
-          entryPoint: packages/offer.captainssounds.com
