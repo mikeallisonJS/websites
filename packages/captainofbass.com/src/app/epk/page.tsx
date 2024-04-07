@@ -12,14 +12,14 @@ import {
   Typography,
   alpha
 } from '@mui/material'
-import Image from 'next/image'
 import { ReactElement } from 'react'
 import Bio from '../../components/bio/bio'
 import Link from 'next/link'
+import { PageContainer } from '@websites/shared/react'
 
 export default function Epk(): ReactElement {
   return (
-    <Box width="90vw" mt="80px" textAlign="center" mx="5vw" mb={10}>
+    <PageContainer>
       <Bio />
       <Divider />
       <Card
@@ -131,6 +131,6 @@ export default function Epk(): ReactElement {
         </CardContent>
       </Card>
       <Divider />
-    </Box>
+    </PageContainer>
   )
 }
