@@ -1,84 +1,47 @@
 {
   "name": "members.captainssounds.com",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/members.captainssounds.com",
   "projectType": "application",
-  "sourceRoot": "packages/members.captainssounds.com/src",
-  "prefix": "websites",
+  "tags": [],
   "targets": {
     "build": {
-      "executor": "@angular-devkit/build-angular:browser",
+      "executor": "@nx/next:build",
       "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
       "options": {
-        "outputPath": "packages/members.captainssounds.com/dist",
-        "index": "packages/members.captainssounds.com/src/index.html",
-        "main": "packages/members.captainssounds.com/src/main.ts",
-        "polyfills": ["zone.js"],
-        "tsConfig": "packages/members.captainssounds.com/tsconfig.app.json",
-        "inlineStyleLanguage": "scss",
-        "assets": [
-          "packages/members.captainssounds.com/src/favicon.ico",
-          "packages/members.captainssounds.com/src/assets"
-        ],
-        "styles": [
-          "@angular/material/prebuilt-themes/purple-green.css",
-          "packages/members.captainssounds.com/src/styles.scss"
-        ],
-        "scripts": []
+        "outputPath": "dist/packages/members.captainssounds.com"
       },
       "configurations": {
-        "production": {
-          "budgets": [
-            {
-              "type": "initial",
-              "maximumWarning": "1500kb",
-              "maximumError": "2mb"
-            },
-            {
-              "type": "anyComponentStyle",
-              "maximumWarning": "2kb",
-              "maximumError": "4kb"
-            }
-          ],
-          "outputHashing": "all",
-          "fileReplacements": [
-            {
-              "replace": "packages/members.captainssounds.com/src/environments/environment.ts",
-              "with": "packages/members.captainssounds.com/src/environments/environment.prod.ts"
-            }
-          ]
-        },
         "development": {
-          "buildOptimizer": false,
-          "optimization": false,
-          "vendorChunk": true,
-          "extractLicenses": false,
-          "sourceMap": true,
-          "namedChunks": true
-        }
-      },
-      "defaultConfiguration": "production"
-    },
-    "serve": {
-      "executor": "@angular-devkit/build-angular:dev-server",
-      "configurations": {
-        "production": {
-          "buildTarget": "members.captainssounds.com:build:production"
+          "outputPath": "packages/members.captainssounds.com"
         },
-        "development": {
-          "buildTarget": "members.captainssounds.com:build:development"
-        }
-      },
-      "defaultConfiguration": "development"
-    },
-    "extract-i18n": {
-      "executor": "@angular-devkit/build-angular:extract-i18n",
-      "options": {
-        "buildTarget": "members.captainssounds.com:build"
+        "production": {}
       }
     },
-    "lint": {
-      "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"]
+    "serve": {
+      "executor": "@nx/next:server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "members.captainssounds.com:build",
+        "dev": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "members.captainssounds.com:build:development",
+          "dev": true
+        },
+        "production": {
+          "buildTarget": "members.captainssounds.com:build:production",
+          "dev": false
+        }
+      }
+    },
+    "export": {
+      "executor": "@nx/next:export",
+      "options": {
+        "buildTarget": "members.captainssounds.com:build:production"
+      }
     },
     "test": {
       "executor": "@nx/jest:jest",
@@ -87,26 +50,18 @@
         "jestConfig": "packages/members.captainssounds.com/jest.config.ts"
       }
     },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
     "fetch-secrets": {
       "executor": "nx:run-commands",
       "options": {
         "commands": [
           {
-            "command": "doppler secrets download --no-file --format=env-no-quotes -p members-captainssounds-com > packages/members.captainssounds.com/.env"
+            "command": "doppler secrets download --no-file --format=env-no-quotes -p members-captainssounds-com > packages/angular-members/.env"
           }
         ]
       }
-    },
-    "deploy": {
-      "executor": "@angular/fire:deploy",
-      "options": {
-        "prerender": false,
-        "ssr": false,
-        "browserTarget": "members.captainssounds.com:build:production",
-        "firebaseProject": "captains-sounds-members",
-        "firebaseHostingSite": "captains-sounds-members"
-      }
     }
-  },
-  "tags": []
+  }
 }

@@ -3,7 +3,7 @@ import './global.css'
 import { ReactNode } from 'react'
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter'
 import { ThemeProvider } from '@mui/material/styles'
-import theme from './theme'
+import { theme } from '@websites/shared/react'
 import Header from '../components/header/header'
 import dynamic from 'next/dynamic'
 

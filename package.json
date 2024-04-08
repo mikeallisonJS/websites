@@ -86,8 +86,10 @@
     "@mui/material": "^5.15.15",
     "@mui/material-nextjs": "^5.15.11",
     "@mui/styled-engine-sc": "^6.0.0-alpha.18",
+    "formik": "^2.4.5",
     "lodash-es": "^4.17.21",
     "next": "14.0.4",
+    "next-firebase-auth-edge": "^1.4.3",
     "ngx-flexible-layout": "^17.0.4",
     "ngx-pipes": "^3.2.2",
     "react": "18.2.0",
@@ -96,6 +98,7 @@
     "rxjs": "~7.8.0",
     "styled-components": "^6.1.8",
     "tslib": "^2.3.0",
+    "yup": "^1.4.0",
     "zone.js": "0.14.4"
   }
 }

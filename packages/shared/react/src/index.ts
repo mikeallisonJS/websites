@@ -2,5 +2,6 @@
 
 import PageContainer from './components/pageContainer/pageContainer'
 import PastEvents from './components/pastEvents/pastEvents'
+import theme from './lib/theme/theme'
 import { useScrollPosition } from './lib/useScrollPosition/useScrollPosition'
-export { useScrollPosition, PastEvents, PageContainer }
+export { theme, useScrollPosition, PastEvents, PageContainer }

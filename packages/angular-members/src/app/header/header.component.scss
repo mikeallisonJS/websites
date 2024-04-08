@@ -1,0 +1,46 @@
+@import '../../variables';
+
+div.cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 64px;
+  background-color: black;
+  opacity: 0.3;
+  z-index: 1;
+}
+
+mat-toolbar {
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+  display: flex;
+
+  &.topScroll {
+    background-color: transparent !important;
+  }
+
+  div.logo,
+  div.mobile-logo {
+    height: $headerHeight;
+    flex: 1 1 auto;
+    flex-direction: column;
+    img.logo,
+    picture.logo {
+      height: $headerHeight;
+    }
+    > span {
+      margin: 8px;
+    }
+  }
+
+  div.mobile-logo {
+    text-align: center;
+  }
+}
+
+a[mat-tab-link]:hover {
+  text-decoration: none;
+  color: rgba(71, 73, 78, 0.95);
+}

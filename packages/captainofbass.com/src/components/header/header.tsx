@@ -5,7 +5,7 @@ import AppBar from '@mui/material/AppBar'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { ReactElement, useState } from 'react'
-import theme from '../../app/theme'
+import { theme } from '@websites/shared/react'
 import {
   Fade,
   IconButton,
