@@ -3,20 +3,25 @@
 import { ReactElement } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup
+} from 'firebase/auth'
 import { initializeApp } from 'firebase/app'
 import authConfig from '../../lib/auth/authConfig'
 import {
+  Box,
   Button,
-  ButtonGroup,
   Card,
   CardContent,
   CardHeader,
   Stack,
-  TextField
+  TextField,
+  Typography
 } from '@mui/material'
-import { Form, Formik, FormikValues } from 'formik'
-import { PageContainer } from '@websites/shared/react'
+import { Form, Formik } from 'formik'
 import GoogleIcon from '@mui/icons-material/Google'
 import { object, string } from 'yup'
 
@@ -25,13 +30,22 @@ const schema = object().shape({
   password: string().required()
 })
 
+type Values = {
+  email: string
+  password: string
+}
+
 export default function Login(): ReactElement {
   const router = useRouter()
-  async function handleSubmit({
-    values
-  }: {
-    values: { email: string; password: string }
-  }): Promise<void> {
+  async function handleGoogleAuth(): Promise<void> {
+    const auth = getAuth(initializeApp(authConfig))
+    const authProvider = new GoogleAuthProvider()
+
+    authProvider.setCustomParameters({ prompt: 'select_account' })
+    await signInWithPopup(auth, authProvider)
+  }
+
+  async function handleSubmit(values: Values): Promise<void> {
     try {
       const credential = await signInWithEmailAndPassword(
         getAuth(initializeApp(authConfig)),
@@ -53,11 +67,14 @@ export default function Login(): ReactElement {
   }
 
   return (
-    <PageContainer>
-      <Stack>
-        <Card>
+    <Box width="90vw" mt="80px" textAlign="center" mx="5vw" mb={10}>
+      <Stack justifyContent="center" alignItems="center">
+        <Card sx={{ maxWidth: '600px' }}>
           <CardHeader title="Login" />
           <CardContent>
+            <Typography variant="body2">
+              Please use the email of your purchase to access your products.
+            </Typography>
             <Formik
               initialValues={{
                 email: '',
@@ -75,140 +92,64 @@ export default function Login(): ReactElement {
                 handleSubmit,
                 isValid,
                 isSubmitting
-                /* and other goodies */
               }) => (
                 <Form onSubmit={handleSubmit}>
-                  <TextField
-                    label="email"
-                    name="email"
-                    value={values.email}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                  />
-                  <TextField
-                    label="password"
-                    name="password"
-                    type="password"
-                    value={values.password}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                  />
+                  <Stack direction="column" spacing={2}>
+                    <TextField
+                      label="email"
+                      name="email"
+                      value={values.email}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      error={Boolean(errors.email) && Boolean(touched.email)}
+                      helperText={errors.email && touched.email && errors.email}
+                    />
+                    <TextField
+                      label="password"
+                      name="password"
+                      type="password"
+                      value={values.password}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      error={
+                        Boolean(errors.password) && Boolean(touched.password)
+                      }
+                      helperText={
+                        errors.password && touched.password && errors.password
+                      }
+                    />
 
-                  <ButtonGroup>
-                    <Button type="submit" disabled={isValid}>
+                    <Button
+                      type="submit"
+                      disabled={!isValid || isSubmitting}
+                      variant="contained"
+                    >
                       Login
                     </Button>
                     <div>or</div>
-                    <Button type="button" onClick={authService.googleAuth()}>
-                      <GoogleIcon />
+                    <Button
+                      type="button"
+                      onClick={handleGoogleAuth}
+                      variant="contained"
+                      startIcon={<GoogleIcon />}
+                    >
                       Log in with Google
                     </Button>
-                  </ButtonGroup>
-                  <div class="links">
-                    <Link href="/forgot-password">Forgot Password?</Link>
-                    <div>
-                      Don&lsquo;t have an account?
-                      <Link href="/register">Sign Up</Link>
+
+                    <div className="links">
+                      <Link href="/forgot-password">Forgot Password?</Link>
+                      <div>
+                        Don&lsquo;t have an account?
+                        <Link href="/register">Sign Up</Link>
+                      </div>
                     </div>
-                  </div>
+                  </Stack>
                 </Form>
               )}
             </Formik>
           </CardContent>
         </Card>
-        <Card>
-          <CardHeader title="News" />
-          <CardContent>
-            <h3>
-              All Shopify, Gumroad & Ultimate Ableton Templates purchases have
-              been imported.
-            </h3>
-            <h4>
-              Please use the same, verifiable email to access your products.
-            </h4>
-            <h5>
-              Your email address and account information is only used for
-              identifying your purchases. We will not sell your data, or even
-              use it for our own marketing.
-            </h5>
-          </CardContent>
-        </Card>
       </Stack>
-    </PageContainer>
-
-    // <main className="flex min-h-screen flex-col items-center justify-center p-8">
-    //   <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
-    //     <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-    //       <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-    //         Speak thy secret word!
-    //       </h1>
-    //       <form
-    //         onSubmit={handleSubmit}
-    //         className="space-y-4 md:space-y-6"
-    //         action="#"
-    //       >
-    //         <div>
-    //           <label
-    //             htmlFor="email"
-    //             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-    //           >
-    //             Your email
-    //           </label>
-    //           <input
-    //             type="email"
-    //             name="email"
-    //             value={email}
-    //             onChange={(e) => setEmail(e.target.value)}
-    //             id="email"
-    //             className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-    //             placeholder="name@company.com"
-    //             required
-    //           />
-    //         </div>
-    //         <div>
-    //           <label
-    //             htmlFor="password"
-    //             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-    //           >
-    //             Password
-    //           </label>
-    //           <input
-    //             type="password"
-    //             name="password"
-    //             value={password}
-    //             onChange={(e) => setPassword(e.target.value)}
-    //             id="password"
-    //             placeholder="••••••••"
-    //             className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-    //             required
-    //           />
-    //         </div>
-    //         {error && (
-    //           <div
-    //             className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
-    //             role="alert"
-    //           >
-    //             <span className="block sm:inline">{error}</span>
-    //           </div>
-    //         )}
-    //         <button
-    //           type="submit"
-    //           className="w-full text-white bg-gray-600 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-primary-800"
-    //         >
-    //           Enter
-    //         </button>
-    //         <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-    //           Don&apos;t have an account?{' '}
-    //           <Link
-    //             href="/register"
-    //             className="font-medium text-gray-600 hover:underline dark:text-gray-500"
-    //           >
-    //             Register here
-    //           </Link>
-    //         </p>
-    //       </form>
-    //     </div>
-    //   </div>
-    // </main>
+    </Box>
   )
 }

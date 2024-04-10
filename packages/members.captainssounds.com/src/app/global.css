@@ -24,9 +24,14 @@ body {
   line-height: inherit;
   margin: 0;
   color: #fff;
-}
-.overlay {
   background-color: rgb(18, 18, 18);
+}
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+.overlay {
   background: url('/images/studio-1003136_1920-1024.webp');
   background-position-x: 51%;
   background-position-y: 50%;

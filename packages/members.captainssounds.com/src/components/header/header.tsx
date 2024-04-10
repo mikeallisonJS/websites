@@ -3,7 +3,6 @@
 import Box from '@mui/material/Box'
 import AppBar from '@mui/material/AppBar'
 import Image from 'next/image'
-import { usePathname } from 'next/navigation'
 import { ReactElement, useState } from 'react'
 import { theme } from '@websites/shared/react'
 import {
@@ -18,7 +17,6 @@ import Link from 'next/link'
 import MenuIcon from '@mui/icons-material/Menu'
 
 export default function Header(): ReactElement {
-  const path = usePathname()
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null)
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>): void => {
@@ -97,7 +95,6 @@ export default function Header(): ReactElement {
             }}
           >
             <Image
-              className="logo"
               src="/images/cpt-border.png"
               alt="logo"
               height={64}
