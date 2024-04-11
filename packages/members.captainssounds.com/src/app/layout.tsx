@@ -41,14 +41,13 @@ const toUser = ({ decodedToken }: Tokens): User => {
 }
 
 export default async function RootLayout({
-  children,
-  login
+  children
 }: {
   children: ReactNode
-  login: ReactElement
 }): Promise<ReactElement> {
   const tokens = await getTokens(cookies(), authConfig)
   const user = tokens ? toUser(tokens) : null
+  console.log('user', user)
   return (
     <html lang="en">
       <body>
@@ -56,7 +55,7 @@ export default async function RootLayout({
           <ThemeProvider theme={theme}>
             <AuthProvider user={user}>
               <Header />
-              {user == null ? login : children}
+              {children}
             </AuthProvider>
           </ThemeProvider>
         </AppRouterCacheProvider>

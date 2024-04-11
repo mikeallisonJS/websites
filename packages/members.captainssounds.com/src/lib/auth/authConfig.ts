@@ -1,5 +1,6 @@
 const authConfig = {
   apiKey: 'AIzaSyCiGuzr59Pd-J31sR5822qKZ5j4B4_UgnQ',
+  authDomain: 'captains-sounds-members.firebaseapp.com',
   cookieName: 'AuthToken',
   cookieSignatureKeys: ['secret1', 'secret2'],
   serviceAccount: {

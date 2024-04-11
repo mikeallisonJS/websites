@@ -27,7 +27,8 @@ import { object, string } from 'yup'
 
 const schema = object().shape({
   email: string().email().required(),
-  password: string().required()
+  password: string().required(),
+  passwordVerify: string().required()
 })
 
 type Values = {
@@ -37,12 +38,23 @@ type Values = {
 
 export default function Login(): ReactElement {
   const router = useRouter()
+
   async function handleGoogleAuth(): Promise<void> {
     const auth = getAuth(initializeApp(authConfig))
     const authProvider = new GoogleAuthProvider()
 
     authProvider.setCustomParameters({ prompt: 'select_account' })
-    await signInWithPopup(auth, authProvider)
+    const credential = await signInWithPopup(auth, authProvider)
+    // console.log('credential', credential)
+    const idToken = await credential.user.getIdToken()
+
+    await fetch('/api/login', {
+      headers: {
+        Authorization: `Bearer ${idToken}`
+      }
+    })
+
+    router.push('/')
   }
 
   async function handleSubmit(values: Values): Promise<void> {
@@ -70,7 +82,7 @@ export default function Login(): ReactElement {
     <Box width="90vw" mt="80px" textAlign="center" mx="5vw" mb={10}>
       <Stack justifyContent="center" alignItems="center">
         <Card sx={{ maxWidth: '600px' }}>
-          <CardHeader title="Login" />
+          <CardHeader title="Register" />
           <CardContent>
             <Typography variant="body2">
               Please use the email of your purchase to access your products.
@@ -78,7 +90,8 @@ export default function Login(): ReactElement {
             <Formik
               initialValues={{
                 email: '',
-                password: ''
+                password: '',
+                passwordVerify: ''
               }}
               validationSchema={schema}
               onSubmit={handleSubmit}
@@ -118,13 +131,30 @@ export default function Login(): ReactElement {
                         errors.password && touched.password && errors.password
                       }
                     />
+                    <TextField
+                      label="Verify Password"
+                      name="passwordVerify"
+                      type="password"
+                      value={values.passwordVerify}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      error={
+                        Boolean(errors.passwordVerify) &&
+                        Boolean(touched.passwordVerify)
+                      }
+                      helperText={
+                        errors.passwordVerify &&
+                        touched.passwordVerify &&
+                        errors.passwordVerify
+                      }
+                    />
 
                     <Button
                       type="submit"
                       disabled={!isValid || isSubmitting}
                       variant="contained"
                     >
-                      Login
+                      Register
                     </Button>
                     <div>or</div>
                     <Button
@@ -133,16 +163,8 @@ export default function Login(): ReactElement {
                       variant="contained"
                       startIcon={<GoogleIcon />}
                     >
-                      Log in with Google
+                      Register with Google
                     </Button>
-
-                    <div className="links">
-                      <Link href="/forgot-password">Forgot Password?</Link>
-                      <div>
-                        Don&lsquo;t have an account?
-                        <Link href="/register">Sign Up</Link>
-                      </div>
-                    </div>
                   </Stack>
                 </Form>
               )}
