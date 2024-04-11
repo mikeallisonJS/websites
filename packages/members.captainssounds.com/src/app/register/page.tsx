@@ -1,11 +1,10 @@
 'use client'
 
 import { ReactElement } from 'react'
-import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import {
+  createUserWithEmailAndPassword,
   getAuth,
-  signInWithEmailAndPassword,
   GoogleAuthProvider,
   signInWithPopup
 } from 'firebase/auth'
@@ -34,6 +33,7 @@ const schema = object().shape({
 type Values = {
   email: string
   password: string
+  passwordVerify: string
 }
 
 export default function Login(): ReactElement {
@@ -58,21 +58,17 @@ export default function Login(): ReactElement {
   }
 
   async function handleSubmit(values: Values): Promise<void> {
+    if (values.password !== values.passwordVerify) {
+      throw new Error("Passwords don't match")
+    }
     try {
-      const credential = await signInWithEmailAndPassword(
+      await createUserWithEmailAndPassword(
         getAuth(initializeApp(authConfig)),
         values.email,
         values.password
       )
-      const idToken = await credential.user.getIdToken()
 
-      await fetch('/api/login', {
-        headers: {
-          Authorization: `Bearer ${idToken}`
-        }
-      })
-
-      router.push('/')
+      router.push('/login')
     } catch (e) {
       // setError((e as Error).message)
     }
