@@ -47,7 +47,7 @@ export default async function RootLayout({
 }): Promise<ReactElement> {
   const tokens = await getTokens(cookies(), authConfig)
   const user = tokens ? toUser(tokens) : null
-  console.log('user', user)
+
   return (
     <html lang="en">
       <body>

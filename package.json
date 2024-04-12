@@ -95,6 +95,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-material-music-player": "^1.2.3",
+    "reactfire": "^4.2.3",
     "rxjs": "~7.8.0",
     "styled-components": "^6.1.8",
     "tslib": "^2.3.0",
