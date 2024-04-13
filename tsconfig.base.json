@@ -10,15 +10,39 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "lib": ["es2017", "dom"],
+    "lib": [
+      "es2017",
+      "dom"
+    ],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@websites/common": ["packages/common/src/index.ts"],
-      "@websites/shared/react": ["packages/shared/react/src/index.ts"],
-      "@websites/shared/react/server": ["packages/shared/react/src/server.ts"]
+      "@websites/common": [
+        "packages/common/src/index.ts"
+      ],
+      "@websites/shared/react": [
+        "packages/shared/react/src/index.ts"
+      ],
+      "@websites/shared/react/server": [
+        "packages/shared/react/src/server.ts"
+      ],
+      "shadcn": [
+        "packages/shadcn/src/index.ts"
+      ],
+      "shadcn/*": [
+        "packages/packages/shadcn/src/*"
+      ],
+      "shadcn-utils": [
+        "packages/shadcn-utils/src/index.ts"
+      ],
+      "shadcn-utils/*": [
+        "packages/packages/shadcn-utils/src/*"
+      ]
     }
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": [
+    "node_modules",
+    "tmp"
+  ]
 }

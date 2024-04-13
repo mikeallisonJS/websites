@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
-import { LinksComponent } from './links/links.component'
-import { RegisterComponent } from './register/register.component'
-import { ProductsComponent } from './products/products.component'
-import { UatComponent } from './uat/uat.component'
-import { LoginComponent } from './login/login.component'
-import { AuthService } from './auth.service'
-import { AuthGuard } from './auth.guard'
+
 import { AccountComponent } from './account/account.component'
 import { AdminComponent } from './admin/admin.component'
+import { AuthGuard } from './auth.guard'
+import { AuthService } from './auth.service'
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component'
+import { LinksComponent } from './links/links.component'
+import { LoginComponent } from './login/login.component'
+import { ProductsComponent } from './products/products.component'
+import { RegisterComponent } from './register/register.component'
+import { UatComponent } from './uat/uat.component'
 
 const routes: Routes = [
   {

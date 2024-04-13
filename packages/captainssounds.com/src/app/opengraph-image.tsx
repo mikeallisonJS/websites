@@ -1,5 +1,6 @@
-import OpengraphImage from '../components/opengraph-image'
 import { ImageResponse } from 'next/og'
+
+import OpengraphImage from '../components/opengraph-image'
 
 export const runtime = 'edge'
 

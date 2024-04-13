@@ -1,15 +1,15 @@
 'use client'
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  List,
-  ListItem,
-  ListItemButton,
-  alpha
-} from '@mui/material'
+
+import Card from '@mui/material/Card'
+import CardContent from '@mui/material/CardContent'
+import CardHeader from '@mui/material/CardHeader'
+import List from '@mui/material/List'
+import ListItem from '@mui/material/ListItem'
+import ListItemButton from '@mui/material/ListItemButton'
+import { alpha } from '@mui/material/styles'
 import { ReactElement } from 'react'
 import { PlayerInterface } from 'react-material-music-player'
+
 import { songs } from '../footer/footer'
 
 export enum MusicType {

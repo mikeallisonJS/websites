@@ -1,7 +1,7 @@
-import { PageContainer, PastEvents } from '@websites/shared/react'
-import { ReactElement } from 'react'
-import Image from 'next/image'
 import Typography from '@mui/material/Typography'
+import { PageContainer, PastEvents } from '@websites/shared/react'
+import Image from 'next/image'
+import { ReactElement } from 'react'
 
 const images = [
   'sltdnb-24-1.png',

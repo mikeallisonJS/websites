@@ -1,6 +1,7 @@
 import clsx from 'clsx'
-import Price from './price'
 import { ReactElement } from 'react'
+
+import Price from './price'
 
 const Label = ({
   title,

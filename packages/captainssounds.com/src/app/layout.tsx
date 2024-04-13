@@ -1,7 +1,9 @@
-import Navbar from '../components/layout/navbar'
 import { GeistSans } from 'geist/font'
+import { ReactNode, Suspense } from 'react'
+
+import Navbar from '../components/layout/navbar'
 import { ensureStartsWith } from '../lib/utils'
-import { ReactElement, ReactNode, Suspense } from 'react'
+
 import './globals.css'
 
 const { TWITTER_CREATOR, TWITTER_SITE, SITE_NAME } = process.env

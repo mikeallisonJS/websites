@@ -2,11 +2,13 @@
 
 import { MinusIcon, PlusIcon } from '@heroicons/react/24/outline'
 import clsx from 'clsx'
-import { updateItemQuantity } from './actions'
-import LoadingDots from '../loading-dots'
-import type { CartItem } from '../../lib/shopify/types'
-import { useFormState, useFormStatus } from 'react-dom'
 import { FormEvent, ReactElement } from 'react'
+import { useFormState, useFormStatus } from 'react-dom'
+
+import type { CartItem } from '../../lib/shopify/types'
+import LoadingDots from '../loading-dots'
+
+import { updateItemQuantity } from './actions'
 
 function SubmitButton({ type }: { type: 'plus' | 'minus' }): ReactElement {
   const { pending } = useFormStatus()

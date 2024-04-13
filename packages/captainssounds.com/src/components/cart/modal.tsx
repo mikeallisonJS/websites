@@ -2,13 +2,15 @@
 
 import { Dialog, Transition } from '@headlessui/react'
 import { ShoppingCartIcon } from '@heroicons/react/24/outline'
-import Price from '../price'
-import { DEFAULT_OPTION } from '../../lib/constants'
-import type { Cart } from '../../lib/shopify/types'
-import { createUrl } from '../../lib/utils'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Fragment, ReactElement, useEffect, useRef, useState } from 'react'
+
+import { DEFAULT_OPTION } from '../../lib/constants'
+import type { Cart } from '../../lib/shopify/types'
+import { createUrl } from '../../lib/utils'
+import Price from '../price'
+
 import CloseCart from './close-cart'
 import { DeleteItemButton } from './delete-item-button'
 import { EditItemQuantityButton } from './edit-item-quantity-button'

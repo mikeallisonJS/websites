@@ -1,11 +1,11 @@
-import { getCollection, getCollectionProducts } from '../../../lib/shopify'
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
+import { ReactElement } from 'react'
 
 import Grid from '../../../components/grid'
 import ProductGridItems from '../../../components/layout/product-grid-items'
 import { defaultSort, sorting } from '../../../lib/constants'
-import { ReactElement } from 'react'
+import { getCollection, getCollectionProducts } from '../../../lib/shopify'
 
 export const runtime = 'edge'
 

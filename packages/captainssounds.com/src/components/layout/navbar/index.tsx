@@ -1,12 +1,15 @@
+import Link from 'next/link'
+import { ReactElement, Suspense } from 'react'
+
+import { getMenu } from '../../../lib/shopify'
+import { Menu } from '../../../lib/shopify/types'
 import Cart from '../../cart'
 import OpenCart from '../../cart/open-cart'
 import LogoSquare from '../../logo-square'
-import { getMenu } from '../../../lib/shopify'
-import { Menu } from '../../../lib/shopify/types'
-import Link from 'next/link'
-import { ReactElement, Suspense } from 'react'
+
 import MobileMenu from './mobile-menu'
 import Search, { SearchSkeleton } from './search'
+
 const { SITE_NAME } = process.env
 
 export default async function Navbar(): Promise<ReactElement> {

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ReactElement, Suspense } from 'react'
 
@@ -9,7 +10,6 @@ import { ProductDescription } from '../../../components/product/product-descript
 import { HIDDEN_PRODUCT_TAG } from '../../../lib/constants'
 import { getProduct, getProductRecommendations } from '../../../lib/shopify'
 import { Image } from '../../../lib/shopify/types'
-import Link from 'next/link'
 
 export const runtime = 'edge'
 

@@ -1,4 +1,5 @@
 import { ImageResponse } from 'next/og'
+
 import LogoIcon from './icons/logo'
 
 export type Props = {

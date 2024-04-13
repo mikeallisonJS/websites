@@ -1,7 +1,9 @@
-import { getCollectionProducts } from '../lib/shopify'
 import Link from 'next/link'
-import { GridTileImage } from './grid/tile'
 import { ReactElement } from 'react'
+
+import { getCollectionProducts } from '../lib/shopify'
+
+import { GridTileImage } from './grid/tile'
 
 export async function Carousel(): Promise<ReactElement | null> {
   // Collections that start with `hidden-*` are hidden from the search page.

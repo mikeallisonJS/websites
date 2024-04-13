@@ -1,8 +1,10 @@
+import { ReactElement, Suspense } from 'react'
+
+import { Product } from '../../lib/shopify/types'
 import { AddToCart } from '../cart/add-to-cart'
 import Price from '../price'
 import Prose from '../prose'
-import { Product } from '../../lib/shopify/types'
-import { ReactElement, Suspense } from 'react'
+
 import { VariantSelector } from './variant-selector'
 
 export function ProductDescription({

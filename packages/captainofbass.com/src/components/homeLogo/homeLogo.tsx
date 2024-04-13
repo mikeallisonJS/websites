@@ -1,5 +1,5 @@
 'use client'
-import { Fade } from '@mui/material'
+import Fade from '@mui/material/Fade'
 import { useScrollPosition } from '@websites/shared/react'
 import Image from 'next/image'
 import { ReactElement } from 'react'

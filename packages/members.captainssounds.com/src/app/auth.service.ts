@@ -1,5 +1,4 @@
 import { Injectable, NgZone } from '@angular/core'
-import { Firestore, doc, setDoc, getDoc } from '@angular/fire/firestore'
 import {
   Auth,
   authState,
@@ -12,8 +11,9 @@ import {
   signOut,
   User
 } from '@angular/fire/auth'
-import { Router } from '@angular/router'
+import { Firestore, doc, setDoc, getDoc } from '@angular/fire/firestore'
 import { MatSnackBar } from '@angular/material/snack-bar'
+import { Router } from '@angular/router'
 
 export interface UserData {
   _id: string

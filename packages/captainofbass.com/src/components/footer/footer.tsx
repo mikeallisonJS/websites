@@ -1,7 +1,6 @@
 'use client'
 import { ReactElement } from 'react'
-import Player from 'react-material-music-player'
-import { Track, PlayerInterface } from 'react-material-music-player'
+import Player, { Track, PlayerInterface } from 'react-material-music-player'
 
 export const songs: Track[] = [
   new Track(

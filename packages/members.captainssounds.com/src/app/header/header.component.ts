@@ -1,8 +1,9 @@
+import { animate, style, transition, trigger } from '@angular/animations'
 import { Component, Input } from '@angular/core'
+import { MatTabNavPanel } from '@angular/material/tabs'
 import { Router } from '@angular/router'
 import { ScrollService } from '@websites/common'
-import { animate, style, transition, trigger } from '@angular/animations'
-import { MatTabNavPanel } from '@angular/material/tabs'
+
 import { AuthService } from '../auth.service'
 
 @Component({

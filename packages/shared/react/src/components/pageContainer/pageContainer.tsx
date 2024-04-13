@@ -1,5 +1,5 @@
-import { ReactElement, ReactNode } from 'react'
 import Box from '@mui/material/Box'
+import { ReactElement, ReactNode } from 'react'
 
 export default function PageContainer({
   children

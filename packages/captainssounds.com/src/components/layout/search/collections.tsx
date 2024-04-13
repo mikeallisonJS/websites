@@ -2,6 +2,7 @@ import clsx from 'clsx'
 import { ReactElement, Suspense } from 'react'
 
 import { getCollections } from '../../../lib/shopify'
+
 import FilterList from './filter'
 
 async function CollectionList(): Promise<ReactElement> {

@@ -1,7 +1,52 @@
 {
   "root": true,
   "ignorePatterns": ["**/*"],
-  "plugins": ["@nx"],
+  "plugins": ["@nx", "import"],
+  "settings": {
+    "import/internal-regex": "^(@core|.prisma)"
+  },
+  "rules": {
+    "import/no-absolute-path": "error",
+    "import/default": "error",
+    "import/namespace": "error",
+    "import/no-restricted-paths": "error",
+    "import/no-dynamic-require": "error",
+    "import/no-webpack-loader-syntax": "error",
+    "import/no-self-import": "error",
+    "import/no-cycle": "warn",
+    "import/no-useless-path-segments": "error",
+    "import/no-relative-packages": "error",
+    "import/export": "error",
+    "import/no-named-as-default": "error",
+    "import/no-named-as-default-member": "error",
+    "import/no-mutable-exports": "error",
+    "import/no-unused-modules": "error",
+    "import/no-amd": "error",
+    "import/first": "error",
+    "import/no-duplicates": "error",
+    "import/no-namespace": "error",
+    "import/order": [
+      "error",
+      {
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        },
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index"
+        ],
+        "newlines-between": "always"
+      }
+    ],
+    "import/newline-after-import": "error",
+    "import/no-named-default": "error",
+    "import/no-anonymous-default-export": "error"
+  },
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
@@ -17,6 +62,19 @@
                 "onlyDependOnLibsWithTags": ["*"]
               }
             ]
+          }
+        ],
+        "no-restricted-imports": [
+          "error",
+          {
+            "paths": [
+              "lodash",
+              "@mui/material",
+              "@mui/system",
+              "@mui/icons-material",
+              "react-i18next"
+            ],
+            "patterns": ["@mui/*/*/*", "!@mui/material/test-utils/*"]
           }
         ]
       }

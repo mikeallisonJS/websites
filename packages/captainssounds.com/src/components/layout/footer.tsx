@@ -1,9 +1,10 @@
 import Link from 'next/link'
+import { ReactElement, Suspense } from 'react'
+
+import { getMenu } from '../../lib/shopify'
+import LogoSquare from '../logo-square'
 
 import FooterMenu from './footer-menu'
-import LogoSquare from '../logo-square'
-import { getMenu } from '../../lib/shopify'
-import { ReactElement, Suspense } from 'react'
 
 const { COMPANY_NAME, SITE_NAME } = process.env
 

@@ -1,6 +1,7 @@
 import clsx from 'clsx'
-import LogoIcon from './icons/logo'
 import { ReactElement } from 'react'
+
+import LogoIcon from './icons/logo'
 
 export default function LogoSquare({
   size

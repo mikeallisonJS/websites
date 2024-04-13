@@ -2,12 +2,14 @@
 
 import { PlusIcon } from '@heroicons/react/24/outline'
 import clsx from 'clsx'
-import { addItem } from './actions'
-import LoadingDots from '../loading-dots'
-import { ProductVariant } from '../../lib/shopify/types'
 import { useSearchParams } from 'next/navigation'
-import { useFormState, useFormStatus } from 'react-dom'
 import { FormEvent, ReactElement } from 'react'
+import { useFormState, useFormStatus } from 'react-dom'
+
+import { ProductVariant } from '../../lib/shopify/types'
+import LoadingDots from '../loading-dots'
+
+import { addItem } from './actions'
 
 function SubmitButton({
   availableForSale,

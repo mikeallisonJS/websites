@@ -1,23 +1,22 @@
 'use client'
 
-import Box from '@mui/material/Box'
+import MenuIcon from '@mui/icons-material/Menu'
 import AppBar from '@mui/material/AppBar'
+import Box from '@mui/material/Box'
+import Fade from '@mui/material/Fade'
+import IconButton from '@mui/material/IconButton'
+import Menu from '@mui/material/Menu'
+import MenuItem from '@mui/material/MenuItem'
+import Stack from '@mui/material/Stack'
+import Toolbar from '@mui/material/Toolbar'
+import Typography from '@mui/material/Typography'
+import { useScrollPosition } from '@websites/shared/react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { MouseEvent, ReactElement, useState } from 'react'
+
 import theme from '../../app/theme'
-import {
-  Fade,
-  IconButton,
-  Menu,
-  MenuItem,
-  Stack,
-  Toolbar,
-  Typography
-} from '@mui/material'
-import Link from 'next/link'
-import { useScrollPosition } from '@websites/shared/react'
-import MenuIcon from '@mui/icons-material/Menu'
 
 export default function Header(): ReactElement {
   const path = usePathname()

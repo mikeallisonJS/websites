@@ -1,9 +1,10 @@
 'use client'
 
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
-import { createUrl } from '../../../lib/utils'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { FormEvent, ReactElement } from 'react'
+
+import { createUrl } from '../../../lib/utils'
 
 export default function Search(): ReactElement {
   const router = useRouter()

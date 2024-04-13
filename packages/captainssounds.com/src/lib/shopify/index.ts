@@ -1,3 +1,7 @@
+import { revalidateTag } from 'next/cache'
+import { headers } from 'next/headers'
+import { NextRequest, NextResponse } from 'next/server'
+
 import {
   HIDDEN_PRODUCT_TAG,
   SHOPIFY_GRAPHQL_API_ENDPOINT,
@@ -5,9 +9,7 @@ import {
 } from '../constants'
 import { isShopifyError } from '../type-guards'
 import { ensureStartsWith } from '../utils'
-import { revalidateTag } from 'next/cache'
-import { headers } from 'next/headers'
-import { NextRequest, NextResponse } from 'next/server'
+
 import {
   addToCartMutation,
   createCartMutation,
@@ -181,7 +183,7 @@ const reshapeImages = (images: Connection<Image>, productTitle: string) => {
 
 const reshapeProduct = (
   product: ShopifyProduct,
-  filterHiddenProducts: boolean = true
+  filterHiddenProducts = true
 ) => {
   if (
     !product ||

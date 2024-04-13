@@ -1,7 +1,8 @@
 import './global.css'
-import { ReactElement, ReactNode } from 'react'
-import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter'
 import { ThemeProvider } from '@mui/material/styles'
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter'
+import { ReactElement, ReactNode } from 'react'
+
 import theme from './theme'
 
 export const metadata = {

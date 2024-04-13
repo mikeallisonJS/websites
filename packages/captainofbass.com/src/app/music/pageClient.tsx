@@ -1,5 +1,6 @@
 'use client'
 import { ReactElement } from 'react'
+
 import MusicList, { MusicType } from '../../components/musicList/musicList'
 
 export default function MusicClient(): ReactElement {

@@ -1,4 +1,5 @@
 import { ReactElement } from 'react'
+
 import Grid from '../../components/grid'
 
 export default function Loading(): ReactElement {

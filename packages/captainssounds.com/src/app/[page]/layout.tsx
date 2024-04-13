@@ -1,5 +1,6 @@
-import Footer from '../../components/layout/footer'
 import { ReactElement, ReactNode, Suspense } from 'react'
+
+import Footer from '../../components/layout/footer'
 
 export default function Layout({
   children

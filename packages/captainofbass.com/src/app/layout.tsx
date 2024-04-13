@@ -1,11 +1,14 @@
-import { Metadata } from 'next'
-import './global.css'
-import { ReactNode } from 'react'
-import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter'
 import { ThemeProvider } from '@mui/material/styles'
-import theme from './theme'
-import Header from '../components/header/header'
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter'
+import { Metadata } from 'next'
 import dynamic from 'next/dynamic'
+import { ReactNode } from 'react'
+
+import Header from '../components/header/header'
+
+import theme from './theme'
+
+import './global.css'
 
 const DynamicFooter = dynamic(() => import('../components/footer/footer'), {
   ssr: false
