@@ -1,11 +1,15 @@
-import { AddToCart } from '../cart/add-to-cart';
-import Price from '../price';
-import Prose from '../prose';
-import { Product } from '../../lib/shopify/types';
-import { ReactElement, Suspense } from 'react';
-import { VariantSelector } from './variant-selector';
+import { AddToCart } from '../cart/add-to-cart'
+import Price from '../price'
+import Prose from '../prose'
+import { Product } from '../../lib/shopify/types'
+import { ReactElement, Suspense } from 'react'
+import { VariantSelector } from './variant-selector'
 
-export function ProductDescription({ product }: { product: Product }): ReactElement {
+export function ProductDescription({
+  product
+}: {
+  product: Product
+}): ReactElement {
   return (
     <>
       <div className="mb-6 flex flex-col border-b pb-6 dark:border-neutral-700">
@@ -18,7 +22,10 @@ export function ProductDescription({ product }: { product: Product }): ReactElem
         </div>
       </div>
       <Suspense fallback={null}>
-        <VariantSelector options={product.options} variants={product.variants} />
+        <VariantSelector
+          options={product.options}
+          variants={product.variants}
+        />
       </Suspense>
 
       {product.descriptionHtml ? (
@@ -29,8 +36,11 @@ export function ProductDescription({ product }: { product: Product }): ReactElem
       ) : null}
 
       <Suspense fallback={null}>
-        <AddToCart variants={product.variants} availableForSale={product.availableForSale} />
+        <AddToCart
+          variants={product.variants}
+          availableForSale={product.availableForSale}
+        />
       </Suspense>
     </>
-  );
+  )
 }

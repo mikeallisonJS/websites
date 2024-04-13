@@ -1,8 +1,12 @@
-import clsx from 'clsx';
-import LogoIcon from './icons/logo';
-import { ReactElement } from 'react';
+import clsx from 'clsx'
+import LogoIcon from './icons/logo'
+import { ReactElement } from 'react'
 
-export default function LogoSquare({ size }: { size?: 'sm' | undefined }): ReactElement {
+export default function LogoSquare({
+  size
+}: {
+  size?: 'sm' | undefined
+}): ReactElement {
   return (
     <div
       className={clsx(
@@ -20,5 +24,5 @@ export default function LogoSquare({ size }: { size?: 'sm' | undefined }): React
         })}
       />
     </div>
-  );
+  )
 }

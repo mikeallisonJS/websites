@@ -1,7 +1,7 @@
-import clsx from 'clsx';
-import { ReactElement } from 'react';
+import clsx from 'clsx'
+import { ReactElement } from 'react'
 
-const dots = 'mx-[1px] inline-block h-1 w-1 animate-blink rounded-md';
+const dots = 'mx-[1px] inline-block h-1 w-1 animate-blink rounded-md'
 
 const LoadingDots = ({ className }: { className: string }): ReactElement => {
   return (
@@ -10,7 +10,7 @@ const LoadingDots = ({ className }: { className: string }): ReactElement => {
       <span className={clsx(dots, 'animation-delay-[200ms]', className)} />
       <span className={clsx(dots, 'animation-delay-[400ms]', className)} />
     </span>
-  );
-};
+  )
+}
 
-export default LoadingDots;
+export default LoadingDots

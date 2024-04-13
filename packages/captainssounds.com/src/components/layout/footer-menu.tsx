@@ -1,18 +1,18 @@
-'use client';
+'use client'
 
-import clsx from 'clsx';
-import { Menu } from '../../lib/shopify/types';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { ReactElement, useEffect, useState } from 'react';
+import clsx from 'clsx'
+import { Menu } from '../../lib/shopify/types'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { ReactElement, useEffect, useState } from 'react'
 
 const FooterMenuItem = ({ item }: { item: Menu }): ReactElement => {
-  const pathname = usePathname();
-  const [active, setActive] = useState(pathname === item.path);
+  const pathname = usePathname()
+  const [active, setActive] = useState(pathname === item.path)
 
   useEffect(() => {
-    setActive(pathname === item.path);
-  }, [pathname, item.path]);
+    setActive(pathname === item.path)
+  }, [pathname, item.path])
 
   return (
     <li>
@@ -28,19 +28,23 @@ const FooterMenuItem = ({ item }: { item: Menu }): ReactElement => {
         {item.title}
       </Link>
     </li>
-  );
-};
+  )
+}
 
-export default function FooterMenu({ menu }: { menu: Menu[] }): ReactElement | null{
-  if (!menu.length) return null;
+export default function FooterMenu({
+  menu
+}: {
+  menu: Menu[]
+}): ReactElement | null {
+  if (!menu.length) return null
 
   return (
     <nav>
       <ul>
         {menu.map((item: Menu) => {
-          return <FooterMenuItem key={item.title} item={item} />;
+          return <FooterMenuItem key={item.title} item={item} />
         })}
       </ul>
     </nav>
-  );
+  )
 }

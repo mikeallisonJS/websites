@@ -1,15 +1,22 @@
-import Grid from '../grid';
-import { GridTileImage } from '../grid/tile';
-import { Product } from '../../lib/shopify/types';
-import Link from 'next/link';
-import { ReactElement } from 'react';
+import Grid from '../grid'
+import { GridTileImage } from '../grid/tile'
+import { Product } from '../../lib/shopify/types'
+import Link from 'next/link'
+import { ReactElement } from 'react'
 
-export default function ProductGridItems({ products }: { products: Product[] }): ReactElement {
+export default function ProductGridItems({
+  products
+}: {
+  products: Product[]
+}): ReactElement {
   return (
     <>
       {products.map((product) => (
         <Grid.Item key={product.handle} className="animate-fadeIn">
-          <Link className="relative inline-block h-full w-full" href={`/product/${product.handle}`}>
+          <Link
+            className="relative inline-block h-full w-full"
+            href={`/product/${product.handle}`}
+          >
             <GridTileImage
               alt={product.title}
               label={{
@@ -25,5 +32,5 @@ export default function ProductGridItems({ products }: { products: Product[] }):
         </Grid.Item>
       ))}
     </>
-  );
+  )
 }

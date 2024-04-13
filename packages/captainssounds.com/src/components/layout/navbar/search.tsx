@@ -1,32 +1,35 @@
-'use client';
+'use client'
 
-import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
-import { createUrl } from '../../../lib/utils';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { ReactElement } from 'react';
+import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
+import { createUrl } from '../../../lib/utils'
+import { useRouter, useSearchParams } from 'next/navigation'
+import { FormEvent, ReactElement } from 'react'
 
 export default function Search(): ReactElement {
-  const router = useRouter();
-  const searchParams = useSearchParams();
+  const router = useRouter()
+  const searchParams = useSearchParams()
 
-  function onSubmit(e: React.FormEvent<HTMLFormElement>): void {
-    e.preventDefault();
+  function onSubmit(e: FormEvent<HTMLFormElement>): void {
+    e.preventDefault()
 
-    const val = e.target as HTMLFormElement;
-    const search = val.search as HTMLInputElement;
-    const newParams = new URLSearchParams(searchParams.toString());
+    const val = e.target as HTMLFormElement
+    const search = val.search as HTMLInputElement
+    const newParams = new URLSearchParams(searchParams.toString())
 
     if (search.value) {
-      newParams.set('q', search.value);
+      newParams.set('q', search.value)
     } else {
-      newParams.delete('q');
+      newParams.delete('q')
     }
 
-    router.push(createUrl('/search', newParams));
+    router.push(createUrl('/search', newParams))
   }
 
   return (
-    <form onSubmit={onSubmit} className="w-max-[550px] relative w-full lg:w-80 xl:w-full">
+    <form
+      onSubmit={onSubmit}
+      className="w-max-[550px] relative w-full lg:w-80 xl:w-full"
+    >
       <input
         key={searchParams?.get('q')}
         type="text"
@@ -40,7 +43,7 @@ export default function Search(): ReactElement {
         <MagnifyingGlassIcon className="h-4" />
       </div>
     </form>
-  );
+  )
 }
 
 export function SearchSkeleton(): ReactElement {
@@ -54,5 +57,5 @@ export function SearchSkeleton(): ReactElement {
         <MagnifyingGlassIcon className="h-4" />
       </div>
     </form>
-  );
+  )
 }

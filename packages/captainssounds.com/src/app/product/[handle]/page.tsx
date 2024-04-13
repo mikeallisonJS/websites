@@ -1,29 +1,29 @@
-import type { Metadata } from 'next';
-import { notFound } from 'next/navigation';
-import { ReactElement, Suspense } from 'react';
+import type { Metadata } from 'next'
+import { notFound } from 'next/navigation'
+import { ReactElement, Suspense } from 'react'
 
-import { GridTileImage } from '../../../components/grid/tile';
-import Footer from '../../../components/layout/footer';
-import { Gallery } from '../../../components/product/gallery';
-import { ProductDescription } from '../../../components/product/product-description';
-import { HIDDEN_PRODUCT_TAG } from '../../../lib/constants';
-import { getProduct, getProductRecommendations } from '../../../lib/shopify';
-import { Image } from '../../../lib/shopify/types';
-import Link from 'next/link';
+import { GridTileImage } from '../../../components/grid/tile'
+import Footer from '../../../components/layout/footer'
+import { Gallery } from '../../../components/product/gallery'
+import { ProductDescription } from '../../../components/product/product-description'
+import { HIDDEN_PRODUCT_TAG } from '../../../lib/constants'
+import { getProduct, getProductRecommendations } from '../../../lib/shopify'
+import { Image } from '../../../lib/shopify/types'
+import Link from 'next/link'
 
-export const runtime = 'edge';
+export const runtime = 'edge'
 
 export async function generateMetadata({
   params
 }: {
-  params: { handle: string };
+  params: { handle: string }
 }): Promise<Metadata> {
-  const product = await getProduct(params.handle);
+  const product = await getProduct(params.handle)
 
-  if (!product) return notFound();
+  if (!product) return notFound()
 
-  const { url, width, height, altText: alt } = product.featuredImage || {};
-  const indexable = !product.tags.includes(HIDDEN_PRODUCT_TAG);
+  const { url, width, height, altText: alt } = product.featuredImage || {}
+  const indexable = !product.tags.includes(HIDDEN_PRODUCT_TAG)
 
   return {
     title: product.seo.title || product.title,
@@ -48,13 +48,17 @@ export async function generateMetadata({
           ]
         }
       : null
-  };
+  }
 }
 
-export default async function ProductPage({ params }: { params: { handle: string } }): Promise<ReactElement> {
-  const product = await getProduct(params.handle);
+export default async function ProductPage({
+  params
+}: {
+  params: { handle: string }
+}): Promise<ReactElement> {
+  const product = await getProduct(params.handle)
 
-  if (!product) return notFound();
+  if (!product) return notFound()
 
   const productJsonLd = {
     '@context': 'https://schema.org',
@@ -71,7 +75,7 @@ export default async function ProductPage({ params }: { params: { handle: string
       highPrice: product.priceRange.maxVariantPrice.amount,
       lowPrice: product.priceRange.minVariantPrice.amount
     }
-  };
+  }
 
   return (
     <>
@@ -110,13 +114,17 @@ export default async function ProductPage({ params }: { params: { handle: string
         <Footer />
       </Suspense>
     </>
-  );
+  )
 }
 
-async function RelatedProducts({ id }: { id: string }): Promise<ReactElement | null>{
-  const relatedProducts = await getProductRecommendations(id);
+async function RelatedProducts({
+  id
+}: {
+  id: string
+}): Promise<ReactElement | null> {
+  const relatedProducts = await getProductRecommendations(id)
 
-  if (!relatedProducts.length) return null;
+  if (!relatedProducts.length) return null
 
   return (
     <div className="py-8">
@@ -127,7 +135,10 @@ async function RelatedProducts({ id }: { id: string }): Promise<ReactElement | n
             key={product.handle}
             className="aspect-square w-full flex-none min-[475px]:w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5"
           >
-            <Link className="relative h-full w-full" href={`/product/${product.handle}`}>
+            <Link
+              className="relative h-full w-full"
+              href={`/product/${product.handle}`}
+            >
               <GridTileImage
                 alt={product.title}
                 label={{
@@ -144,5 +155,5 @@ async function RelatedProducts({ id }: { id: string }): Promise<ReactElement | n
         ))}
       </ul>
     </div>
-  );
+  )
 }

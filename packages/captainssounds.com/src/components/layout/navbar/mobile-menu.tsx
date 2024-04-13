@@ -1,34 +1,34 @@
-'use client';
+'use client'
 
-import { Dialog, Transition } from '@headlessui/react';
-import Link from 'next/link';
-import { usePathname, useSearchParams } from 'next/navigation';
-import { Fragment, ReactElement, Suspense, useEffect, useState } from 'react';
+import { Dialog, Transition } from '@headlessui/react'
+import Link from 'next/link'
+import { usePathname, useSearchParams } from 'next/navigation'
+import { Fragment, ReactElement, Suspense, useEffect, useState } from 'react'
 
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { Menu } from '../../../lib/shopify/types';
-import Search, { SearchSkeleton } from './search';
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import { Menu } from '../../../lib/shopify/types'
+import Search, { SearchSkeleton } from './search'
 
 export default function MobileMenu({ menu }: { menu: Menu[] }): ReactElement {
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const [isOpen, setIsOpen] = useState(false);
-  const openMobileMenu = (): void => setIsOpen(true);
-  const closeMobileMenu = (): void => setIsOpen(false);
+  const pathname = usePathname()
+  const searchParams = useSearchParams()
+  const [isOpen, setIsOpen] = useState(false)
+  const openMobileMenu = (): void => setIsOpen(true)
+  const closeMobileMenu = (): void => setIsOpen(false)
 
   useEffect(() => {
     const handleResize = (): void => {
       if (window.innerWidth > 768) {
-        setIsOpen(false);
+        setIsOpen(false)
       }
-    };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, [isOpen]);
+    }
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [isOpen])
 
   useEffect(() => {
-    setIsOpen(false);
-  }, [pathname, searchParams]);
+    setIsOpen(false)
+  }, [pathname, searchParams])
 
   return (
     <>
@@ -96,5 +96,5 @@ export default function MobileMenu({ menu }: { menu: Menu[] }): ReactElement {
         </Dialog>
       </Transition>
     </>
-  );
+  )
 }

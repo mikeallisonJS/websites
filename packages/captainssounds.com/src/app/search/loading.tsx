@@ -1,5 +1,5 @@
-import { ReactElement } from 'react';
-import Grid from '../../components/grid';
+import { ReactElement } from 'react'
+import Grid from '../../components/grid'
 
 export default function Loading(): ReactElement {
   return (
@@ -8,9 +8,12 @@ export default function Loading(): ReactElement {
         .fill(0)
         .map((_, index) => {
           return (
-            <Grid.Item key={index} className="animate-pulse bg-neutral-100 dark:bg-neutral-900" />
-          );
+            <Grid.Item
+              key={index}
+              className="animate-pulse bg-neutral-100 dark:bg-neutral-900"
+            />
+          )
         })}
     </Grid>
-  );
+  )
 }

@@ -1,17 +1,19 @@
-import { ImageResponse } from 'next/og';
-import LogoIcon from './icons/logo';
+import { ImageResponse } from 'next/og'
+import LogoIcon from './icons/logo'
 
 export type Props = {
-  title?: string;
-};
+  title?: string
+}
 
-export default async function OpengraphImage(props?: Props): Promise<ImageResponse> {
+export default async function OpengraphImage(
+  props?: Props
+): Promise<ImageResponse> {
   const { title } = {
     ...{
       title: process.env.SITE_NAME
     },
     ...props
-  };
+  }
 
   return new ImageResponse(
     (
@@ -28,13 +30,13 @@ export default async function OpengraphImage(props?: Props): Promise<ImageRespon
       fonts: [
         {
           name: 'Inter',
-          data: await fetch(new URL('../../public/fonts/Inter-Bold.ttf', import.meta.url)).then((res) =>
-            res.arrayBuffer()
-          ),
+          data: await fetch(
+            new URL('../../public/fonts/Inter-Bold.ttf', import.meta.url)
+          ).then((res) => res.arrayBuffer()),
           style: 'normal',
           weight: 700
         }
       ]
     }
-  );
+  )
 }

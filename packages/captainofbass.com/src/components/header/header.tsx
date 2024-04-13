@@ -4,7 +4,7 @@ import Box from '@mui/material/Box'
 import AppBar from '@mui/material/AppBar'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
-import { ReactElement, useState } from 'react'
+import { MouseEvent, ReactElement, useState } from 'react'
 import theme from '../../app/theme'
 import {
   Fade,
@@ -24,7 +24,7 @@ export default function Header(): ReactElement {
   const scrollY = useScrollPosition()
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null)
 
-  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>): void => {
+  const handleOpenNavMenu = (event: MouseEvent<HTMLElement>): void => {
     setAnchorElNav(event.currentTarget)
   }
   const handleCloseNavMenu = (): void => {

@@ -13,7 +13,7 @@ const DynamicFooter = dynamic(() => import('../components/footer/footer'), {
 export default function RootLayout({
   children
 }: {
-  children: React.ReactNode
+  children: ReactNode
 }): ReactNode {
   return (
     <html lang="en">

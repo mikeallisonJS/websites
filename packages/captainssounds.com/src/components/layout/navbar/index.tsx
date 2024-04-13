@@ -1,16 +1,16 @@
-import Cart from '../../cart';
-import OpenCart from '../../cart/open-cart';
-import LogoSquare from '../../logo-square';
-import { getMenu } from '../../../lib/shopify';
-import { Menu } from '../../../lib/shopify/types';
-import Link from 'next/link';
-import { ReactElement, Suspense } from 'react';
-import MobileMenu from './mobile-menu';
-import Search, { SearchSkeleton } from './search';
-const { SITE_NAME } = process.env;
+import Cart from '../../cart'
+import OpenCart from '../../cart/open-cart'
+import LogoSquare from '../../logo-square'
+import { getMenu } from '../../../lib/shopify'
+import { Menu } from '../../../lib/shopify/types'
+import Link from 'next/link'
+import { ReactElement, Suspense } from 'react'
+import MobileMenu from './mobile-menu'
+import Search, { SearchSkeleton } from './search'
+const { SITE_NAME } = process.env
 
 export default async function Navbar(): Promise<ReactElement> {
-  const menu = await getMenu('next-js-frontend-header-menu');
+  const menu = await getMenu('next-js-frontend-header-menu')
 
   return (
     <nav className="relative flex items-center justify-between p-4 lg:px-6">
@@ -21,7 +21,10 @@ export default async function Navbar(): Promise<ReactElement> {
       </div>
       <div className="flex w-full items-center">
         <div className="flex w-full md:w-1/3">
-          <Link href="/" className="mr-2 flex w-full items-center justify-center md:w-auto lg:mr-6">
+          <Link
+            href="/"
+            className="mr-2 flex w-full items-center justify-center md:w-auto lg:mr-6"
+          >
             <LogoSquare />
             <div className="ml-2 flex-none text-sm font-medium uppercase md:hidden lg:block">
               {SITE_NAME}
@@ -54,5 +57,5 @@ export default async function Navbar(): Promise<ReactElement> {
         </div>
       </div>
     </nav>
-  );
+  )
 }

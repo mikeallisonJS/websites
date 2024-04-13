@@ -1,8 +1,11 @@
-const plugin = require('tailwindcss/plugin');
+const plugin = require('tailwindcss/plugin')
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./src/app/**/*.{js,ts,jsx,tsx}', './src/components/**/*.{js,ts,jsx,tsx}'],
+  content: [
+    './src/app/**/*.{js,ts,jsx,tsx}',
+    './src/components/**/*.{js,ts,jsx,tsx}'
+  ],
   theme: {
     extend: {
       fontFamily: {
@@ -42,13 +45,13 @@ module.exports = {
           'animation-delay': (value) => {
             return {
               'animation-delay': value
-            };
+            }
           }
         },
         {
           values: theme('transitionDelay')
         }
-      );
+      )
     })
   ]
-};
+}
