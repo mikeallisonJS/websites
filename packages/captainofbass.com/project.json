@@ -52,6 +52,16 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint"
+    },
+    "fetch-secrets": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          {
+            "command": "doppler secrets download --no-file --format=env-no-quotes -p captainofbass-com > packages/captainofbass.com/.env"
+          }
+        ]
+      }
     }
   }
 }

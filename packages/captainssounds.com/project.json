@@ -1,7 +1,7 @@
 {
-  "name": "sltdnb.com",
+  "name": "captainssounds.com",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "packages/sltdnb.com",
+  "sourceRoot": "packages/captainssounds.com",
   "projectType": "application",
   "tags": [],
   "targets": {
@@ -10,11 +10,11 @@
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
-        "outputPath": "dist/packages/sltdnb.com"
+        "outputPath": "dist/packages/captainssounds.com"
       },
       "configurations": {
         "development": {
-          "outputPath": "packages/sltdnb.com"
+          "outputPath": "packages/captainssounds.com"
         },
         "production": {}
       }
@@ -23,16 +23,16 @@
       "executor": "@nx/next:server",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "sltdnb.com:build",
+        "buildTarget": "captainssounds.com:build",
         "dev": true
       },
       "configurations": {
         "development": {
-          "buildTarget": "sltdnb.com:build:development",
+          "buildTarget": "captainssounds.com:build:development",
           "dev": true
         },
         "production": {
-          "buildTarget": "sltdnb.com:build:production",
+          "buildTarget": "captainssounds.com:build:production",
           "dev": false
         }
       }
@@ -40,14 +40,14 @@
     "export": {
       "executor": "@nx/next:export",
       "options": {
-        "buildTarget": "sltdnb.com:build:production"
+        "buildTarget": "captainssounds.com:build:production"
       }
     },
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "packages/sltdnb.com/jest.config.ts"
+        "jestConfig": "packages/captainssounds.com/jest.config.ts"
       }
     },
     "lint": {
@@ -58,7 +58,7 @@
       "options": {
         "commands": [
           {
-            "command": "doppler secrets download --no-file --format=env-no-quotes -p sltdnb-com > packages/sltdnb.com/.env"
+            "command": "doppler secrets download --no-file --format=env-no-quotes -p captainssounds-com > packages/captainssounds.com/.env"
           }
         ]
       }
