@@ -1,8 +1,8 @@
 import { ReactElement, ReactNode, Suspense } from 'react'
 
+import Collections from '../../components/collections'
+import FilterList from '../../components/filterList'
 import Footer from '../../components/footer'
-import Collections from '../../components/layout/search/collections'
-import FilterList from '../../components/layout/search/filter'
 import { sorting } from '../../lib/constants'
 
 export default function SearchLayout({

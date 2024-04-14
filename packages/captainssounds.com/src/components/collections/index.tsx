@@ -1,9 +1,8 @@
 import clsx from 'clsx'
 import { ReactElement, Suspense } from 'react'
 
-import { getCollections } from '../../../lib/shopify'
-
-import FilterList from './filter'
+import { getCollections } from '../../lib/shopify'
+import FilterList from '../filterList'
 
 async function CollectionList(): Promise<ReactElement> {
   const collections = await getCollections()

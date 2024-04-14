@@ -1,6 +1,6 @@
 import { ReactElement, Suspense } from 'react'
 
-import { SortFilterItem } from '../../../../lib/constants'
+import { SortFilterItem } from '../../lib/constants'
 
 import FilterItemDropdown from './dropdown'
 import { FilterItem } from './item'
