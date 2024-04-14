@@ -1,8 +1,8 @@
 import { ReactElement, Suspense } from 'react'
 
 import { Carousel } from '../components/carousel'
-import { ThreeItemGrid } from '../components/grid/three-items'
-import Footer from '../components/layout/footer'
+import Footer from '../components/footer'
+import { ThreeItemGrid } from '../components/grid/threeItems'
 
 export const runtime = 'edge'
 

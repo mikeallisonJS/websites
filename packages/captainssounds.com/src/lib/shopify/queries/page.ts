@@ -1,41 +1,49 @@
+import { graphql } from 'gql.tada'
+
 import seoFragment from '../fragments/seo'
 
-const pageFragment = /* GraphQL */ `
-  fragment page on Page {
-    ... on Page {
-      id
-      title
-      handle
-      body
-      bodySummary
-      seo {
-        ...seo
+const pageFragment = graphql(
+  `
+    fragment page on Page {
+      ... on Page {
+        id
+        title
+        handle
+        body
+        bodySummary
+        seo {
+          ...seo
+        }
+        createdAt
+        updatedAt
       }
-      createdAt
-      updatedAt
     }
-  }
-  ${seoFragment}
-`
+  `,
+  [seoFragment]
+)
 
-export const getPageQuery = /* GraphQL */ `
-  query getPage($handle: String!) {
-    pageByHandle(handle: $handle) {
-      ...page
+export const getPageQuery = graphql(
+  `
+    query getPage($handle: String!) {
+      pageByHandle(handle: $handle) {
+        ...page
+      }
     }
-  }
-  ${pageFragment}
-`
+  `,
+  [pageFragment]
+)
 
-export const getPagesQuery = /* GraphQL */ `
-  query getPages {
-    pages(first: 100) {
-      edges {
-        node {
-          ...page
+export const getPagesQuery = graphql(
+  `
+    query getPages {
+      pages(first: 100) {
+        edges {
+          node {
+            ...page
+          }
         }
       }
     }
-  }
-  ${pageFragment}
-`
+  `,
+  [pageFragment]
+)

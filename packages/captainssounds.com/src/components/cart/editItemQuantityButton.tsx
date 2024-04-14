@@ -6,7 +6,7 @@ import { FormEvent, ReactElement } from 'react'
 import { useFormState, useFormStatus } from 'react-dom'
 
 import type { CartItem } from '../../lib/shopify/types'
-import LoadingDots from '../loading-dots'
+import LoadingDots from '../loadingDots'
 
 import { updateItemQuantity } from './actions'
 

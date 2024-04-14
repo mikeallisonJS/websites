@@ -1,6 +1,6 @@
 import { ReactElement, ReactNode, Suspense } from 'react'
 
-import Footer from '../../components/layout/footer'
+import Footer from '../../components/footer'
 import Collections from '../../components/layout/search/collections'
 import FilterList from '../../components/layout/search/filter'
 import { sorting } from '../../lib/constants'

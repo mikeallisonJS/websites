@@ -1,64 +1,67 @@
+import { graphql } from 'gql.tada'
+
 import imageFragment from './image'
 import seoFragment from './seo'
 
-const productFragment = /* GraphQL */ `
-  fragment product on Product {
-    id
-    handle
-    availableForSale
-    title
-    description
-    descriptionHtml
-    options {
+const productFragment = graphql(
+  `
+    fragment product on Product {
       id
-      name
-      values
-    }
-    priceRange {
-      maxVariantPrice {
-        amount
-        currencyCode
+      handle
+      availableForSale
+      title
+      description
+      descriptionHtml
+      options {
+        id
+        name
+        values
       }
-      minVariantPrice {
-        amount
-        currencyCode
+      priceRange {
+        maxVariantPrice {
+          amount
+          currencyCode
+        }
+        minVariantPrice {
+          amount
+          currencyCode
+        }
       }
-    }
-    variants(first: 250) {
-      edges {
-        node {
-          id
-          title
-          availableForSale
-          selectedOptions {
-            name
-            value
-          }
-          price {
-            amount
-            currencyCode
+      variants(first: 250) {
+        edges {
+          node {
+            id
+            title
+            availableForSale
+            selectedOptions {
+              name
+              value
+            }
+            price {
+              amount
+              currencyCode
+            }
           }
         }
       }
-    }
-    featuredImage {
-      ...image
-    }
-    images(first: 20) {
-      edges {
-        node {
-          ...image
+      featuredImage {
+        ...image
+      }
+      images(first: 20) {
+        edges {
+          node {
+            ...image
+          }
         }
       }
+      seo {
+        ...seo
+      }
+      tags
+      updatedAt
     }
-    seo {
-      ...seo
-    }
-    tags
-    updatedAt
-  }
-  ${imageFragment}
-  ${seoFragment}
-`
+  `,
+  [imageFragment, seoFragment]
+)
 
 export default productFragment

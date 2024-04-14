@@ -1,16 +1,14 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { ReactElement, Suspense } from 'react'
 
 import { getMenu } from '../../../lib/shopify'
 import { Menu } from '../../../lib/shopify/types'
 import Cart from '../../cart'
-import OpenCart from '../../cart/open-cart'
-import LogoSquare from '../../logo-square'
+import OpenCart from '../../cart/openCart'
 
-import MobileMenu from './mobile-menu'
+import MobileMenu from './mobileMenu'
 import Search, { SearchSkeleton } from './search'
-
-const { SITE_NAME } = process.env
 
 export default async function Navbar(): Promise<ReactElement> {
   const menu = await getMenu('next-js-frontend-header-menu')
@@ -28,9 +26,15 @@ export default async function Navbar(): Promise<ReactElement> {
             href="/"
             className="mr-2 flex w-full items-center justify-center md:w-auto lg:mr-6"
           >
-            <LogoSquare />
+            <Image
+              className="logo"
+              src="/images/cpt-border.png"
+              alt="logo"
+              height={64}
+              width={218}
+            />
             <div className="ml-2 flex-none text-sm font-medium uppercase md:hidden lg:block">
-              {SITE_NAME}
+              {`Captain's Sounds`}
             </div>
           </Link>
           {menu.length ? (

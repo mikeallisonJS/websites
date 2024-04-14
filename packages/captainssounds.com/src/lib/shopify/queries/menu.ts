@@ -1,4 +1,6 @@
-export const getMenuQuery = /* GraphQL */ `
+import { graphql } from 'gql.tada'
+
+export const getMenuQuery = graphql(`
   query getMenu($handle: String!) {
     menu(handle: $handle) {
       items {
@@ -7,4 +9,4 @@ export const getMenuQuery = /* GraphQL */ `
       }
     }
   }
-`
+`)

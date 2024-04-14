@@ -11,10 +11,10 @@ import type { Cart } from '../../lib/shopify/types'
 import { createUrl } from '../../lib/utils'
 import Price from '../price'
 
-import CloseCart from './close-cart'
-import { DeleteItemButton } from './delete-item-button'
-import { EditItemQuantityButton } from './edit-item-quantity-button'
-import OpenCart from './open-cart'
+import CloseCart from './closeCart'
+import { DeleteItemButton } from './deleteItemButton'
+import { EditItemQuantityButton } from './editItemQuantityButton'
+import OpenCart from './openCart'
 
 type MerchandiseSearchParams = {
   [key: string]: string

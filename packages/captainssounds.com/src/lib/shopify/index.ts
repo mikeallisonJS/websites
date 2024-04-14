@@ -1,3 +1,4 @@
+import { DocumentNode, print } from 'graphql'
 import { revalidateTag } from 'next/cache'
 import { headers } from 'next/headers'
 import { NextRequest, NextResponse } from 'next/server'
@@ -7,7 +8,7 @@ import {
   SHOPIFY_GRAPHQL_API_ENDPOINT,
   TAGS
 } from '../constants'
-import { isShopifyError } from '../type-guards'
+import { isShopifyError } from '../typeGuards'
 import { ensureStartsWith } from '../utils'
 
 import {
@@ -75,7 +76,7 @@ export async function shopifyFetch<T>({
 }: {
   cache?: RequestCache
   headers?: HeadersInit
-  query: string
+  query: DocumentNode
   tags?: string[]
   variables?: ExtractVariables<T>
 }): Promise<{ status: number; body: T } | never> {
@@ -88,7 +89,7 @@ export async function shopifyFetch<T>({
         ...headers
       },
       body: JSON.stringify({
-        ...(query && { query }),
+        ...(query && { query: print(query) }),
         ...(variables && { variables })
       }),
       cache,

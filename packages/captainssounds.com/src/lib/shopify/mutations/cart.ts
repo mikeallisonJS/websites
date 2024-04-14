@@ -1,45 +1,55 @@
+import { graphql } from 'gql.tada'
+
 import cartFragment from '../fragments/cart'
 
-export const addToCartMutation = /* GraphQL */ `
-  mutation addToCart($cartId: ID!, $lines: [CartLineInput!]!) {
-    cartLinesAdd(cartId: $cartId, lines: $lines) {
-      cart {
-        ...cart
+export const addToCartMutation = graphql(
+  `
+    mutation addToCart($cartId: ID!, $lines: [CartLineInput!]!) {
+      cartLinesAdd(cartId: $cartId, lines: $lines) {
+        cart {
+          ...cart
+        }
       }
     }
-  }
-  ${cartFragment}
-`
+  `,
+  [cartFragment]
+)
 
-export const createCartMutation = /* GraphQL */ `
-  mutation createCart($lineItems: [CartLineInput!]) {
-    cartCreate(input: { lines: $lineItems }) {
-      cart {
-        ...cart
+export const createCartMutation = graphql(
+  `
+    mutation createCart($lineItems: [CartLineInput!]) {
+      cartCreate(input: { lines: $lineItems }) {
+        cart {
+          ...cart
+        }
       }
     }
-  }
-  ${cartFragment}
-`
+  `,
+  [cartFragment]
+)
 
-export const editCartItemsMutation = /* GraphQL */ `
-  mutation editCartItems($cartId: ID!, $lines: [CartLineUpdateInput!]!) {
-    cartLinesUpdate(cartId: $cartId, lines: $lines) {
-      cart {
-        ...cart
+export const editCartItemsMutation = graphql(
+  `
+    mutation editCartItems($cartId: ID!, $lines: [CartLineUpdateInput!]!) {
+      cartLinesUpdate(cartId: $cartId, lines: $lines) {
+        cart {
+          ...cart
+        }
       }
     }
-  }
-  ${cartFragment}
-`
+  `,
+  [cartFragment]
+)
 
-export const removeFromCartMutation = /* GraphQL */ `
-  mutation removeFromCart($cartId: ID!, $lineIds: [ID!]!) {
-    cartLinesRemove(cartId: $cartId, lineIds: $lineIds) {
-      cart {
-        ...cart
+export const removeFromCartMutation = graphql(
+  `
+    mutation removeFromCart($cartId: ID!, $lineIds: [ID!]!) {
+      cartLinesRemove(cartId: $cartId, lineIds: $lineIds) {
+        cart {
+          ...cart
+        }
       }
     }
-  }
-  ${cartFragment}
-`
+  `,
+  [cartFragment]
+)

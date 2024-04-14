@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation'
 import { ReactElement } from 'react'
 
 import Grid from '../../../components/grid'
-import ProductGridItems from '../../../components/layout/product-grid-items'
+import ProductGridItems from '../../../components/layout/productGridItems'
 import { defaultSort, sorting } from '../../../lib/constants'
 import { getCollection, getCollectionProducts } from '../../../lib/shopify'
 
