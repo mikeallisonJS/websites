@@ -33,9 +33,6 @@ export default async function Navbar(): Promise<ReactElement> {
               height={64}
               width={218}
             />
-            <div className="ml-2 flex-none text-sm font-medium uppercase md:hidden lg:block">
-              {`Captain's Sounds`}
-            </div>
           </Link>
           {menu.length ? (
             <ul className="hidden gap-6 text-sm md:flex md:items-center">

@@ -8,8 +8,6 @@ import { ThreeItemGrid } from '../components/grid/threeItems'
 export const runtime = 'edge'
 
 export const metadata = {
-  description:
-    'High-performance ecommerce store built with Next.js, Vercel, and Shopify.',
   openGraph: {
     type: 'website'
   }
@@ -22,7 +20,7 @@ export default async function HomePage(): Promise<ReactElement> {
         <div className="order-first w-full flex-none md:max-w-[125px]">
           <Collections />
         </div>
-        <div className="order-last min-h-screen w-full md:order-none">
+        <div className="order-last w-full md:order-none">
           <ThreeItemGrid />
         </div>
       </div>
