@@ -10,6 +10,7 @@
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
+        "postcssConfig": "packages/captainssounds.com/postcss.config.js",
         "outputPath": "dist/packages/captainssounds.com"
       },
       "configurations": {
