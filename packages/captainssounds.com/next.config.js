@@ -1,5 +1,9 @@
-/** @type {import('next').NextConfig} */
-module.exports = {
+const { composePlugins, withNx } = require('@nx/next')
+
+/**
+ * @type {import('@nx/next/plugins/with-nx').WithNxOptions}
+ **/
+const nextConfig = {
   eslint: {
     // Disabling on production builds because we're running checks on PRs via GitHub Actions.
     ignoreDuringBuilds: true
@@ -14,6 +18,9 @@ module.exports = {
       }
     ]
   },
+  compiler: {
+    tailwind: true
+  },
   async redirects() {
     return [
       {
@@ -24,3 +31,10 @@ module.exports = {
     ]
   }
 }
+
+const plugins = [
+  // Add more Next.js plugins to this list if needed.
+  withNx
+]
+
+module.exports = composePlugins(...plugins)(nextConfig)
