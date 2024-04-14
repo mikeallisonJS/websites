@@ -1,6 +1,6 @@
 import { graphql } from 'gql.tada'
 
-import productFragment from './product'
+import productFragment from '../product/productFragment'
 
 const cartFragment = graphql(
   `

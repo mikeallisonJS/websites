@@ -1,14 +1,31 @@
-import { TAGS } from '../constants'
+import { graphql } from 'gql.tada'
 
-import { getCollectionsQuery } from './queries/collection'
-import { removeEdgesAndNodes } from './removeEdgesAndNodes'
-import { reshapeCollections } from './reshapeCollections'
-import { shopifyFetch } from './shopifyFetch'
+import { TAGS } from '../../constants'
+import { removeEdgesAndNodes } from '../removeEdgesAndNodes'
+import { shopifyFetch } from '../shopifyFetch'
 import {
   Collection,
   ShopifyCollection,
   ShopifyCollectionsOperation
-} from './types'
+} from '../types'
+
+import { collectionFragment } from './collectionFragment'
+import { reshapeCollections } from './reshapeCollections'
+
+const getCollectionsQuery = graphql(
+  `
+    query getCollections {
+      collections(first: 100, sortKey: TITLE) {
+        edges {
+          node {
+            ...collection
+          }
+        }
+      }
+    }
+  `,
+  [collectionFragment]
+)
 
 export async function getCollections(): Promise<Collection[]> {
   const res = await shopifyFetch<ShopifyCollectionsOperation>({

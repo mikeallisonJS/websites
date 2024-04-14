@@ -1,9 +1,22 @@
-import { TAGS } from '../constants'
+import { graphql } from 'gql.tada'
 
-import { getCartQuery } from './queries/cart'
+import { TAGS } from '../../constants'
+import { shopifyFetch } from '../shopifyFetch'
+import { Cart, ShopifyCartOperation } from '../types'
+
+import cartFragment from './cartFragment'
 import { reshapeCart } from './reshapeCart'
-import { shopifyFetch } from './shopifyFetch'
-import { Cart, ShopifyCartOperation } from './types'
+
+const getCartQuery = graphql(
+  `
+    query getCart($cartId: ID!) {
+      cart(id: $cartId) {
+        ...cart
+      }
+    }
+  `,
+  [cartFragment]
+)
 
 export async function getCart(cartId: string): Promise<Cart | undefined> {
   const res = await shopifyFetch<ShopifyCartOperation>({

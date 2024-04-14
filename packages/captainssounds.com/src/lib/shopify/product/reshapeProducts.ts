@@ -1,5 +1,6 @@
+import { Product, ShopifyProduct } from '../types'
+
 import { reshapeProduct } from './reshapeProduct'
-import { Product, ShopifyProduct } from './types'
 
 export const reshapeProducts = (products: ShopifyProduct[]): Product[] => {
   const reshapedProducts = []

@@ -1,8 +1,8 @@
-import { HIDDEN_PRODUCT_TAG } from '../constants'
+import { HIDDEN_PRODUCT_TAG } from '../../constants'
+import { removeEdgesAndNodes } from '../removeEdgesAndNodes'
+import { Product, ShopifyProduct } from '../types'
 
-import { removeEdgesAndNodes } from './removeEdgesAndNodes'
 import { reshapeImages } from './reshapeImages'
-import { Product, ShopifyProduct } from './types'
 
 export const reshapeProduct = (
   product: ShopifyProduct,

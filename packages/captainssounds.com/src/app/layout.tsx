@@ -5,6 +5,7 @@ import Navbar from '../components/layout/navbar'
 import { ensureStartsWith } from '../lib/utils'
 
 import './globals.css'
+import Collections from '../components/layout/search/collections'
 
 const { TWITTER_CREATOR, TWITTER_SITE } = process.env
 const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL

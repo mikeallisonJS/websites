@@ -1,9 +1,20 @@
-import { TAGS } from '../constants'
-import { ensureStartsWith } from '../utils'
+import { graphql } from 'gql.tada'
 
-import { getMenuQuery } from './queries/menu'
-import { shopifyFetch } from './shopifyFetch'
-import { Menu, ShopifyMenuOperation } from './types'
+import { TAGS } from '../../constants'
+import { ensureStartsWith } from '../../utils'
+import { shopifyFetch } from '../shopifyFetch'
+import { Menu, ShopifyMenuOperation } from '../types'
+
+const getMenuQuery = graphql(`
+  query getMenu($handle: String!) {
+    menu(handle: $handle) {
+      items {
+        title
+        url
+      }
+    }
+  }
+`)
 
 const domain = process.env.SHOPIFY_STORE_DOMAIN
   ? ensureStartsWith(process.env.SHOPIFY_STORE_DOMAIN, 'https://')

@@ -1,7 +1,8 @@
 import { graphql } from 'gql.tada'
 
-import imageFragment from './image'
-import seoFragment from './seo'
+import seoFragment from '../seoFragment'
+
+import imageFragment from './imageFragment'
 
 const productFragment = graphql(
   `

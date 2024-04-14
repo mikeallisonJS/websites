@@ -1,4 +1,4 @@
-import { Collection, ShopifyCollection } from './types'
+import { Collection, ShopifyCollection } from '../types'
 
 export const reshapeCollection = (
   collection: ShopifyCollection

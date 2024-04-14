@@ -1,5 +1,6 @@
+import { Collection, ShopifyCollection } from '../types'
+
 import { reshapeCollection } from './reshapeCollection'
-import { Collection, ShopifyCollection } from './types'
 
 export const reshapeCollections = (
   collections: ShopifyCollection[]
