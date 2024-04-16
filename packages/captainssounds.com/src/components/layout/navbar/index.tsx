@@ -1,9 +1,9 @@
+import { SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ReactElement, Suspense } from 'react'
 
 import { getMenu } from '../../../lib/shopify'
-import { Menu } from '../../../lib/shopify/types'
 import Cart from '../../cart'
 import OpenCart from '../../cart/openCart'
 
@@ -14,52 +14,52 @@ export default async function Navbar(): Promise<ReactElement> {
   const menu = await getMenu('next-js-frontend-header-menu')
 
   return (
-    <nav className="relative flex items-center justify-between p-4 lg:px-6">
-      <div className="block flex-none md:hidden">
-        <Suspense fallback={null}>
-          <MobileMenu menu={menu} />
-        </Suspense>
-      </div>
-      <div className="flex w-full items-center">
-        <div className="flex w-full md:w-1/3">
-          <Link
-            href="/"
-            className="mr-2 flex w-full items-center justify-center md:w-auto lg:mr-6"
-          >
-            <Image
-              className="logo"
-              src="/images/cpt-border.png"
-              alt="logo"
-              height={64}
-              width={218}
-            />
-          </Link>
-          {menu.length ? (
+    <>
+      <nav className="relative flex items-center justify-between p-4 lg:px-6">
+        <div className="block flex-none md:hidden">
+          <Suspense fallback={null}>
+            <MobileMenu menu={menu} />
+          </Suspense>
+        </div>
+        <div className="flex w-full items-center">
+          <div className="flex w-full md:w-1/3">
+            <Link
+              href="/"
+              className="mr-2 flex w-full items-center justify-center md:w-auto lg:mr-6"
+            >
+              <Image
+                className="logo"
+                src="/images/cpt-border.png"
+                alt="logo"
+                height={64}
+                width={218}
+              />
+            </Link>
+          </div>
+          <div className="hidden justify-center md:flex md:w-1/3">
+            <Suspense fallback={<SearchSkeleton />}>
+              <Search />
+            </Suspense>
+          </div>
+          <div className="flex justify-end md:w-1/3">
             <ul className="hidden gap-6 text-sm md:flex md:items-center">
-              {menu.map((item: Menu) => (
-                <li key={item.title}>
-                  <Link
-                    href={item.path}
-                    className="text-neutral-500 underline-offset-4 hover:text-black hover:underline dark:text-neutral-400 dark:hover:text-neutral-300"
-                  >
-                    {item.title}
-                  </Link>
-                </li>
-              ))}
+              <li>
+                <SignedOut>
+                  <SignInButton />
+                </SignedOut>
+                <SignedIn>
+                  <UserButton />
+                </SignedIn>
+              </li>
+              <li>
+                <Suspense fallback={<OpenCart />}>
+                  <Cart />
+                </Suspense>
+              </li>
             </ul>
-          ) : null}
+          </div>
         </div>
-        <div className="hidden justify-center md:flex md:w-1/3">
-          <Suspense fallback={<SearchSkeleton />}>
-            <Search />
-          </Suspense>
-        </div>
-        <div className="flex justify-end md:w-1/3">
-          <Suspense fallback={<OpenCart />}>
-            <Cart />
-          </Suspense>
-        </div>
-      </div>
-    </nav>
+      </nav>
+    </>
   )
 }

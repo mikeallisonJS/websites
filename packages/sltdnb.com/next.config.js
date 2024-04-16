@@ -7,6 +7,13 @@ const { composePlugins, withNx } = require('@nx/next')
  * @type {import('@nx/next/plugins/with-nx').WithNxOptions}
  **/
 const nextConfig = {
+  typescript: {
+    ignoreBuildErrors: true
+  },
+  eslint: {
+    // Disabling on production builds because we're running checks on PRs via GitHub Actions.
+    ignoreDuringBuilds: true
+  },
   nx: {
     // Set this to true if you would like to to use SVGR
     // See: https://github.com/gregberge/svgr

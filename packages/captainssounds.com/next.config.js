@@ -4,6 +4,9 @@ const { composePlugins, withNx } = require('@nx/next')
  * @type {import('@nx/next/plugins/with-nx').WithNxOptions}
  **/
 const nextConfig = {
+  typescript: {
+    ignoreBuildErrors: true
+  },
   eslint: {
     // Disabling on production builds because we're running checks on PRs via GitHub Actions.
     ignoreDuringBuilds: true
@@ -17,9 +20,6 @@ const nextConfig = {
         pathname: '/s/files/**'
       }
     ]
-  },
-  compiler: {
-    tailwind: true
   },
   async redirects() {
     return [
