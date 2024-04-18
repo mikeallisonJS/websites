@@ -1,11 +1,12 @@
-import { SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
+import { SignInButton, SignedIn, SignedOut } from '@clerk/nextjs'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ReactElement, Suspense } from 'react'
 
-import { getMenu } from '../../../lib/shopify'
-import Cart from '../../cart'
-import OpenCart from '../../cart/openCart'
+import { getMenu } from '../../lib/shopify'
+import Cart from '../cart'
+import OpenCart from '../cart/openCart'
+import { UserButton } from '../userButton/userButton'
 
 import MobileMenu from './mobileMenu'
 import Search, { SearchSkeleton } from './search'

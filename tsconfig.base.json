@@ -17,11 +17,7 @@
     "paths": {
       "@websites/common": ["packages/common/src/index.ts"],
       "@websites/shared/react": ["packages/shared/react/src/index.ts"],
-      "@websites/shared/react/server": ["packages/shared/react/src/server.ts"],
-      "shadcn": ["packages/shadcn/src/index.ts"],
-      "shadcn-utils": ["packages/shadcn-utils/src/index.ts"],
-      "shadcn-utils/*": ["packages/packages/shadcn-utils/src/*"],
-      "shadcn/*": ["packages/packages/shadcn/src/*"]
+      "@websites/shared/react/server": ["packages/shared/react/src/server.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

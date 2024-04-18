@@ -6,7 +6,7 @@ import Link from 'next/link'
 import { usePathname, useSearchParams } from 'next/navigation'
 import { Fragment, ReactElement, Suspense, useEffect, useState } from 'react'
 
-import { Menu } from '../../../lib/shopify/types'
+import { Menu } from '../../lib/shopify/types'
 
 import Search, { SearchSkeleton } from './search'
 

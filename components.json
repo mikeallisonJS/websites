@@ -3,13 +3,13 @@
   "style": "default",
   "rsc": false,
   "tailwind": {
-    "config": "packages/packages/shadcn-utils/tailwind.config.js",
-    "css": "packages/packages/shadcn-utils/global.css",
+    "config": "packages/packages/utils/tailwind.config.js",
+    "css": "packages/packages/utils/global.css",
     "baseColor": "neutral",
     "cssVariables": true
   },
   "aliases": {
-    "components": "shadcn",
-    "utils": "shadcn-utils"
+    "components": "ui",
+    "utils": "utils"
   }
 }

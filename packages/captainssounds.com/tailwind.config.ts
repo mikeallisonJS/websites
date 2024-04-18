@@ -1,6 +1,6 @@
-const { join } = require('path')
+import { join } from 'path'
 
-const { createGlobPatternsForDependencies } = require('@nx/react/tailwind')
+import { createGlobPatternsForDependencies } from '@nx/react/tailwind'
 
 module.exports = {
   content: [
@@ -15,3 +15,7 @@ module.exports = {
   },
   plugins: []
 }
+
+// import { buildConfig } from '@websites/shared/react'
+
+// export default buildConfig(__dirname)

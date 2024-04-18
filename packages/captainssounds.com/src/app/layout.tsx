@@ -2,7 +2,7 @@ import { ClerkProvider } from '@clerk/nextjs'
 import { GeistSans } from 'geist/font'
 import { ReactNode, Suspense } from 'react'
 
-import Navbar from '../components/layout/navbar'
+import Navbar from '../components/navbar'
 import { ensureStartsWith } from '../lib/utils'
 
 import './globals.css'
