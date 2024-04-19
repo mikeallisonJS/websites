@@ -1,9 +1,8 @@
-import type { Metadata } from 'next'
+import { notFound } from 'next/navigation'
+import { ReactElement } from 'react'
 
 import Prose from '../../components/prose'
 import { getPage } from '../../lib/shopify'
-import { notFound } from 'next/navigation'
-import { ReactElement } from 'react'
 
 export const runtime = 'edge'
 
@@ -11,7 +10,7 @@ export async function generateMetadata({
   params
 }: {
   params: { page: string }
-}): Promise<Metadata> {
+}) {
   const page = await getPage(params.page)
 
   if (!page) return notFound()

@@ -1,7 +1,6 @@
-import { PageContainer, PastEvents } from '@websites/shared/react'
-import { ReactElement } from 'react'
-import Image from 'next/image'
 import Typography from '@mui/material/Typography'
+import { PageContainer, PastEvents } from '@websites/shared/react/components'
+import Image from 'next/image'
 
 const images = [
   'sltdnb-24-1.png',
@@ -25,12 +24,7 @@ const images = [
   'welcomehome.png'
 ]
 
-export default function Index(): ReactElement {
-  /*
-   * Replace the elements below with your own.
-   *
-   * Note: The corresponding styles are in the ./index.@emotion/styled file.
-   */
+export default function Index() {
   return (
     <PageContainer>
       <Image

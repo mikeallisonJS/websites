@@ -1,9 +1,10 @@
-import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
+import { NgModule } from '@angular/core'
 
-import { UatComponent } from './uat.component'
-import { UatRoutingModule } from './uat-routing.module'
 import { AppThemeModule } from '../app-theme.module'
+
+import { UatRoutingModule } from './uat-routing.module'
+import { UatComponent } from './uat.component'
 
 @NgModule({
   declarations: [UatComponent],

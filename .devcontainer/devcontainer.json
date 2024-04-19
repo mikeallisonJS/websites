@@ -34,7 +34,10 @@
         "syler.sass-indented",
         "esbenp.prettier-vscode",
         "angular.ng-template",
-        "nrwl.angular-console"
+        "nrwl.angular-console",
+        "prisma.prisma",
+        "csstools.postcss",
+        "bradlc.vscode-tailwindcss"
       ]
     }
   },

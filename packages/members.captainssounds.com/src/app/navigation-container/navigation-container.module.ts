@@ -1,7 +1,9 @@
-import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
-import { NavigationContainerComponent } from './navigation-container.component'
+import { NgModule } from '@angular/core'
+
 import { AppThemeModule } from '../app-theme.module'
+
+import { NavigationContainerComponent } from './navigation-container.component'
 
 @NgModule({
   declarations: [NavigationContainerComponent],

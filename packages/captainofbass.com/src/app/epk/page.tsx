@@ -1,23 +1,21 @@
 'use client'
-import {
-  Box,
-  Card,
-  CardContent,
-  CardHeader,
-  Divider,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemText,
-  Typography,
-  alpha
-} from '@mui/material'
-import { ReactElement } from 'react'
-import Bio from '../../components/bio/bio'
-import Link from 'next/link'
-import { PageContainer } from '@websites/shared/react'
 
-export default function Epk(): ReactElement {
+import Card from '@mui/material/Card'
+import CardContent from '@mui/material/CardContent'
+import CardHeader from '@mui/material/CardHeader'
+import Divider from '@mui/material/Divider'
+import List from '@mui/material/List'
+import ListItem from '@mui/material/ListItem'
+import ListItemButton from '@mui/material/ListItemButton'
+import ListItemText from '@mui/material/ListItemText'
+import { alpha } from '@mui/material/styles'
+import Typography from '@mui/material/Typography'
+import { PageContainer } from '@websites/shared/react/components'
+import Link from 'next/link'
+
+import Bio from '../../components/bio/bio'
+
+export default function Epk() {
   return (
     <PageContainer>
       <Bio />

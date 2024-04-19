@@ -1,9 +1,12 @@
 'use client'
-import { Card, CardContent, CardHeader, Typography, alpha } from '@mui/material'
+import Card from '@mui/material/Card'
+import CardContent from '@mui/material/CardContent'
+import CardHeader from '@mui/material/CardHeader'
+import { alpha } from '@mui/material/styles'
+import Typography from '@mui/material/Typography'
 import { usePathname } from 'next/navigation'
-import { ReactElement } from 'react'
 
-export default function Bio(): ReactElement {
+export default function Bio() {
   const path = usePathname()
   return (
     <Card

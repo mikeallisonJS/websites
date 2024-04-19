@@ -1,32 +1,29 @@
 'use client'
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-  alpha
-} from '@mui/material'
-import AudiusIcon from '@mui/icons-material/CurrencyBitcoin'
-import DonateIcon from '@mui/icons-material/Paid'
-import EmailIcon from '@mui/icons-material/Email'
-import EPKIcon from '@mui/icons-material/Newspaper'
-import FacebookIcon from '@mui/icons-material/Facebook'
-import InstagramIcon from '@mui/icons-material/Instagram'
-import LinkedInIcon from '@mui/icons-material/LinkedIn'
 import MixCloudIcon from '@mui/icons-material/Cloud'
 import SoundCloudIcon from '@mui/icons-material/CloudUpload'
+import AudiusIcon from '@mui/icons-material/CurrencyBitcoin'
+import EmailIcon from '@mui/icons-material/Email'
+import FacebookIcon from '@mui/icons-material/Facebook'
 import SpotifyIcon from '@mui/icons-material/GraphicEq'
+import InstagramIcon from '@mui/icons-material/Instagram'
+import LinkedInIcon from '@mui/icons-material/LinkedIn'
+import EPKIcon from '@mui/icons-material/Newspaper'
+import DonateIcon from '@mui/icons-material/Paid'
 import TwitterIcon from '@mui/icons-material/Twitter'
 import YoutubeIcon from '@mui/icons-material/YouTube'
+import Card from '@mui/material/Card'
+import CardContent from '@mui/material/CardContent'
+import CardHeader from '@mui/material/CardHeader'
+import List from '@mui/material/List'
+import ListItem from '@mui/material/ListItem'
+import ListItemButton from '@mui/material/ListItemButton'
+import ListItemIcon from '@mui/material/ListItemIcon'
+import ListItemText from '@mui/material/ListItemText'
+import { alpha } from '@mui/material/styles'
+import { PageContainer } from '@websites/shared/react/components'
 import Link from 'next/link'
-import { ReactElement } from 'react'
-import { PageContainer } from '@websites/shared/react'
 
-export default function Music(): ReactElement {
+export default function Music() {
   return (
     <PageContainer>
       <Card

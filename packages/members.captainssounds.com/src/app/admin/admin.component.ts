@@ -1,7 +1,8 @@
 import { Component } from '@angular/core'
-import { AuthService } from '../auth.service'
 import { Functions, httpsCallableData } from '@angular/fire/functions'
-import { MatSnackBar, MatSnackBarRef } from '@angular/material/snack-bar'
+import { MatSnackBar } from '@angular/material/snack-bar'
+
+import { AuthService } from '../auth.service'
 
 @Component({
   selector: 'app-admin',

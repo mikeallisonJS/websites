@@ -1,7 +1,9 @@
-import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
-import { AccountComponent } from './account.component'
+import { NgModule } from '@angular/core'
+
 import { AppThemeModule } from '../app-theme.module'
+
+import { AccountComponent } from './account.component'
 
 @NgModule({
   declarations: [AccountComponent],

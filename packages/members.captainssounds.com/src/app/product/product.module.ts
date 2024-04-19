@@ -1,7 +1,9 @@
-import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
-import { ProductComponent } from './product.component'
+import { NgModule } from '@angular/core'
+
 import { AppThemeModule } from '../app-theme.module'
+
+import { ProductComponent } from './product.component'
 
 @NgModule({
   declarations: [ProductComponent],

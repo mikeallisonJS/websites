@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core'
 import { Firestore, collection, collectionData } from '@angular/fire/firestore'
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router'
 import { filter } from 'rxjs'
+
 import { Product } from '../product/product.interface'
 
 @Component({
@@ -15,7 +16,10 @@ export class LinksComponent {
   selectedCategory: string
   products: Product[] = []
   selectedProduct: Product | null = null
-  constructor(private router: Router, private route: ActivatedRoute) {
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
     this.setParams()
     router.events
       .pipe(filter((event) => event instanceof NavigationEnd))

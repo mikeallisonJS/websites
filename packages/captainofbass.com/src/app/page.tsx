@@ -1,6 +1,7 @@
-import { Box, Divider } from '@mui/material'
-import { ReactElement } from 'react'
-import { PastEvents } from '@websites/shared/react'
+import Box from '@mui/material/Box'
+import Divider from '@mui/material/Divider'
+import { PastEvents } from '@websites/shared/react/components'
+
 import Bio from '../components/bio/bio'
 import HomeLogo from '../components/homeLogo/homeLogo'
 
@@ -51,7 +52,7 @@ const images = [
   'tps.jpg'
 ]
 
-export default function Index(): ReactElement {
+export default function Index() {
   return (
     <Box width="90vw" mt="70px" textAlign="center" mx="5vw" mb={10}>
       <HomeLogo />

@@ -1,15 +1,14 @@
 'use client'
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  List,
-  ListItem,
-  ListItemButton,
-  alpha
-} from '@mui/material'
-import { ReactElement } from 'react'
+
+import Card from '@mui/material/Card'
+import CardContent from '@mui/material/CardContent'
+import CardHeader from '@mui/material/CardHeader'
+import List from '@mui/material/List'
+import ListItem from '@mui/material/ListItem'
+import ListItemButton from '@mui/material/ListItemButton'
+import { alpha } from '@mui/material/styles'
 import { PlayerInterface } from 'react-material-music-player'
+
 import { songs } from '../footer/footer'
 
 export enum MusicType {
@@ -20,7 +19,7 @@ export enum MusicType {
 export type MusicListProps = {
   type: MusicType
 }
-export default function MusicList({ type }: MusicListProps): ReactElement {
+export default function MusicList({ type }: MusicListProps) {
   const onSelect = (id: string): void => {
     const index = songs.findIndex((song) => song.ID === id)
     PlayerInterface.changeTrack(index)

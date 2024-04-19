@@ -1,7 +1,9 @@
-import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
-import { VideoGuidesComponent } from './video-guides.component'
+import { NgModule } from '@angular/core'
+
 import { AppThemeModule } from '../../app-theme.module'
+
+import { VideoGuidesComponent } from './video-guides.component'
 
 @NgModule({
   declarations: [VideoGuidesComponent],

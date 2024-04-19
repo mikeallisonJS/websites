@@ -1,10 +1,11 @@
 import { Component, inject } from '@angular/core'
 import { Firestore, collection, collectionData } from '@angular/fire/firestore'
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router'
+import { intersection } from 'lodash-es'
 import { filter } from 'rxjs'
+
 import { AuthService } from '../auth.service'
 import { Product } from '../product/product.interface'
-import { intersection } from 'lodash-es'
 
 @Component({
   selector: 'app-products',

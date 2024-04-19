@@ -1,9 +1,9 @@
-import clsx from 'clsx';
-import type { FunctionComponent } from 'react';
+import clsx from 'clsx'
+import type { FunctionComponent } from 'react'
 
 interface TextProps {
-  html: string;
-  className?: string;
+  html: string
+  className?: string
 }
 
 const Prose: FunctionComponent<TextProps> = ({ html, className }) => {
@@ -15,7 +15,7 @@ const Prose: FunctionComponent<TextProps> = ({ html, className }) => {
       )}
       dangerouslySetInnerHTML={{ __html: html as string }}
     />
-  );
-};
+  )
+}
 
-export default Prose;
+export default Prose

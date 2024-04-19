@@ -1,8 +1,8 @@
 const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL
   ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
-  : 'http://localhost:3000';
+  : 'http://localhost:3000'
 
-export default function robots(): { rules: { userAgent: string }[]; sitemap: string; host: string } {
+export default function robots() {
   return {
     rules: [
       {
@@ -11,5 +11,5 @@ export default function robots(): { rules: { userAgent: string }[]; sitemap: str
     ],
     sitemap: `${baseUrl}/sitemap.xml`,
     host: baseUrl
-  };
+  }
 }
