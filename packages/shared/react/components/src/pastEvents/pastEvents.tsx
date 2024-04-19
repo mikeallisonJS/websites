@@ -28,7 +28,7 @@ const Transition = forwardRef(function Transition(
 type PastEventsProps = {
   images: string[]
 }
-export default function PastEvents({ images }: PastEventsProps): ReactElement {
+export default function PastEvents({ images }: PastEventsProps) {
   const [selectedImage, setSelectedImage] = useState<string | undefined>(
     undefined
   )

@@ -1,5 +1,5 @@
 'use client'
-import { ReactElement } from 'react'
+
 import Player, { Track, PlayerInterface } from 'react-material-music-player'
 
 export const songs: Track[] = [
@@ -103,7 +103,7 @@ export const songs: Track[] = [
   )
 ]
 
-export default function Footer(): ReactElement {
+export default function Footer() {
   PlayerInterface.setPlaylist(songs)
   return <Player />
 }

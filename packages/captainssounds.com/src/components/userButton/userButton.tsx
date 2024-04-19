@@ -6,15 +6,14 @@ import {
   CurrencyDollarIcon,
   UserIcon
 } from '@heroicons/react/24/solid'
-import { DropdownMenuPortal } from '@radix-ui/react-dropdown-menu'
-// eslint-disable-next-line import/no-namespace
-// import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
+
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
+  DropdownMenuPortal,
   DropdownMenuSeparator,
   DropdownMenuTrigger
 } from '@websites/shared/react/components'
@@ -24,67 +23,67 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { forwardRef } from 'react'
 
-const button = cva(['flex', 'flex-row', 'items-center', 'rounded-xl'], {
-  variants: {
-    variant: {
-      primary: [
-        'border',
-        'border-gray-200',
-        'bg-white',
-        'text-black',
-        'drop-shadow-md',
-        'hover:bg-stone-100',
-        'hover:text-stone-800',
-        'justify-center'
-      ],
-      accent: [
-        'border',
-        'border-stone-950',
-        'bg-stone-800/70',
-        'hover:bg-stone-950',
-        'text-stone-200',
-        'justify-center'
-      ],
-      menu: [
-        'w-full',
-        'justify-start',
-        'bg-transparent',
-        'hover:bg-stone-800/70',
-        'text-gray-800/70',
-        'hover:text-stone-100',
-        'px-4',
-        'rounded-sm'
-      ]
-    },
-    size: {
-      regular: ['px-4', 'py-3 '],
-      small: ['py-3', 'py-2']
-    }
-  },
-  defaultVariants: {
-    variant: 'primary',
-    size: 'regular'
-  }
-})
+// const button = cva(['flex', 'flex-row', 'items-center', 'rounded-xl'], {
+//   variants: {
+//     variant: {
+//       primary: [
+//         'border',
+//         'border-gray-200',
+//         'bg-white',
+//         'text-black',
+//         'drop-shadow-md',
+//         'hover:bg-stone-100',
+//         'hover:text-stone-800',
+//         'justify-center'
+//       ],
+//       accent: [
+//         'border',
+//         'border-stone-950',
+//         'bg-stone-800/70',
+//         'hover:bg-stone-950',
+//         'text-stone-200',
+//         'justify-center'
+//       ],
+//       menu: [
+//         'w-full',
+//         'justify-start',
+//         'bg-transparent',
+//         'hover:bg-stone-800/70',
+//         'text-gray-800/70',
+//         'hover:text-stone-100',
+//         'px-4',
+//         'rounded-sm'
+//       ]
+//     },
+//     size: {
+//       regular: ['px-4', 'py-3 '],
+//       small: ['py-3', 'py-2']
+//     }
+//   },
+//   defaultVariants: {
+//     variant: 'primary',
+//     size: 'regular'
+//   }
+// })
 
-interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof button> {}
+// interface ButtonProps
+//   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+//     VariantProps<typeof button> {}
 
-const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ variant, size, children, className, ...props }, ref) => {
-    return (
-      <button
-        ref={ref}
-        className={button({ variant, size, className })}
-        {...props}
-      >
-        {children}
-      </button>
-    )
-  }
-)
-Button.displayName = 'Button'
+// const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+//   ({ variant, size, children, className, ...props }, ref) => {
+//     return (
+//       <button
+//         ref={ref}
+//         className={button({ variant, size, className })}
+//         {...props}
+//       >
+//         {children}
+//       </button>
+//     )
+//   }
+// )
+// Button.displayName = 'Button'
 
 // Create a new UserButtonandMenu component and move the old return into this
 const UserButtonAndMenu = () => {
@@ -120,16 +119,16 @@ const UserButtonAndMenu = () => {
             // asChild className="outline-none"
             >
               <Link href="/user/orders" passHref>
-                <Button className="py-2" variant="menu" size="small">
-                  <CurrencyDollarIcon className="mr-2 h-6 w-auto" />
-                  My Products
-                </Button>
+                {/* <Button className="py-2" variant="menu" size="small"> */}
+                <CurrencyDollarIcon className="mr-2 h-6 w-auto" />
+                My Products
+                {/* </Button> */}
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem
             // className="outline-none" asChild
             >
-              <Button
+              <button
                 onClick={() => openUserProfile()}
                 className="pb-3"
                 variant="menu"
@@ -137,7 +136,7 @@ const UserButtonAndMenu = () => {
               >
                 <UserIcon className="mr-2 h-6 w-auto" />
                 My Account
-              </Button>
+              </button>
             </DropdownMenuItem>
           </DropdownMenuGroup>
           <DropdownMenuSeparator
@@ -146,7 +145,7 @@ const UserButtonAndMenu = () => {
           <DropdownMenuItem
           // asChild className="outline-none"
           >
-            <Button
+            <button
               onClick={() => signOut(() => router.push('/'))}
               className="py-3"
               variant="menu"
@@ -154,7 +153,7 @@ const UserButtonAndMenu = () => {
             >
               <ArrowRightEndOnRectangleIcon className="mr-2 h-5 w-auto" /> Sign
               Out
-            </Button>
+            </button>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenuPortal>

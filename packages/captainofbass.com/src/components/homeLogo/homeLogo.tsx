@@ -1,10 +1,9 @@
 'use client'
 import Fade from '@mui/material/Fade'
-import { useScrollPosition } from 'packages/shared-react-components/react/components/src'
+import { useScrollPosition } from '@websites/shared/react/lib'
 import Image from 'next/image'
-import { ReactElement } from 'react'
 
-export default function HomeLogo(): ReactElement {
+export default function HomeLogo() {
   const scrollY = useScrollPosition()
   return (
     <Fade in={!scrollY}>

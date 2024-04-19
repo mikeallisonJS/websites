@@ -8,11 +8,10 @@ import ListItem from '@mui/material/ListItem'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemText from '@mui/material/ListItemText'
 import { alpha } from '@mui/material/styles'
-import { PageContainer } from 'packages/shared-react-components/react/components/src'
+import { PageContainer } from '@websites/shared/react/components'
 import Link from 'next/link'
-import { ReactElement } from 'react'
 
-export default function Donate(): ReactElement {
+export default function Donate() {
   return (
     <PageContainer>
       <Card

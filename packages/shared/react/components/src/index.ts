@@ -16,9 +16,9 @@ import {
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
   DropdownMenuRadioGroup
-} from './components/dropdown/dropdown'
-import PageContainer from './components/pageContainer/pageContainer'
-import PastEvents from './components/pastEvents/pastEvents'
+} from './dropdown/dropdown'
+import PageContainer from './pageContainer/pageContainer'
+import PastEvents from './pastEvents/pastEvents'
 import {
   Table,
   TableHeader,
@@ -28,7 +28,7 @@ import {
   TableRow,
   TableCell,
   TableCaption
-} from './components/table/table'
+} from './table/table'
 
 export {
   DropdownMenu,

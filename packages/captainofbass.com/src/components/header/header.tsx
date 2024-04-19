@@ -10,15 +10,15 @@ import MenuItem from '@mui/material/MenuItem'
 import Stack from '@mui/material/Stack'
 import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
-import { useScrollPosition } from 'packages/shared-react-components/react/components/src'
+import { useScrollPosition } from '@websites/shared/react/lib'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { MouseEvent, ReactElement, useState } from 'react'
+import { MouseEvent, useState } from 'react'
 
 import theme from '../../app/theme'
 
-export default function Header(): ReactElement {
+export default function Header() {
   const path = usePathname()
   const scrollY = useScrollPosition()
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null)

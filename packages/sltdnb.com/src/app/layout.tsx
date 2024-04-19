@@ -1,7 +1,7 @@
 import './global.css'
 import { ThemeProvider } from '@mui/material/styles'
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter'
-import { ReactElement, ReactNode } from 'react'
+import { ReactNode } from 'react'
 
 import theme from './theme'
 
@@ -9,11 +9,7 @@ export const metadata = {
   title: 'SLTDNB'
 }
 
-export default function RootLayout({
-  children
-}: {
-  children: ReactNode
-}): ReactElement {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <body>

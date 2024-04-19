@@ -10,13 +10,12 @@ import ListItemButton from '@mui/material/ListItemButton'
 import ListItemText from '@mui/material/ListItemText'
 import { alpha } from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
-import { PageContainer } from 'packages/shared-react-components/react/components/src'
+import { PageContainer } from '@websites/shared/react/components'
 import Link from 'next/link'
-import { ReactElement } from 'react'
 
 import Bio from '../../components/bio/bio'
 
-export default function Epk(): ReactElement {
+export default function Epk() {
   return (
     <PageContainer>
       <Bio />
