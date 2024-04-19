@@ -2,7 +2,9 @@
   "name": "websites",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "postinstall": "nx prisma-generate captainssounds.com"
+  },
   "private": true,
   "devDependencies": {
     "@0no-co/graphqlsp": "^1.9.1",
