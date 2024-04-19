@@ -4,7 +4,6 @@ import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/24/outline'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname, useSearchParams } from 'next/navigation'
-import { ReactElement } from 'react'
 
 import { createUrl } from '../../lib/utils'
 import { GridTileImage } from '../grid/tile'
@@ -13,7 +12,7 @@ export function Gallery({
   images
 }: {
   images: { src: string; altText: string }[]
-}): ReactElement {
+}) {
   const pathname = usePathname()
   const searchParams = useSearchParams()
   const imageSearchParam = searchParams.get('image')

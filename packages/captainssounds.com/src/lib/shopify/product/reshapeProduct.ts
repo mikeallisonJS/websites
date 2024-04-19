@@ -1,13 +1,13 @@
 import { HIDDEN_PRODUCT_TAG } from '../../constants'
 import { removeEdgesAndNodes } from '../removeEdgesAndNodes'
-import { Product, ShopifyProduct } from '../types'
+import { ShopifyProduct } from '../types'
 
 import { reshapeImages } from './reshapeImages'
 
 export const reshapeProduct = (
   product: ShopifyProduct,
   filterHiddenProducts = true
-): Product | undefined => {
+) => {
   if (
     !product ||
     (filterHiddenProducts && product.tags.includes(HIDDEN_PRODUCT_TAG))

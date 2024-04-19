@@ -1,7 +1,7 @@
 import { graphql } from 'gql.tada'
 
 import { shopifyFetch } from '../shopifyFetch'
-import { Cart, ShopifyRemoveFromCartOperation } from '../types'
+import { ShopifyRemoveFromCartOperation } from '../types'
 
 import cartFragment from './cartFragment'
 import { reshapeCart } from './reshapeCart'
@@ -19,10 +19,7 @@ const removeFromCartMutation = graphql(
   [cartFragment]
 )
 
-export async function removeFromCart(
-  cartId: string,
-  lineIds: string[]
-): Promise<Cart> {
+export async function removeFromCart(cartId: string, lineIds: string[]) {
   const res = await shopifyFetch<ShopifyRemoveFromCartOperation>({
     query: removeFromCartMutation,
     variables: {

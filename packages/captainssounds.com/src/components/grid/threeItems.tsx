@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { ReactElement } from 'react'
 
 import { getCollectionProducts } from '../../lib/shopify'
 import type { Product } from '../../lib/shopify/types'
@@ -14,7 +13,7 @@ function ThreeItemGridItem({
   item: Product
   size: 'full' | 'half'
   priority?: boolean
-}): ReactElement {
+}) {
   return (
     <div
       className={
@@ -49,7 +48,7 @@ function ThreeItemGridItem({
   )
 }
 
-export async function ThreeItemGrid(): Promise<ReactElement | null> {
+export async function ThreeItemGrid() {
   // Collections that start with `hidden-*` are hidden from the search page.
   const homepageItems = await getCollectionProducts({
     collection: 'frontpage'

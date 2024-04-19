@@ -1,8 +1,8 @@
-import { Product, ShopifyProduct } from '../types'
+import { ShopifyProduct } from '../types'
 
 import { reshapeProduct } from './reshapeProduct'
 
-export const reshapeProducts = (products: ShopifyProduct[]): Product[] => {
+export const reshapeProducts = (products: ShopifyProduct[]) => {
   const reshapedProducts = []
 
   for (const product of products) {

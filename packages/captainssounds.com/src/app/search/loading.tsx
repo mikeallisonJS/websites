@@ -1,8 +1,6 @@
-import { ReactElement } from 'react'
-
 import Grid from '../../components/grid'
 
-export default function Loading(): ReactElement {
+export default function Loading() {
   return (
     <Grid className="grid-cols-2 lg:grid-cols-3">
       {Array(12)

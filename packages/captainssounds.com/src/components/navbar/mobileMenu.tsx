@@ -4,13 +4,13 @@ import { Dialog, Transition } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import Link from 'next/link'
 import { usePathname, useSearchParams } from 'next/navigation'
-import { Fragment, ReactElement, Suspense, useEffect, useState } from 'react'
+import { Fragment, Suspense, useEffect, useState } from 'react'
 
 import { Menu } from '../../lib/shopify/types'
 
 import Search, { SearchSkeleton } from './search'
 
-export default function MobileMenu({ menu }: { menu: Menu[] }): ReactElement {
+export default function MobileMenu({ menu }: { menu: Menu[] }) {
   const pathname = usePathname()
   const searchParams = useSearchParams()
   const [isOpen, setIsOpen] = useState(false)

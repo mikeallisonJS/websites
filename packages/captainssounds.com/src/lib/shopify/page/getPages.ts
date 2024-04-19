@@ -2,7 +2,7 @@ import { graphql } from 'gql.tada'
 
 import { removeEdgesAndNodes } from '../removeEdgesAndNodes'
 import { shopifyFetch } from '../shopifyFetch'
-import { Page, ShopifyPagesOperation } from '../types'
+import { ShopifyPagesOperation } from '../types'
 
 import { pageFragment } from './pageFragment'
 
@@ -21,7 +21,7 @@ const getPagesQuery = graphql(
   [pageFragment]
 )
 
-export async function getPages(): Promise<Page[]> {
+export async function getPages() {
   const res = await shopifyFetch<ShopifyPagesOperation>({
     query: getPagesQuery
   })

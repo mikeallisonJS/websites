@@ -2,7 +2,7 @@
 
 import { MinusIcon, PlusIcon } from '@heroicons/react/24/outline'
 import clsx from 'clsx'
-import { FormEvent, ReactElement } from 'react'
+import { FormEvent } from 'react'
 import { useFormState, useFormStatus } from 'react-dom'
 
 import type { CartItem } from '../../lib/shopify/types'
@@ -10,7 +10,7 @@ import LoadingDots from '../loadingDots'
 
 import { updateItemQuantity } from './actions'
 
-function SubmitButton({ type }: { type: 'plus' | 'minus' }): ReactElement {
+function SubmitButton({ type }: { type: 'plus' | 'minus' }) {
   const { pending } = useFormStatus()
 
   return (
@@ -48,7 +48,7 @@ export function EditItemQuantityButton({
 }: {
   item: CartItem
   type: 'plus' | 'minus'
-}): ReactElement {
+}) {
   const [message, formAction] = useFormState(updateItemQuantity, null)
   const payload = {
     lineId: item.id,

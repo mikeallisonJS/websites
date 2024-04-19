@@ -3,14 +3,13 @@
 import clsx from 'clsx'
 import Link from 'next/link'
 import { usePathname, useSearchParams } from 'next/navigation'
-import { ReactElement } from 'react'
 
 import type { SortFilterItem } from '../../lib/constants'
 import { createUrl } from '../../lib/utils'
 
 import type { ListItem, PathFilterItem } from '.'
 
-function PathFilterItem({ item }: { item: PathFilterItem }): ReactElement {
+function PathFilterItem({ item }: { item: PathFilterItem }) {
   const pathname = usePathname()
   const searchParams = useSearchParams()
   const active = pathname === item.path
@@ -36,7 +35,7 @@ function PathFilterItem({ item }: { item: PathFilterItem }): ReactElement {
   )
 }
 
-function SortFilterItem({ item }: { item: SortFilterItem }): ReactElement {
+function SortFilterItem({ item }: { item: SortFilterItem }) {
   const pathname = usePathname()
   const searchParams = useSearchParams()
   const active = searchParams.get('sort') === item.slug
@@ -68,7 +67,7 @@ function SortFilterItem({ item }: { item: SortFilterItem }): ReactElement {
   )
 }
 
-export function FilterItem({ item }: { item: ListItem }): ReactElement {
+export function FilterItem({ item }: { item: ListItem }) {
   return 'path' in item ? (
     <PathFilterItem item={item} />
   ) : (

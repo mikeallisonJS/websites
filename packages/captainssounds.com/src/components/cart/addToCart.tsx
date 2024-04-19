@@ -3,7 +3,7 @@
 import { PlusIcon } from '@heroicons/react/24/outline'
 import clsx from 'clsx'
 import { useSearchParams } from 'next/navigation'
-import { FormEvent, ReactElement } from 'react'
+import { FormEvent } from 'react'
 import { useFormState, useFormStatus } from 'react-dom'
 
 import { ProductVariant } from '../../lib/shopify/types'
@@ -17,7 +17,7 @@ function SubmitButton({
 }: {
   availableForSale: boolean
   selectedVariantId: string | undefined
-}): ReactElement {
+}) {
   const { pending } = useFormStatus()
   const buttonClasses =
     'relative flex w-full items-center justify-center rounded-full bg-blue-600 p-4 tracking-wide text-white'
@@ -76,7 +76,7 @@ export function AddToCart({
 }: {
   variants: ProductVariant[]
   availableForSale: boolean
-}): ReactElement {
+}) {
   const [message, formAction] = useFormState(addItem, null)
   const searchParams = useSearchParams()
   const defaultVariantId = variants.length === 1 ? variants[0]?.id : undefined

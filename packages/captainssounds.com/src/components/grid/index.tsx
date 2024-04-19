@@ -1,7 +1,7 @@
 import clsx from 'clsx'
-import { ComponentProps, ReactElement } from 'react'
+import { ComponentProps } from 'react'
 
-function Grid(props: ComponentProps<'ul'>): ReactElement {
+function Grid(props: ComponentProps<'ul'>) {
   return (
     <ul
       {...props}
@@ -12,7 +12,7 @@ function Grid(props: ComponentProps<'ul'>): ReactElement {
   )
 }
 
-function GridItem(props: ComponentProps<'li'>): ReactElement {
+function GridItem(props: ComponentProps<'li'>) {
   return (
     <li
       {...props}

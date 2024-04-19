@@ -9,7 +9,7 @@ import { addToCart, createCart, getCart } from '../../../lib/shopify'
 export async function addItem(
   prevState: any,
   selectedVariantId: string | undefined
-): Promise<string | void> {
+) {
   let cartId = cookies().get('cartId')?.value
   let cart
 

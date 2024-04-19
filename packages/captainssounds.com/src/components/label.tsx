@@ -1,5 +1,4 @@
 import clsx from 'clsx'
-import { ReactElement } from 'react'
 
 import Price from './price'
 
@@ -13,7 +12,7 @@ const Label = ({
   amount: string
   currencyCode: string
   position?: 'bottom' | 'center'
-}): ReactElement => {
+}) => {
   return (
     <div
       className={clsx(

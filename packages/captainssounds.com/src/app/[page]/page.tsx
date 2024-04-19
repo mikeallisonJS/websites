@@ -1,4 +1,3 @@
-import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { ReactElement } from 'react'
 
@@ -11,7 +10,7 @@ export async function generateMetadata({
   params
 }: {
   params: { page: string }
-}): Promise<Metadata> {
+}) {
   const page = await getPage(params.page)
 
   if (!page) return notFound()

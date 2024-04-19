@@ -10,7 +10,6 @@ import {
   TableRow
 } from '@websites/shared/react/components'
 import Link from 'next/link'
-import { ReactElement } from 'react'
 
 import {
   Download,
@@ -21,7 +20,7 @@ import {
 
 const prisma = new PrismaClient()
 
-export default async function Orders(): Promise<ReactElement | null> {
+export default async function Orders() {
   const user = await currentUser()
   if (!user) {
     return null

@@ -1,7 +1,7 @@
 import { graphql } from 'gql.tada'
 
 import { shopifyFetch } from '../shopifyFetch'
-import { Page, ShopifyPageOperation } from '../types'
+import { ShopifyPageOperation } from '../types'
 
 import { pageFragment } from './pageFragment'
 
@@ -16,7 +16,7 @@ const getPageQuery = graphql(
   [pageFragment]
 )
 
-export async function getPage(handle: string): Promise<Page> {
+export async function getPage(handle: string) {
   const res = await shopifyFetch<ShopifyPageOperation>({
     query: getPageQuery,
     variables: { handle }

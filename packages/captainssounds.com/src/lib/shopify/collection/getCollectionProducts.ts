@@ -5,7 +5,7 @@ import productFragment from '../product/productFragment'
 import { reshapeProducts } from '../product/reshapeProducts'
 import { removeEdgesAndNodes } from '../removeEdgesAndNodes'
 import { shopifyFetch } from '../shopifyFetch'
-import { Product, ShopifyCollectionProductsOperation } from '../types'
+import { ShopifyCollectionProductsOperation } from '../types'
 
 const getCollectionProductsQuery = graphql(
   `
@@ -36,7 +36,7 @@ export async function getCollectionProducts({
   collection: string
   reverse?: boolean
   sortKey?: string
-}): Promise<Product[]> {
+}) {
   const res = await shopifyFetch<ShopifyCollectionProductsOperation>({
     query: getCollectionProductsQuery,
     tags: [TAGS.collections, TAGS.products],

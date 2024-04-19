@@ -13,7 +13,7 @@ export async function updateItemQuantity(
     variantId: string
     quantity: number
   }
-): Promise<string | void> {
+) {
   const cartId = cookies().get('cartId')?.value
 
   if (!cartId) {

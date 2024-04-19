@@ -2,17 +2,13 @@
 
 import { ChevronDownIcon } from '@heroicons/react/24/outline'
 import { usePathname, useSearchParams } from 'next/navigation'
-import { ReactElement, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import { FilterItem } from './item'
 
 import type { ListItem } from '.'
 
-export default function FilterItemDropdown({
-  list
-}: {
-  list: ListItem[]
-}): ReactElement {
+export default function FilterItemDropdown({ list }: { list: ListItem[] }) {
   const pathname = usePathname()
   const searchParams = useSearchParams()
   const [active, setActive] = useState('')

@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { ReactElement } from 'react'
 
 import { Product } from '../../lib/shopify/types'
 import Grid from '../grid'
@@ -9,7 +8,7 @@ export default function ProductGridItems({
   products
 }: {
   products: Product[]
-}): ReactElement {
+}) {
   return (
     <>
       {products.map((product) => (

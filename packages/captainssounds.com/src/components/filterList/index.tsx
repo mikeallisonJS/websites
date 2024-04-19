@@ -1,4 +1,4 @@
-import { ReactElement, Suspense } from 'react'
+import { Suspense } from 'react'
 
 import { SortFilterItem } from '../../lib/constants'
 
@@ -8,7 +8,7 @@ import { FilterItem } from './item'
 export type ListItem = SortFilterItem | PathFilterItem
 export type PathFilterItem = { title: string; path: string }
 
-function FilterItemList({ list }: { list: ListItem[] }): ReactElement {
+function FilterItemList({ list }: { list: ListItem[] }) {
   return (
     <>
       {list.map((item: ListItem, i) => (
@@ -24,7 +24,7 @@ export default function FilterList({
 }: {
   list: ListItem[]
   title?: string
-}): ReactElement {
+}) {
   return (
     <>
       <nav>

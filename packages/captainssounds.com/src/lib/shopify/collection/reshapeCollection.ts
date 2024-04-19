@@ -1,8 +1,6 @@
-import { Collection, ShopifyCollection } from '../types'
+import { ShopifyCollection } from '../types'
 
-export const reshapeCollection = (
-  collection: ShopifyCollection
-): Collection | undefined => {
+export const reshapeCollection = (collection: ShopifyCollection) => {
   if (!collection) {
     return undefined
   }

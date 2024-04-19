@@ -6,10 +6,7 @@ import { cookies } from 'next/headers'
 import { TAGS } from '../../../lib/constants'
 import { removeFromCart } from '../../../lib/shopify'
 
-export async function removeItem(
-  prevState: any,
-  lineId: string
-): Promise<string | void> {
+export async function removeItem(prevState: any, lineId: string) {
   const cartId = cookies().get('cartId')?.value
 
   if (!cartId) {

@@ -4,7 +4,7 @@ import { Dialog, Transition } from '@headlessui/react'
 import { ShoppingCartIcon } from '@heroicons/react/24/outline'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Fragment, ReactElement, useEffect, useRef, useState } from 'react'
+import { Fragment, useEffect, useRef, useState } from 'react'
 
 import { DEFAULT_OPTION } from '../../lib/constants'
 import type { Cart } from '../../lib/shopify/types'
@@ -20,11 +20,7 @@ type MerchandiseSearchParams = {
   [key: string]: string
 }
 
-export default function CartModal({
-  cart
-}: {
-  cart: Cart | undefined
-}): ReactElement {
+export default function CartModal({ cart }: { cart: Cart | undefined }) {
   const [isOpen, setIsOpen] = useState(false)
   const quantityRef = useRef(cart?.totalQuantity)
   const openCart = (): void => setIsOpen(true)

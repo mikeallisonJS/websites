@@ -1,4 +1,4 @@
-import { ReactElement, Suspense } from 'react'
+import { Suspense } from 'react'
 
 import { Product } from '../../lib/shopify/types'
 import { AddToCart } from '../cart/addToCart'
@@ -7,11 +7,7 @@ import Prose from '../prose'
 
 import { VariantSelector } from './variantSelector'
 
-export function ProductDescription({
-  product
-}: {
-  product: Product
-}): ReactElement {
+export function ProductDescription({ product }: { product: Product }) {
   return (
     <>
       <div className="mb-6 flex flex-col border-b pb-6 dark:border-neutral-700">

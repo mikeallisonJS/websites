@@ -3,7 +3,7 @@ import { graphql } from 'gql.tada'
 import { TAGS } from '../../constants'
 import { removeEdgesAndNodes } from '../removeEdgesAndNodes'
 import { shopifyFetch } from '../shopifyFetch'
-import { Product, ShopifyProductsOperation } from '../types'
+import { ShopifyProductsOperation } from '../types'
 
 import productFragment from './productFragment'
 import { reshapeProducts } from './reshapeProducts'
@@ -40,7 +40,7 @@ export async function getProducts({
   query?: string
   reverse?: boolean
   sortKey?: string
-}): Promise<Product[]> {
+}) {
   const res = await shopifyFetch<ShopifyProductsOperation>({
     query: getProductsQuery,
     tags: [TAGS.products],

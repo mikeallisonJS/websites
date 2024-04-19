@@ -2,7 +2,6 @@
 
 import clsx from 'clsx'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
-import { ReactElement } from 'react'
 
 import { ProductOption, ProductVariant } from '../../lib/shopify/types'
 import { createUrl } from '../../lib/utils'
@@ -19,7 +18,7 @@ export function VariantSelector({
 }: {
   options: ProductOption[]
   variants: ProductVariant[]
-}): ReactElement[] | null {
+}) {
   const router = useRouter()
   const pathname = usePathname()
   const searchParams = useSearchParams()

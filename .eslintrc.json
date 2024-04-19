@@ -6,6 +6,7 @@
     "import/internal-regex": "^(@core|.prisma)"
   },
   "rules": {
+    "@typescript-eslint/explicit-function-return-type": "off",
     "import/no-absolute-path": "error",
     "import/default": "error",
     "import/namespace": "error",
@@ -46,7 +47,7 @@
     "import/newline-after-import": "error",
     "import/no-named-default": "error",
     "import/no-anonymous-default-export": "error",
-    "no-multiple-empty-lines": ["error", { "max": 1 }]
+    "no-multiple-empty-lines": ["error", { "max": 1 }]'
   },
   "overrides": [
     {

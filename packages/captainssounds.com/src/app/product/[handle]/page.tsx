@@ -1,7 +1,6 @@
-import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { ReactElement, Suspense } from 'react'
+import { Suspense } from 'react'
 
 import Collections from '../../../components/collections'
 import Footer from '../../../components/footer'
@@ -18,7 +17,7 @@ export async function generateMetadata({
   params
 }: {
   params: { handle: string }
-}): Promise<Metadata> {
+}) {
   const product = await getProduct(params.handle)
 
   if (!product) return notFound()
@@ -56,7 +55,7 @@ export default async function ProductPage({
   params
 }: {
   params: { handle: string }
-}): Promise<ReactElement> {
+}) {
   const product = await getProduct(params.handle)
 
   if (!product) return notFound()
@@ -125,11 +124,7 @@ export default async function ProductPage({
   )
 }
 
-async function RelatedProducts({
-  id
-}: {
-  id: string
-}): Promise<ReactElement | null> {
+async function RelatedProducts({ id }: { id: string }) {
   const relatedProducts = await getProductRecommendations(id)
 
   if (!relatedProducts.length) return null

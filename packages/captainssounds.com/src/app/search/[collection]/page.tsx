@@ -1,4 +1,3 @@
-import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { ReactElement } from 'react'
 
@@ -13,7 +12,7 @@ export async function generateMetadata({
   params
 }: {
   params: { collection: string }
-}): Promise<Metadata> {
+}) {
   const collection = await getCollection(params.collection)
 
   if (!collection) return notFound()

@@ -2,7 +2,7 @@ import { graphql } from 'gql.tada'
 
 import { TAGS } from '../../constants'
 import { shopifyFetch } from '../shopifyFetch'
-import { Product, ShopifyProductOperation } from '../types'
+import { ShopifyProductOperation } from '../types'
 
 import productFragment from './productFragment'
 import { reshapeProduct } from './reshapeProduct'
@@ -18,7 +18,7 @@ const getProductQuery = graphql(
   [productFragment]
 )
 
-export async function getProduct(handle: string): Promise<Product | undefined> {
+export async function getProduct(handle: string) {
   const res = await shopifyFetch<ShopifyProductOperation>({
     query: getProductQuery,
     tags: [TAGS.products],

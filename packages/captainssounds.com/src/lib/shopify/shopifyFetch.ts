@@ -26,7 +26,7 @@ export async function shopifyFetch<T>({
   query: DocumentNode
   tags?: string[]
   variables?: ExtractVariables<T>
-}): Promise<{ status: number; body: T } | never> {
+}) {
   try {
     const result = await fetch(endpoint, {
       method: 'POST',

@@ -6,11 +6,11 @@ import { FormEvent, ReactElement } from 'react'
 
 import { createUrl } from '../../lib/utils'
 
-export default function Search(): ReactElement {
+export default function Search() {
   const router = useRouter()
   const searchParams = useSearchParams()
 
-  function onSubmit(e: FormEvent<HTMLFormElement>): void {
+  function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
 
     const val = e.target as HTMLFormElement
@@ -47,7 +47,7 @@ export default function Search(): ReactElement {
   )
 }
 
-export function SearchSkeleton(): ReactElement {
+export function SearchSkeleton() {
   return (
     <form className="w-max-[550px] relative w-full lg:w-80 xl:w-full">
       <input

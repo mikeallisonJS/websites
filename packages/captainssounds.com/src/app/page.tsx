@@ -1,4 +1,4 @@
-import { ReactElement, Suspense } from 'react'
+import { Suspense } from 'react'
 
 import { Carousel } from '../components/carousel'
 import Collections from '../components/collections'
@@ -13,7 +13,7 @@ export const metadata = {
   }
 }
 
-export default async function HomePage(): Promise<ReactElement> {
+export default async function HomePage() {
   return (
     <>
       <div className="mx-auto flex max-w-screen-2xl flex-col gap-8 px-4 pb-4 text-black md:flex-row dark:text-white">

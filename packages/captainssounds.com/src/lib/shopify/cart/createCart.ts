@@ -1,7 +1,7 @@
 import { graphql } from 'gql.tada'
 
 import { shopifyFetch } from '../shopifyFetch'
-import { Cart, ShopifyCreateCartOperation } from '../types'
+import { ShopifyCreateCartOperation } from '../types'
 
 import cartFragment from './cartFragment'
 import { reshapeCart } from './reshapeCart'
@@ -19,7 +19,7 @@ const createCartMutation = graphql(
   [cartFragment]
 )
 
-export async function createCart(): Promise<Cart> {
+export async function createCart() {
   const res = await shopifyFetch<ShopifyCreateCartOperation>({
     query: createCartMutation,
     cache: 'no-store'

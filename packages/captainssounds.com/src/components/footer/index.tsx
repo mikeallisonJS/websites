@@ -1,6 +1,4 @@
-import { ReactElement } from 'react'
-
-export default async function Footer(): Promise<ReactElement> {
+export default async function Footer() {
   const currentYear = new Date().getFullYear()
   const copyrightDate = 2020 + (currentYear > 2020 ? `-${currentYear}` : '')
 

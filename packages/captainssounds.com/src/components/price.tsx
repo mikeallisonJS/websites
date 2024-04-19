@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import { ComponentProps, ReactElement } from 'react'
+import { ComponentProps } from 'react'
 
 const Price = ({
   amount,
@@ -11,7 +11,7 @@ const Price = ({
   className?: string
   currencyCode: string
   currencyCodeClassName?: string
-} & ComponentProps<'p'>): ReactElement => (
+} & ComponentProps<'p'>) => (
   <p suppressHydrationWarning={true} className={className}>
     {`${new Intl.NumberFormat(undefined, {
       style: 'currency',

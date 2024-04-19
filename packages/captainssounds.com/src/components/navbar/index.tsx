@@ -1,7 +1,7 @@
 import { SignInButton, SignedIn, SignedOut } from '@clerk/nextjs'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ReactElement, Suspense } from 'react'
+import { Suspense } from 'react'
 
 import { getMenu } from '../../lib/shopify'
 import Cart from '../cart'
@@ -11,7 +11,7 @@ import { UserButton } from '../userButton/userButton'
 import MobileMenu from './mobileMenu'
 import Search, { SearchSkeleton } from './search'
 
-export default async function Navbar(): Promise<ReactElement> {
+export default async function Navbar() {
   const menu = await getMenu('next-js-frontend-header-menu')
 
   return (

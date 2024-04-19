@@ -22,7 +22,7 @@ import { VariantProps, cva } from 'class-variance-authority'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { ReactElement, forwardRef } from 'react'
+import { forwardRef } from 'react'
 
 const button = cva(['flex', 'flex-row', 'items-center', 'rounded-xl'], {
   variants: {
@@ -87,7 +87,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 Button.displayName = 'Button'
 
 // Create a new UserButtonandMenu component and move the old return into this
-const UserButtonAndMenu = (): ReactElement => {
+const UserButtonAndMenu = () => {
   const { user } = useUser()
   const { signOut, openUserProfile } = useClerk()
   const router = useRouter()
@@ -162,7 +162,7 @@ const UserButtonAndMenu = (): ReactElement => {
   )
 }
 
-export const UserButton = (): ReactElement | null => {
+export const UserButton = () => {
   const { isLoaded, user } = useUser()
   const { openSignIn } = useClerk()
 

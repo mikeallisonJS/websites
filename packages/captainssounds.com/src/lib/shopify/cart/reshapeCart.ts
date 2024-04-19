@@ -1,7 +1,7 @@
 import { removeEdgesAndNodes } from '../removeEdgesAndNodes'
-import { Cart, ShopifyCart } from '../types'
+import { ShopifyCart } from '../types'
 
-export const reshapeCart = (cart: ShopifyCart): Cart => {
+export const reshapeCart = (cart: ShopifyCart) => {
   if (!cart.cost?.totalTaxAmount) {
     cart.cost.totalTaxAmount = {
       amount: '0.0',
