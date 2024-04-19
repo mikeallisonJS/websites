@@ -17,80 +17,16 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger
 } from '@websites/shared/react/components'
-import { VariantProps, cva } from 'class-variance-authority'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { forwardRef } from 'react'
 
-// const button = cva(['flex', 'flex-row', 'items-center', 'rounded-xl'], {
-//   variants: {
-//     variant: {
-//       primary: [
-//         'border',
-//         'border-gray-200',
-//         'bg-white',
-//         'text-black',
-//         'drop-shadow-md',
-//         'hover:bg-stone-100',
-//         'hover:text-stone-800',
-//         'justify-center'
-//       ],
-//       accent: [
-//         'border',
-//         'border-stone-950',
-//         'bg-stone-800/70',
-//         'hover:bg-stone-950',
-//         'text-stone-200',
-//         'justify-center'
-//       ],
-//       menu: [
-//         'w-full',
-//         'justify-start',
-//         'bg-transparent',
-//         'hover:bg-stone-800/70',
-//         'text-gray-800/70',
-//         'hover:text-stone-100',
-//         'px-4',
-//         'rounded-sm'
-//       ]
-//     },
-//     size: {
-//       regular: ['px-4', 'py-3 '],
-//       small: ['py-3', 'py-2']
-//     }
-//   },
-//   defaultVariants: {
-//     variant: 'primary',
-//     size: 'regular'
-//   }
-// })
-
-// interface ButtonProps
-//   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-//     VariantProps<typeof button> {}
-
-// const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-//   ({ variant, size, children, className, ...props }, ref) => {
-//     return (
-//       <button
-//         ref={ref}
-//         className={button({ variant, size, className })}
-//         {...props}
-//       >
-//         {children}
-//       </button>
-//     )
-//   }
-// )
-// Button.displayName = 'Button'
-
-// Create a new UserButtonandMenu component and move the old return into this
 const UserButtonAndMenu = () => {
   const { user } = useUser()
   const { signOut, openUserProfile } = useClerk()
   const router = useRouter()
   const label = user?.firstName ? user.firstName : 'Profile'
+  const myProducts = () => router.push('/user/orders')
 
   return (
     <DropdownMenu>
@@ -108,52 +44,28 @@ const UserButtonAndMenu = () => {
         )}
       </DropdownMenuTrigger>
       <DropdownMenuPortal>
-        <DropdownMenuContent
-        // className="mt-4 w-52 rounded-xl border border-gray-200 bg-white px-2 py-2 text-black drop-shadow-2xl"
-        >
+        <DropdownMenuContent className="w-48">
           <DropdownMenuLabel />
-          <DropdownMenuGroup
-          // className="py-1"
-          >
-            <DropdownMenuItem
-            // asChild className="outline-none"
-            >
-              <Link href="/user/orders" passHref>
-                {/* <Button className="py-2" variant="menu" size="small"> */}
-                <CurrencyDollarIcon className="mr-2 h-6 w-auto" />
-                My Products
-                {/* </Button> */}
-              </Link>
+          <DropdownMenuGroup>
+            <DropdownMenuItem className="cursor-pointer" onClick={myProducts}>
+              <CurrencyDollarIcon className="mr-2 h-6 w-auto" />
+              My Products
             </DropdownMenuItem>
             <DropdownMenuItem
-            // className="outline-none" asChild
+              onClick={() => openUserProfile()}
+              className="cursor-pointer"
             >
-              <button
-                onClick={() => openUserProfile()}
-                className="pb-3"
-                variant="menu"
-                size="small"
-              >
-                <UserIcon className="mr-2 h-6 w-auto" />
-                My Account
-              </button>
+              <UserIcon className="mr-2 h-6 w-auto" />
+              My Account
             </DropdownMenuItem>
           </DropdownMenuGroup>
-          <DropdownMenuSeparator
-          // className="my-1 h-px bg-gray-200"
-          />
+          <DropdownMenuSeparator />
           <DropdownMenuItem
-          // asChild className="outline-none"
+            onClick={() => signOut(() => router.push('/'))}
+            className="cursor-pointer"
           >
-            <button
-              onClick={() => signOut(() => router.push('/'))}
-              className="py-3"
-              variant="menu"
-              size="small"
-            >
-              <ArrowRightEndOnRectangleIcon className="mr-2 h-5 w-auto" /> Sign
-              Out
-            </button>
+            <ArrowRightEndOnRectangleIcon className="mr-2 h-5 w-auto" /> Sign
+            Out
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenuPortal>

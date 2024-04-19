@@ -35,7 +35,9 @@
         "esbenp.prettier-vscode",
         "angular.ng-template",
         "nrwl.angular-console",
-        "prisma.prisma"
+        "prisma.prisma",
+        "csstools.postcss",
+        "bradlc.vscode-tailwindcss"
       ]
     }
   },

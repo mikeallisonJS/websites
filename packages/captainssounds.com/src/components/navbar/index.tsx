@@ -6,7 +6,7 @@ import { Suspense } from 'react'
 import { getMenu } from '../../lib/shopify'
 import Cart from '../cart'
 import OpenCart from '../cart/openCart'
-import { UserButton } from '@clerk/nextjs'
+import { UserButton } from '../userButton/userButton'
 
 import MobileMenu from './mobileMenu'
 import Search, { SearchSkeleton } from './search'
