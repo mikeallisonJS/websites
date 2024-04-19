@@ -1,4 +1,4 @@
-import { PageContainer } from '@websites/shared/react'
+import { PageContainer } from 'packages/shared-react-components/react/components/src'
 import dynamic from 'next/dynamic'
 import { ReactElement } from 'react'
 

@@ -1,5 +1,5 @@
 import Typography from '@mui/material/Typography'
-import { PageContainer, PastEvents } from '@websites/shared/react'
+import { PageContainer, PastEvents } from 'shared-react-components'
 import Image from 'next/image'
 import { ReactElement } from 'react'
 

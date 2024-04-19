@@ -1,6 +1,6 @@
 import Box from '@mui/material/Box'
 import Divider from '@mui/material/Divider'
-import { PastEvents } from '@websites/shared/react'
+import { PastEvents } from 'packages/shared-react-components/react/components/src'
 import { ReactElement } from 'react'
 
 import Bio from '../components/bio/bio'

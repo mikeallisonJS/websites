@@ -16,8 +16,10 @@
     "baseUrl": ".",
     "paths": {
       "@websites/common": ["packages/common/src/index.ts"],
-      "@websites/shared/react": ["packages/shared/react/src/index.ts"],
-      "@websites/shared/react/server": ["packages/shared/react/src/server.ts"]
+      "@websites/shared/react/components": [
+        "packages/shared/react/components/src/index.ts"
+      ],
+      "@websites/shared/react/lib": ["packages/shared/react/lib/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

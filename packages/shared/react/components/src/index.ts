@@ -29,7 +29,6 @@ import {
   TableCell,
   TableCaption
 } from './components/table/table'
-import { useScrollPosition } from './lib/useScrollPosition/useScrollPosition'
 
 export {
   DropdownMenu,
@@ -47,7 +46,6 @@ export {
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
   DropdownMenuRadioGroup,
-  useScrollPosition,
   PastEvents,
   PageContainer,
   Table,

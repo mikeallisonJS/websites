@@ -20,7 +20,7 @@ import ListItemButton from '@mui/material/ListItemButton'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
 import { alpha } from '@mui/material/styles'
-import { PageContainer } from '@websites/shared/react'
+import { PageContainer } from 'packages/shared-react-components/react/components/src'
 import Link from 'next/link'
 import { ReactElement } from 'react'
 

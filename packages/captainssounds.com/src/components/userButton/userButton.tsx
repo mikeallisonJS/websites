@@ -17,7 +17,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger
-} from '@websites/shared/react'
+} from '@websites/shared/react/components'
 import { VariantProps, cva } from 'class-variance-authority'
 import Image from 'next/image'
 import Link from 'next/link'
