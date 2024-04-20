@@ -31,7 +31,7 @@ const sentryConfig = withSentryConfig(
 
     // Suppresses source map uploading logs during build
     silent: true,
-    org: 'captain',
+    org: 'captain-fs',
     project: 'captainofbass'
   },
   {
