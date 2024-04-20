@@ -6,6 +6,7 @@ import Navbar from '../components/navbar'
 
 import '../../../shared/react/lib/src/shadcnUtils/global.css'
 import './globals.css'
+import { CSPostHogProvider } from '../components/posthog/provider'
 
 const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL
   ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
@@ -33,14 +34,16 @@ export default async function RootLayout({
 }) {
   return (
     <ClerkProvider>
-      <html lang="en" className={GeistSans.variable}>
-        <body className="bg-neutral-50 text-black selection:bg-teal-300 dark:bg-neutral-900 dark:text-white dark:selection:bg-pink-500 dark:selection:text-white">
-          <Navbar />
-          <Suspense>
-            <main>{children}</main>
-          </Suspense>
-        </body>
-      </html>
+      <CSPostHogProvider>
+        <html lang="en" className={GeistSans.variable}>
+          <body className="bg-neutral-50 text-black selection:bg-teal-300 dark:bg-neutral-900 dark:text-white dark:selection:bg-pink-500 dark:selection:text-white">
+            <Navbar />
+            <Suspense>
+              <main>{children}</main>
+            </Suspense>
+          </body>
+        </html>
+      </CSPostHogProvider>
     </ClerkProvider>
   )
 }
