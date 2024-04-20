@@ -15,7 +15,6 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@websites/common": ["packages/common/src/index.ts"],
       "@websites/shared/react/components": [
         "packages/shared/react/components/src/index.ts"
       ],
