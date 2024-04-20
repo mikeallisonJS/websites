@@ -1,9 +1,7 @@
-import './global.css'
-import { ThemeProvider } from '@mui/material/styles'
-import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter'
+import { GeistSans } from 'geist/font/sans'
 import { ReactNode } from 'react'
 
-import theme from './theme'
+import './global.css'
 
 export const metadata = {
   title: 'SLTDNB'
@@ -11,11 +9,9 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
-      <body>
-        <AppRouterCacheProvider>
-          <ThemeProvider theme={theme}>{children}</ThemeProvider>
-        </AppRouterCacheProvider>
+    <html lang="en" className={GeistSans.variable}>
+      <body className="bg-neutral-50 text-black selection:bg-teal-300 dark:bg-neutral-900 dark:text-white dark:selection:bg-pink-500 dark:selection:text-white">
+        {children}
       </body>
     </html>
   )

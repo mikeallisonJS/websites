@@ -3,8 +3,6 @@ import { GeistSans } from 'geist/font/sans'
 import { ReactNode, Suspense } from 'react'
 
 import Navbar from '../components/navbar'
-
-import '../../../shared/react/lib/src/shadcnUtils/global.css'
 import './globals.css'
 import { CSPostHogProvider } from '../components/posthog/provider'
 
