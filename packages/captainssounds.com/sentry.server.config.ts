@@ -1,0 +1,18 @@
+// This file configures the initialization of Sentry on the server.
+// The config you add here will be used whenever the server handles a request.
+// https://docs.sentry.io/platforms/javascript/guides/nextjs/
+
+import * as Sentry from '@sentry/nextjs'
+
+Sentry.init({
+  dsn: 'https://55bf9e6de9a205417969a4cbc036783e@o4507117455015936.ingest.us.sentry.io/4507117457702912',
+
+  // Adjust this value in production, or use tracesSampler for greater control
+  tracesSampleRate: 1,
+
+  // Setting this option to true will print useful information to the console while you're setting up Sentry.
+  debug: false
+
+  // uncomment the line below to enable Spotlight (https://spotlightjs.com)
+  // spotlight: process.env.NODE_ENV === 'development',
+})
