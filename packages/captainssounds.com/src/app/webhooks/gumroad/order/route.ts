@@ -4,21 +4,31 @@ import { NextRequest } from 'next/server'
 const prisma = new PrismaClient()
 
 export async function POST(req: NextRequest) {
-  const data = await req.text()
-  const body = JSON.parse(data)
+  const params = req.nextUrl.searchParams
+  const data = await req.formData()
+  const validation = params.get('validation')
+  const email = data.get('email')
+  const permalink = data.get('permalink')
 
-  if (body?.email != null && body?.permalink != null) {
+  if (
+    email != null &&
+    permalink != null &&
+    validation === process.env.GUMROAD_VALIDATION
+  ) {
     prisma.order.upsert({
-      where: { email: body.email },
+      where: { email },
       update: {
-        products: { connect: body.product_permalink }
+        products: { connect: permalink }
       },
       create: {
-        email: body.email,
-        products: { connect: body.product_permalink }
+        email,
+        products: { connect: permalink }
       }
     })
+    // revalidateTag()
+    return new Response(null, { status: 200 })
   }
-  // revalidateTag()
-  return new Response(null, { status: 200 })
+  return new Response('Unauthorized Request', {
+    status: 401
+  })
 }
