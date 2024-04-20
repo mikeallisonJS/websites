@@ -20,6 +20,7 @@ import {
 } from '@prisma/client'
 
 const prisma = new PrismaClient()
+
 export async function Orders() {
   const user = await currentUser()
   if (!user) {
