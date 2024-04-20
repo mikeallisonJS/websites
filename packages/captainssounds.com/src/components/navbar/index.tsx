@@ -43,7 +43,7 @@ export default async function Navbar() {
             </Suspense>
           </div>
           <div className="flex justify-end md:w-1/3">
-            <ul className="hidden gap-6 text-sm md:flex md:items-center">
+            <ul className=" gap-6 text-sm md:flex md:items-center">
               <li>
                 <SignedOut>
                   <SignInButton />
@@ -52,7 +52,7 @@ export default async function Navbar() {
                   <UserButton />
                 </SignedIn>
               </li>
-              <li>
+              <li className="hidden md:flex">
                 <Suspense fallback={<OpenCart />}>
                   <Cart />
                 </Suspense>
