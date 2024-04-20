@@ -7,7 +7,7 @@ export async function POST(req: NextRequest) {
   const data = await req.text()
   const body = JSON.parse(data)
 
-  if (body?.email != null && body?.permalink != null) {
+  if (body?.email != null && body?.product_permalink != null) {
     prisma.order.upsert({
       where: { email: body.email },
       update: {
