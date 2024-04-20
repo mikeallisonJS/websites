@@ -28,9 +28,8 @@ export async function POST(req: NextRequest) {
     }
     // revalidateTag()
     return new Response(null, { status: 200 })
-  } else {
-    return new Response('Unauthorized Request', {
-      status: 401
-    })
   }
+  return new Response('Unauthorized Request', {
+    status: 401
+  })
 }
