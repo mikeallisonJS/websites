@@ -4,7 +4,7 @@ import { NextRequest } from 'next/server'
 
 const prisma = new PrismaClient()
 
-export async function POST(req: NextRequest, res: Response) {
+export async function POST(req: NextRequest) {
   const data = await req.text()
   const body = JSON.parse(data)
   const hmacHeader = req.headers.get('X-Shopify-Hmac-Sha256')

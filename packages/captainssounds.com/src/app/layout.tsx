@@ -20,6 +20,9 @@ export const metadata = {
   robots: {
     follow: true,
     index: true
+  },
+  icons: {
+    icon: '/favicon.ico'
   }
 }
 
