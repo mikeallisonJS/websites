@@ -16,9 +16,6 @@
       "nodeGypDependencies": true,
       "version": "lts",
       "nvmVersion": "latest"
-    },
-    "ghcr.io/devcontainers-contrib/features/pnpm:2": {
-      "version": "latest"
     }
   },
   "customizations": {
