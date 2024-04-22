@@ -1,10 +1,9 @@
-import Box from '@mui/material/Box'
 import { ReactNode } from 'react'
 
 export default function PageContainer({ children }: { children: ReactNode }) {
   return (
-    <Box width="90vw" mt="80px" textAlign="center" mx="5vw" mb={10}>
+    <div className="w-[90vw] mx-[5vw] mt-4 mb-20 flex flex-col justify-center text-center">
       {children}
-    </Box>
+    </div>
   )
 }

@@ -1,178 +1,134 @@
 'use client'
-import MixCloudIcon from '@mui/icons-material/Cloud'
-import SoundCloudIcon from '@mui/icons-material/CloudUpload'
-import AudiusIcon from '@mui/icons-material/CurrencyBitcoin'
-import EmailIcon from '@mui/icons-material/Email'
-import FacebookIcon from '@mui/icons-material/Facebook'
-import SpotifyIcon from '@mui/icons-material/GraphicEq'
-import InstagramIcon from '@mui/icons-material/Instagram'
-import LinkedInIcon from '@mui/icons-material/LinkedIn'
-import EPKIcon from '@mui/icons-material/Newspaper'
-import DonateIcon from '@mui/icons-material/Paid'
-import TwitterIcon from '@mui/icons-material/Twitter'
-import YoutubeIcon from '@mui/icons-material/YouTube'
-import Card from '@mui/material/Card'
-import CardContent from '@mui/material/CardContent'
-import CardHeader from '@mui/material/CardHeader'
-import List from '@mui/material/List'
-import ListItem from '@mui/material/ListItem'
-import ListItemButton from '@mui/material/ListItemButton'
-import ListItemIcon from '@mui/material/ListItemIcon'
-import ListItemText from '@mui/material/ListItemText'
-import { alpha } from '@mui/material/styles'
-import { PageContainer } from '@websites/shared/react/components'
+import { faBitcoin } from '@fortawesome/free-brands-svg-icons/faBitcoin'
+import { faFacebook } from '@fortawesome/free-brands-svg-icons/faFacebook'
+import { faInstagram } from '@fortawesome/free-brands-svg-icons/faInstagram'
+import { faLinkedin } from '@fortawesome/free-brands-svg-icons/faLinkedin'
+import { faMixcloud } from '@fortawesome/free-brands-svg-icons/faMixcloud'
+import { faSoundcloud } from '@fortawesome/free-brands-svg-icons/faSoundcloud'
+import { faSpotify } from '@fortawesome/free-brands-svg-icons/faSpotify'
+import { faXTwitter } from '@fortawesome/free-brands-svg-icons/faXTwitter'
+import { faYoutube } from '@fortawesome/free-brands-svg-icons/faYoutube'
+import { faEnvelope } from '@fortawesome/free-regular-svg-icons/faEnvelope'
+import { faMoneyBill1 } from '@fortawesome/free-regular-svg-icons/faMoneyBill1'
+import { faNewspaper } from '@fortawesome/free-regular-svg-icons/faNewspaper'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Link from 'next/link'
+
+import {
+  PageContainer,
+  Table,
+  TableCell,
+  TableRow
+} from '@websites/shared/react/components'
+
+import { GlassContainer } from '../../components/glassContainer'
 
 export default function Music() {
   return (
     <PageContainer>
-      <Card
-        sx={{
-          background: (theme) => alpha(theme.palette.background.paper, 0.2),
-          marginBottom: '20px'
-        }}
-      >
-        <CardHeader title="Where to find Captain" />
-        <CardContent>
-          <nav>
-            <List>
+      <GlassContainer>
+        <div className="text-2xl">Where to find Captain</div>
+        <Table className="text-left">
+          <TableRow>
+            <TableCell>
               <Link href="/epk">
-                <ListItem disablePadding>
-                  <ListItemButton>
-                    <ListItemIcon>
-                      <EPKIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Electronic Press Kit (EPK)" />
-                  </ListItemButton>
-                </ListItem>
+                <FontAwesomeIcon icon={faNewspaper} /> Electronic Press Kit
+                (EPK)
               </Link>
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>
               <Link href="/donate">
-                <ListItem disablePadding>
-                  <ListItemButton>
-                    <ListItemIcon>
-                      <DonateIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Donate" />
-                  </ListItemButton>
-                </ListItem>
+                <FontAwesomeIcon icon={faMoneyBill1} /> Donate (EPK)
               </Link>
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>
               <Link
                 href="https://open.spotify.com/artist/4XHSbdpOsFpEWPOdj9nxfH"
                 target="_blank"
               >
-                <ListItem disablePadding>
-                  <ListItemButton>
-                    <ListItemIcon>
-                      <SpotifyIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Spotify" />
-                  </ListItemButton>
-                </ListItem>
+                <FontAwesomeIcon icon={faSpotify} /> Spotify
               </Link>
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>
               <Link href="https://soundcloud.com/captainofbass" target="_blank">
-                <ListItem disablePadding>
-                  <ListItemButton>
-                    <ListItemIcon>
-                      <SoundCloudIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="SoundCloud" />
-                  </ListItemButton>
-                </ListItem>
+                <FontAwesomeIcon icon={faSoundcloud} /> SoundCloud
               </Link>
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>
               <Link href="https://mixcloud.com/captainofbass" target="_blank">
-                <ListItem disablePadding>
-                  <ListItemButton>
-                    <ListItemIcon>
-                      <MixCloudIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="MixCloud" />
-                  </ListItemButton>
-                </ListItem>
+                <FontAwesomeIcon icon={faMixcloud} /> MixCloud
               </Link>
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>
               <Link href="https://mixcloud.com/mikeallison" target="_blank">
-                <ListItem disablePadding>
-                  <ListItemButton>
-                    <ListItemIcon>
-                      <MixCloudIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="MixCloud (pre Captain)" />
-                  </ListItemButton>
-                </ListItem>
+                <FontAwesomeIcon icon={faMixcloud} /> MixCloud (pre Captain)
               </Link>
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>
               <Link href="https://audius.co/captainofbass" target="_blank">
-                <ListItem disablePadding>
-                  <ListItemButton>
-                    <ListItemIcon>
-                      <AudiusIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Audius" />
-                  </ListItemButton>
-                </ListItem>
+                <FontAwesomeIcon icon={faBitcoin} /> Audius
               </Link>
-              <Link href="http://instagram.com/captainofbass" target="_blank">
-                <ListItem disablePadding>
-                  <ListItemButton>
-                    <ListItemIcon>
-                      <InstagramIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Instagram" />
-                  </ListItemButton>
-                </ListItem>
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>
+              <Link href="https://instagram.com/captainofbass" target="_blank">
+                <FontAwesomeIcon icon={faInstagram} /> Instagram
               </Link>
-              <Link href="http://youtube.com/c/captainofbass" target="_blank">
-                <ListItem disablePadding>
-                  <ListItemButton>
-                    <ListItemIcon>
-                      <YoutubeIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Youtube" />
-                  </ListItemButton>
-                </ListItem>
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>
+              <Link href="https://youtube.com/c/captainofbass" target="_blank">
+                <FontAwesomeIcon icon={faYoutube} /> Youtube
               </Link>
-              <Link href="http://facebook.com/captainofbass" target="_blank">
-                <ListItem disablePadding>
-                  <ListItemButton>
-                    <ListItemIcon>
-                      <FacebookIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Facebook" />
-                  </ListItemButton>
-                </ListItem>
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>
+              <Link href="https://facebook.com/captainofbass" target="_blank">
+                <FontAwesomeIcon icon={faFacebook} /> Facebook
               </Link>
-              <Link href="http://x.com/captainofbass" target="_blank">
-                <ListItem disablePadding>
-                  <ListItemButton>
-                    <ListItemIcon>
-                      <TwitterIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Twitter" />
-                  </ListItemButton>
-                </ListItem>
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>
+              <Link href="https://x.com/captainofbass" target="_blank">
+                <FontAwesomeIcon icon={faXTwitter} /> X
               </Link>
-              <Link href="www.linkedin.com/in/captainofbass" target="_blank">
-                <ListItem disablePadding>
-                  <ListItemButton>
-                    <ListItemIcon>
-                      <LinkedInIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="LinkedIn" />
-                  </ListItemButton>
-                </ListItem>
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>
+              <Link
+                href="https://www.linkedin.com/in/captainofbass"
+                target="_blank"
+              >
+                <FontAwesomeIcon icon={faLinkedin} /> LinkedIn
               </Link>
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>
               <Link href="mailto:mike@captainofbass.com" target="_blank">
-                <ListItem disablePadding>
-                  <ListItemButton>
-                    <ListItemIcon>
-                      <EmailIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Email" />
-                  </ListItemButton>
-                </ListItem>
+                <FontAwesomeIcon icon={faEnvelope} /> Email
               </Link>
-            </List>
-          </nav>
-        </CardContent>
-      </Card>
+            </TableCell>
+          </TableRow>
+        </Table>
+      </GlassContainer>
     </PageContainer>
   )
 }

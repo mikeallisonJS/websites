@@ -1,9 +1,8 @@
-import Box from '@mui/material/Box'
-import Divider from '@mui/material/Divider'
-import { PastEvents } from '@websites/shared/react/components'
+import Image from 'next/image'
+
+import { PastEventsTW } from '@websites/shared/react/components'
 
 import Bio from '../components/bio/bio'
-import HomeLogo from '../components/homeLogo/homeLogo'
 
 const images = [
   'dystopia-24-3.jpg',
@@ -54,12 +53,24 @@ const images = [
 
 export default function Index() {
   return (
-    <Box width="90vw" mt="70px" textAlign="center" mx="5vw" mb={10}>
-      <HomeLogo />
-      <Divider />
-      <Bio />
-      <Divider />
-      <PastEvents images={images} />
-    </Box>
+    <div className="mx-[5vw]">
+      <div className="w-[90vw] mt-70 mx[5vw] mb-16 flex flex-col gap-8 justify-center">
+        <div className="flex justify-center w-[100%]">
+          <Image
+            src="/images/cpt-border.png"
+            alt="logo"
+            width={617}
+            height={181}
+            style={{
+              maxWidth: '90vw',
+              height: '22vh',
+              marginTop: 'calc(100vh - 24vh - 130px)'
+            }}
+          />
+        </div>
+        <Bio />
+        <PastEventsTW images={images} />
+      </div>
+    </div>
   )
 }

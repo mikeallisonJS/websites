@@ -64,8 +64,15 @@ module.exports = {
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out'
+      },
+      flexGrow: {
+        2: '2',
+        3: '3',
+        4: '4',
+        5: '5',
+        6: '6'
       }
     }
   },
-  plugins: [TailwindAnimate]
+  plugins: [TailwindAnimate, require('flowbite/plugin')]
 }
