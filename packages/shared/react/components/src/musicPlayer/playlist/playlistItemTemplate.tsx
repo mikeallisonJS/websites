@@ -3,7 +3,6 @@ import { faBars } from '@fortawesome/free-solid-svg-icons/faBars'
 import { faPlay } from '@fortawesome/free-solid-svg-icons/faPlay'
 
 import CoverArt from '../coverArt'
-import withoutPropagation from '../utils/withoutPropagation'
 import { Track } from '../types'
 
 type PlaylistItemTemplateProps = {
@@ -29,10 +28,7 @@ export default function PlaylistItemTemplate({
 
   return (
     <div className="h-full flex flex-row items-center flex-nowrap border border-divider rounded p-2 shadow-sm transition-shadow">
-      <div
-        className="flex grow-1 items-center"
-        onClick={withoutPropagation(handleSelect)}
-      >
+      <div className="flex grow-1 items-center" onClick={handleSelect}>
         {/*render now playing icon or empty box matching icon size */}
         {commonProps.currentTrackID === item.ID ? (
           <FontAwesomeIcon icon={faPlay} />

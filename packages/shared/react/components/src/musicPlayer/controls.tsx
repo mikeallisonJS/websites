@@ -4,36 +4,37 @@ import { faPlay } from '@fortawesome/free-solid-svg-icons/faPlay'
 import { faPause } from '@fortawesome/free-solid-svg-icons/faPause'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-import { useMusicStore } from './useMusicStore'
 import { useShallow } from 'zustand/react/shallow'
 import { cn } from '@websites/shared/react/lib'
 import { Button } from '../button'
+import { useMusicPlayerContext } from './context'
 
 type ControlsProps = {
   className?: string
   disabled?: boolean
-  onChangeTrack: (value: number) => void
-  onPlay: () => void
 }
 export default function Controls({
   className,
-  disabled = false,
-  onChangeTrack,
-  onPlay
+  disabled = false
 }: ControlsProps) {
-  const { currentTrack, isPlaying, playlist } = useMusicStore(
-    useShallow((state) => state)
-  )
+  const {
+    currentTrackIndex,
+    isPlaying,
+    pause,
+    play,
+    playlist,
+    setCurrentTrackIndex
+  } = useMusicPlayerContext((s) => s)
 
   const onSkipNext = () => {
     const newTrackIndex =
-      currentTrack < playlist.length - 1 ? currentTrack + 1 : 0
-    onChangeTrack(newTrackIndex)
+      currentTrackIndex < playlist.length - 1 ? currentTrackIndex + 1 : 0
+    setCurrentTrackIndex(newTrackIndex)
   }
   const onSkipPrev = () => {
     const newTrackIndex =
-      currentTrack > 0 ? currentTrack - 1 : playlist.length - 1
-    onChangeTrack(newTrackIndex)
+      currentTrackIndex > 0 ? currentTrackIndex - 1 : playlist.length - 1
+    setCurrentTrackIndex(newTrackIndex)
   }
 
   return (
@@ -46,15 +47,19 @@ export default function Controls({
       <Button
         variant="ghost"
         className="hidden md:flex"
-        onClick={onSkipPrev}
+        onClick={() => onSkipPrev}
         disabled={disabled}
       >
         <FontAwesomeIcon icon={faStepBackward} size="xl" />
       </Button>
-      <Button variant="ghost" onClick={onPlay} disabled={disabled}>
+      <Button
+        variant="ghost"
+        onClick={isPlaying ? pause : play}
+        disabled={disabled}
+      >
         <FontAwesomeIcon icon={isPlaying ? faPause : faPlay} size="xl" />
       </Button>
-      <Button variant="ghost" onClick={onSkipNext} disabled={disabled}>
+      <Button variant="ghost" onClick={() => onSkipNext} disabled={disabled}>
         <FontAwesomeIcon icon={faStepForward} size="xl" />
       </Button>
     </div>

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, ReactNode, useRef, LegacyRef, useEffect } from 'react'
+import { useState, ReactNode, useRef, useEffect } from 'react'
 
 import CoverArt from './coverArt'
 import TrackDetails from './trackDetails'
@@ -8,26 +8,22 @@ import ProgressBar from './progressBar'
 import Controls from './controls'
 import VolumeControl from './volumeControl'
 import PlaylistControl from './playlist/playlistControl'
-import { useMusicStore } from './useMusicStore'
 import { Drawer, DrawerContent } from '../drawer'
 import { cn } from '@websites/shared/react/lib'
-import { useShallow } from 'zustand/react/shallow'
 import { Track } from './types'
+import { useMusicPlayerContext } from './context'
 
 const PREFIX = 'Player'
 
 type RootPaperProps = {
   children: ReactNode
   className?: string
-  ref: LegacyRef<HTMLDivElement>
 }
 
-const RootPaper = ({ children, className, ref }: RootPaperProps) => (
+const RootPaper = ({ children, className }: RootPaperProps) => (
   <div
-    ref={ref}
     className={cn(
       'z-50 w-[100vw] h-[62px] flex align-middle fixed bottom-0 box-border overflow-hidden bg-popover px-1 text-popover-foreground shadow-md ',
-      //
       className
     )}
   >
@@ -85,75 +81,26 @@ type PlayerProps = {
   disableDrawer?: boolean
   defaultArt?: string
   className?: string
-  playlist?: Track[]
 }
 
 export default function Player({
   disableDrawer = false,
   defaultArt,
-  className,
-  playlist: initialPlaylist
+  className
 }: PlayerProps) {
+  const {
+    currentTrack,
+    currentTrackIndex,
+    playlist,
+    setAudioRef,
+    setPlaylist
+  } = useMusicPlayerContext((s) => s)
   const [maximised, setMaximised] = useState(false)
   const audioRef = useRef<HTMLAudioElement>(null)
 
-  const {
-    currentTrack,
-    isPlaying,
-    playlist,
-    repeatMode,
-    shuffled,
-    setCurrentTrack,
-    setCurrentTime,
-    setDuration,
-    setIsPlaying,
-    setPlaylist
-  } = useMusicStore(useShallow((state) => state))
-
-  const handleChangeTrack = (index: number) => {
-    if (audioRef.current == null) return
-    setCurrentTime(0)
-    setCurrentTrack(index)
-    audioRef.current.src = playlist[index].source
-    audioRef.current.play()
-  }
-
-  const handlePlay = () => {
-    if (audioRef.current == null) return
-    if (audioRef.current.paused) {
-      audioRef.current.play()
-      setIsPlaying(true)
-    } else {
-      audioRef.current.pause()
-      setIsPlaying(false)
-    }
-  }
-
   useEffect(() => {
-    if (audioRef.current == null) return
-    audioRef.current.ondurationchange = () => {
-      setDuration(audioRef.current?.duration ?? 0)
-    }
-    audioRef.current.onended = () => {
-      if (audioRef.current == null) return
-      if (shuffled) {
-        const nextTrack = Math.round(Math.random() * playlist.length)
-        handleChangeTrack(nextTrack)
-      } else {
-        if (repeatMode === 'REPEAT_ONE') {
-          handleChangeTrack(currentTrack)
-        } else {
-          const nextTrack =
-            currentTrack >= playlist.length - 1 ? 0 : currentTrack + 1
-          handleChangeTrack(nextTrack)
-        }
-      }
-    }
+    setAudioRef(audioRef.current)
   }, [audioRef])
-
-  if (initialPlaylist !== undefined) {
-    setPlaylist(initialPlaylist)
-  }
 
   const openSwipeableDrawer = () => {
     if (!disableDrawer) {
@@ -167,30 +114,24 @@ export default function Player({
     }
   }
 
-  const rootRef = useRef<HTMLDivElement>(null)
-
   return (
-    <RootPaper ref={rootRef} className={className}>
-      <audio ref={audioRef} src={initialPlaylist?.[0].source} />
+    <RootPaper className={className}>
+      <audio ref={audioRef} src={playlist?.[0].source} />
       {!maximised && (
         <RowBox onClick={openSwipeableDrawer}>
           <CoverArt
-            src={playlist[currentTrack]?.coverArt ?? defaultArt}
+            src={currentTrack?.coverArt ?? defaultArt}
             className="h-[48px] w-[48px] shrink-0"
           />
-          <TrackDetails className="md:w-[120px] grow-1 text-left m-1 shrink-0" />
-          <Controls
-            onChangeTrack={handleChangeTrack}
-            onPlay={handlePlay}
-            disabled={playlist[currentTrack] === undefined}
+          <TrackDetails
+            title={currentTrack?.title ?? ''}
+            artist={currentTrack?.artist ?? ''}
+            className="md:w-[120px] grow-1 text-left m-1 shrink-0"
           />
-          <ProgressBar audioRef={audioRef} className=" grow-6 hidden md:flex" />
-          <VolumeControl
-            audioRef={audioRef}
-            className=" grow-2 hidden md:flex"
-          />
+          <Controls disabled={currentTrack == null} />
+          <ProgressBar className=" grow-6 hidden md:flex" />
+          <VolumeControl className=" grow-2 hidden md:flex" />
           <PlaylistControl
-            audioRef={audioRef}
             playlistViewMode="popover"
             className="hidden md:flex"
           />
@@ -205,22 +146,21 @@ export default function Player({
               onClick={closeSwipeableDrawer}
             />
             <ColumnBox>
-              {/* grow and center cover art */}
               <CenterChildBox className="grow-1">
                 <CoverArt
-                  src={playlist[currentTrack]?.coverArt ?? defaultArt}
+                  src={currentTrack?.coverArt ?? defaultArt}
                   className="children h-[300px] w-[300px] shadow-md"
                 />
-                <TrackDetails className="mt-1 text-center" />
+                <TrackDetails
+                  title={playlist?.[currentTrackIndex]?.title ?? ''}
+                  artist={playlist?.[currentTrackIndex]?.artist ?? ''}
+                  className="mt-1 text-center"
+                />
               </CenterChildBox>
-              <ProgressBar audioRef={audioRef} />
-              <Controls
-                onChangeTrack={handleChangeTrack}
-                onPlay={handlePlay}
-                disabled={playlist[currentTrack] === undefined}
-              />
-              <VolumeControl audioRef={audioRef} />
-              <PlaylistControl audioRef={audioRef} playlistViewMode="expand" />
+              <ProgressBar />
+              <Controls disabled={currentTrack == null} />
+              <VolumeControl />
+              <PlaylistControl playlistViewMode="expand" />
             </ColumnBox>
           </DrawerContent>
         </Drawer>

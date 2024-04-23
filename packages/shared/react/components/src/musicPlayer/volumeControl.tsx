@@ -1,29 +1,18 @@
-import withoutPropagation from './utils/withoutPropagation'
 import { faVolumeDown } from '@fortawesome/free-solid-svg-icons'
 import { faVolumeUp } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Slider } from '../slider'
-import { useMusicStore } from './useMusicStore'
 import { cn } from '@websites/shared/react/lib'
 import { Button } from '../button'
-import { RefObject, useEffect } from 'react'
+import { useMusicPlayerContext } from './context'
 
 type VolumeControlProps = {
-  audioRef: RefObject<HTMLAudioElement>
   className?: string
 }
-export default function VolumeControl({
-  className,
-  audioRef
-}: VolumeControlProps) {
-  const { volume, setVolume } = useMusicStore((state) => state)
-
-  useEffect(() => {
-    if (audioRef.current != null) setVolume(audioRef.current.volume * 100)
-  }, [audioRef])
+export default function VolumeControl({ className }: VolumeControlProps) {
+  const { volume, setVolume } = useMusicPlayerContext((s) => s)
 
   const onVolumeChange = (value: number) => {
-    if (audioRef.current != null) audioRef.current.volume = value / 100
     setVolume(value)
   }
 
@@ -35,10 +24,7 @@ export default function VolumeControl({
     <div className={cn('flex flex-row text-nowrap items-center', className)}>
       <Button
         variant="ghost"
-        onClick={withoutPropagation(
-          onVolumeChange,
-          volume < 10 ? 0 : volume - 10
-        )}
+        onClick={() => onVolumeChange(volume < 10 ? 0 : volume - 10)}
       >
         <FontAwesomeIcon icon={faVolumeDown} size="xl" />
       </Button>
@@ -50,10 +36,7 @@ export default function VolumeControl({
       />
       <Button
         variant="ghost"
-        onClick={withoutPropagation(
-          onVolumeChange,
-          volume > 90 ? 100 : volume + 10
-        )}
+        onClick={() => onVolumeChange(volume > 90 ? 100 : volume + 10)}
       >
         <FontAwesomeIcon icon={faVolumeUp} size="xl" />
       </Button>

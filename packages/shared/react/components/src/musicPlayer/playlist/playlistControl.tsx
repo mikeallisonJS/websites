@@ -11,9 +11,9 @@ import { RepeatMode } from '../types'
 import { Toggle } from '../../toggle'
 import { Popover } from '../../popover'
 import { Collapsible } from '../../collapsible'
-import { useMusicStore } from '../useMusicStore'
 import { useShallow } from 'zustand/react/shallow'
 import { cn } from '@websites/shared/react/lib'
+import { useMusicPlayerContext } from '../context'
 
 const PREFIX = 'PlaylistControl'
 
@@ -92,18 +92,15 @@ function ShuffleButton({
 }
 
 type PlaylistControlProps = {
-  audioRef: RefObject<HTMLAudioElement>
   className?: string
   playlistViewMode: string
 }
 export default function PlaylistControl({
   className,
-  playlistViewMode,
-  audioRef
+  playlistViewMode
 }: PlaylistControlProps) {
-  const { shuffled, repeatMode, setRepeatMode, setShuffled } = useMusicStore(
-    useShallow((state) => state)
-  )
+  const { shuffled, repeatMode, setRepeatMode, setShuffled } =
+    useMusicPlayerContext((s) => s)
 
   const [playlistVisible, showPlaylist] = useState(false)
   // const [anchorEl, setAnchor] = useState(null)
@@ -172,14 +169,12 @@ export default function PlaylistControl({
           // }}
         >
           <Playlist
-            audioRef={audioRef}
             className={`w-[400px] h-[60vh] ${playlistVisible ? '' : 'hidden'}`}
           />
         </Popover>
       ) : (
         <Collapsible>
           <Playlist
-            audioRef={audioRef}
             className={`w-[90vw] h-[60vh] ${playlistVisible ? '' : 'hidden'}`}
           />
         </Collapsible>

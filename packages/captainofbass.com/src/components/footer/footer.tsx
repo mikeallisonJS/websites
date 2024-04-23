@@ -1,6 +1,10 @@
 'use client'
 
-import { Player, Track } from '@websites/shared/react/components'
+import {
+  MusicPlayerProvider,
+  Player,
+  Track
+} from '@websites/shared/react/components'
 
 export const songs: Track[] = [
   {
@@ -120,9 +124,8 @@ export const songs: Track[] = [
 export default function Footer() {
   // PlayerInterface.setPlaylist(songs)
   return (
-    <Player
-      playlist={songs}
-      className="bg-background/20 backdrop-blur supports-[backdrop-filter]:bg-background/30"
-    />
+    <MusicPlayerProvider playlist={songs}>
+      <Player className="bg-background/20 backdrop-blur supports-[backdrop-filter]:bg-background/30" />
+    </MusicPlayerProvider>
   )
 }

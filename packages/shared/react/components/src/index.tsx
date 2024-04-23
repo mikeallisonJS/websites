@@ -2,10 +2,11 @@ import PageContainer from './pageContainer'
 import PastEvents from './pastEvents/pastEvents'
 import PastEventsTW from './pastEvents/pastEvents-tw'
 import Player from './musicPlayer/player'
-// import PlayerInterface from './musicPlayer/interface'
+// import { useMusicStore } from './musicPlayer/useMusicStore'
+import { MusicPlayerProvider } from './musicPlayer/context'
 import { Track } from './musicPlayer/types'
 
-export { PastEvents, PastEventsTW, PageContainer, Player }
+export { PastEvents, PastEventsTW, PageContainer, Player, MusicPlayerProvider }
 
 export type { Track }
 
