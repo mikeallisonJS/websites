@@ -1,17 +1,21 @@
 import secondsToString from './secondsToString'
 import { Slider } from '../slider'
-import { useShallow } from 'zustand/react/shallow'
 import { cn } from '@websites/shared/react/lib'
-import { useMusicPlayerContext } from './context'
 
 type ProgressBarProps = {
+  duration: number
+  currentTime: number
+  onSeek: (time: number) => void
   className?: string
 }
-export default function ProgressBar({ className }: ProgressBarProps) {
-  const { duration, currentTime, seek } = useMusicPlayerContext((s) => s)
-
+export default function ProgressBar({
+  className,
+  duration,
+  currentTime,
+  onSeek
+}: ProgressBarProps) {
   const handleSliderChange = (newValue: number[]) => {
-    seek(newValue[0])
+    onSeek(newValue[0])
   }
 
   return (

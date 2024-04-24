@@ -4,18 +4,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Slider } from '../slider'
 import { cn } from '@websites/shared/react/lib'
 import { Button } from '../button'
-import { useMusicPlayerContext } from './context'
 
 type VolumeControlProps = {
+  volume: number
   className?: string
+  onVolumeChange: (volume: number) => void
 }
-export default function VolumeControl({ className }: VolumeControlProps) {
-  const { volume, setVolume } = useMusicPlayerContext((s) => s)
-
-  const onVolumeChange = (value: number) => {
-    setVolume(value)
-  }
-
+export default function VolumeControl({
+  className,
+  volume,
+  onVolumeChange
+}: VolumeControlProps) {
   const handleSliderChange = (newValue: number[]) => {
     onVolumeChange(newValue[0])
   }
@@ -32,7 +31,7 @@ export default function VolumeControl({ className }: VolumeControlProps) {
         className="mx-1"
         defaultValue={[volume]}
         aria-labelledby="continuous-slider"
-        onValueCommit={handleSliderChange}
+        onValueChange={handleSliderChange}
       />
       <Button
         variant="ghost"

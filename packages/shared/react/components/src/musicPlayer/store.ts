@@ -9,6 +9,7 @@ export interface MusicStoreProps {
   currentTrackIndex: number
   currentTime: number
   duration: number
+  isPlaylistOpen: boolean
   isPlaying: boolean
   playlist: Track[]
   repeatMode: RepeatMode
@@ -25,6 +26,7 @@ export interface MusicState extends MusicStoreProps {
   setRepeatMode: (repeatMode: RepeatMode) => void
   setShuffled: (shuffled: boolean) => void
   setVolume: (volume: number) => void
+  togglePlaylistOpen: () => void
 }
 
 export type MusicStore = ReturnType<typeof createMusicStore>
@@ -36,15 +38,18 @@ export const createMusicStore = (initProps?: Partial<MusicStoreProps>) => {
     currentTrack: null,
     currentTrackIndex: 0,
     duration: 0,
+    isPlaylistOpen: false,
     isPlaying: false,
     playlist: [],
     repeatMode: RepeatMode.NORMAL,
     shuffled: false,
     volume: 100
   }
+  const mergedProps = { ...DEFAULT_PROPS, ...initProps }
+
   return createStore<MusicState>((set, get) => ({
-    ...DEFAULT_PROPS,
-    ...initProps,
+    ...mergedProps,
+    currentTrack: mergedProps.playlist[mergedProps.currentTrackIndex] ?? null,
     setAudioRef: (audioRef: HTMLAudioElement | null) => {
       set({ audioRef })
       if (audioRef == null) return
@@ -119,6 +124,8 @@ export const createMusicStore = (initProps?: Partial<MusicStoreProps>) => {
       const { audioRef } = get()
       if (audioRef == null) return
       audioRef.currentTime = progress
-    }
+    },
+    togglePlaylistOpen: () =>
+      set((state) => ({ isPlaylistOpen: !state.isPlaylistOpen }))
   }))
 }

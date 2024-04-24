@@ -6,7 +6,7 @@ import {
   MusicStore,
   MusicStoreProps,
   createMusicStore
-} from './useMusicStore'
+} from './store'
 
 export const MusicPlayerContext = createContext<MusicStore | null>(null)
 

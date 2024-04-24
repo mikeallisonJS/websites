@@ -4,7 +4,6 @@ import { faPlay } from '@fortawesome/free-solid-svg-icons/faPlay'
 import { faPause } from '@fortawesome/free-solid-svg-icons/faPause'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-import { useShallow } from 'zustand/react/shallow'
 import { cn } from '@websites/shared/react/lib'
 import { Button } from '../button'
 import { useMusicPlayerContext } from './context'
@@ -47,7 +46,7 @@ export default function Controls({
       <Button
         variant="ghost"
         className="hidden md:flex"
-        onClick={() => onSkipPrev}
+        onClick={onSkipPrev}
         disabled={disabled}
       >
         <FontAwesomeIcon icon={faStepBackward} size="xl" />
@@ -59,7 +58,7 @@ export default function Controls({
       >
         <FontAwesomeIcon icon={isPlaying ? faPause : faPlay} size="xl" />
       </Button>
-      <Button variant="ghost" onClick={() => onSkipNext} disabled={disabled}>
+      <Button variant="ghost" onClick={onSkipNext} disabled={disabled}>
         <FontAwesomeIcon icon={faStepForward} size="xl" />
       </Button>
     </div>

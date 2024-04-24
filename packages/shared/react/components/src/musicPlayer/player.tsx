@@ -12,6 +12,8 @@ import { Drawer, DrawerContent } from '../drawer'
 import { cn } from '@websites/shared/react/lib'
 import { Track } from './types'
 import { useMusicPlayerContext } from './context'
+import { Popover, PopoverAnchor, PopoverContent } from '../popover'
+import Playlist from './playlist/playlist'
 
 const PREFIX = 'Player'
 
@@ -89,11 +91,23 @@ export default function Player({
   className
 }: PlayerProps) {
   const {
+    currentTime,
     currentTrack,
     currentTrackIndex,
+    duration,
+    isPlaylistOpen,
     playlist,
+    repeatMode,
+    seek,
+    shuffled,
     setAudioRef,
-    setPlaylist
+    setPlaylist,
+    setRepeatMode,
+    setShuffled,
+    setCurrentTrackIndex,
+    setVolume,
+    togglePlaylistOpen,
+    volume
   } = useMusicPlayerContext((s) => s)
   const [maximised, setMaximised] = useState(false)
   const audioRef = useRef<HTMLAudioElement>(null)
@@ -116,55 +130,102 @@ export default function Player({
 
   return (
     <RootPaper className={className}>
-      <audio ref={audioRef} src={playlist?.[0].source} />
-      {!maximised && (
-        <RowBox onClick={openSwipeableDrawer}>
-          <CoverArt
-            src={currentTrack?.coverArt ?? defaultArt}
-            className="h-[48px] w-[48px] shrink-0"
-          />
-          <TrackDetails
-            title={currentTrack?.title ?? ''}
-            artist={currentTrack?.artist ?? ''}
-            className="md:w-[120px] grow-1 text-left m-1 shrink-0"
-          />
-          <Controls disabled={currentTrack == null} />
-          <ProgressBar className=" grow-6 hidden md:flex" />
-          <VolumeControl className=" grow-2 hidden md:flex" />
-          <PlaylistControl
-            playlistViewMode="popover"
-            className="hidden md:flex"
-          />
-        </RowBox>
-      )}
-
-      <div className="md:hidden">
-        <Drawer open={maximised} onOpenChange={closeSwipeableDrawer}>
-          <DrawerContent>
-            <div
-              className={`${PREFIX}-swipeable-puller`}
-              onClick={closeSwipeableDrawer}
+      <Popover open={isPlaylistOpen}>
+        <PopoverAnchor />
+        <audio ref={audioRef} src={playlist?.[0].source} />
+        {!maximised && (
+          <RowBox onClick={openSwipeableDrawer}>
+            <CoverArt
+              src={currentTrack?.coverArt ?? defaultArt}
+              className="h-[48px] w-[48px] shrink-0"
             />
-            <ColumnBox>
-              <CenterChildBox className="grow-1">
-                <CoverArt
-                  src={currentTrack?.coverArt ?? defaultArt}
-                  className="children h-[300px] w-[300px] shadow-md"
+            <TrackDetails
+              title={currentTrack?.title ?? ''}
+              artist={currentTrack?.artist ?? ''}
+              className="md:w-[120px] grow-1 text-left m-1 shrink-0"
+            />
+            <Controls disabled={currentTrack == null} />
+            <ProgressBar
+              currentTime={currentTime}
+              onSeek={seek}
+              duration={duration}
+              className=" grow-6 hidden md:flex"
+            />
+            <VolumeControl
+              volume={volume}
+              onVolumeChange={setVolume}
+              className=" grow-2 hidden md:flex"
+            />
+            <PlaylistControl
+              isPlaylistOpen={isPlaylistOpen}
+              onShowPlaylistToggle={togglePlaylistOpen}
+              currentTrack={currentTrack}
+              repeatMode={repeatMode}
+              playlist={playlist}
+              shuffled={shuffled}
+              onPlaylistChange={setPlaylist}
+              onRepeatModeChange={setRepeatMode}
+              onShuffledChange={setShuffled}
+              onTrackIndexChange={setCurrentTrackIndex}
+              playlistViewMode="popover"
+              className="hidden md:flex"
+            />
+            <PopoverContent>
+              <Playlist
+                currentTrack={currentTrack}
+                playlist={playlist}
+                onPlaylistChange={setPlaylist}
+                onTrackIndexChange={setCurrentTrackIndex}
+                // className={`w-[400px] h-[60vh] ${playlistVisible ? '' : 'hidden'}`}
+              />
+            </PopoverContent>
+          </RowBox>
+        )}
+
+        <div className="md:hidden">
+          <Drawer open={maximised} onOpenChange={closeSwipeableDrawer}>
+            <DrawerContent>
+              <div
+                className={`${PREFIX}-swipeable-puller`}
+                onClick={closeSwipeableDrawer}
+              />
+              <ColumnBox>
+                <CenterChildBox className="grow-1">
+                  <CoverArt
+                    src={currentTrack?.coverArt ?? defaultArt}
+                    className="children h-[300px] w-[300px] shadow-md"
+                  />
+                  <TrackDetails
+                    title={playlist?.[currentTrackIndex]?.title ?? ''}
+                    artist={playlist?.[currentTrackIndex]?.artist ?? ''}
+                    className="mt-1 text-center"
+                  />
+                </CenterChildBox>
+                <ProgressBar
+                  currentTime={currentTime}
+                  onSeek={seek}
+                  duration={duration}
                 />
-                <TrackDetails
-                  title={playlist?.[currentTrackIndex]?.title ?? ''}
-                  artist={playlist?.[currentTrackIndex]?.artist ?? ''}
-                  className="mt-1 text-center"
+                <Controls disabled={currentTrack == null} />
+                <VolumeControl volume={volume} onVolumeChange={setVolume} />
+                <PlaylistControl
+                  isPlaylistOpen={isPlaylistOpen}
+                  onShowPlaylistToggle={togglePlaylistOpen}
+                  currentTrack={currentTrack}
+                  repeatMode={repeatMode}
+                  playlist={playlist}
+                  shuffled={shuffled}
+                  onPlaylistChange={setPlaylist}
+                  onRepeatModeChange={setRepeatMode}
+                  onShuffledChange={setShuffled}
+                  onTrackIndexChange={setCurrentTrackIndex}
+                  playlistViewMode="expand"
                 />
-              </CenterChildBox>
-              <ProgressBar />
-              <Controls disabled={currentTrack == null} />
-              <VolumeControl />
-              <PlaylistControl playlistViewMode="expand" />
-            </ColumnBox>
-          </DrawerContent>
-        </Drawer>
-      </div>
+              </ColumnBox>
+            </DrawerContent>
+          </Drawer>
+        </div>
+      </Popover>
     </RootPaper>
   )
 }

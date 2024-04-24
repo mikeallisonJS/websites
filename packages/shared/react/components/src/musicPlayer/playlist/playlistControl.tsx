@@ -1,4 +1,4 @@
-import { ReactNode, RefObject, useState } from 'react'
+import { ReactNode } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfinity } from '@fortawesome/free-solid-svg-icons/faInfinity'
 import { faList } from '@fortawesome/free-solid-svg-icons/faList'
@@ -7,13 +7,9 @@ import { faShuffle } from '@fortawesome/free-solid-svg-icons/faShuffle'
 
 import Playlist from './playlist'
 
-import { RepeatMode } from '../types'
+import { RepeatMode, Track } from '../types'
 import { Toggle } from '../../toggle'
-import { Popover } from '../../popover'
-import { Collapsible } from '../../collapsible'
-import { useShallow } from 'zustand/react/shallow'
 import { cn } from '@websites/shared/react/lib'
-import { useMusicPlayerContext } from '../context'
 
 const PREFIX = 'PlaylistControl'
 
@@ -93,25 +89,34 @@ function ShuffleButton({
 
 type PlaylistControlProps = {
   className?: string
+  playlist: Track[]
+  currentTrack: Track | null
+  isPlaylistOpen: boolean
+  repeatMode: RepeatMode
+  shuffled: boolean
+  onRepeatModeChange: (mode: RepeatMode) => void
+  onShuffledChange: (bool: boolean) => void
+  onTrackIndexChange: (index: number) => void
+  onPlaylistChange: (newList: Track[]) => void
+  onShowPlaylistToggle: () => void
   playlistViewMode: string
 }
 export default function PlaylistControl({
   className,
-  playlistViewMode
+  playlistViewMode,
+  playlist,
+  currentTrack,
+  isPlaylistOpen,
+  repeatMode,
+  shuffled,
+  onShowPlaylistToggle,
+  onRepeatModeChange,
+  onShuffledChange,
+  onTrackIndexChange,
+  onPlaylistChange
 }: PlaylistControlProps) {
-  const { shuffled, repeatMode, setRepeatMode, setShuffled } =
-    useMusicPlayerContext((s) => s)
-
-  const [playlistVisible, showPlaylist] = useState(false)
-  // const [anchorEl, setAnchor] = useState(null)
-
-  const onShuffle = (bool: boolean) => setShuffled(bool)
-  const onRepeat = (mode: RepeatMode) => setRepeatMode(mode)
-
-  const handlePopoverClose = () => {
-    showPlaylist(false)
-    // setAnchor(null)
-  }
+  const onShuffle = (bool: boolean) => onShuffledChange(bool)
+  const onRepeat = (mode: RepeatMode) => onRepeatModeChange(mode)
 
   return (
     <RootBox className={className}>
@@ -139,45 +144,25 @@ export default function PlaylistControl({
             onShuffle(!shuffled)
           }}
         />
+
         <Toggle
           className={classes.button}
           value="show playlist"
-          pressed={playlistVisible}
-          onChange={(e) => {
-            // setAnchor(
-            //   e.target.parentElement.parentElement.parentElement.parentElement
-            // )
-            showPlaylist(!playlistVisible)
-          }}
+          pressed={isPlaylistOpen}
+          onChange={onShowPlaylistToggle}
         >
           <FontAwesomeIcon icon={faList} />
         </Toggle>
       </ButtonContainer>
 
-      {playlistViewMode === 'popover' ? (
-        <Popover
-          open={playlistVisible}
-          // anchorEl={anchorEl}
-          onOpenChange={handlePopoverClose}
-          // anchorOrigin={{
-          //   vertical: 'top',
-          //   horizontal: 'right'
-          // }}
-          // transformOrigin={{
-          //   vertical: 'bottom',
-          //   horizontal: 'right'
-          // }}
-        >
-          <Playlist
-            className={`w-[400px] h-[60vh] ${playlistVisible ? '' : 'hidden'}`}
-          />
-        </Popover>
-      ) : (
-        <Collapsible>
-          <Playlist
-            className={`w-[90vw] h-[60vh] ${playlistVisible ? '' : 'hidden'}`}
-          />
-        </Collapsible>
+      {playlistViewMode !== 'popover' && (
+        <Playlist
+          currentTrack={currentTrack}
+          playlist={playlist}
+          onPlaylistChange={onPlaylistChange}
+          onTrackIndexChange={onTrackIndexChange}
+          className={`w-[90vw] h-[60vh] ${isPlaylistOpen ? '' : 'hidden'}`}
+        />
       )}
     </RootBox>
   )
