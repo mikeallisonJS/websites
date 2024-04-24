@@ -56,7 +56,7 @@
   "generators": {
     "@nx/next": {
       "application": {
-        "style": "@emotion/styled",
+        "style": "tailwindcss",
         "linter": "eslint"
       }
     },

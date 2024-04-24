@@ -2,33 +2,16 @@
 
 import Image from 'next/image'
 import { useState } from 'react'
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger
-} from '../dialog'
-import { Button } from '../button'
-import { Label } from '../label'
-import { Input } from '../input'
+
+import { Dialog, DialogContent } from './dialog'
 
 type PastEventsProps = {
   images: string[]
 }
-export default function PastEventsTW({ images }: PastEventsProps) {
-  const [open, setOpen] = useState(false)
+export default function PastEvents({ images }: PastEventsProps) {
   const [selectedImage, setSelectedImage] = useState<string | undefined>(
     undefined
   )
-  const select = (index: number): void => {
-    setSelectedImage(images[index])
-  }
-  const handleClose = (): void => {
-    setSelectedImage(undefined)
-  }
 
   const handleOpenChanged = () => {
     setSelectedImage(undefined)
@@ -62,12 +45,14 @@ export default function PastEventsTW({ images }: PastEventsProps) {
       </div>
       <Dialog open={selectedImage != null} onOpenChange={handleOpenChanged}>
         <DialogContent className="min-w-[100vw] min-h-[calc(100vh-140px)] z-50">
-          <Image
-            src={`/images/flyers/${selectedImage}`}
-            alt="selected flyer"
-            style={{ objectFit: 'contain' }}
-            fill
-          />
+          {selectedImage && (
+            <Image
+              src={`/images/flyers/${selectedImage}`}
+              alt="selected flyer"
+              style={{ objectFit: 'contain' }}
+              fill
+            />
+          )}
         </DialogContent>
       </Dialog>
     </>

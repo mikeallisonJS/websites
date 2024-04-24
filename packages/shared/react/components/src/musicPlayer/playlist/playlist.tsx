@@ -1,44 +1,53 @@
-import ReactDraggableList from 'react-draggable-list'
+import { faPlay } from '@fortawesome/free-solid-svg-icons/faPlay'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-import PlaylistItem from './playlistItem'
-import { createRef } from 'react'
+import { ScrollArea } from '../../scrollArea'
+import { Table, TableCell, TableRow } from '../../table'
+import CoverArt from '../coverArt'
 import { Track } from '../types'
-import { cn } from '@websites/shared/react/lib'
-import { useMusicPlayerContext } from '../context'
 
 type PlaylistProps = {
   playlist: Track[]
   currentTrack: Track | null
   onTrackIndexChange: (index: number) => void
-  onPlaylistChange: (newList: Track[]) => void
   className?: string
 }
 export default function Playlist({
-  className,
   playlist,
   currentTrack,
-  onTrackIndexChange,
-  onPlaylistChange
+  onTrackIndexChange
 }: PlaylistProps) {
-  const onReorder = (newList: Track[]) => onPlaylistChange(newList)
-  const onTrackSelect = (index: number) => onTrackIndexChange(index)
-
-  const draggablelistContainerRef = createRef<HTMLDivElement>()
-
   return (
-    <div
-      className={cn('w-[10vw] h-[10vh]', className)}
-      ref={draggablelistContainerRef}
-    >
-      {playlist.map((track: Track) => (
-        <PlaylistItem
-          key={track.ID}
-          track={track}
-          playlist={playlist}
-          currentTrack={currentTrack}
-          onTrackSelect={onTrackSelect}
-        />
-      ))}
-    </div>
+    <ScrollArea className="h-[50vh] w-full">
+      <Table>
+        {playlist.map((track: Track, index) => (
+          <TableRow key={track.ID}>
+            <TableCell
+              onClick={() => onTrackIndexChange(index)}
+              className="py-1"
+            >
+              <div className="flex flex-row gap-2">
+                {/*render now playing icon or empty box matching icon size */}
+                {currentTrack?.ID === track.ID ? (
+                  <FontAwesomeIcon icon={faPlay} className="w-[24px]" />
+                ) : (
+                  <div className="w-[24px] h-[24px]" />
+                )}
+                <CoverArt src={track.coverArt} className="h-[24px] w-[24px]" />
+
+                <div className="w-[50px] grow shrink mx-1">
+                  <div className="w-full text-sm whitespace-nowrap overflow-hidden">
+                    {track.title}
+                  </div>
+                  <div className="w-full text-xs whitespace-nowrap overflow-hidden">
+                    {track.artist}
+                  </div>
+                </div>
+              </div>
+            </TableCell>
+          </TableRow>
+        ))}
+      </Table>
+    </ScrollArea>
   )
 }

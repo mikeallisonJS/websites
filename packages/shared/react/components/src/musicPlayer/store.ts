@@ -1,6 +1,7 @@
 'use client'
 
 import { createStore } from 'zustand'
+
 import { RepeatMode, Track } from './types'
 
 export interface MusicStoreProps {

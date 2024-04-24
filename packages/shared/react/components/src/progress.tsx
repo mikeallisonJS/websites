@@ -1,7 +1,7 @@
 'use client'
 
-import * as React from 'react'
 import * as ProgressPrimitive from '@radix-ui/react-progress'
+import React from 'react'
 
 import { cn } from '@websites/shared/react/lib'
 

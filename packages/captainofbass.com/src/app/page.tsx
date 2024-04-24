@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-import { PastEventsTW } from '@websites/shared/react/components'
+import { PastEvents } from '@websites/shared/react/components'
 
 import Bio from '../components/bio/bio'
 
@@ -69,7 +69,7 @@ export default function Index() {
           />
         </div>
         <Bio />
-        <PastEventsTW images={images} />
+        <PastEvents images={images} />
       </div>
     </div>
   )

@@ -1,6 +1,13 @@
-import secondsToString from './secondsToString'
-import { Slider } from '../slider'
 import { cn } from '@websites/shared/react/lib'
+
+import { Slider } from '../slider'
+
+function secondsToString(seconds: number) {
+  let minutes = Math.floor(seconds / 60).toString()
+  let mseconds = Math.floor(seconds % 60).toString()
+
+  return minutes + ':' + (mseconds.length < 2 ? '0' : '') + mseconds
+}
 
 type ProgressBarProps = {
   duration: number

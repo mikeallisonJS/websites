@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-namespace
-import * as React from 'react'
+import React from 'react'
 
 import { cn } from '@websites/shared/react/lib'
 

@@ -1,6 +1,8 @@
 'use client'
 
-import { createContext } from 'react'
+import { createContext, useRef, useContext } from 'react'
+import { useStore } from 'zustand'
+
 import {
   MusicState,
   MusicStore,
@@ -10,14 +12,12 @@ import {
 
 export const MusicPlayerContext = createContext<MusicStore | null>(null)
 
-import { useRef } from 'react'
-
 type MusicPlayerProviderProps = React.PropsWithChildren<MusicStoreProps>
 
 export function MusicPlayerProvider({
   children,
   ...props
-}: MusicPlayerProviderProps) {
+}: Partial<MusicPlayerProviderProps>) {
   const storeRef = useRef<MusicStore>()
   if (!storeRef.current) {
     storeRef.current = createMusicStore(props)
@@ -28,9 +28,6 @@ export function MusicPlayerProvider({
     </MusicPlayerContext.Provider>
   )
 }
-
-import { useContext } from 'react'
-import { useStore } from 'zustand'
 
 export function useMusicPlayerContext<T>(
   selector: (state: MusicState) => T

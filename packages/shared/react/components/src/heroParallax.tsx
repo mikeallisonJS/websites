@@ -1,6 +1,5 @@
 'use client'
 
-import React from 'react'
 import {
   motion,
   useScroll,
@@ -10,6 +9,7 @@ import {
 } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
+import React from 'react'
 
 type Product = {
   title: string

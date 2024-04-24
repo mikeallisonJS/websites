@@ -1,11 +1,13 @@
+import { faPause } from '@fortawesome/free-solid-svg-icons/faPause'
+import { faPlay } from '@fortawesome/free-solid-svg-icons/faPlay'
 import { faStepBackward } from '@fortawesome/free-solid-svg-icons/faStepBackward'
 import { faStepForward } from '@fortawesome/free-solid-svg-icons/faStepForward'
-import { faPlay } from '@fortawesome/free-solid-svg-icons/faPlay'
-import { faPause } from '@fortawesome/free-solid-svg-icons/faPause'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import { cn } from '@websites/shared/react/lib'
+
 import { Button } from '../button'
+
 import { useMusicPlayerContext } from './context'
 
 type ControlsProps = {
@@ -19,6 +21,7 @@ export default function Controls({
   const {
     currentTrackIndex,
     isPlaying,
+    isPlaylistOpen,
     pause,
     play,
     playlist,
@@ -45,7 +48,7 @@ export default function Controls({
     >
       <Button
         variant="ghost"
-        className="hidden md:flex"
+        className={`${isPlaylistOpen ? '' : 'hidden md:flex'}`}
         onClick={onSkipPrev}
         disabled={disabled}
       >
@@ -58,7 +61,12 @@ export default function Controls({
       >
         <FontAwesomeIcon icon={isPlaying ? faPause : faPlay} size="xl" />
       </Button>
-      <Button variant="ghost" onClick={onSkipNext} disabled={disabled}>
+      <Button
+        variant="ghost"
+        onClick={onSkipNext}
+        disabled={disabled}
+        className={`${isPlaylistOpen ? '' : 'hidden md:flex'}`}
+      >
         <FontAwesomeIcon icon={faStepForward} size="xl" />
       </Button>
     </div>
