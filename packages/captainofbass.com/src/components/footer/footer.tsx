@@ -8,8 +8,24 @@ import {
 
 export const songs: Track[] = [
   {
+    ID: 'uebok-2024',
+    coverArt: '/images/albums/uebok.png',
+    title: 'Uebok (Captain extended 2024 remix)',
+    artist: 'Apashe',
+    source:
+      'https://www.mediafire.com/file_premium/piwjyso0y28m92j/Apashe_-_Uebok_%2528Captain_remix%2529_3%2528extended%2529.mp3/file'
+  },
+  {
+    ID: 'bangharder',
+    coverArt: '/images/albums/Lost_Trips_Final.V2_512.jpg',
+    title: 'Bang Harder',
+    artist: 'Blunter S. Whompson, Captain, Sqwurl',
+    source:
+      'https://www.mediafire.com/file_premium/ns8d5jlzokc8plk/Captain_x_Sqwurl_x_Blunter_s._Whompson_-_Bang_Harder_%2528Original_Mix%2529.mp3/file'
+  },
+  {
     ID: 'uebok',
-    coverArt: '/images/cpt-border.png',
+    coverArt: '/images/albums/uebok.png',
     title: 'Uebok (Captain remix)',
     artist: 'Apashe',
     source:
@@ -17,7 +33,7 @@ export const songs: Track[] = [
   },
   {
     ID: 'xld',
-    coverArt: '/images/cpt-border.png',
+    coverArt: '/images/albums/xld.jpg',
     title: 'XLD (Captain remix)',
     artist: 'Tyr Kohout',
     source:
@@ -25,7 +41,7 @@ export const songs: Track[] = [
   },
   {
     ID: 'drop-bass',
-    coverArt: '/images/cpt-border.png',
+    coverArt: '/images/albums/drop-bass.png',
     title: 'Drop Bass',
     artist: 'Captain',
     source:
@@ -33,7 +49,7 @@ export const songs: Track[] = [
   },
   {
     ID: 'chaos',
-    coverArt: '/images/cpt-border.png',
+    coverArt: '/images/albums/chaos.jpg',
     title: 'Chaos',
     artist: 'Captain',
     source:
@@ -41,7 +57,7 @@ export const songs: Track[] = [
   },
   {
     ID: 'iam',
-    coverArt: '/images/cpt-border.png',
+    coverArt: '/images/albums/iamcaptain.png',
     title: 'I am Captain',
     artist: 'Captain',
     source:
@@ -49,7 +65,7 @@ export const songs: Track[] = [
   },
   {
     ID: 'saxaboom',
-    coverArt: '/images/cpt-border.png',
+    coverArt: '/images/albums/saxaboom.png',
     title: 'Saxaboom',
     artist: 'Captain',
     source:
@@ -57,7 +73,7 @@ export const songs: Track[] = [
   },
   {
     ID: 'thicc',
-    coverArt: '/images/cpt-border.png',
+    coverArt: '/images/albums/thicc.png',
     title: 'Thicc',
     artist: 'Captain',
     source:
@@ -65,7 +81,7 @@ export const songs: Track[] = [
   },
   {
     ID: 'mama',
-    coverArt: '/images/cpt-border.png',
+    coverArt: '/images/albums/mama.jpg',
     title: 'Mama (feat Ellie Golding) (Captain DNB Remix)',
     artist: 'Clean Bandit',
     source:
@@ -73,7 +89,7 @@ export const songs: Track[] = [
   },
   {
     ID: 'shake',
-    coverArt: '/images/cpt-border.png',
+    coverArt: '/images/albums/shake.png',
     title: 'SHAKE feat Willdabeast (Captain DNB Remix)',
     artist: 'DEFUNK',
     source:
@@ -81,7 +97,7 @@ export const songs: Track[] = [
   },
   {
     ID: 'contagious',
-    coverArt: '/images/cpt-border.png',
+    coverArt: '/images/albums/contagious.jpg',
     title: 'Contagious (Captain Breaks Remix)',
     artist: 'Haywyre',
     source:
@@ -89,7 +105,7 @@ export const songs: Track[] = [
   },
   {
     ID: 'heavy',
-    coverArt: '/images/cpt-border.png',
+    coverArt: '/images/albums/heavy.jpg',
     title: 'Heavy (Captain DNB Remix)',
     artist: 'Sam Smyers',
     source:
@@ -97,7 +113,7 @@ export const songs: Track[] = [
   },
   {
     ID: 'never-let-you-go',
-    coverArt: '/images/cpt-border.png',
+    coverArt: '/images/albums/neverletyougo.jpg',
     title: 'Never Let You Go (feat Sophia Reyes) (Captain DNB Remix)',
     artist: 'Slushii',
     source:
@@ -105,7 +121,7 @@ export const songs: Track[] = [
   },
   {
     ID: 'top-shelf',
-    coverArt: '/images/cpt-border.png',
+    coverArt: '/images/albums/top-shelf.jpg',
     title: 'Top Shelf (feat Bipolar Sunshine) (Captain DNB Remix)',
     artist: 'Whethan',
     source:
@@ -113,7 +129,7 @@ export const songs: Track[] = [
   },
   {
     ID: 'never-let-you-go-extended',
-    coverArt: '/images/cpt-border.png',
+    coverArt: '/images/albums/neverletyougo.jpg',
     title: 'Never Let You Go (feat Sophia Reyes) (Extended Captain DNB Remix)',
     artist: 'Slushii',
     source:

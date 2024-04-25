@@ -1,5 +1,7 @@
 'use client'
 
+import Image from 'next/image'
+
 import {
   Table,
   TableCell,
@@ -39,9 +41,16 @@ export default function MusicList({ type }: MusicListProps) {
             onClick={() => onSelect(song.ID)}
             className="text-left cursor-pointer"
           >
-            <TableCell>
-              {song.artist} - {song.title}
+            <TableCell className="w-24">
+              <Image
+                src={song.coverArt}
+                alt={song.title}
+                width={50}
+                height={50}
+              />
             </TableCell>
+            <TableCell className="w-80">{song.artist}</TableCell>
+            <TableCell>{song.title}</TableCell>
           </TableRow>
         ))}
       </Table>

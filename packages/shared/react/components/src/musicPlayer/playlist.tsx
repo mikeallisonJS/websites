@@ -28,16 +28,20 @@ export default function Playlist({
                 onClick={() => onPlaylistSelect(index)}
                 className="py-1 cursor-pointer"
               >
-                <div className="flex flex-row gap-2">
+                <div className="flex flex-row gap-2 align-middle">
                   {/*render now playing icon or empty box matching icon size */}
                   {currentTrack?.ID === track.ID ? (
-                    <FontAwesomeIcon icon={faPlay} className="w-[24px]" />
+                    <FontAwesomeIcon
+                      icon={faPlay}
+                      size="lg"
+                      className="w-[36px] flex align-middle py-2"
+                    />
                   ) : (
-                    <div className="w-[24px] h-[24px]" />
+                    <div className="w-[36px] h-[36px]" />
                   )}
                   <CoverArt
                     src={track.coverArt}
-                    className="h-[24px] w-[24px]"
+                    className="h-[36px] w-[36px]"
                   />
 
                   <div className="w-[50px] grow shrink mx-1">
