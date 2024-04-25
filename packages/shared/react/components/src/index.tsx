@@ -1,10 +1,19 @@
-import { MusicPlayerProvider } from './musicPlayer/context'
+import {
+  MusicPlayerProvider,
+  useMusicPlayerContext
+} from './musicPlayer/context'
 import Player from './musicPlayer/player'
 import { Track } from './musicPlayer/types'
 import PageContainer from './pageContainer'
 import PastEvents from './pastEvents'
 
-export { PastEvents, PageContainer, Player, MusicPlayerProvider }
+export {
+  PastEvents,
+  PageContainer,
+  Player,
+  MusicPlayerProvider,
+  useMusicPlayerContext
+}
 
 export type { Track }
 

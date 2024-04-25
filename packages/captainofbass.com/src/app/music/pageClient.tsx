@@ -1,13 +1,18 @@
 'use client'
 
+import { MusicPlayerProvider } from '@websites/shared/react/components'
+
+import { songs } from '../../components/footer/footer'
 import MusicList, { MusicType } from '../../components/musicList/musicList'
 
 export default function MusicClient() {
   return (
     <>
-      <MusicList type={MusicType.Originals} />
-      <div className="h-4" />
-      <MusicList type={MusicType.Remixes} />
+      <MusicPlayerProvider playlist={songs}>
+        <MusicList type={MusicType.Originals} />
+        <div className="h-4" />
+        <MusicList type={MusicType.Remixes} />
+      </MusicPlayerProvider>
     </>
   )
 }

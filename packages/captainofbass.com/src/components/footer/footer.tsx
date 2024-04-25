@@ -122,7 +122,6 @@ export const songs: Track[] = [
 ]
 
 export default function Footer() {
-  // PlayerInterface.setPlaylist(songs)
   return (
     <MusicPlayerProvider playlist={songs}>
       <Player className="bg-background/20 backdrop-blur supports-[backdrop-filter]:bg-background/30" />
