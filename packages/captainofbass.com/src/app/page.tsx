@@ -61,6 +61,7 @@ export default function Index() {
             alt="logo"
             width={617}
             height={181}
+            priority
             style={{
               maxWidth: '90vw',
               height: '22vh',

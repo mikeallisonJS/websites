@@ -25,6 +25,7 @@ export function MobileNav() {
           alt="logo"
           height={64}
           width={218}
+          priority
         />
       </Link>
       <SheetTrigger asChild>

@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-import { HeroParallax } from '@websites/shared/react/components'
+import { PageContainer, PastEvents } from '@websites/shared/react/components'
 
 const images = [
   'sltdnb-24-1.png',
@@ -26,25 +26,20 @@ const images = [
 
 export default function Index() {
   return (
-    <HeroParallax
-      products={images.map((image) => ({
-        title: image,
-        link: `/images/flyers/${image}`,
-        thumbnail: `/images/flyers/${image}`
-      }))}
-      itemsPerRow={3}
-    >
-      <div className="z-50" style={{ marginBottom: '-50vh' }}>
-        <Image
-          src="/images/sltdnb-v.svg"
-          alt="logo"
-          id="logo"
-          width={565}
-          height={645}
-          style={{ margin: 'auto' }}
-        />
-        <div className="text-center text-4xl">South Lake Tahoe Drum & Bass</div>
+    <PageContainer>
+      <Image
+        src="/images/sltdnb-v.svg"
+        alt="logo"
+        id="logo"
+        width={565}
+        height={645}
+        style={{ margin: 'auto' }}
+        priority
+      />
+      <div className="text-center text-4xl mb-5">
+        South Lake Tahoe Drum & Bass
       </div>
-    </HeroParallax>
+      <PastEvents images={images} />
+    </PageContainer>
   )
 }

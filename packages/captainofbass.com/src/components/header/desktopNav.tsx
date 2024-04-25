@@ -11,6 +11,7 @@ export function DesktopNav() {
           alt="logo"
           height={64}
           width={218}
+          priority
         />
       </Link>
       <nav className="flex justify-end items-center gap-4 text-sm lg:gap-6 mr-16">

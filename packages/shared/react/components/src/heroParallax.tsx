@@ -86,6 +86,7 @@ export const HeroParallax = ({
           i % 2 === 1 ? (
             <motion.div
               className={`flex flex-row-reverse space-x-reverse space-x-20 mb-20`}
+              key={`hero-row-${i}`}
             >
               {row.map(
                 (product) =>
@@ -93,20 +94,23 @@ export const HeroParallax = ({
                     <ProductCard
                       product={product}
                       translate={translateX}
-                      key={product.title}
+                      key={`hero-card-${product.title}`}
                     />
                   )
               )}
             </motion.div>
           ) : (
-            <motion.div className={`flex flex-row  mb-20 space-x-20`}>
+            <motion.div
+              className={`flex flex-row  mb-20 space-x-20`}
+              key={`hero-row-${i}`}
+            >
               {row.map(
                 (product) =>
                   product != null && (
                     <ProductCard
                       product={product}
                       translate={translateXReverse}
-                      key={product.title}
+                      key={`hero-card-${product.title}`}
                     />
                   )
               )}
@@ -137,7 +141,7 @@ export const ProductCard = ({
       whileHover={{
         y: -20
       }}
-      key={product.title}
+      // key={`hero-card-${product.title}`}
       className="group/product h-96 w-[30rem] relative shrink-0"
     >
       <Link
