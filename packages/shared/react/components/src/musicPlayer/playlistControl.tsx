@@ -7,8 +7,9 @@ import { ReactNode } from 'react'
 
 import { cn } from '@websites/shared/react/lib'
 
-import { Toggle } from '../../toggle'
-import { RepeatMode } from '../types'
+import { Toggle } from '../toggle'
+
+import { RepeatMode } from './types'
 
 type RootBoxProps = {
   children: ReactNode
@@ -36,14 +37,16 @@ type PlaylistControlProps = {
   shuffled: boolean
   onRepeatModeChange: (mode: RepeatMode) => void
   onShuffledChange: (bool: boolean) => void
-  onShowPlaylistToggle: () => void
+  onOpenDrawer: () => void
+  onCloseDrawer: () => void
 }
 export default function PlaylistControl({
   className,
   isPlaylistOpen,
   repeatMode,
   shuffled,
-  onShowPlaylistToggle,
+  onOpenDrawer,
+  onCloseDrawer,
   onRepeatModeChange,
   onShuffledChange
 }: PlaylistControlProps) {
@@ -90,7 +93,7 @@ export default function PlaylistControl({
           className={'m-auto grow-1'}
           value="show playlist"
           pressed={isPlaylistOpen}
-          onClick={onShowPlaylistToggle}
+          onClick={isPlaylistOpen ? onCloseDrawer : onOpenDrawer}
         >
           <FontAwesomeIcon icon={faList} />
         </Toggle>

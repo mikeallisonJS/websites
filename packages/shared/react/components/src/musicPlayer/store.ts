@@ -10,7 +10,7 @@ export interface MusicStoreProps {
   currentTrackIndex: number
   currentTime: number
   duration: number
-  isPlaylistOpen: boolean
+  isDrawerOpen: boolean
   isPlaying: boolean
   playlist: Track[]
   repeatMode: RepeatMode
@@ -18,6 +18,8 @@ export interface MusicStoreProps {
   volume: number
 }
 export interface MusicState extends MusicStoreProps {
+  closeDrawer: () => void
+  openDrawer: () => void
   pause: () => void
   play: () => void
   seek: (progress: number) => void
@@ -27,7 +29,6 @@ export interface MusicState extends MusicStoreProps {
   setRepeatMode: (repeatMode: RepeatMode) => void
   setShuffled: (shuffled: boolean) => void
   setVolume: (volume: number) => void
-  togglePlaylistOpen: () => void
 }
 
 export type MusicStore = ReturnType<typeof createMusicStore>
@@ -39,7 +40,7 @@ export const createMusicStore = (initProps?: Partial<MusicStoreProps>) => {
     currentTrack: null,
     currentTrackIndex: 0,
     duration: 0,
-    isPlaylistOpen: false,
+    isDrawerOpen: false,
     isPlaying: false,
     playlist: [],
     repeatMode: RepeatMode.NORMAL,
@@ -126,7 +127,7 @@ export const createMusicStore = (initProps?: Partial<MusicStoreProps>) => {
       if (audioRef == null) return
       audioRef.currentTime = progress
     },
-    togglePlaylistOpen: () =>
-      set((state) => ({ isPlaylistOpen: !state.isPlaylistOpen }))
+    openDrawer: () => set({ isDrawerOpen: true }),
+    closeDrawer: () => set({ isDrawerOpen: false })
   }))
 }

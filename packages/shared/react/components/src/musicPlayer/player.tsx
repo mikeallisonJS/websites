@@ -1,84 +1,19 @@
 'use client'
 
-import { useState, ReactNode, useRef, useEffect } from 'react'
+import { ReactNode, useRef, useEffect } from 'react'
 
 import { cn } from '@websites/shared/react/lib'
 
 import { Drawer, DrawerContent } from '../drawer'
-import { Popover, PopoverAnchor, PopoverContent } from '../popover'
 
 import { useMusicPlayerContext } from './context'
 import Controls from './controls'
 import CoverArt from './coverArt'
-import Playlist from './playlist/playlist'
-import PlaylistControl from './playlist/playlistControl'
+import Playlist from './playlist'
+import PlaylistControl from './playlistControl'
 import ProgressBar from './progressBar'
 import TrackDetails from './trackDetails'
 import VolumeControl from './volumeControl'
-
-const PREFIX = 'Player'
-
-type RootPaperProps = {
-  children: ReactNode
-  className?: string
-}
-
-const RootPaper = ({ children, className }: RootPaperProps) => (
-  <div
-    className={cn(
-      'z-50 w-[100vw] h-[62px] flex align-middle fixed bottom-0 box-border overflow-hidden bg-popover px-1 text-popover-foreground shadow-md ',
-      className
-    )}
-  >
-    {children}
-  </div>
-)
-
-type RowBoxProps = {
-  children: ReactNode
-  className?: string
-  onClick: () => void
-}
-const RowBox = ({ children, onClick, className }: RowBoxProps) => (
-  <div
-    className={cn(
-      'flex flex-row w-full justify-between items-center flex-nowrap',
-      className
-    )}
-    onClick={onClick}
-  >
-    {children}
-  </div>
-)
-
-type ColumnBoxProps = {
-  children: ReactNode
-}
-const ColumnBox = ({ children }: ColumnBoxProps) => (
-  <div
-    className={cn(
-      'flex flex-col justify-end items-stretch flex-nowrap w-full h-full'
-    )}
-  >
-    {children}
-  </div>
-)
-
-type CenterChildBoxProps = {
-  children: ReactNode
-  className?: string
-}
-
-const CenterChildBox = ({ children, className }: CenterChildBoxProps) => (
-  <div
-    className={cn(
-      'flex flex-col justify-center items-center flex-nowrap',
-      className
-    )}
-  >
-    {children}
-  </div>
-)
 
 type PlayerProps = {
   disableDrawer?: boolean
@@ -92,11 +27,14 @@ export default function Player({
   className
 }: PlayerProps) {
   const {
+    closeDrawer,
     currentTime,
     currentTrack,
     currentTrackIndex,
     duration,
-    isPlaylistOpen,
+    isDrawerOpen,
+    openDrawer,
+    play,
     playlist,
     repeatMode,
     seek,
@@ -106,7 +44,6 @@ export default function Player({
     setShuffled,
     setCurrentTrackIndex,
     setVolume,
-    togglePlaylistOpen,
     volume
   } = useMusicPlayerContext((s) => s)
   const audioRef = useRef<HTMLAudioElement>(null)
@@ -115,10 +52,27 @@ export default function Player({
     setAudioRef(audioRef.current)
   }, [audioRef, setAudioRef])
 
+  const onPlaylistSelect = (index: number) => {
+    setCurrentTrackIndex(index)
+    play()
+    closeDrawer()
+  }
+
   return (
-    <RootPaper className={className}>
+    <div
+      className={cn(
+        'z-50 w-[100vw] h-[62px] flex align-middle fixed bottom-0 box-border overflow-hidden bg-popover px-1 text-popover-foreground shadow-md ',
+        className
+      )}
+    >
       <audio ref={audioRef} src={playlist?.[0].source} />
-      <RowBox onClick={togglePlaylistOpen}>
+      <div className="w-full h-1"></div>
+      <div
+        className={cn(
+          'flex flex-row w-full justify-between items-center flex-nowrap',
+          className
+        )}
+      >
         <CoverArt
           src={currentTrack?.coverArt ?? defaultArt}
           className="h-[48px] w-[48px] shrink-0"
@@ -141,21 +95,31 @@ export default function Player({
           className=" grow-2 hidden md:flex"
         />
         <PlaylistControl
-          isPlaylistOpen={isPlaylistOpen}
-          onShowPlaylistToggle={togglePlaylistOpen}
+          isPlaylistOpen={isDrawerOpen}
+          onOpenDrawer={openDrawer}
+          onCloseDrawer={closeDrawer}
           repeatMode={repeatMode}
           shuffled={shuffled}
           onRepeatModeChange={setRepeatMode}
           onShuffledChange={setShuffled}
           className="hidden md:flex"
         />
-      </RowBox>
+      </div>
 
-      <Drawer open={isPlaylistOpen}>
+      <Drawer open={isDrawerOpen && !disableDrawer} onClose={closeDrawer}>
         <DrawerContent className={className}>
           <div className="flex md:hidden pt-2">
-            <ColumnBox>
-              <CenterChildBox className="grow-1">
+            <div
+              className={cn(
+                'flex flex-col justify-end items-stretch flex-nowrap w-full h-full'
+              )}
+            >
+              <div
+                className={cn(
+                  'flex flex-col justify-center items-center flex-nowrap grow-1',
+                  className
+                )}
+              >
                 <CoverArt
                   src={currentTrack?.coverArt ?? defaultArt}
                   className="children h-[300px] w-[300px] shadow-md"
@@ -165,7 +129,7 @@ export default function Player({
                   artist={playlist?.[currentTrackIndex]?.artist ?? ''}
                   className="mt-1 text-center"
                 />
-              </CenterChildBox>
+              </div>
               <ProgressBar
                 currentTime={currentTime}
                 onSeek={seek}
@@ -174,24 +138,25 @@ export default function Player({
               <Controls disabled={currentTrack == null} />
               <VolumeControl volume={volume} onVolumeChange={setVolume} />
               <PlaylistControl
-                isPlaylistOpen={isPlaylistOpen}
-                onShowPlaylistToggle={togglePlaylistOpen}
+                isPlaylistOpen={isDrawerOpen}
+                onOpenDrawer={openDrawer}
+                onCloseDrawer={closeDrawer}
                 repeatMode={repeatMode}
                 shuffled={shuffled}
                 onRepeatModeChange={setRepeatMode}
                 onShuffledChange={setShuffled}
               />
-            </ColumnBox>
+            </div>
           </div>
           <div className="hidden md:flex pt-2 pb-[62px]">
             <Playlist
               currentTrack={currentTrack}
               playlist={playlist}
-              onTrackIndexChange={setCurrentTrackIndex}
+              onPlaylistSelect={onPlaylistSelect}
             />
           </div>
         </DrawerContent>
       </Drawer>
-    </RootPaper>
+    </div>
   )
 }
