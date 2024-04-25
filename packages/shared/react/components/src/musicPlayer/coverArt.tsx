@@ -11,8 +11,8 @@ export default function CoverArt({ src, className }: CoverArtProps) {
     <Image
       src={src}
       alt={''}
-      height={48}
-      width={48}
+      height={300}
+      width={300}
       className={cn('border-divider rounded overflow-hidden', className)}
     />
   ) : (
