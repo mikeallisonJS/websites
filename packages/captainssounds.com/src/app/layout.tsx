@@ -3,8 +3,6 @@ import { GeistSans } from 'geist/font/sans'
 import { ReactNode, Suspense } from 'react'
 
 import Navbar from '../components/navbar'
-
-import '../../../shared/react/lib/src/shadcnUtils/global.css'
 import './globals.css'
 import { CSPostHogProvider } from '../components/posthog/provider'
 
@@ -35,7 +33,7 @@ export default async function RootLayout({
   return (
     <ClerkProvider>
       <CSPostHogProvider>
-        <html lang="en" className={GeistSans.variable}>
+        <html lang="en" className={`${GeistSans.variable} dark`}>
           <body className="bg-neutral-50 text-black selection:bg-teal-300 dark:bg-neutral-900 dark:text-white dark:selection:bg-pink-500 dark:selection:text-white">
             <Navbar />
             <Suspense>

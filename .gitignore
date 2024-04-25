@@ -41,8 +41,6 @@ Thumbs.db
 
 .angular
 
-# Firebase
-firebase-debug.log
 
 # NX
 /migrations.json

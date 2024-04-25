@@ -1,15 +1,14 @@
 'use client'
 
-import Card from '@mui/material/Card'
-import CardContent from '@mui/material/CardContent'
-import CardHeader from '@mui/material/CardHeader'
-import List from '@mui/material/List'
-import ListItem from '@mui/material/ListItem'
-import ListItemButton from '@mui/material/ListItemButton'
-import { alpha } from '@mui/material/styles'
-import { PlayerInterface } from 'react-material-music-player'
+import {
+  Table,
+  TableCell,
+  TableRow,
+  useMusicPlayerContext
+} from '@websites/shared/react/components'
 
 import { songs } from '../footer/footer'
+import { GlassContainer } from '../glassContainer'
 
 export enum MusicType {
   Originals = 'Originals',
@@ -20,36 +19,32 @@ export type MusicListProps = {
   type: MusicType
 }
 export default function MusicList({ type }: MusicListProps) {
+  const { setCurrentTrackIndex, play } = useMusicPlayerContext((s) => s)
   const onSelect = (id: string): void => {
     const index = songs.findIndex((song) => song.ID === id)
-    PlayerInterface.changeTrack(index)
-    PlayerInterface.play(null)
+    setCurrentTrackIndex(index)
+    play()
   }
   const songDisplay =
     type === MusicType.Originals
       ? songs.filter((song) => song.artist.includes('Captain'))
       : songs.filter((song) => !song.artist.includes('Captain'))
   return (
-    <Card
-      sx={{
-        background: (theme) => alpha(theme.palette.background.paper, 0.2),
-        marginBottom: '20px'
-      }}
-    >
-      <CardHeader title={type} />
-      <CardContent>
-        <nav>
-          <List>
-            {songDisplay.map((song) => (
-              <ListItem key={song.ID} disablePadding>
-                <ListItemButton onClick={() => onSelect(song.ID)}>
-                  {song.artist} - {song.title}
-                </ListItemButton>
-              </ListItem>
-            ))}
-          </List>
-        </nav>
-      </CardContent>
-    </Card>
+    <GlassContainer>
+      <div className="text-3xl">{type} </div>
+      <Table>
+        {songDisplay.map((song) => (
+          <TableRow
+            key={song.ID}
+            onClick={() => onSelect(song.ID)}
+            className="text-left cursor-pointer"
+          >
+            <TableCell>
+              {song.artist} - {song.title}
+            </TableCell>
+          </TableRow>
+        ))}
+      </Table>
+    </GlassContainer>
   )
 }

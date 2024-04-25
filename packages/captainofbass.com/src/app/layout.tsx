@@ -1,12 +1,9 @@
-import { ThemeProvider } from '@mui/material/styles'
-import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter'
 import dynamic from 'next/dynamic'
 import { ReactNode } from 'react'
 
 import Header from '../components/header/header'
 
-import theme from './theme'
-
+import '@fortawesome/fontawesome-svg-core/styles.css'
 import './global.css'
 
 const DynamicFooter = dynamic(() => import('../components/footer/footer'), {
@@ -16,13 +13,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <body>
-        <AppRouterCacheProvider>
-          <ThemeProvider theme={theme}>
-            <Header />
-            {children}
-            <DynamicFooter />
-          </ThemeProvider>
-        </AppRouterCacheProvider>
+        <Header />
+        {children}
+        <DynamicFooter />
       </body>
     </html>
   )

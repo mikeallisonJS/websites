@@ -46,8 +46,8 @@
     ],
     "import/newline-after-import": "error",
     "import/no-named-default": "error",
-    "import/no-anonymous-default-export": "error",
-    "no-multiple-empty-lines": ["error", { "max": 1 }]'
+    "eslint-plugin-import/no-namespace": "off",
+    "no-multiple-empty-lines": ["error", { "max": 1 }]
   },
   "overrides": [
     {
@@ -79,13 +79,6 @@
             "patterns": ["@mui/*/*/*", "!@mui/material/test-utils/*"]
           }
         ]
-      }
-    },
-    {
-      "files": ["*.ts", "*.tsx"],
-      "extends": ["plugin:@nx/typescript"],
-      "rules": {
-        "@typescript-eslint/explicit-function-return-type": "error"
       }
     },
     {

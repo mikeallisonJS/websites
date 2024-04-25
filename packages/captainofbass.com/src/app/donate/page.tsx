@@ -1,54 +1,47 @@
 'use client'
 
-import Card from '@mui/material/Card'
-import CardContent from '@mui/material/CardContent'
-import CardHeader from '@mui/material/CardHeader'
-import List from '@mui/material/List'
-import ListItem from '@mui/material/ListItem'
-import ListItemButton from '@mui/material/ListItemButton'
-import ListItemText from '@mui/material/ListItemText'
-import { alpha } from '@mui/material/styles'
-import { PageContainer } from '@websites/shared/react/components'
 import Link from 'next/link'
+
+import {
+  PageContainer,
+  Table,
+  TableCell,
+  TableRow
+} from '@websites/shared/react/components'
+
+import { GlassContainer } from '../../components/glassContainer'
 
 export default function Donate() {
   return (
     <PageContainer>
-      <Card
-        sx={{
-          background: (theme) => alpha(theme.palette.background.paper, 0.2),
-          marginBottom: '20px'
-        }}
-      >
-        <CardHeader title="Show some love and help me keep the lights on" />
-        <CardContent>
-          <nav>
-            <List>
+      <GlassContainer>
+        <div className="text-2xl">
+          Show some love and help me keep the lights on
+        </div>
+        <Table className="text-left">
+          <TableRow>
+            <TableCell>
               <Link href="http://paypal.me/captainofbass" target="_blank">
-                <ListItem disablePadding>
-                  <ListItemButton>
-                    <ListItemText primary="Paypal" />
-                  </ListItemButton>
-                </ListItem>
+                Paypal
               </Link>
-              <Link href="https://venmo.com/captainofbass" target="_blank">
-                <ListItem disablePadding>
-                  <ListItemButton>
-                    <ListItemText primary="Venmo" />
-                  </ListItemButton>
-                </ListItem>
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>
+              <Link href="http://venmo.com/captainofbass" target="_blank">
+                Venmo
               </Link>
-              <Link href="https://cash.app/$captainofbass" target="_blank">
-                <ListItem disablePadding>
-                  <ListItemButton>
-                    <ListItemText primary="CashApp" />
-                  </ListItemButton>
-                </ListItem>
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>
+              <Link href="http://cash.app/$captainofbass" target="_blank">
+                CashApp
               </Link>
-            </List>
-          </nav>
-        </CardContent>
-      </Card>
+            </TableCell>
+          </TableRow>
+        </Table>
+      </GlassContainer>
     </PageContainer>
   )
 }

@@ -16,7 +16,7 @@
     "baseUrl": ".",
     "paths": {
       "@websites/shared/react/components": [
-        "packages/shared/react/components/src/index.ts"
+        "packages/shared/react/components/src/index.tsx"
       ],
       "@websites/shared/react/lib": ["packages/shared/react/lib/src/index.ts"]
     }

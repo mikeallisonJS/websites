@@ -1,6 +1,6 @@
-import Typography from '@mui/material/Typography'
-import { PageContainer, PastEvents } from '@websites/shared/react/components'
 import Image from 'next/image'
+
+import { PageContainer, PastEvents } from '@websites/shared/react/components'
 
 const images = [
   'sltdnb-24-1.png',
@@ -34,8 +34,11 @@ export default function Index() {
         width={565}
         height={645}
         style={{ margin: 'auto' }}
+        priority
       />
-      <Typography variant="h4">South Lake Tahoe Drum & Bass</Typography>
+      <div className="text-center text-4xl mb-5">
+        South Lake Tahoe Drum & Bass
+      </div>
       <PastEvents images={images} />
     </PageContainer>
   )
