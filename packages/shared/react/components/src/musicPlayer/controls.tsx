@@ -8,35 +8,39 @@ import { cn } from '@websites/shared/react/lib'
 
 import { Button } from '../button'
 
-import { useMusicPlayerContext } from './context'
+import { Track } from './types'
 
 type ControlsProps = {
+  currentTrackIndex: number
+  isPlaying: boolean
+  isDrawerOpen: boolean
+  onPause: () => void
+  onPlay: () => void
+  playlist: Track[]
   className?: string
   disabled?: boolean
+  onChangeCurrentTrackIndex: (index: number) => void
 }
 export default function Controls({
   className,
-  disabled = false
+  disabled = false,
+  currentTrackIndex,
+  isPlaying,
+  isDrawerOpen,
+  onPause,
+  onPlay,
+  playlist,
+  onChangeCurrentTrackIndex
 }: ControlsProps) {
-  const {
-    currentTrackIndex,
-    isPlaying,
-    isPlaylistOpen,
-    pause,
-    play,
-    playlist,
-    setCurrentTrackIndex
-  } = useMusicPlayerContext((s) => s)
-
   const onSkipNext = () => {
     const newTrackIndex =
       currentTrackIndex < playlist.length - 1 ? currentTrackIndex + 1 : 0
-    setCurrentTrackIndex(newTrackIndex)
+    onChangeCurrentTrackIndex(newTrackIndex)
   }
   const onSkipPrev = () => {
     const newTrackIndex =
       currentTrackIndex > 0 ? currentTrackIndex - 1 : playlist.length - 1
-    setCurrentTrackIndex(newTrackIndex)
+    onChangeCurrentTrackIndex(newTrackIndex)
   }
 
   return (
@@ -48,7 +52,7 @@ export default function Controls({
     >
       <Button
         variant="ghost"
-        className={`${isPlaylistOpen ? '' : 'hidden md:flex'}`}
+        className={`${isDrawerOpen ? '' : 'hidden md:flex'}`}
         onClick={onSkipPrev}
         disabled={disabled}
       >
@@ -56,7 +60,7 @@ export default function Controls({
       </Button>
       <Button
         variant="ghost"
-        onClick={isPlaying ? pause : play}
+        onClick={isPlaying ? onPause : onPlay}
         disabled={disabled}
       >
         <FontAwesomeIcon icon={isPlaying ? faPause : faPlay} size="xl" />
@@ -65,7 +69,7 @@ export default function Controls({
         variant="ghost"
         onClick={onSkipNext}
         disabled={disabled}
-        className={`${isPlaylistOpen ? '' : 'hidden md:flex'}`}
+        className={`${isDrawerOpen ? '' : 'hidden md:flex'}`}
       >
         <FontAwesomeIcon icon={faStepForward} size="xl" />
       </Button>

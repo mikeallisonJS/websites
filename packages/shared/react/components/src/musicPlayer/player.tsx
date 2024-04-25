@@ -33,8 +33,10 @@ export default function Player({
     currentTrackIndex,
     duration,
     isDrawerOpen,
+    isPlaying,
     openDrawer,
     play,
+    pause,
     playlist,
     repeatMode,
     seek,
@@ -61,12 +63,12 @@ export default function Player({
   return (
     <div
       className={cn(
-        'z-50 w-[100vw] h-[62px] flex align-middle fixed bottom-0 box-border overflow-hidden bg-popover px-1 text-popover-foreground shadow-md ',
+        'z-10 w-[100vw] h-[62px] flex align-middle fixed bottom-0 box-border overflow-hidden bg-popover px-1 text-popover-foreground shadow-md ',
         className
       )}
     >
       <audio ref={audioRef} src={playlist?.[0].source} />
-      <div className="w-full h-1"></div>
+      {/* <div className="w-full h-1"></div> */}
       <div
         className={cn(
           'flex flex-row w-full justify-between items-center flex-nowrap',
@@ -82,7 +84,16 @@ export default function Player({
           artist={currentTrack?.artist ?? ''}
           className="md:w-[120px] grow-1 text-left m-1 shrink-0"
         />
-        <Controls disabled={currentTrack == null} />
+        <Controls
+          disabled={currentTrack == null}
+          currentTrackIndex={currentTrackIndex}
+          onPlay={play}
+          onPause={pause}
+          onChangeCurrentTrackIndex={setCurrentTrackIndex}
+          isPlaying={isPlaying}
+          isDrawerOpen={isDrawerOpen}
+          playlist={playlist}
+        />
         <ProgressBar
           currentTime={currentTime}
           onSeek={seek}
@@ -102,12 +113,15 @@ export default function Player({
           shuffled={shuffled}
           onRepeatModeChange={setRepeatMode}
           onShuffledChange={setShuffled}
-          className="hidden md:flex"
         />
       </div>
 
-      <Drawer open={isDrawerOpen && !disableDrawer} onClose={closeDrawer}>
-        <DrawerContent className={className}>
+      <Drawer
+        open={isDrawerOpen && !disableDrawer}
+        onClose={closeDrawer}
+        modal={false}
+      >
+        <DrawerContent className={cn('z-20 md:pb-[62px] md:z-0', className)}>
           <div className="flex md:hidden pt-2">
             <div
               className={cn(
@@ -135,7 +149,16 @@ export default function Player({
                 onSeek={seek}
                 duration={duration}
               />
-              <Controls disabled={currentTrack == null} />
+              <Controls
+                disabled={currentTrack == null}
+                currentTrackIndex={currentTrackIndex}
+                onPlay={play}
+                onPause={pause}
+                onChangeCurrentTrackIndex={setCurrentTrackIndex}
+                isPlaying={isPlaying}
+                isDrawerOpen={isDrawerOpen}
+                playlist={playlist}
+              />
               <VolumeControl volume={volume} onVolumeChange={setVolume} />
               <PlaylistControl
                 isPlaylistOpen={isDrawerOpen}
@@ -148,7 +171,7 @@ export default function Player({
               />
             </div>
           </div>
-          <div className="hidden md:flex pt-2 pb-[62px]">
+          <div className="hidden md:flex pt-2">
             <Playlist
               currentTrack={currentTrack}
               playlist={playlist}

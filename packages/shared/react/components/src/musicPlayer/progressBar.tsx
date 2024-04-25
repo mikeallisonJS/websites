@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react'
+
 import { cn } from '@websites/shared/react/lib'
 
 import { Slider } from '../slider'
@@ -21,7 +23,20 @@ export default function ProgressBar({
   currentTime,
   onSeek
 }: ProgressBarProps) {
+  const [value, setValue] = useState(currentTime)
+  const [isSeeking, setIsSeeking] = useState(false)
+
+  useEffect(() => {
+    if (!isSeeking) setValue(currentTime)
+  }, [currentTime, isSeeking])
+
+  const handleValueChange = (newValue: number[]) => {
+    setIsSeeking(true)
+    setValue(newValue[0])
+  }
+
   const handleSliderChange = (newValue: number[]) => {
+    setIsSeeking(false)
     onSeek(newValue[0])
   }
 
@@ -31,9 +46,11 @@ export default function ProgressBar({
       <Slider
         className="mx-1"
         aria-labelledby="continuous-slider"
-        defaultValue={[currentTime]}
+        value={[value]}
+        onValueChange={handleValueChange}
         onValueCommit={handleSliderChange}
         max={duration ?? 1}
+        step={1}
       />
       <div className="mx-1">{secondsToString(duration - currentTime)}</div>
     </div>
