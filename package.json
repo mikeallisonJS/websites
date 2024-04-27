@@ -77,6 +77,8 @@
     "@radix-ui/react-toggle": "^1.0.3",
     "@sentry/nextjs": "^7.113.0",
     "@sentry/utils": "^7.113.0",
+    "@stripe/react-stripe-js": "^2.7.0",
+    "@stripe/stripe-js": "^3.3.0",
     "@tabler/icons-react": "^3.3.0",
     "@vercel/postgres": "^0.8.0",
     "class-variance-authority": "^0.7.0",
@@ -95,10 +97,12 @@
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "sonner": "^1.4.41",
+    "stripe": "^15.4.0",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
     "tslib": "^2.3.0",
     "uninstall": "^0.0.0",
+    "use-shopping-cart": "^3.2.0",
     "vaul": "^0.9.0",
     "zustand": "^4.5.2"
   }

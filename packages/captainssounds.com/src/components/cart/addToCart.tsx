@@ -5,11 +5,12 @@ import clsx from 'clsx'
 import { useSearchParams } from 'next/navigation'
 import { FormEvent } from 'react'
 import { useFormState, useFormStatus } from 'react-dom'
+import { useShoppingCart } from 'use-shopping-cart'
 
 import { ProductVariant } from '../../lib/shopify/types'
 import LoadingDots from '../loadingDots'
 
-import { addItem } from './actions'
+// import { addItem } from './actions'
 
 function SubmitButton({
   availableForSale,
@@ -18,6 +19,7 @@ function SubmitButton({
   availableForSale: boolean
   selectedVariantId: string | undefined
 }) {
+  const { addItem } = useShoppingCart()
   const { pending } = useFormStatus()
   const buttonClasses =
     'relative flex w-full items-center justify-center rounded-full bg-blue-600 p-4 tracking-wide text-white'
@@ -37,6 +39,7 @@ function SubmitButton({
         aria-label="Please select an option"
         aria-disabled
         className={clsx(buttonClasses, disabledClasses)}
+        onClick={() => addItem({})}
       >
         <div className="absolute left-0 ml-4">
           <PlusIcon className="h-5" />
@@ -77,7 +80,7 @@ export function AddToCart({
   variants: ProductVariant[]
   availableForSale: boolean
 }) {
-  const [message, formAction] = useFormState(addItem, null)
+  // const [message, formAction] = useFormState(addItem, null)
   const searchParams = useSearchParams()
   const defaultVariantId = variants.length === 1 ? variants[0]?.id : undefined
   const variant = variants.find((variant: ProductVariant) =>
@@ -86,17 +89,17 @@ export function AddToCart({
     )
   )
   const selectedVariantId = variant?.id || defaultVariantId
-  const actionWithVariant = formAction.bind(null, selectedVariantId)
+  // const actionWithVariant = formAction.bind(null, selectedVariantId)
 
   return (
-    <form action={actionWithVariant}>
-      <SubmitButton
-        availableForSale={availableForSale}
-        selectedVariantId={selectedVariantId}
-      />
-      <p aria-live="polite" className="sr-only" role="status">
-        {message ?? ''}
-      </p>
-    </form>
+    // <form action={actionWithVariant}>
+    <SubmitButton
+      availableForSale={availableForSale}
+      selectedVariantId={selectedVariantId}
+    />
+    // <p aria-live="polite" className="sr-only" role="status">
+    //   {message ?? ''}
+    // </p>
+    // </form>
   )
 }

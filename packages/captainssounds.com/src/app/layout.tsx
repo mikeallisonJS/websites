@@ -2,8 +2,11 @@ import { ClerkProvider } from '@clerk/nextjs'
 import { GeistSans } from 'geist/font/sans'
 import { ReactNode, Suspense } from 'react'
 
+import { Toaster } from '@websites/shared/react/components'
+
 import Navbar from '../components/navbar'
 import { CSPostHogProvider } from '../components/posthogProvider'
+import CartProvider from '../lib/cartProvider'
 
 import './globals.css'
 
@@ -36,10 +39,13 @@ export default async function RootLayout({
       <CSPostHogProvider>
         <html lang="en" className={`${GeistSans.variable} dark`}>
           <body className="bg-neutral-50 text-black selection:bg-teal-300 dark:bg-neutral-900 dark:text-white dark:selection:bg-pink-500 dark:selection:text-white">
-            <Navbar />
-            <Suspense>
-              <main>{children}</main>
-            </Suspense>
+            <CartProvider>
+              <Navbar />
+              <Suspense>
+                <main>{children}</main>
+              </Suspense>
+            </CartProvider>
+            <Toaster />
           </body>
         </html>
       </CSPostHogProvider>
