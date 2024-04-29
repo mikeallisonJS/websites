@@ -6,12 +6,14 @@ const Label = ({
   title,
   amount,
   currencyCode,
-  position = 'bottom'
+  position = 'bottom',
+  donation
 }: {
   title: string
   amount: string
   currencyCode: string
   position?: 'bottom' | 'center'
+  donation: boolean
 }) => {
   return (
     <div
@@ -31,6 +33,7 @@ const Label = ({
           amount={amount}
           currencyCode={currencyCode}
           currencyCodeClassName="hidden @[275px]/label:inline"
+          donation={donation}
         />
       </div>
     </div>

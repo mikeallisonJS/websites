@@ -1,9 +1,12 @@
 import { SignInButton, SignedIn, SignedOut } from '@clerk/nextjs'
+import { Pool } from '@neondatabase/serverless'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Suspense } from 'react'
 
-import { getMenu } from '../../lib/shopify'
+import { PrismaNeon } from '@prisma/adapter-neon'
+import { Category, PrismaClient } from '@prisma/client'
+
 import Cart from '../cart'
 import OpenCart from '../cart/openCart'
 import { UserButton } from '../userButton/userButton'
@@ -11,15 +14,27 @@ import { UserButton } from '../userButton/userButton'
 import MobileMenu from './mobileMenu'
 import Search, { SearchSkeleton } from './search'
 
-export default async function Navbar() {
-  const menu = await getMenu('next-js-frontend-header-menu')
+const neon = new Pool({ connectionString: process.env.POSTGRES_PRISMA_URL })
+const adapter = new PrismaNeon(neon)
+const prisma = new PrismaClient({
+  adapter
+})
 
+export default async function Navbar() {
+  const categories = await prisma.category.findMany({
+    where: {
+      inNavigation: true
+    },
+    orderBy: {
+      order: 'asc'
+    }
+  })
   return (
     <>
       <nav className="relative flex items-center justify-between p-4 lg:px-6">
         <div className="block flex-none md:hidden">
           <Suspense fallback={null}>
-            <MobileMenu menu={menu} />
+            <MobileMenu categories={categories} />
           </Suspense>
         </div>
         <div className="flex w-full items-center">

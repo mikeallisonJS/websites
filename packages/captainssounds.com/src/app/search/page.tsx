@@ -1,7 +1,10 @@
+import { Pool } from '@neondatabase/serverless'
+
+import { PrismaNeon } from '@prisma/adapter-neon'
+import { Prisma, PrismaClient } from '@prisma/client'
+
 import Grid from '../../components/grid'
-import ProductGridItems from '../../components/layout/productGridItems'
-import { defaultSort, sorting } from '../../lib/constants'
-import { getProducts } from '../../lib/shopify'
+import ProductGridItems from '../../components/productGridItems'
 
 export const runtime = 'edge'
 
@@ -10,16 +13,41 @@ export const metadata = {
   description: 'Search for products in the store.'
 }
 
+const neon = new Pool({ connectionString: process.env.POSTGRES_PRISMA_URL })
+const adapter = new PrismaNeon(neon)
+const prisma = new PrismaClient({
+  adapter
+})
+
 export default async function SearchPage({
   searchParams
 }: {
   searchParams?: { [key: string]: string | string[] | undefined }
 }) {
   const { sort, q: searchValue } = searchParams as { [key: string]: string }
-  const { sortKey, reverse } =
-    sorting.find((item) => item.slug === sort) || defaultSort
+  let orderBy: Prisma.ProductOrderByWithRelationInput = { order: 'asc' }
+  switch (sort) {
+    case 'price-asc':
+      orderBy = { price: 'asc' }
+      break
+    case 'price-desc':
+      orderBy = { price: 'desc' }
+      break
+    case 'trending-desc':
+      orderBy = { orders: { _count: 'desc' } }
+      break
+    case 'latest-desc':
+      orderBy = { createdAt: 'desc' }
+      break
+  }
 
-  const products = await getProducts({ sortKey, reverse, query: searchValue })
+  const products = await prisma.product.findMany({
+    where: {
+      category: { id: { not: 'bonus' } }
+    },
+    include: { images: true, _count: { select: { orders: true } } },
+    orderBy
+  })
   const resultsText = products.length > 1 ? 'results' : 'result'
 
   return (
