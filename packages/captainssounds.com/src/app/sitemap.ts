@@ -11,6 +11,12 @@ const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL
   ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
   : 'http://localhost:3000'
 
+const neon = new Pool({ connectionString: process.env.POSTGRES_PRISMA_URL })
+const adapter = new PrismaNeon(neon)
+const prisma = new PrismaClient({
+  adapter
+})
+
 export default async function sitemap() {
   validateEnvironmentVariables()
 

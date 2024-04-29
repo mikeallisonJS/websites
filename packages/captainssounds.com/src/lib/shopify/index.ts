@@ -1,7 +1,6 @@
 export { addToCart } from './cart/addToCart'
 export { createCart } from './cart/createCart'
 export { getCart } from './cart/getCart'
-export { getCollectionProducts } from './collection/getCollectionProducts'
 export { getProducts } from './product/getProducts'
 export { getProduct } from './product/getProduct'
 export { getProductRecommendations } from './product/getProductRecommendations'

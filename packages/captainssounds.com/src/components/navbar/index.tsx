@@ -1,19 +1,15 @@
 import { SignInButton, SignedIn, SignedOut } from '@clerk/nextjs'
-import { sql } from '@vercel/postgres'
-import { drizzle } from 'drizzle-orm/vercel-postgres'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Suspense } from 'react'
 
-import { schema } from '../../lib/drizzle'
+import { db } from '../../lib/drizzle'
 import Cart from '../cart'
 import OpenCart from '../cart/openCart'
 import { UserButton } from '../userButton/userButton'
 
 import MobileMenu from './mobileMenu'
 import Search, { SearchSkeleton } from './search'
-
-const db = drizzle(sql, { schema })
 
 export default async function Navbar() {
   const categories = await db.query.category.findMany({
