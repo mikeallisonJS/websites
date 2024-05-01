@@ -1,32 +1,42 @@
+import { Pool } from '@neondatabase/serverless'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { Suspense } from 'react'
+
+import { PrismaNeon } from '@prisma/adapter-neon'
+import { Image, PrismaClient } from '@prisma/client'
 
 import Collections from '../../../components/collections'
 import { GridTileImage } from '../../../components/grid/tile'
 import { Gallery } from '../../../components/product/gallery'
 import { ProductDescription } from '../../../components/product/productDescription'
-import { HIDDEN_PRODUCT_TAG } from '../../../lib/constants'
-import { getProduct, getProductRecommendations } from '../../../lib/shopify'
-import { Image } from '../../../lib/shopify/types'
 
 export const runtime = 'edge'
+
+const neon = new Pool({ connectionString: process.env.POSTGRES_PRISMA_URL })
+const adapter = new PrismaNeon(neon)
+const prisma = new PrismaClient({
+  adapter
+})
 
 export async function generateMetadata({
   params
 }: {
   params: { handle: string }
 }) {
-  const product = await getProduct(params.handle)
+  const product = await prisma.product.findUnique({
+    where: { id: params.handle },
+    include: { images: true, blocks: true, category: { select: { id: true } } }
+  })
 
   if (!product) return notFound()
 
-  const { url, width, height, altText: alt } = product.featuredImage || {}
-  const indexable = !product.tags.includes(HIDDEN_PRODUCT_TAG)
+  const { url } = product.images[0] || {}
+  const indexable = product.category.id !== 'bonus'
 
   return {
-    title: product.seo.title || product.title,
-    description: product.seo.description || product.description,
+    title: product.name,
+    description: product.description,
     robots: {
       index: indexable,
       follow: indexable,
@@ -40,9 +50,9 @@ export async function generateMetadata({
           images: [
             {
               url,
-              width,
-              height,
-              alt
+              width: 390,
+              height: 390,
+              alt: product.name
             }
           ]
         }
@@ -55,24 +65,31 @@ export default async function ProductPage({
 }: {
   params: { handle: string }
 }) {
-  const product = await getProduct(params.handle)
+  const product = await prisma.product.findUnique({
+    where: { id: params.handle },
+    include: {
+      images: true,
+      blocks: { orderBy: { order: 'asc' } },
+      category: { select: { id: true } }
+    }
+  })
 
   if (!product) return notFound()
 
   const productJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Product',
-    name: product.title,
+    name: product.name,
     description: product.description,
-    image: product.featuredImage.url,
+    image: product.images[0].url,
     offers: {
       '@type': 'AggregateOffer',
-      availability: product.availableForSale
+      availability: true
         ? 'https://schema.org/InStock'
         : 'https://schema.org/OutOfStock',
-      priceCurrency: product.priceRange.minVariantPrice.currencyCode,
-      highPrice: product.priceRange.maxVariantPrice.amount,
-      lowPrice: product.priceRange.minVariantPrice.amount
+      priceCurrency: product.price.toString()
+      // highPrice: product.priceRange.maxVariantPrice.amount,
+      // lowPrice: product.priceRange.minVariantPrice.amount
     }
   }
 
@@ -92,7 +109,7 @@ export default async function ProductPage({
         </div>
         <div className="mx-auto max-w-screen-2xl px-4">
           <div className="flex flex-col rounded-lg border border-neutral-200 bg-white p-8 md:p-12 lg:flex-row lg:gap-8 dark:border-neutral-800 dark:bg-black">
-            <div className="h-full w-full basis-full lg:basis-4/6">
+            <div className="h-full w-full basis-full lg:basis-1/2">
               <Suspense
                 fallback={
                   <div className="relative aspect-square h-full max-h-[550px] w-full overflow-hidden" />
@@ -101,27 +118,37 @@ export default async function ProductPage({
                 <Gallery
                   images={product.images.map((image: Image) => ({
                     src: image.url,
-                    altText: image.altText
+                    altText: product.name
                   }))}
                 />
               </Suspense>
             </div>
 
-            <div className="basis-full lg:basis-2/6">
+            <div className="basis-full lg:basis-1/2">
               <ProductDescription product={product} />
             </div>
           </div>
         </div>
       </div>
       <Suspense>
-        <RelatedProducts id={product.id} />
+        <RelatedProducts id={product.id} categoryId={product.category.id} />
       </Suspense>
     </>
   )
 }
 
-async function RelatedProducts({ id }: { id: string }) {
-  const relatedProducts = await getProductRecommendations(id)
+async function RelatedProducts({
+  id,
+  categoryId
+}: {
+  id: string
+  categoryId: string
+}) {
+  const relatedProducts = await prisma.product.findMany({
+    where: { id: { not: id }, categoryId },
+    take: 4,
+    include: { images: true }
+  })
 
   if (!relatedProducts.length) return null
 
@@ -131,21 +158,22 @@ async function RelatedProducts({ id }: { id: string }) {
       <ul className="flex w-full gap-4 overflow-x-auto pt-1">
         {relatedProducts.map((product) => (
           <li
-            key={product.handle}
+            key={product.id}
             className="aspect-square w-full flex-none min-[475px]:w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5"
           >
             <Link
               className="relative h-full w-full"
-              href={`/product/${product.handle}`}
+              href={`/product/${product.id}`}
             >
               <GridTileImage
-                alt={product.title}
+                alt={product.name}
                 label={{
-                  title: product.title,
-                  amount: product.priceRange.maxVariantPrice.amount,
-                  currencyCode: product.priceRange.maxVariantPrice.currencyCode
+                  title: product.name,
+                  amount: product.price.toString(),
+                  currencyCode: 'USD',
+                  donation: product.donationware
                 }}
-                src={product.featuredImage?.url}
+                src={product.images[0]?.url}
                 fill
                 sizes="(min-width: 1024px) 20vw, (min-width: 768px) 25vw, (min-width: 640px) 33vw, (min-width: 475px) 50vw, 100vw"
               />

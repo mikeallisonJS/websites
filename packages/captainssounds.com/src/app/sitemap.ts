@@ -1,5 +1,4 @@
 import { db } from '../lib/drizzle'
-import { getProducts } from '../lib/shopify'
 import { validateEnvironmentVariables } from '../lib/utils'
 
 type Route = {
@@ -10,12 +9,6 @@ type Route = {
 const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL
   ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
   : 'http://localhost:3000'
-
-const neon = new Pool({ connectionString: process.env.POSTGRES_PRISMA_URL })
-const adapter = new PrismaNeon(neon)
-const prisma = new PrismaClient({
-  adapter
-})
 
 export default async function sitemap() {
   validateEnvironmentVariables()
@@ -35,13 +28,14 @@ export default async function sitemap() {
         lastModified: new Date().toISOString()
       }))
     )
-
-  const productsPromise = getProducts({}).then((products) =>
-    products.map((product) => ({
-      url: `${baseUrl}/product/${product.handle}`,
-      lastModified: product.updatedAt
-    }))
-  )
+  const productsPromise = prisma.product
+    .findMany({ where: { category: { id: { not: 'bonus' } } } })
+    .then((products) =>
+      products.map((product) => ({
+        url: `${baseUrl}/product/${product.id}`,
+        lastModified: new Date().toISOString()
+      }))
+    )
 
   let fetchedRoutes: Route[] = []
 

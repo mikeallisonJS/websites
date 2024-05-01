@@ -4,22 +4,24 @@ import { PlusIcon } from '@heroicons/react/24/outline'
 import clsx from 'clsx'
 import { useSearchParams } from 'next/navigation'
 import { FormEvent } from 'react'
-import { useFormState, useFormStatus } from 'react-dom'
-import { useShoppingCart } from 'use-shopping-cart'
+import { useFormStatus } from 'react-dom'
 
 import { ProductVariant } from '../../lib/shopify/types'
+import { useCart } from '../../lib/useCart'
 import LoadingDots from '../loadingDots'
 
 // import { addItem } from './actions'
 
 function SubmitButton({
+  id,
   availableForSale,
   selectedVariantId
 }: {
+  id: string
   availableForSale: boolean
   selectedVariantId: string | undefined
 }) {
-  const { addItem } = useShoppingCart()
+  const { addToCart } = useCart()
   const { pending } = useFormStatus()
   const buttonClasses =
     'relative flex w-full items-center justify-center rounded-full bg-blue-600 p-4 tracking-wide text-white'
@@ -33,21 +35,21 @@ function SubmitButton({
     )
   }
 
-  if (!selectedVariantId) {
-    return (
-      <button
-        aria-label="Please select an option"
-        aria-disabled
-        className={clsx(buttonClasses, disabledClasses)}
-        onClick={() => addItem({})}
-      >
-        <div className="absolute left-0 ml-4">
-          <PlusIcon className="h-5" />
-        </div>
-        Add To Cart
-      </button>
-    )
-  }
+  // if (!selectedVariantId) {
+  //   return (
+  //     <button
+  //       aria-label="Please select an option"
+  //       aria-disabled
+  //       className={clsx(buttonClasses, disabledClasses)}
+  //       onClick={() => addToCart(id)}
+  //     >
+  //       <div className="absolute left-0 ml-4">
+  //         <PlusIcon className="h-5" />
+  //       </div>
+  //       Add To Cart
+  //     </button>
+  //   )
+  // }
 
   return (
     <button
@@ -74,12 +76,15 @@ function SubmitButton({
 }
 
 export function AddToCart({
+  id,
   variants,
   availableForSale
 }: {
+  id: string
   variants: ProductVariant[]
   availableForSale: boolean
 }) {
+  // const { addToCart } = useCart()
   // const [message, formAction] = useFormState(addItem, null)
   const searchParams = useSearchParams()
   const defaultVariantId = variants.length === 1 ? variants[0]?.id : undefined
@@ -94,12 +99,10 @@ export function AddToCart({
   return (
     // <form action={actionWithVariant}>
     <SubmitButton
+      id={id}
       availableForSale={availableForSale}
       selectedVariantId={selectedVariantId}
     />
-    // <p aria-live="polite" className="sr-only" role="status">
-    //   {message ?? ''}
-    // </p>
     // </form>
   )
 }
