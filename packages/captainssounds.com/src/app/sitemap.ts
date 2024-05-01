@@ -1,13 +1,8 @@
-<<<<<<< HEAD
-import { getCollections, getProducts } from '../lib/shopify'
-=======
 import { Pool } from '@neondatabase/serverless'
-
 import { PrismaNeon } from '@prisma/adapter-neon'
 import { PrismaClient } from '@prisma/client'
 
-import { getPages, getProducts } from '../lib/shopify'
->>>>>>> 81ee8d8 (migration to postgres calls)
+import { getPages } from '../lib/shopify'
 import { validateEnvironmentVariables } from '../lib/utils'
 
 type Route = {
@@ -39,16 +34,18 @@ export default async function sitemap() {
     })
     .then((collections) =>
       collections.map((collection) => ({
-        url: `${baseUrl}/search/${collection.id}`
+        url: `${baseUrl}/search/${collection.id}`,
+        lastModified: new Date().toISOString()
       }))
     )
-
-  const productsPromise = getProducts({}).then((products) =>
-    products.map((product) => ({
-      url: `${baseUrl}/product/${product.handle}`,
-      lastModified: product.updatedAt
-    }))
-  )
+  const productsPromise = prisma.product
+    .findMany({ where: { category: { id: { not: 'bonus' } } } })
+    .then((products) =>
+      products.map((product) => ({
+        url: `${baseUrl}/product/${product.id}`,
+        lastModified: new Date().toISOString()
+      }))
+    )
 
   let fetchedRoutes: Route[] = []
 

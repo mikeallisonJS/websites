@@ -7,7 +7,7 @@ import Link from 'next/link'
 import { Fragment, useEffect, useRef, useState } from 'react'
 
 import { DEFAULT_OPTION } from '../../lib/constants'
-import type { Cart } from '../../lib/shopify/types'
+import { useCart } from '../../lib/useCart'
 import { createUrl } from '../../lib/utils'
 import Price from '../price'
 
@@ -16,33 +16,30 @@ import { DeleteItemButton } from './deleteItemButton'
 import { EditItemQuantityButton } from './editItemQuantityButton'
 import OpenCart from './openCart'
 
-type MerchandiseSearchParams = {
-  [key: string]: string
-}
-
-export default function CartModal({ cart }: { cart: Cart | undefined }) {
+export default function CartModal() {
+  const { cart, products } = useCart()
   const [isOpen, setIsOpen] = useState(false)
-  const quantityRef = useRef(cart?.totalQuantity)
+  const quantityRef = useRef(cart.length)
   const openCart = (): void => setIsOpen(true)
   const closeCart = (): void => setIsOpen(false)
 
   useEffect(() => {
     // Open cart modal when quantity changes.
-    if (cart?.totalQuantity !== quantityRef.current) {
+    if (cart.length !== quantityRef.current) {
       // But only if it's not already open (quantity also changes when editing items in cart).
       if (!isOpen) {
         setIsOpen(true)
       }
 
       // Always update the quantity reference
-      quantityRef.current = cart?.totalQuantity
+      quantityRef.current = cart.length
     }
-  }, [isOpen, cart?.totalQuantity, quantityRef])
+  }, [isOpen, cart.length, quantityRef])
 
   return (
     <>
       <button aria-label="Open cart" onClick={openCart}>
-        <OpenCart quantity={cart?.totalQuantity} />
+        <OpenCart quantity={cart.length} />
       </button>
       <Transition show={isOpen}>
         <Dialog onClose={closeCart} className="relative z-50">
@@ -75,7 +72,7 @@ export default function CartModal({ cart }: { cart: Cart | undefined }) {
                 </button>
               </div>
 
-              {!cart || cart.lines.length === 0 ? (
+              {cart.length === 0 ? (
                 <div className="mt-20 flex w-full flex-col items-center justify-center overflow-hidden">
                   <ShoppingCartIcon className="h-16" />
                   <p className="mt-6 text-center text-2xl font-bold">
@@ -85,21 +82,17 @@ export default function CartModal({ cart }: { cart: Cart | undefined }) {
               ) : (
                 <div className="flex h-full flex-col justify-between overflow-hidden p-1">
                   <ul className="grow overflow-auto py-4">
-                    {cart.lines.map((item, i) => {
-                      const merchandiseSearchParams =
-                        {} as MerchandiseSearchParams
-
-                      item.merchandise.selectedOptions.forEach(
-                        ({ name, value }) => {
-                          if (value !== DEFAULT_OPTION) {
-                            merchandiseSearchParams[name.toLowerCase()] = value
-                          }
-                        }
-                      )
+                    {cart.map((item, i) => {
+                      const itemArray = item.id.split(':')
+                      const product = products[itemArray[0]]
+                      const params: Record<string, string> = {}
+                      for (let i = 1; i < itemArray.length; i = i + 2) {
+                        params[itemArray[i]] = itemArray[i + 1]
+                      }
 
                       const merchandiseUrl = createUrl(
-                        `/product/${item.merchandise.product.handle}`,
-                        new URLSearchParams(merchandiseSearchParams)
+                        `/product/${product.id}`,
+                        new URLSearchParams(params)
                       )
 
                       return (
@@ -109,7 +102,7 @@ export default function CartModal({ cart }: { cart: Cart | undefined }) {
                         >
                           <div className="relative flex w-full flex-row justify-between px-1 py-4">
                             <div className="absolute z-40 -mt-2 ml-[55px]">
-                              <DeleteItemButton item={item} />
+                              <DeleteItemButton item={item.id} />
                             </div>
                             <Link
                               href={merchandiseUrl}
@@ -121,19 +114,14 @@ export default function CartModal({ cart }: { cart: Cart | undefined }) {
                                   className="h-full w-full object-cover"
                                   width={64}
                                   height={64}
-                                  alt={
-                                    item.merchandise.product.featuredImage
-                                      .altText || item.merchandise.product.title
-                                  }
-                                  src={
-                                    item.merchandise.product.featuredImage.url
-                                  }
+                                  alt={product.name}
+                                  src={product.images[0]?.url ?? ''}
                                 />
                               </div>
 
                               <div className="flex flex-1 flex-col text-base">
                                 <span className="leading-tight">
-                                  {item.merchandise.product.title}
+                                  {product.name}
                                 </span>
                                 {item.merchandise.title !== DEFAULT_OPTION ? (
                                   <p className="text-sm text-neutral-500 dark:text-neutral-400">
