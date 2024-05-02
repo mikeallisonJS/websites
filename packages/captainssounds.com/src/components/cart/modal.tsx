@@ -123,9 +123,9 @@ export default function CartModal() {
                                 <span className="leading-tight">
                                   {product.name}
                                 </span>
-                                {item.merchandise.title !== DEFAULT_OPTION ? (
+                                {product.name !== DEFAULT_OPTION ? (
                                   <p className="text-sm text-neutral-500 dark:text-neutral-400">
-                                    {item.merchandise.title}
+                                    {product.name}
                                   </p>
                                 ) : null}
                               </div>
@@ -133,14 +133,13 @@ export default function CartModal() {
                             <div className="flex h-16 flex-col justify-between">
                               <Price
                                 className="flex justify-end space-y-2 text-right text-sm"
-                                amount={item.cost.totalAmount.amount}
-                                currencyCode={
-                                  item.cost.totalAmount.currencyCode
-                                }
+                                amount={product.price.toString()}
+                                currencyCode="USD"
+                                donation={product.donationware}
                               />
                               <div className="ml-auto flex h-9 flex-row items-center rounded-full border border-neutral-200 dark:border-neutral-700">
                                 <EditItemQuantityButton
-                                  item={item}
+                                  item={product}
                                   type="minus"
                                 />
                                 <p className="w-6 text-center">
@@ -149,7 +148,7 @@ export default function CartModal() {
                                   </span>
                                 </p>
                                 <EditItemQuantityButton
-                                  item={item}
+                                  item={product}
                                   type="plus"
                                 />
                               </div>
