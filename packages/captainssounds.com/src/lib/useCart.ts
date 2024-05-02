@@ -1,11 +1,11 @@
 import { create } from 'zustand'
 import { persist, createJSONStorage } from 'zustand/middleware'
 
-import { Product } from '@prisma/client'
+import { Image, Product } from '@prisma/client'
 
 type CartStore = {
   cart: Array<{ id: string; quantity: number }>
-  products: Record<string, Product>
+  products: Record<string, Product & { images: Image[] }>
   addToCart: (id: string) => void
   removeFromCart: (id: string) => void
 }
