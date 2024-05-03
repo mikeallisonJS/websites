@@ -56,13 +56,12 @@
   "generators": {
     "@nx/next": {
       "application": {
-        "style": "tailwindcss",
+        "style": "tailwind",
         "linter": "eslint"
       }
     },
     "@nx/react": {
       "library": {}
     }
-  },
-  "nxCloudAccessToken": "NDQzYjI1YjMtNGRiNy00NTRhLWFmMDMtNWJjYTY4MjY0YjJifHJlYWQtd3JpdGU="
+  }
 }

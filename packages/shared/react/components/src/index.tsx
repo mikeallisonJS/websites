@@ -1,29 +1,26 @@
-import {
-  MusicPlayerProvider,
-  useMusicPlayerContext
-} from './musicPlayer/context'
 import Player from './musicPlayer/player'
-import { Track } from './musicPlayer/types'
 import PageContainer from './pageContainer'
 import PastEvents from './pastEvents'
 
+export { PastEvents, PageContainer, Player }
 export {
-  PastEvents,
-  PageContainer,
-  Player,
   MusicPlayerProvider,
   useMusicPlayerContext
-}
+} from './musicPlayer/context'
+export type { Track } from './musicPlayer/types'
 
-export type { Track }
-
+export * from './auroraBackground'
+export * from './bentoGrid'
 export * from './button'
 export * from './card'
 export * from './collapsible'
 export * from './dialog'
 export * from './dropdown'
 export * from './heroParallax'
+export * from './input'
+export * from './label'
 export * from './popover'
 export * from './sheet'
 export * from './table'
+export * from './textarea'
 export * from './toggle'
