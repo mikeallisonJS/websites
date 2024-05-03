@@ -29,7 +29,8 @@
       "configurations": {
         "development": {
           "buildTarget": "captainssounds.com:build:development",
-          "dev": true
+          "dev": true,
+          "turbo": true
         },
         "production": {
           "buildTarget": "captainssounds.com:build:production",

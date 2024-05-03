@@ -29,7 +29,8 @@
       "configurations": {
         "development": {
           "buildTarget": "sltdnb.com:build:development",
-          "dev": true
+          "dev": true,
+          "turbo": true
         },
         "production": {
           "buildTarget": "sltdnb.com:build:production",
