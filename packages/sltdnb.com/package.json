@@ -1,0 +1,15 @@
+{
+  "name": "sltdnb.com",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "lint": "",
+    "fetch-secrets": "dotenv doppler secrets download --no-file --format=env-no-quotes -p sltdnb-com > .env"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}

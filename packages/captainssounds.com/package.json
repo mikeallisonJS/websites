@@ -1,0 +1,33 @@
+{
+  "name": "captainssounds.com",
+  "type": "commonjs",
+  "license": "MIT",
+  "scripts": {
+    "serve": "next dev -p 4200",
+    "postinstall": "bun run prisma-generate",
+    "prisma-validate": "prisma validate --schema db/schema.prisma",
+    "prisma-studio": "prisma studio --schema db/schema.prisma",
+    "prisma-seed": "bun db/seed.mjs",
+    "prisma-reset": "prisma migrate reset --schema db/schema.prisma --force",
+    "prisma-migrate": "bash -c 'npx prisma migrate dev --schema db/schema.prisma --name `date +\"%Y%m%d%H%M%S\"`'",
+    "prisma-generate": "prisma generate --schema db/schema.prisma",
+    "fetch-secrets": "dotenv doppler secrets download --no-file --format=env-no-quotes -p captainssounds-com > .env"
+  },
+  "dependencies": {
+    "@clerk/nextjs": "^5.0.3",
+    "@headlessui/react": "^1.7.19",
+    "@heroicons/react": "^2.1.3",
+    "@prisma/client": "^5.13.0",
+    "gql.tada": "^1.6.2",
+    "graphql": "^16.8.1",
+    "posthog-js": "^1.130.0",
+    "prisma": "^5.13.0"
+  },
+  "devDependencies": {
+    "@0no-co/graphqlsp": "^1.12.1",
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}

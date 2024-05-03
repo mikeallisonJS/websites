@@ -6,7 +6,6 @@
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "terminal.integrated.defaultProfile.linux": "zsh",
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "always"
   },

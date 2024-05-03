@@ -1,0 +1,17 @@
+{
+  "name": "lib",
+  "module": "src/index.ts",
+  "type": "module",
+  "dependencies": {
+    "flowbite": "^2.3.0",
+    "flowbite-react": "^0.9.0",
+    "tailwind-merge": "^2.3.0",
+    "tailwindcss-animate": "^1.0.7"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
