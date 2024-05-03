@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-import { PageContainer, PastEvents } from '@websites/shared/react/components'
+import { PageContainer, PastEvents } from '@websites/shared-react-components'
 
 const images = [
   'sltdnb-24-1.png',

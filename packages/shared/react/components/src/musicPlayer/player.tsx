@@ -2,7 +2,7 @@
 
 import { ReactNode, useRef, useEffect } from 'react'
 
-import { cn } from '@websites/shared/react/lib'
+import { cn } from '@websites/shared-react-lib'
 
 import { Drawer, DrawerContent } from '../drawer'
 

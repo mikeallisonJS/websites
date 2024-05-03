@@ -16,7 +16,7 @@ import {
   DropdownMenuPortal,
   DropdownMenuSeparator,
   DropdownMenuTrigger
-} from '@websites/shared/react/components'
+} from '@websites/shared-react-components'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'

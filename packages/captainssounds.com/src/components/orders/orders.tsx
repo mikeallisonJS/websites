@@ -9,7 +9,7 @@ import {
   TableHead,
   TableHeader,
   TableRow
-} from '@websites/shared/react/components'
+} from '@websites/shared-react-components'
 import Link from 'next/link'
 
 import {

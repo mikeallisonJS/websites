@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-namespace
 import React from 'react'
 
-import { cn } from '@websites/shared/react/lib'
+import { cn } from '@websites/shared-react-lib'
 
 const Table = React.forwardRef<
   HTMLTableElement,

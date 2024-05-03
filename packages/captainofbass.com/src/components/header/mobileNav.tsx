@@ -10,8 +10,8 @@ import {
   SheetContent,
   SheetTrigger,
   Button
-} from '@websites/shared/react/components'
-import { cn } from '@websites/shared/react/lib'
+} from '@websites/shared-react-components'
+import { cn } from '@websites/shared-react-lib'
 
 export function MobileNav() {
   const [open, setOpen] = useState(false)

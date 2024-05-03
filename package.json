@@ -60,6 +60,7 @@
     "zustand": "^4.5.2"
   },
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "packages/shared/react/*"
   ]
 }

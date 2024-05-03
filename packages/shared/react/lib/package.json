@@ -1,7 +1,8 @@
 {
-  "name": "lib",
+  "name": "@websites/shared-react-lib",
   "module": "src/index.ts",
-  "type": "module",
+  "type": "commonjs",
+  "private": true,
   "dependencies": {
     "flowbite": "^2.3.0",
     "flowbite-react": "^0.9.0",

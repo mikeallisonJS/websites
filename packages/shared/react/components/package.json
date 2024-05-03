@@ -1,7 +1,7 @@
 {
-  "name": "components",
+  "name": "@websites/shared-react-components",
   "module": "src/index.tsx",
-  "type": "module",
+  "type": "commonjs",
   "dependencies": {
     "@radix-ui/react-collapsible": "^1.0.3",
     "@radix-ui/react-dialog": "^1.0.5",
@@ -17,7 +17,8 @@
     "class-variance-authority": "^0.7.0",
     "framer-motion": "^11.1.7",
     "lucide-react": "^0.376.0",
-    "vaul": "^0.9.0"
+    "vaul": "^0.9.0",
+    "@websites/shared-react-lib": "workspace:*"
   },
   "devDependencies": {
     "@types/bun": "latest"

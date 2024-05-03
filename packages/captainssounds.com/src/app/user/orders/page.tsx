@@ -1,4 +1,4 @@
-import { PageContainer } from '@websites/shared/react/components'
+import { PageContainer } from '@websites/shared-react-components'
 import { Orders } from '../../../components/orders/orders'
 import { Suspense } from 'react'
 

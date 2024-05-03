@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-import { cn } from '@websites/shared/react/lib'
+import { cn } from '@websites/shared-react-lib'
 
 type CoverArtProps = {
   src?: string

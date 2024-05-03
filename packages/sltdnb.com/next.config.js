@@ -1,9 +1,5 @@
-const { composePlugins, withNx } = require('@nx/next')
 const { withSentryConfig } = require('@sentry/nextjs')
 
-/**
- * @type {import('@nx/next/plugins/with-nx').WithNxOptions}
- **/
 const nextConfig = {
   typescript: {
     ignoreBuildErrors: true
@@ -12,11 +8,10 @@ const nextConfig = {
     // Disabling on production builds because we're running checks on PRs via GitHub Actions.
     ignoreDuringBuilds: true
   },
-  nx: {
-    // Set this to true if you would like to to use SVGR
-    // See: https://github.com/gregberge/svgr
-    svgr: false
-  }
+  transpilePackages: [
+    '@websites/shared-react-lib',
+    '@websites/shared-react-components'
+  ]
 }
 
 const sentryConfig = withSentryConfig(
@@ -59,9 +54,4 @@ const sentryConfig = withSentryConfig(
   }
 )
 
-const plugins = [
-  // Add more Next.js plugins to this list if needed.
-  withNx
-]
-
-module.exports = composePlugins(...plugins)(sentryConfig)
+module.exports = sentryConfig

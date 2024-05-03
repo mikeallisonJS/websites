@@ -7,7 +7,7 @@ import {
   Table,
   TableCell,
   TableRow
-} from '@websites/shared/react/components'
+} from '@websites/shared-react-components'
 
 import { GlassContainer } from '../../components/glassContainer'
 
