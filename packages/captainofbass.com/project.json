@@ -29,7 +29,8 @@
       "configurations": {
         "development": {
           "buildTarget": "captainofbass.com:build:development",
-          "dev": true
+          "dev": true,
+          "turbo": true
         },
         "production": {
           "buildTarget": "captainofbass.com:build:production",
