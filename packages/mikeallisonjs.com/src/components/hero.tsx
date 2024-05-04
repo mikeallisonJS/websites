@@ -23,7 +23,8 @@ export function Hero() {
             </h1>
             <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
               Over {new Date().getFullYear() - 2000} years experience designing
-              cutting edge software solutions for industry leading businesses.
+              cutting edge software solutions for global industry leading
+              businesses.
             </p>
           </div>
         </div>

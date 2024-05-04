@@ -3,7 +3,7 @@ import { Arimo } from 'next/font/google'
 import './global.css'
 import { cn } from '@websites/shared/react/lib'
 
-import Header from '../components/header/header'
+import Header from '../components/header'
 
 const arimo = Arimo({
   subsets: ['latin'],
