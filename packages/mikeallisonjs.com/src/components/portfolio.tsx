@@ -164,7 +164,10 @@ export function Portfolio() {
             className="md:h-[390px]"
           />
         </Overlay>
-        <Overlay websiteUrl="https://captainssounds.com">
+        <Overlay
+          websiteUrl="https://captainssounds.com"
+          githubUrl="https://github.com/mikeallisonJS/websites"
+        >
           <BentoGridItem
             title="Captain's Sounds"
             description="A Next.js eCommerce site for music production"
@@ -195,7 +198,10 @@ export function Portfolio() {
             className="md:h-[390px]"
           />
         </Overlay>
-        <Overlay websiteUrl="https://captainofbass.com">
+        <Overlay
+          websiteUrl="https://captainofbass.com"
+          githubUrl="https://github.com/mikeallisonJS/websites"
+        >
           <BentoGridItem
             title="captainofbass.com"
             description="A Next.js site for music artist Captain (my music project)"
