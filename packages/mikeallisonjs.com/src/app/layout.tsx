@@ -22,7 +22,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={cn('dark', arimo.variable)}>
+    <html lang="en" className={cn('dark scroll-smooth', arimo.variable)}>
       <body>
         <Header />
         {children}

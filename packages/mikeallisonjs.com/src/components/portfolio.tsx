@@ -1,4 +1,20 @@
-import { IconBrandNextjs, IconBrandNodejs } from '@tabler/icons-react'
+import {
+  IconBrandAlgolia,
+  IconBrandAngular,
+  IconBrandAws,
+  IconBrandGoogle,
+  IconBrandGraphql,
+  IconBrandGumroad,
+  IconBrandNextjs,
+  IconBrandNodejs,
+  IconBrandReact,
+  IconBrandTerraform,
+  IconBrandTypescript,
+  IconBrandVercel,
+  IconBrandWordpress,
+  IconCoffee,
+  IconDiamond
+} from '@tabler/icons-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ReactNode } from 'react'
@@ -41,7 +57,7 @@ export function Portfolio() {
           Portfolio
         </h2>
         <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-          Some of the professional and personal projects I&quot;ve worked on
+          Some of the professional and personal projects I&lsquo;ve worked on
           over the years.
         </p>
       </div>
@@ -67,7 +83,16 @@ export function Portfolio() {
                 }}
               />
             }
-            icon={<IconBrandNextjs />}
+            icon={
+              <div className="flex gap-2">
+                <IconBrandNextjs />
+                <IconBrandNodejs />
+                <IconBrandGraphql />
+                <IconBrandTypescript />
+                <IconBrandVercel />
+                <IconBrandTerraform />
+              </div>
+            }
             className="md:h-[390px]"
           />
         </Overlay>
@@ -92,7 +117,16 @@ export function Portfolio() {
                 }}
               />
             }
-            icon={<IconBrandNextjs />}
+            icon={
+              <div className="flex gap-2">
+                <IconBrandNextjs />
+                <IconBrandNodejs />
+                <IconBrandGraphql />
+                <IconBrandTypescript />
+                <IconBrandAws />
+                <IconBrandTerraform />
+              </div>
+            }
             className="md:h-[390px]"
           />
         </Overlay>
@@ -117,7 +151,16 @@ export function Portfolio() {
                 }}
               />
             }
-            icon={<IconBrandNextjs />}
+            icon={
+              <div className="flex gap-2">
+                <IconBrandNextjs />
+                <IconBrandNodejs />
+                <IconBrandGraphql />
+                <IconBrandTypescript />
+                <IconBrandVercel />
+                <IconBrandAlgolia />
+              </div>
+            }
             className="md:h-[390px]"
           />
         </Overlay>
@@ -139,7 +182,16 @@ export function Portfolio() {
                 }}
               />
             }
-            icon={<IconBrandNextjs />}
+            icon={
+              <div className="flex gap-2">
+                <IconBrandNextjs />
+                <IconBrandGraphql />
+                <IconBrandTypescript />
+                <IconBrandVercel />
+                <IconBrandGumroad />
+                <IconBrandGoogle />
+              </div>
+            }
             className="md:h-[390px]"
           />
         </Overlay>
@@ -161,7 +213,13 @@ export function Portfolio() {
                 }}
               />
             }
-            icon={<IconBrandNextjs />}
+            icon={
+              <div className="flex gap-2">
+                <IconBrandNextjs />
+                <IconBrandTypescript />
+                <IconBrandVercel />
+              </div>
+            }
             className="md:h-[390px]"
           />
         </Overlay>
@@ -183,7 +241,13 @@ export function Portfolio() {
                 }}
               />
             }
-            icon={<IconBrandNodejs />}
+            icon={
+              <div className="flex gap-2">
+                <IconBrandReact />
+                <IconBrandNodejs />
+                <IconBrandWordpress />
+              </div>
+            }
             className="md:h-[390px]"
           />
         </Overlay>
@@ -205,7 +269,64 @@ export function Portfolio() {
                 }}
               />
             }
-            icon={<IconBrandNextjs />}
+            icon={
+              <div className="flex gap-2">
+                <IconBrandAngular />
+                <IconDiamond />
+              </div>
+            }
+          />
+        </Overlay>
+        <Overlay websiteUrl="https://edgenuity.com">
+          <BentoGridItem
+            title="Compass Learning"
+            description="Nationwide online learning platforms for K-12 students."
+            header={
+              <Image
+                src="/images/compass.png"
+                alt="compass"
+                width={200}
+                height={200}
+                className="rounded-xl"
+                style={{
+                  width: '100%',
+                  height: '14rem',
+                  objectFit: 'cover'
+                }}
+              />
+            }
+            icon={
+              <div className="flex gap-2">
+                <IconBrandAngular />
+              </div>
+            }
+          />
+        </Overlay>
+        <Overlay websiteUrl="https://agilix.com">
+          <BentoGridItem
+            title="Agilix"
+            description="Online learning platform powering countless learning and test taking solutions."
+            header={
+              <Image
+                src="/images/agilix.png"
+                alt="agilix"
+                width={200}
+                height={200}
+                className="rounded-xl"
+                style={{
+                  width: '100%',
+                  height: '14rem',
+                  objectFit: 'cover'
+                }}
+              />
+            }
+            icon={
+              <div className="flex gap-2">
+                <IconBrandAngular />
+                <IconBrandNodejs />
+                <IconCoffee />
+              </div>
+            }
           />
         </Overlay>
       </BentoGrid>
