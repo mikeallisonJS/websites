@@ -1,3 +1,4 @@
+import { IconBrandGithub } from '@tabler/icons-react'
 import Link from 'next/link'
 
 export default function Header() {
@@ -26,6 +27,9 @@ export default function Header() {
               className="hover:underline underline-offset-4"
             >
               Contact
+            </Link>
+            <Link href="https://github.com/mikeallisonJS" target="_blank">
+              <IconBrandGithub />
             </Link>
           </nav>
         </div>

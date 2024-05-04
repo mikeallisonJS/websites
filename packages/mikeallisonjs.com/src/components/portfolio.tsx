@@ -73,7 +73,7 @@ export function Portfolio() {
               <Image
                 src="/images/nextsteps.jpeg"
                 alt="nextsteps"
-                width={200}
+                width={400}
                 height={200}
                 className="rounded-xl"
                 style={{
@@ -107,7 +107,7 @@ export function Portfolio() {
               <Image
                 src="/images/nextsteps-admin.jpeg"
                 alt="nextsteps-admin"
-                width={200}
+                width={400}
                 height={200}
                 className="rounded-xl"
                 style={{
@@ -141,7 +141,7 @@ export function Portfolio() {
               <Image
                 src="/images/jfm-watch.png"
                 alt="jesusfilm"
-                width={200}
+                width={400}
                 height={200}
                 className="rounded-xl"
                 style={{
@@ -172,7 +172,7 @@ export function Portfolio() {
               <Image
                 src="/images/captainssounds.jpeg"
                 alt="captainssounds"
-                width={200}
+                width={400}
                 height={200}
                 className="rounded-xl"
                 style={{
@@ -203,7 +203,7 @@ export function Portfolio() {
               <Image
                 src="/images/captainofbass.png"
                 alt="captainofbass"
-                width={200}
+                width={400}
                 height={200}
                 className="rounded-xl"
                 style={{
@@ -231,7 +231,7 @@ export function Portfolio() {
               <Image
                 src="/images/pbmtv.png"
                 alt="PBMTV"
-                width={200}
+                width={400}
                 height={200}
                 className="rounded-xl"
                 style={{
@@ -251,15 +251,18 @@ export function Portfolio() {
             className="md:h-[390px]"
           />
         </Overlay>
-        <Overlay websiteUrl="https://mpdx.org">
+        <Overlay
+          websiteUrl="https://mpdx.org"
+          githubUrl="https://github.com/CruGlobal/mpdx-react"
+        >
           <BentoGridItem
             title="MPDX"
-            description="A site for fundraising and donor management"
+            description="An open-source solution for fundraising and donor management."
             header={
               <Image
                 src="/images/mpdx.png"
                 alt="MPDX"
-                width={200}
+                width={400}
                 height={200}
                 className="rounded-xl"
                 style={{
@@ -285,7 +288,7 @@ export function Portfolio() {
               <Image
                 src="/images/compass.png"
                 alt="compass"
-                width={200}
+                width={400}
                 height={200}
                 className="rounded-xl"
                 style={{
@@ -310,7 +313,7 @@ export function Portfolio() {
               <Image
                 src="/images/agilix.png"
                 alt="agilix"
-                width={200}
+                width={400}
                 height={200}
                 className="rounded-xl"
                 style={{
