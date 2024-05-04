@@ -1,6 +1,7 @@
 'use client'
 
-import LabelPrimitive from '@radix-ui/react-label'
+// eslint-disable-next-line import/no-namespace
+import * as LabelPrimitive from '@radix-ui/react-label'
 import { cva, type VariantProps } from 'class-variance-authority'
 import React from 'react'
 

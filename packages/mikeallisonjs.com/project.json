@@ -1,0 +1,68 @@
+{
+  "name": "mikeallisonjs.com",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/mikeallisonjs.com",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/next:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/packages/mikeallisonjs.com"
+      },
+      "configurations": {
+        "development": {
+          "outputPath": "packages/mikeallisonjs.com"
+        },
+        "production": {}
+      }
+    },
+    "serve": {
+      "executor": "@nx/next:server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "mikeallisonjs.com:build",
+        "dev": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "mikeallisonjs.com:build:development",
+          "dev": true,
+          "turbo": true
+        },
+        "production": {
+          "buildTarget": "mikeallisonjs.com:build:production",
+          "dev": false
+        }
+      }
+    },
+    "export": {
+      "executor": "@nx/next:export",
+      "options": {
+        "buildTarget": "mikeallisonjs.com:build:production"
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "packages/mikeallisonjs.com/jest.config.ts"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "fetch-secrets": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          {
+            "command": "doppler secrets download --no-file --format=env-no-quotes -p mikeallisonjs-com > packages/mikeallisonjs.com/.env"
+          }
+        ]
+      }
+    }
+  }
+}
