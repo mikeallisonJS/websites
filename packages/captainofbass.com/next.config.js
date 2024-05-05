@@ -16,6 +16,18 @@ const nextConfig = {
     // Set this to true if you would like to to use SVGR
     // See: https://github.com/gregberge/svgr
     svgr: false
+  },
+  async rewrites() {
+    return [
+      {
+        source: '/ph/static/:path*',
+        destination: 'https://us-assets.i.posthog.com/static/:path*'
+      },
+      {
+        source: '/ph/:path*',
+        destination: 'https://us.i.posthog.com/:path*'
+      }
+    ]
   }
 }
 

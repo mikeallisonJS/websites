@@ -3,8 +3,9 @@ import { GeistSans } from 'geist/font/sans'
 import { ReactNode, Suspense } from 'react'
 
 import Navbar from '../components/navbar'
+import { CSPostHogProvider } from '../components/posthogProvider'
+
 import './globals.css'
-import { CSPostHogProvider } from '../components/posthog/provider'
 
 const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL
   ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`

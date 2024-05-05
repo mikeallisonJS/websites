@@ -57,11 +57,8 @@
     "fetch-secrets": {
       "executor": "nx:run-commands",
       "options": {
-        "commands": [
-          {
-            "command": "doppler secrets download --no-file --format=env-no-quotes -p captainofbass-com > packages/captainofbass.com/.env"
-          }
-        ]
+        "command": "VERCEL_ORG_ID=team_QQB0m2nnVhvxOyCiJtHju9zQ VERCEL_PROJECT_ID=prj_AQW9GtxIdTof1Xv6WMo07ehiMgPw vercel env pull",
+        "cwd": "packages/captainofbass.com"
       }
     }
   }

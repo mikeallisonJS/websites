@@ -14,8 +14,10 @@
     },
     "ghcr.io/devcontainers/features/node:1": {
       "nodeGypDependencies": true,
-      "version": "lts",
-      "nvmVersion": "latest"
+      "version": "lts"
+    },
+    "ghcr.io/devcontainers-contrib/features/vercel-cli:1": {
+      "version": "latest"
     }
   },
   "customizations": {
