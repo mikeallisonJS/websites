@@ -1,5 +1,6 @@
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
 }
 
 datasource db {
@@ -11,24 +12,32 @@ datasource db {
   directUrl = env("POSTGRES_URL_NON_POOLING")
 }
 
-enum Category {
-  instrument
-  template
-  effect
-  sample
-  bonus
+model Category {
+  id           String    @id
+  name         String
+  order        Int       @unique
+  inNavigation Boolean   @default(true)
+  products     Product[]
+  Link         Link[]
 }
 
 model Product {
-  id          String    @id
-  name        String
-  category    Category
-  description String?
-  free        Boolean
-  images      Image[]
-  orders      Order[]
-  download    Download?
-  downloadId  String?
+  id           String    @id
+  name         String
+  description  String?
+  free         Boolean   @default(false)
+  donationware Boolean   @default(false)
+  stripeId     String?
+  price        Decimal   @default(0)
+  order        Int       @default(0)
+  createdAt    DateTime  @default(now())
+  downloadId   String?
+  categoryId   String
+  images       Image[]
+  orders       Order[]
+  download     Download?
+  category     Category  @relation(fields: [categoryId], references: [id])
+  blocks       Block[]
 }
 
 model Order {
@@ -60,6 +69,27 @@ model Link {
   id          String   @id
   name        String
   description String?
-  category    Category
+  category    Category @relation(fields: [categoryId], references: [id])
+  order       Int      @default(0)
   url         String
+  categoryId  String
+}
+
+enum BlockType {
+  Text
+  Image
+  List
+  Youtube
+}
+
+model Block {
+  id        String    @id @default(uuid())
+  value     String
+  type      BlockType
+  className String    @default("")
+  order     Int
+  productId String
+  product   Product   @relation(fields: [productId], references: [id])
+
+  @@unique([productId, order])
 }
