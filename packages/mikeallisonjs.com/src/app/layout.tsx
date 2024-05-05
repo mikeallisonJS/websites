@@ -1,6 +1,7 @@
 import { Arimo } from 'next/font/google'
 
 import './global.css'
+import { CSPostHogProvider } from '@websites/shared/react/components'
 import { cn } from '@websites/shared/react/lib'
 
 import Header from '../components/header'
@@ -25,11 +26,13 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={cn('dark scroll-smooth', arimo.variable)}>
-      <body>
-        <Header />
-        {children}
-      </body>
-    </html>
+    <CSPostHogProvider>
+      <html lang="en" className={cn('dark scroll-smooth', arimo.variable)}>
+        <body>
+          <Header />
+          {children}
+        </body>
+      </html>
+    </CSPostHogProvider>
   )
 }

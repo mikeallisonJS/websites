@@ -57,11 +57,8 @@
     "fetch-secrets": {
       "executor": "nx:run-commands",
       "options": {
-        "commands": [
-          {
-            "command": "doppler secrets download --no-file --format=env-no-quotes -p mikeallisonjs-com > packages/mikeallisonjs.com/.env"
-          }
-        ]
+        "command": "VERCEL_ORG_ID=team_QQB0m2nnVhvxOyCiJtHju9zQ VERCEL_PROJECT_ID=prj_yrPbgelWZ5lC3gIn7qL7CmjoiTSC vercel env pull",
+        "cwd": "packages/mikeallisonjs.com"
       }
     }
   }

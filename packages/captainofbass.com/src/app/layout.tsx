@@ -1,5 +1,7 @@
 import { ReactNode } from 'react'
 
+import { CSPostHogProvider } from '@websites/shared/react/components'
+
 import Footer from '../components/footer/footer'
 import Header from '../components/header/header'
 
@@ -8,13 +10,15 @@ import './global.css'
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
-      <body>
-        <Header />
-        {children}
-        <Footer />
-      </body>
-    </html>
+    <CSPostHogProvider>
+      <html lang="en">
+        <body>
+          <Header />
+          {children}
+          <Footer />
+        </body>
+      </html>
+    </CSPostHogProvider>
   )
 }
 

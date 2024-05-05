@@ -2,9 +2,11 @@ import { ClerkProvider } from '@clerk/nextjs'
 import { GeistSans } from 'geist/font/sans'
 import { ReactNode, Suspense } from 'react'
 
+import { CSPostHogProvider } from '@websites/shared/react/components'
+
 import Navbar from '../components/navbar'
+
 import './globals.css'
-import { CSPostHogProvider } from '../components/posthog/provider'
 
 const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL
   ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
