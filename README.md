@@ -11,19 +11,19 @@ This is an NX monorepo for my personal websites. Everything is licensed under th
 
 ## Tech stack
 
-- Monorepo: (Nx)[nx.dev]
-- Framework: (Next.js)[nextjs.org]
-- Package Manager: (pnpm)[pnpm.io]
-- Deployment: (Vercel)[vercel.com]
-- Database: (Postgres on Vercel)[vercel.com]
-- ORM: (Prisma)[prisma.io]
-- IDE: (VSCode with devcontainers)[code.visualstudio.com]
-- eCommerce Backend: (Shopify)[shopify.com] & (Gumroad)[gumroad.com]
-- Styles: (Tailwind)[tailwindcss.com]
-- Components: (ShadCN)[ui.shadcn.com]
-- Analytics: (Posthog)[posthog.com]
-- Logging: (Sentry)[sentry.io]
-- Authentication: (Clerk)[clerk.com]
+- Monorepo: [Nx](nx.dev)
+- Framework: [Next.js](nextjs.org)
+- Package Manager: [pnpm](pnpm.io)
+- Deployment: [Vercel](vercel.com)
+- Database: [Postgres on Vercel](vercel.com)
+- ORM: [Prisma](prisma.io)
+- IDE: [VSCode with devcontainers](code.visualstudio.com)
+- eCommerce Backend: [Shopify](shopify.com) & [Gumroad](gumroad.com)
+- Styles: [Tailwind](tailwindcss.com)
+- Components: [ShadCN](ui.shadcn.com)
+- Analytics: [Posthog](posthog.com)
+- Logging: [Sentry](sentry.io)
+- Authentication: [Clerk](clerk.com)
 
 ## Getting started
 
