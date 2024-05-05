@@ -19,6 +19,11 @@ This is an NX monorepo for my personal websites. Everything is licensed under th
 - ORM: (Prisma)[prisma.io]
 - IDE: (VSCode with devcontainers)[code.visualstudio.com]
 - eCommerce Backend: (Shopify)[shopify.com] & (Gumroad)[gumroad.com]
+- Styles: (Tailwind)[tailwindcss.com]
+- Components: (ShadCN)[ui.shadcn.com]
+- Analytics: (Posthog)[posthog.com]
+- Logging: (Sentry)[sentry.io]
+- Authentication: (Clerk)[clerk.com]
 
 ## Getting started
 
