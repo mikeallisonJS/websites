@@ -1,6 +1,10 @@
 'use server'
 
 import { currentUser } from '@clerk/nextjs/server'
+import { sql } from '@vercel/postgres'
+import { drizzle } from 'drizzle-orm/vercel-postgres'
+import Link from 'next/link'
+
 import {
   Table,
   TableBody,
@@ -10,16 +14,11 @@ import {
   TableHeader,
   TableRow
 } from '@websites/shared/react/components'
-import Link from 'next/link'
 
-import {
-  Download,
-  Link as PrismaLink,
-  PrismaClient,
-  Product
-} from '@prisma/client'
+// eslint-disable-next-line import/no-namespace
+import * as schema from '../../lib/drizzle/schema'
 
-const prisma = new PrismaClient()
+const db = drizzle(sql, { schema })
 
 export async function Orders() {
   const user = await currentUser()
@@ -27,16 +26,20 @@ export async function Orders() {
     return null
   }
 
-  const orders = await prisma.order.findMany({
-    where: {
-      email: {
-        in: user.emailAddresses.map(({ emailAddress }) => emailAddress)
-      }
-    },
-    include: {
-      products: {
-        include: {
-          download: true
+  const orders = await db.query.order.findMany({
+    where: (order, { inArray }) =>
+      inArray(
+        order.email,
+        user.emailAddresses.map(({ emailAddress }) => emailAddress)
+      ),
+    with: {
+      orderToProducts: {
+        with: {
+          product: {
+            with: {
+              download: true
+            }
+          }
         }
       }
     }
@@ -44,18 +47,19 @@ export async function Orders() {
 
   const hasUatPurchase =
     orders.filter(
-      ({ products }) =>
-        products.filter(({ id }) => id == 'ultimate-ableton-templates').length >
-        0
+      ({ orderToProducts }) =>
+        orderToProducts.filter(
+          ({ product }) => product.id == 'ultimate-ableton-templates'
+        ).length > 0
     ).length > 0
-  let uatProducts: Array<Product & { download: Download | null }> = []
-  let uatLinks: PrismaLink[] = []
-  if (hasUatPurchase) {
-    uatProducts = await prisma.product.findMany({
-      include: { download: true }
-    })
-    uatLinks = await prisma.link.findMany({})
-  }
+
+  const uatProducts = hasUatPurchase
+    ? await db.query.product.findMany({
+        with: { download: true }
+      })
+    : []
+  const uatLinks = hasUatPurchase ? await db.query.link.findMany() : []
+
   return orders.length === 0 ? (
     <div>No orders found</div>
   ) : (
@@ -82,7 +86,7 @@ export async function Orders() {
               </TableRow>
             ))
           : orders.map((order) =>
-              order.products.map((product) => (
+              order.orderToProducts.map(({ product }) => (
                 <TableRow key={product.id}>
                   <TableCell className="font-medium">{product.name}</TableCell>
                   <TableCell>

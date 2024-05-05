@@ -114,6 +114,13 @@
           "npx prisma validate --schema packages/captainssounds.com/db/schema.prisma"
         ]
       }
+    },
+    "drizzle-pull": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "drizzle-kit introspect:pg --config=drizzle.config.ts",
+        "cwd": "packages/captainssounds.com"
+      }
     }
   }
 }

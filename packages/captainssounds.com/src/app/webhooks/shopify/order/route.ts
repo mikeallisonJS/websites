@@ -1,8 +1,12 @@
-import { PrismaClient } from '@prisma/client'
 import crypto from 'crypto'
+
+import { sql } from '@vercel/postgres'
+import { drizzle } from 'drizzle-orm/vercel-postgres'
 import { NextRequest } from 'next/server'
 
-const prisma = new PrismaClient()
+import { order, orderToProduct } from '../../../../lib/drizzle/schema'
+
+const db = drizzle(sql)
 
 export async function POST(req: NextRequest) {
   const data = await req.text()
@@ -15,15 +19,21 @@ export async function POST(req: NextRequest) {
 
   if (hmacHeader === digest) {
     if (body?.contact_email != null && body?.line_items?.length > 0) {
-      prisma.order.upsert({
-        where: { email: body.contact_email },
-        update: {
-          products: { connect: body.line_items.map((item: any) => item.sku) }
-        },
-        create: {
-          email: body.contact_email,
-          products: { connect: body.line_items.map((item: any) => item.sku) }
+      await db.transaction(async (tx) => {
+        const result = await tx
+          .insert(order)
+          .values({
+            email: body.contact_email
+          })
+          .onConflictDoNothing({ target: order.email })
+          .returning({ id: order.id })
+        if (result[0]?.id == null) {
+          throw new Error('Failed to insert order')
         }
+        await tx
+          .insert(orderToProduct)
+          .values({ orderId: result[0].id, productId: body.line_items[0].sku })
+          .onConflictDoNothing()
       })
     }
     // revalidateTag()
