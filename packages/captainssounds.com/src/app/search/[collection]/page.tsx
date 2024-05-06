@@ -1,28 +1,23 @@
-import { Pool } from '@neondatabase/serverless'
+import { sql } from '@vercel/postgres'
+import { drizzle } from 'drizzle-orm/vercel-postgres'
 import { notFound } from 'next/navigation'
 import { ReactElement } from 'react'
 
-import { PrismaNeon } from '@prisma/adapter-neon'
-import { Prisma, PrismaClient } from '@prisma/client'
-
 import Grid from '../../../components/grid'
 import ProductGridItems from '../../../components/productGridItems'
+import { schema } from '../../../lib/drizzle'
 
 export const runtime = 'edge'
 
-const neon = new Pool({ connectionString: process.env.POSTGRES_PRISMA_URL })
-const adapter = new PrismaNeon(neon)
-const prisma = new PrismaClient({
-  adapter
-})
+const db = drizzle(sql, { schema })
 
 export async function generateMetadata({
   params
 }: {
   params: { collection: string }
 }) {
-  const collection = await prisma.category.findUnique({
-    where: { id: params.collection }
+  const collection = await db.query.category.findFirst({
+    where: (category, { eq }) => eq(category.id, params.collection)
   })
 
   if (!collection) return notFound()
@@ -37,10 +32,8 @@ export async function generateMetadata({
 }
 
 export const generateStaticParams = async () => {
-  const categories = await prisma.category.findMany({
-    where: {
-      inNavigation: true
-    }
+  const categories = await db.query.category.findMany({
+    where: (category, { eq }) => eq(category.inNavigation, true)
   })
 
   return categories.map((category) => ({
@@ -59,27 +52,28 @@ export default async function CategoryPage({
 }: CategoryPageProps): Promise<ReactElement> {
   const { sort } = searchParams as { [key: string]: string }
 
-  let orderBy: Prisma.ProductOrderByWithRelationInput = { order: 'asc' }
+  let orderBy = (product: typeof schema.product, { asc }) => [
+    asc(product.order)
+  ]
   switch (sort) {
     case 'price-asc':
-      orderBy = { price: 'asc' }
+      orderBy = (product, { asc }) => [asc(product.price)]
       break
     case 'price-desc':
-      orderBy = { price: 'desc' }
+      orderBy = (product, { desc }) => [desc(product.price)]
       break
     case 'trending-desc':
-      orderBy = { orders: { _count: 'desc' } }
+      orderBy = (product, { count }) => [count(product.orders)]
       break
     case 'latest-desc':
-      orderBy = { createdAt: 'desc' }
+      orderBy = (product, { desc }) => [desc(product.createdAt)]
       break
   }
 
-  const products = await prisma.product.findMany({
-    where: {
-      categoryId: params.collection
-    },
-    include: { images: true, _count: { select: { orders: true } } },
+  const products = await db.query.product.findMany({
+    where: (product, { eq, exists }) =>
+      eq(product.categoryId, params.collection),
+    with: { images: true },
     orderBy
   })
 

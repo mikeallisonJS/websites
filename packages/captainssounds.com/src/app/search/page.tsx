@@ -1,10 +1,9 @@
-import { Pool } from '@neondatabase/serverless'
-
-import { PrismaNeon } from '@prisma/adapter-neon'
-import { Prisma, PrismaClient } from '@prisma/client'
+import { sql } from '@vercel/postgres'
+import { drizzle } from 'drizzle-orm/vercel-postgres'
 
 import Grid from '../../components/grid'
 import ProductGridItems from '../../components/productGridItems'
+import { schema } from '../../lib/drizzle'
 
 export const runtime = 'edge'
 
@@ -13,11 +12,7 @@ export const metadata = {
   description: 'Search for products in the store.'
 }
 
-const neon = new Pool({ connectionString: process.env.POSTGRES_PRISMA_URL })
-const adapter = new PrismaNeon(neon)
-const prisma = new PrismaClient({
-  adapter
-})
+const db = drizzle(sql, { schema })
 
 export default async function SearchPage({
   searchParams
@@ -25,27 +20,34 @@ export default async function SearchPage({
   searchParams?: { [key: string]: string | string[] | undefined }
 }) {
   const { sort, q: searchValue } = searchParams as { [key: string]: string }
-  let orderBy: Prisma.ProductOrderByWithRelationInput = { order: 'asc' }
+  let orderBy = (product: typeof schema.product, { asc }) => [
+    asc(product.order)
+  ]
   switch (sort) {
     case 'price-asc':
-      orderBy = { price: 'asc' }
+      orderBy = (product, { asc }) => [asc(product.price)]
       break
     case 'price-desc':
-      orderBy = { price: 'desc' }
+      orderBy = (product, { desc }) => [desc(product.price)]
       break
     case 'trending-desc':
-      orderBy = { orders: { _count: 'desc' } }
+      orderBy = (product, { count }) => [count(product.orders)]
       break
     case 'latest-desc':
-      orderBy = { createdAt: 'desc' }
+      orderBy = (product, { desc }) => [desc(product.createdAt)]
       break
   }
 
-  const products = await prisma.product.findMany({
-    where: {
-      category: { id: { not: 'bonus' } }
+  const products = await db.query.product.findMany({
+    where: (category, { ne }) => ne(category.id, 'bonus'),
+    with: {
+      images: true,
+      orders: {
+        columns: {
+          orderId: true
+        }
+      }
     },
-    include: { images: true, _count: { select: { orders: true } } },
     orderBy
   })
   const resultsText = products.length > 1 ? 'results' : 'result'

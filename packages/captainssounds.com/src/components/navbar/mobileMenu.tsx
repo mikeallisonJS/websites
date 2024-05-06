@@ -6,12 +6,12 @@ import Link from 'next/link'
 import { usePathname, useSearchParams } from 'next/navigation'
 import { Fragment, Suspense, useEffect, useState } from 'react'
 
-import { Category } from '@prisma/client'
+import { schema } from '../../lib/drizzle'
 
 import Search, { SearchSkeleton } from './search'
 
 type MobileMenuProps = {
-  categories: Category[]
+  categories: (typeof schema.category.$inferSelect)[]
 }
 export default function MobileMenu({ categories }: MobileMenuProps) {
   const pathname = usePathname()
@@ -86,19 +86,21 @@ export default function MobileMenu({ categories }: MobileMenuProps) {
                       Home
                     </Link>
                   </li>
-                  {categories.map((item: Category) => (
-                    <li
-                      className="py-2 text-xl text-black transition-colors hover:text-neutral-500 dark:text-white"
-                      key={item.name}
-                    >
-                      <Link
-                        href={`/search/${item.id}`}
-                        onClick={closeMobileMenu}
+                  {categories.map(
+                    (item: typeof schema.category.$inferSelect) => (
+                      <li
+                        className="py-2 text-xl text-black transition-colors hover:text-neutral-500 dark:text-white"
+                        key={item.name}
                       >
-                        {item.name}
-                      </Link>
-                    </li>
-                  ))}
+                        <Link
+                          href={`/search/${item.id}`}
+                          onClick={closeMobileMenu}
+                        >
+                          {item.name}
+                        </Link>
+                      </li>
+                    )
+                  )}
                   <li className="py-2 text-xl text-black transition-colors hover:text-neutral-500 dark:text-white">
                     <Link href="/search" onClick={closeMobileMenu}>
                       All

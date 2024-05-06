@@ -15,8 +15,7 @@ import {
   TableRow
 } from '@websites/shared/react/components'
 
-// eslint-disable-next-line import/no-namespace
-import * as schema from '../../lib/drizzle/schema'
+import { schema } from '../lib/drizzle'
 
 const db = drizzle(sql, { schema })
 

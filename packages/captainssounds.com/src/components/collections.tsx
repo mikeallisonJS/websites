@@ -1,26 +1,18 @@
-import { Pool } from '@neondatabase/serverless'
+import { sql } from '@vercel/postgres'
 import clsx from 'clsx'
+import { drizzle } from 'drizzle-orm/vercel-postgres'
 import { Suspense } from 'react'
 
-import { PrismaNeon } from '@prisma/adapter-neon'
-import { PrismaClient } from '@prisma/client'
+import { schema } from '../lib/drizzle'
 
 import FilterList from './filterList'
 
-const neon = new Pool({ connectionString: process.env.POSTGRES_PRISMA_URL })
-const adapter = new PrismaNeon(neon)
-const prisma = new PrismaClient({
-  adapter
-})
+const db = drizzle(sql, { schema })
 
 async function CollectionList() {
-  const categories = await prisma.category.findMany({
-    where: {
-      inNavigation: true
-    },
-    orderBy: {
-      order: 'asc'
-    }
+  const categories = await db.query.category.findMany({
+    where: (category, { eq }) => eq(category.inNavigation, true),
+    orderBy: (category, { asc }) => [asc(category.order)]
   })
   const collections = [
     {
