@@ -1,32 +1,31 @@
-import { Pool } from '@neondatabase/serverless'
+import { sql } from '@vercel/postgres'
+import { drizzle } from 'drizzle-orm/vercel-postgres'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { Suspense } from 'react'
-
-import { PrismaNeon } from '@prisma/adapter-neon'
-import { Image, PrismaClient } from '@prisma/client'
 
 import Collections from '../../../components/collections'
 import { GridTileImage } from '../../../components/grid/tile'
 import { Gallery } from '../../../components/product/gallery'
 import { ProductDescription } from '../../../components/product/productDescription'
+import { schema } from '../../../lib/drizzle'
 
 export const runtime = 'edge'
 
-const neon = new Pool({ connectionString: process.env.POSTGRES_PRISMA_URL })
-const adapter = new PrismaNeon(neon)
-const prisma = new PrismaClient({
-  adapter
-})
+const db = drizzle(sql, { schema })
 
 export async function generateMetadata({
   params
 }: {
   params: { handle: string }
 }) {
-  const product = await prisma.product.findUnique({
-    where: { id: params.handle },
-    include: { images: true, blocks: true, category: { select: { id: true } } }
+  const product = await db.query.product.findFirst({
+    where: (product, { eq }) => eq(product.id, params.handle),
+    with: {
+      images: true,
+      blocks: true,
+      category: { columns: { id: true } }
+    }
   })
 
   if (!product) return notFound()
@@ -65,12 +64,14 @@ export default async function ProductPage({
 }: {
   params: { handle: string }
 }) {
-  const product = await prisma.product.findUnique({
-    where: { id: params.handle },
-    include: {
+  const product = await db.query.product.findFirst({
+    where: (product, { eq }) => eq(product.id, params.handle),
+    with: {
       images: true,
-      blocks: { orderBy: { order: 'asc' } },
-      category: { select: { id: true } }
+      blocks: {
+        orderBy: (block, { desc }) => [desc(block.order)]
+      },
+      category: { columns: { id: true } }
     }
   })
 
@@ -116,10 +117,12 @@ export default async function ProductPage({
                 }
               >
                 <Gallery
-                  images={product.images.map((image: Image) => ({
-                    src: image.url,
-                    altText: product.name
-                  }))}
+                  images={product.images.map(
+                    (image: typeof schema.image.$inferSelect) => ({
+                      src: image.url,
+                      altText: product.name
+                    })
+                  )}
                 />
               </Suspense>
             </div>
@@ -144,10 +147,10 @@ async function RelatedProducts({
   id: string
   categoryId: string
 }) {
-  const relatedProducts = await prisma.product.findMany({
-    where: { id: { not: id }, categoryId },
-    take: 4,
-    include: { images: true }
+  const relatedProducts = await db.query.product.findMany({
+    where: (product, { eq }) => eq(product.categoryId, categoryId),
+    limit: 4,
+    with: { images: true }
   })
 
   if (!relatedProducts.length) return null

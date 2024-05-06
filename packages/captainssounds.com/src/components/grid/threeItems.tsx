@@ -1,23 +1,21 @@
-import { Pool } from '@neondatabase/serverless'
+import { sql } from '@vercel/postgres'
+import { drizzle } from 'drizzle-orm/vercel-postgres'
 import Link from 'next/link'
 
-import { PrismaNeon } from '@prisma/adapter-neon'
-import { Image, PrismaClient, Product } from '@prisma/client'
+import { schema } from '../../lib/drizzle'
 
 import { GridTileImage } from './tile'
 
-const neon = new Pool({ connectionString: process.env.POSTGRES_PRISMA_URL })
-const adapter = new PrismaNeon(neon)
-const prisma = new PrismaClient({
-  adapter
-})
+const db = drizzle(sql, { schema })
 
 function ThreeItemGridItem({
   item,
   size,
   priority
 }: {
-  item: Product & { images: Image[] }
+  item: typeof schema.product.$inferSelect & {
+    images: (typeof schema.image.$inferSelect)[]
+  }
   size: 'full' | 'half'
   priority?: boolean
 }) {
@@ -57,13 +55,10 @@ function ThreeItemGridItem({
 }
 
 export async function ThreeItemGrid() {
-  // Collections that start with `hidden-*` are hidden from the search page.
-  const products = await prisma.product.findMany({
-    where: {
-      category: { id: { not: 'bonus' } }
-    },
-    include: { images: true, _count: { select: { orders: true } } },
-    orderBy: { order: 'asc' }
+  const products = await db.query.product.findMany({
+    where: (product, { ne }) => ne(product.categoryId, 'bonus'),
+    with: { images: true },
+    orderBy: (product, { asc }) => [asc(product.order)]
   })
 
   if (!products[0] || !products[1] || !products[2]) return null

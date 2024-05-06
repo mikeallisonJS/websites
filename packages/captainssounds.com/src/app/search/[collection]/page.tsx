@@ -6,12 +6,6 @@ import { db } from '../../../lib/drizzle'
 
 export const runtime = 'edge'
 
-const neon = new Pool({ connectionString: process.env.POSTGRES_PRISMA_URL })
-const adapter = new PrismaNeon(neon)
-const prisma = new PrismaClient({
-  adapter
-})
-
 export async function generateMetadata({
   params
 }: {

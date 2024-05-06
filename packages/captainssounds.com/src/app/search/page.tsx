@@ -8,12 +8,6 @@ export const metadata = {
   description: 'Search for products in the store.'
 }
 
-const neon = new Pool({ connectionString: process.env.POSTGRES_PRISMA_URL })
-const adapter = new PrismaNeon(neon)
-const prisma = new PrismaClient({
-  adapter
-})
-
 export default async function SearchPage({
   searchParams
 }: {

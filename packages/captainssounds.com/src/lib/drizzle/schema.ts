@@ -209,10 +209,3 @@ export const blockRelations = relations(block, ({ one }) => ({
     references: [product.id]
   })
 }))
-
-// export const productOrderCount = pgMaterializedView('ProductOrderCount', {
-//   count: integer('count').notNull(),
-//   productId: text('productId').notNull()
-// }).as(
-//   sql`SELECT COUNT(*) AS count, "productId" FROM "_OrderToProduct" GROUP BY "productId"`
-// )
