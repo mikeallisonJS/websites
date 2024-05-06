@@ -61,64 +61,52 @@
         "cwd": "packages/captainssounds.com"
       }
     },
-    "prisma-generate": {
-      "executor": "nx:run-commands",
-      "options": {
-        "parallel": false,
-        "commands": [
-          "npx prisma generate --schema packages/captainssounds.com/db/schema.prisma"
-        ]
-      }
-    },
-    "prisma-migrate": {
-      "executor": "nx:run-commands",
-      "options": {
-        "commands": [
-          "bash -c 'npx prisma migrate dev --schema packages/captainssounds.com/db/schema.prisma --name `date +\"%Y%m%d%H%M%S\"`'"
-        ]
-      },
-      "configurations": {
-        "production": {
-          "commands": [
-            "npx prisma migrate deploy --schema packages/captainssounds.com/db/schema.prisma"
-          ]
-        }
-      }
-    },
-    "prisma-reset": {
-      "executor": "nx:run-commands",
-      "options": {
-        "commands": [
-          "npx prisma migrate reset --schema packages/captainssounds.com/db/schema.prisma --force"
-        ]
-      }
-    },
-    "prisma-seed": {
-      "executor": "nx:run-commands",
-      "options": {
-        "commands": ["node packages/captainssounds.com/db/seed.mjs"]
-      }
-    },
-    "prisma-studio": {
-      "executor": "nx:run-commands",
-      "options": {
-        "commands": [
-          "npx prisma studio --schema packages/captainssounds.com/db/schema.prisma"
-        ]
-      }
-    },
-    "prisma-validate": {
-      "executor": "nx:run-commands",
-      "options": {
-        "commands": [
-          "npx prisma validate --schema packages/captainssounds.com/db/schema.prisma"
-        ]
-      }
-    },
     "drizzle-pull": {
       "executor": "nx:run-commands",
       "options": {
         "command": "drizzle-kit introspect:pg --config=drizzle.config.ts",
+        "cwd": "packages/captainssounds.com"
+      }
+    },
+    "drizzle-generate": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "drizzle-kit generate:pg --config=drizzle.config.ts",
+        "cwd": "packages/captainssounds.com"
+      }
+    },
+    "drizzle-push": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "drizzle-kit push:pg --config=drizzle.config.ts",
+        "cwd": "packages/captainssounds.com"
+      }
+    },
+    "drizzle-drop": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "drizzle-kit drop:pg --config=drizzle.config.ts",
+        "cwd": "packages/captainssounds.com"
+      }
+    },
+    "drizzle-up": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "drizzle-kit up:pg --config=drizzle.config.ts",
+        "cwd": "packages/captainssounds.com"
+      }
+    },
+    "drizzle-check": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "drizzle-kit check:pg --config=drizzle.config.ts",
+        "cwd": "packages/captainssounds.com"
+      }
+    },
+    "drizzle-studio": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "drizzle-kit studio --config=drizzle.config.ts --port 5555",
         "cwd": "packages/captainssounds.com"
       }
     }
