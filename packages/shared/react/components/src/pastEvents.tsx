@@ -19,7 +19,7 @@ export default function PastEvents({ images }: PastEventsProps) {
 
   return (
     <>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
         {[0, 1, 2].map((colIndex) => (
           <div className="grid gap-4" key={`column-${colIndex}`}>
             {images.map(
@@ -27,13 +27,13 @@ export default function PastEvents({ images }: PastEventsProps) {
                 innerIndex % 3 === colIndex && (
                   <div
                     key={image}
-                    className='flex justify-center text-center"'
+                    className='text-center" flex justify-center'
                     onClick={() => setSelectedImage(image)}
                   >
                     <Image
                       width={300}
                       height={300}
-                      className="h-auto max-w-full rounded-lg cursor-pointer"
+                      className="h-auto max-w-full cursor-pointer rounded-lg"
                       src={`/images/flyers/${image}`}
                       alt={image}
                     />
@@ -44,7 +44,7 @@ export default function PastEvents({ images }: PastEventsProps) {
         ))}
       </div>
       <Dialog open={selectedImage != null} onOpenChange={handleOpenChanged}>
-        <DialogContent className="min-w-[100vw] min-h-[calc(100vh-140px)] z-50">
+        <DialogContent className="z-50 min-h-[calc(100vh-140px)] min-w-[100vw]">
           {selectedImage && (
             <Image
               src={`/images/flyers/${selectedImage}`}

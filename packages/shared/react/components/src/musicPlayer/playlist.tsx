@@ -26,7 +26,7 @@ export default function Playlist({
             <TableRow key={track.ID}>
               <TableCell
                 onClick={() => onPlaylistSelect(index)}
-                className="py-1 cursor-pointer"
+                className="cursor-pointer py-1"
               >
                 <div className="flex flex-row gap-2 align-middle">
                   {/*render now playing icon or empty box matching icon size */}
@@ -34,21 +34,21 @@ export default function Playlist({
                     <FontAwesomeIcon
                       icon={faPlay}
                       size="lg"
-                      className="w-[36px] flex align-middle py-2"
+                      className="flex w-[36px] py-2 align-middle"
                     />
                   ) : (
-                    <div className="w-[36px] h-[36px]" />
+                    <div className="h-[36px] w-[36px]" />
                   )}
                   <CoverArt
                     src={track.coverArt}
                     className="h-[36px] w-[36px]"
                   />
 
-                  <div className="w-[50px] grow shrink mx-1">
-                    <div className="w-full text-sm whitespace-nowrap overflow-hidden">
+                  <div className="mx-1 w-[50px] shrink grow">
+                    <div className="w-full overflow-hidden whitespace-nowrap text-sm">
                       {track.title}
                     </div>
-                    <div className="w-full text-xs whitespace-nowrap overflow-hidden">
+                    <div className="w-full overflow-hidden whitespace-nowrap text-xs">
                       {track.artist}
                     </div>
                   </div>

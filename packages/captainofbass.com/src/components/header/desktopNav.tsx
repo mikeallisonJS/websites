@@ -3,8 +3,8 @@ import Link from 'next/link'
 
 export function DesktopNav() {
   return (
-    <div className="w-full hidden md:flex">
-      <Link href="/" className="flex items-center mr-auto ml-8">
+    <div className="hidden w-full md:flex">
+      <Link href="/" className="ml-8 mr-auto flex items-center">
         <Image
           className="logo"
           src="/images/cpt-border.png"
@@ -14,7 +14,7 @@ export function DesktopNav() {
           priority
         />
       </Link>
-      <nav className="flex justify-end items-center gap-4 text-sm lg:gap-6 mr-16">
+      <nav className="mr-16 flex items-center justify-end gap-4 text-sm lg:gap-6">
         <Link href="/">HOME</Link>
         <Link href="/music">MUSIC</Link>
         <Link href="/links">LINKS</Link>

@@ -39,7 +39,7 @@ export default function MusicList({ type }: MusicListProps) {
           <TableRow
             key={song.ID}
             onClick={() => onSelect(song.ID)}
-            className="text-left cursor-pointer"
+            className="cursor-pointer text-left"
           >
             <TableCell className="w-24">
               <Image

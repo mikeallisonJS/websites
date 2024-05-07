@@ -2,7 +2,7 @@ import { ReactNode } from 'react'
 
 export default function PageContainer({ children }: { children: ReactNode }) {
   return (
-    <div className="w-[90vw] mx-[5vw] mt-4 mb-20 flex flex-col justify-center text-center">
+    <div className="mx-[5vw] mb-20 mt-4 flex w-[90vw] flex-col justify-center text-center">
       {children}
     </div>
   )

@@ -27,7 +27,7 @@ type ButtonContainerProps = {
 }
 
 const ButtonContainer = ({ children }: ButtonContainerProps) => (
-  <div className="flex flex-row w-full">{children}</div>
+  <div className="flex w-full flex-row">{children}</div>
 )
 
 type PlaylistControlProps = {
@@ -59,7 +59,7 @@ export default function PlaylistControl({
         <Toggle
           value="repeat"
           pressed={repeatMode !== RepeatMode.NORMAL}
-          className={'m-auto grow-1'}
+          className={'grow-1 m-auto'}
           onClick={() => {
             switch (repeatMode) {
               case RepeatMode.NORMAL:
@@ -79,7 +79,7 @@ export default function PlaylistControl({
         </Toggle>
 
         <Toggle
-          className={'m-auto grow-1'}
+          className={'grow-1 m-auto'}
           value="shuffle"
           pressed={shuffled}
           onClick={() => {
@@ -90,7 +90,7 @@ export default function PlaylistControl({
         </Toggle>
 
         <Toggle
-          className={'m-auto grow-1'}
+          className={'grow-1 m-auto'}
           value="show playlist"
           pressed={isPlaylistOpen}
           onClick={isPlaylistOpen ? onCloseDrawer : onOpenDrawer}

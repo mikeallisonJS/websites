@@ -13,8 +13,8 @@ export default function TrackDetails({
 }: TrackDetailsProps) {
   return (
     <div className={cn('sm:cursor-pointer', className)}>
-      <div className="text-sm text-nowrap overflow-hidden">{title}</div>
-      <div className="text-xs text-nowrap overflow-hidden">{artist}</div>
+      <div className="overflow-hidden text-nowrap text-sm">{title}</div>
+      <div className="overflow-hidden text-nowrap text-xs">{artist}</div>
     </div>
   )
 }

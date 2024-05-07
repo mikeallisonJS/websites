@@ -63,7 +63,7 @@ export default function Player({
   return (
     <div
       className={cn(
-        'z-10 w-[100vw] h-[62px] flex align-middle fixed bottom-0 box-border overflow-hidden bg-popover px-1 text-popover-foreground shadow-md ',
+        'bg-popover text-popover-foreground fixed bottom-0 z-10 box-border flex h-[62px] w-[100vw] overflow-hidden px-1 align-middle shadow-md ',
         className
       )}
     >
@@ -71,7 +71,7 @@ export default function Player({
       {/* <div className="w-full h-1"></div> */}
       <div
         className={cn(
-          'flex flex-row w-full justify-between items-center flex-nowrap',
+          'flex w-full flex-row flex-nowrap items-center justify-between',
           className
         )}
       >
@@ -82,7 +82,7 @@ export default function Player({
         <TrackDetails
           title={currentTrack?.title ?? ''}
           artist={currentTrack?.artist ?? ''}
-          className="md:w-[120px] grow-1 text-left m-1 shrink-0"
+          className="grow-1 m-1 shrink-0 text-left md:w-[120px]"
         />
         <Controls
           disabled={currentTrack == null}
@@ -121,16 +121,16 @@ export default function Player({
         onClose={closeDrawer}
         modal={false}
       >
-        <DrawerContent className={cn('z-20 md:pb-[62px] md:z-0', className)}>
-          <div className="flex md:hidden pt-2">
+        <DrawerContent className={cn('z-20 md:z-0 md:pb-[62px]', className)}>
+          <div className="flex pt-2 md:hidden">
             <div
               className={cn(
-                'flex flex-col justify-end items-stretch flex-nowrap w-full h-full'
+                'flex h-full w-full flex-col flex-nowrap items-stretch justify-end'
               )}
             >
               <div
                 className={cn(
-                  'flex flex-col justify-center items-center flex-nowrap grow-1',
+                  'grow-1 flex flex-col flex-nowrap items-center justify-center',
                   className
                 )}
               >
@@ -171,7 +171,7 @@ export default function Player({
               />
             </div>
           </div>
-          <div className="hidden md:flex pt-2">
+          <div className="hidden pt-2 md:flex">
             <Playlist
               currentTrack={currentTrack}
               playlist={playlist}
