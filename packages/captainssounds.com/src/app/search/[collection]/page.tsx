@@ -45,28 +45,28 @@ export default async function CategoryPage({
 }: CategoryPageProps) {
   const { sort } = searchParams as { [key: string]: string }
 
-  let orderBy: Prisma.ProductOrderByWithRelationInput = { order: 'asc' }
-  switch (sort) {
-    case 'price-asc':
-      orderBy = { price: 'asc' }
-      break
-    case 'price-desc':
-      orderBy = { price: 'desc' }
-      break
-    case 'trending-desc':
-      orderBy = { orders: { _count: 'desc' } }
-      break
-    case 'latest-desc':
-      orderBy = { createdAt: 'desc' }
-      break
-  }
-
-  const products = await prisma.product.findMany({
-    where: {
-      categoryId: params.collection
-    },
-    include: { images: true, _count: { select: { orders: true } } },
-    orderBy
+  const products = await db.query.product.findMany({
+    where: (product, { eq, exists }) =>
+      eq(product.categoryId, params.collection),
+    with: { images: true },
+    orderBy: (product, { asc, desc, sql }) => {
+      switch (sort) {
+        case 'price-asc':
+          return [asc(product.price)]
+        case 'price-desc':
+          return [desc(product.price)]
+        case 'trending-desc':
+          return [
+            desc(
+              sql`SELECT COUNT(*) AS count, "productId" FROM "_OrderToProduct" GROUP BY "productId`
+            )
+          ]
+        case 'latest-desc':
+          return [desc(product.createdAt)]
+        default:
+          return [asc(product.order)]
+      }
+    }
   })
 
   return (

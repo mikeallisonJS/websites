@@ -1,8 +1,8 @@
 import { Suspense } from 'react'
 
-import { Block, BlockType, Product } from '@prisma/client'
 import { cn } from '@websites/shared/react/lib'
 
+import { blockType, schema } from '../../lib/drizzle'
 import { AddToCart } from '../cart/addToCart'
 import Price from '../price'
 
@@ -11,7 +11,9 @@ import Price from '../price'
 export function ProductDescription({
   product
 }: {
-  product: Product & { blocks: Block[] }
+  product: typeof schema.product.$inferSelect & {
+    blocks: (typeof schema.block.$inferSelect)[]
+  }
 }) {
   return (
     <>
@@ -34,21 +36,21 @@ export function ProductDescription({
 
       {product.blocks.map((block, blockIndex) => {
         switch (block.type) {
-          case BlockType.Text:
+          case 'Text':
             return (
               <div key={block.id} className={cn('mb-6', block.className)}>
                 {block.value}
               </div>
             )
-          case BlockType.List:
+          case 'List':
             return (
-              <ul className={cn('mb-6', block.className)}>
+              <ul className={cn('mb-6', block.className)} key={block.id}>
                 {block.value.split('|').map((item, index) => (
                   <li key={`${blockIndex}-${index}`}>{item}</li>
                 ))}
               </ul>
             )
-          case BlockType.Youtube:
+          case 'Youtube':
             return (
               <div key={block.id} className={cn('mb-6', block.className)}>
                 <iframe

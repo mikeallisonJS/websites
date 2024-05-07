@@ -1,11 +1,14 @@
 import { create } from 'zustand'
 import { persist, createJSONStorage } from 'zustand/middleware'
 
-import { Image, Product } from '@prisma/client'
+import { image, product } from './drizzle'
 
 type CartStore = {
   cart: Array<{ id: string; quantity: number }>
-  products: Record<string, Product & { images: Image[] }>
+  products: Record<
+    string,
+    typeof product.$inferSelect & { images: (typeof image.$inferSelect)[] }
+  >
   addToCart: (id: string) => void
   removeFromCart: (id: string) => void
 }
