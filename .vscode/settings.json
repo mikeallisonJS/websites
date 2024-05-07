@@ -11,9 +11,5 @@
     "source.fixAll.eslint": "always"
   },
   "typescript.tsdk": "node_modules/typescript/lib",
-  "typescript.enablePromptUseWorkspaceTsdk": true,
-  "[prisma]": {
-    "editor.defaultFormatter": "Prisma.prisma",
-    "editor.formatOnSave": true
-  }
+  "typescript.enablePromptUseWorkspaceTsdk": true
 }

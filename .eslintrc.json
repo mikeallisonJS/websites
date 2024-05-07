@@ -3,7 +3,7 @@
   "ignorePatterns": ["**/*"],
   "plugins": ["@nx", "import"],
   "settings": {
-    "import/internal-regex": "^(@core|.prisma)"
+    "import/internal-regex": "^(@websites)"
   },
   "rules": {
     "@typescript-eslint/explicit-function-return-type": "off",

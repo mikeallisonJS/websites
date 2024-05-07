@@ -16,7 +16,7 @@ This is an NX monorepo for my personal websites. Everything is licensed under th
 - Package Manager: [pnpm](pnpm.io)
 - Deployment: [Vercel](vercel.com)
 - Database: [Postgres on Vercel](vercel.com)
-- ORM: [Prisma](prisma.io)
+- ORM: [Drizzle](orm.drizzle.team)
 - IDE: [VSCode with devcontainers](code.visualstudio.com)
 - eCommerce Backend: [Shopify](shopify.com) & [Gumroad](gumroad.com)
 - Styles: [Tailwind](tailwindcss.com)
