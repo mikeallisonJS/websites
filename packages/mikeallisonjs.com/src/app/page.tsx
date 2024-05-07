@@ -8,26 +8,26 @@ import { Services } from '../components/services'
 
 export default function Component() {
   return (
-    <div className="flex flex-col min-h-[100dvh]">
-      <section className="w-full mt-[-48px] pb-12 md:pb-12 lg:pb-16 xl:pb-24">
+    <div className="flex min-h-[100dvh] flex-col">
+      <section className="mt-[-48px] w-full pb-12 md:pb-12 lg:pb-16 xl:pb-24">
         <AuroraBackground className="h-[60vh]">
           <Hero />
         </AuroraBackground>
       </section>
       <section
-        className="w-full pb-12 md:pb-24 lg:pb-32 justify-center flex"
+        className="flex w-full justify-center pb-12 md:pb-24 lg:pb-32"
         id="portfolio"
       >
         <Portfolio />
       </section>
       <section
-        className="w-full pb-6 md:pb-12 lg:pb-16 pt-12 bg-gray-100 dark:bg-gray-800 justify-center flex"
+        className="flex w-full justify-center bg-gray-100 pb-6 pt-12 md:pb-12 lg:pb-16 dark:bg-gray-800"
         id="services"
       >
         <Services />
       </section>
       <section
-        className="w-full pb-12 md:pb-24 lg:pb-32 pt-12 justify-center flex"
+        className="flex w-full justify-center pb-12 pt-12 md:pb-24 lg:pb-32"
         id="contact"
       >
         <div className="container px-4 md:px-6 lg:px-16">
@@ -53,7 +53,7 @@ export default function Component() {
           </div>
         </div>
       </section>
-      <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t">
+      <footer className="flex w-full shrink-0 flex-col items-center gap-2 border-t px-4 py-6 sm:flex-row md:px-6">
         <p className="text-xs text-gray-500 dark:text-gray-400">
           © 2024 Mike Allison. All rights reserved.
         </p>

@@ -13,9 +13,9 @@ export default function CoverArt({ src, className }: CoverArtProps) {
       alt={''}
       height={300}
       width={300}
-      className={cn('border-divider rounded overflow-hidden', className)}
+      className={cn('border-divider overflow-hidden rounded', className)}
     />
   ) : (
-    <div className="w-[42px] h-[42px] bg-gray-300 rounded" />
+    <div className="h-[42px] w-[42px] rounded bg-gray-300" />
   )
 }

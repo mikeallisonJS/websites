@@ -46,7 +46,7 @@ export default function Controls({
   return (
     <div
       className={cn(
-        'flex flex-row items-center flex-nowrap justify-center',
+        'flex flex-row flex-nowrap items-center justify-center',
         className
       )}
     >

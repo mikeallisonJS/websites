@@ -3,28 +3,28 @@ import Link from 'next/link'
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/55 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="border-border/40 bg-background/55 supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 w-full border-b backdrop-blur">
       <div className="container flex h-12 max-w-screen-2xl items-center py-4">
-        <div className="w-full flex">
-          <Link href="#" className="flex items-center mr-auto ml-8 text-3xl">
+        <div className="flex w-full">
+          <Link href="#" className="ml-8 mr-auto flex items-center text-3xl">
             mikeallison<span className="text-secondary">JS</span>
           </Link>
-          <nav className="hidden md:flex justify-end items-center gap-4 text-sm lg:gap-6 mr-8 font-medium">
+          <nav className="mr-8 hidden items-center justify-end gap-4 text-sm font-medium md:flex lg:gap-6">
             <Link
               href="#portfolio"
-              className="hover:underline underline-offset-4"
+              className="underline-offset-4 hover:underline"
             >
               Portfolio
             </Link>
             <Link
               href="#services"
-              className="hover:underline underline-offset-4"
+              className="underline-offset-4 hover:underline"
             >
               Services
             </Link>
             <Link
               href="#contact"
-              className="hover:underline underline-offset-4"
+              className="underline-offset-4 hover:underline"
             >
               Contact
             </Link>

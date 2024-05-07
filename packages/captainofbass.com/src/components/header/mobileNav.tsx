@@ -18,7 +18,7 @@ export function MobileNav() {
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
-      <Link href="/" className="flex items-center mx-auto md:hidden">
+      <Link href="/" className="mx-auto flex items-center md:hidden">
         <Image
           className="logo"
           src="/images/cpt-border.png"
@@ -79,7 +79,7 @@ export function MobileNav() {
             width={218}
           />
         </MobileLink>
-        <div className="flex flex-col pt-8 gap-2">
+        <div className="flex flex-col gap-2 pt-8">
           <MobileLink href="/" onOpenChange={setOpen}>
             HOME
           </MobileLink>

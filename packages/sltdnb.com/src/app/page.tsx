@@ -36,7 +36,7 @@ export default function Index() {
         style={{ margin: 'auto' }}
         priority
       />
-      <div className="text-center text-4xl mb-5">
+      <div className="mb-5 text-center text-4xl">
         South Lake Tahoe Drum & Bass
       </div>
       <PastEvents images={images} />

@@ -12,7 +12,7 @@ export function Hero() {
         duration: 0.8,
         ease: 'easeInOut'
       }}
-      className="relative flex flex-col gap-4 items-center justify-center px-4"
+      className="relative flex flex-col items-center justify-center gap-4 px-4"
     >
       <div className="container px-4 md:px-6">
         <div className="flex flex-col items-center space-y-4 text-center">

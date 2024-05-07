@@ -140,7 +140,7 @@ export const songs: Track[] = [
 export default function Footer() {
   return (
     <MusicPlayerProvider playlist={songs}>
-      <Player className="bg-background/20 backdrop-blur supports-[backdrop-filter]:bg-background/30" />
+      <Player className="bg-background/20 supports-[backdrop-filter]:bg-background/30 backdrop-blur" />
     </MusicPlayerProvider>
   )
 }

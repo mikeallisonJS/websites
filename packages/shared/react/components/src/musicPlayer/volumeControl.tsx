@@ -21,7 +21,7 @@ export default function VolumeControl({
   }
 
   return (
-    <div className={cn('flex flex-row text-nowrap items-center', className)}>
+    <div className={cn('flex flex-row items-center text-nowrap', className)}>
       <Button
         variant="ghost"
         onClick={() => onVolumeChange(volume < 10 ? 0 : volume - 10)}

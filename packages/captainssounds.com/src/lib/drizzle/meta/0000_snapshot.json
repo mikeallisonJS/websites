@@ -37,10 +37,7 @@
       "indexes": {
         "Image_productId_order_key": {
           "name": "Image_productId_order_key",
-          "columns": [
-            "order",
-            "productId"
-          ],
+          "columns": ["order", "productId"],
           "isUnique": true
         }
       },
@@ -50,12 +47,8 @@
           "tableFrom": "Image",
           "tableTo": "Product",
           "schemaTo": "public",
-          "columnsFrom": [
-            "productId"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["productId"],
+          "columnsTo": ["id"],
           "onDelete": "set null",
           "onUpdate": "cascade"
         }
@@ -89,9 +82,7 @@
       "indexes": {
         "Download_productId_key": {
           "name": "Download_productId_key",
-          "columns": [
-            "productId"
-          ],
+          "columns": ["productId"],
           "isUnique": true
         }
       },
@@ -101,12 +92,8 @@
           "tableFrom": "Download",
           "tableTo": "Product",
           "schemaTo": "public",
-          "columnsFrom": [
-            "productId"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["productId"],
+          "columnsTo": ["id"],
           "onDelete": "restrict",
           "onUpdate": "cascade"
         }
@@ -134,9 +121,7 @@
       "indexes": {
         "Order_email_idx": {
           "name": "Order_email_idx",
-          "columns": [
-            "email"
-          ],
+          "columns": ["email"],
           "isUnique": false
         }
       },
@@ -164,17 +149,12 @@
       "indexes": {
         "_OrderToProduct_AB_unique": {
           "name": "_OrderToProduct_AB_unique",
-          "columns": [
-            "A",
-            "B"
-          ],
+          "columns": ["A", "B"],
           "isUnique": true
         },
         "_OrderToProduct_B_index": {
           "name": "_OrderToProduct_B_index",
-          "columns": [
-            "B"
-          ],
+          "columns": ["B"],
           "isUnique": false
         }
       },
@@ -184,12 +164,8 @@
           "tableFrom": "_OrderToProduct",
           "tableTo": "Order",
           "schemaTo": "public",
-          "columnsFrom": [
-            "A"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["A"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "cascade"
         },
@@ -198,12 +174,8 @@
           "tableFrom": "_OrderToProduct",
           "tableTo": "Product",
           "schemaTo": "public",
-          "columnsFrom": [
-            "B"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["B"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "cascade"
         }
@@ -260,12 +232,8 @@
           "tableFrom": "Link",
           "tableTo": "Category",
           "schemaTo": "public",
-          "columnsFrom": [
-            "categoryId"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["categoryId"],
+          "columnsTo": ["id"],
           "onDelete": "restrict",
           "onUpdate": "cascade"
         }
@@ -356,12 +324,8 @@
           "tableFrom": "Product",
           "tableTo": "Category",
           "schemaTo": "public",
-          "columnsFrom": [
-            "categoryId"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["categoryId"],
+          "columnsTo": ["id"],
           "onDelete": "restrict",
           "onUpdate": "cascade"
         }
@@ -462,9 +426,7 @@
       "indexes": {
         "Category_order_key": {
           "name": "Category_order_key",
-          "columns": [
-            "order"
-          ],
+          "columns": ["order"],
           "isUnique": true
         }
       },
@@ -521,12 +483,8 @@
           "tableFrom": "Block",
           "tableTo": "Product",
           "schemaTo": "public",
-          "columnsFrom": [
-            "productId"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["productId"],
+          "columnsTo": ["id"],
           "onDelete": "restrict",
           "onUpdate": "cascade"
         }
