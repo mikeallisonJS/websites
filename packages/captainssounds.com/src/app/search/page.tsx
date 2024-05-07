@@ -20,23 +20,23 @@ export default async function SearchPage({
   searchParams?: { [key: string]: string | string[] | undefined }
 }) {
   const { sort, q: searchValue } = searchParams as { [key: string]: string }
-  let orderBy = (product: typeof schema.product, { asc }) => [
-    asc(product.order)
-  ]
-  switch (sort) {
-    case 'price-asc':
-      orderBy = (product, { asc }) => [asc(product.price)]
-      break
-    case 'price-desc':
-      orderBy = (product, { desc }) => [desc(product.price)]
-      break
-    case 'trending-desc':
-      orderBy = (product, { count }) => [count(product.orders)]
-      break
-    case 'latest-desc':
-      orderBy = (product, { desc }) => [desc(product.createdAt)]
-      break
-  }
+  // let orderBy = (product: typeof schema.product, { asc }) => [
+  //   asc(product.order)
+  // ]
+  // switch (sort) {
+  //   case 'price-asc':
+  //     orderBy = (product, { asc }) => [asc(product.price)]
+  //     break
+  //   case 'price-desc':
+  //     orderBy = (product, { desc }) => [desc(product.price)]
+  //     break
+  //   case 'trending-desc':
+  //     orderBy = (product, { count }) => [count(product.orders)]
+  //     break
+  //   case 'latest-desc':
+  //     orderBy = (product, { desc }) => [desc(product.createdAt)]
+  //     break
+  // }
 
   const products = await db.query.product.findMany({
     where: (category, { ne }) => ne(category.id, 'bonus'),
@@ -48,7 +48,24 @@ export default async function SearchPage({
         }
       }
     },
-    orderBy
+    orderBy: (product, { asc, desc, sql }) => {
+      switch (sort) {
+        case 'price-asc':
+          return [asc(product.price)]
+        case 'price-desc':
+          return [desc(product.price)]
+        case 'trending-desc':
+          return [
+            desc(
+              sql`SELECT COUNT(*) AS count, "productId" FROM "_OrderToProduct" GROUP BY "productId`
+            )
+          ]
+        case 'latest-desc':
+          return [desc(product.createdAt)]
+        default:
+          return [asc(product.order)]
+      }
+    }
   })
   const resultsText = products.length > 1 ? 'results' : 'result'
 

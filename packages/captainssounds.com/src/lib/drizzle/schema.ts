@@ -1,17 +1,14 @@
-import { relations, sql, count } from 'drizzle-orm'
+import { relations, sql } from 'drizzle-orm'
 import {
   pgTable,
-  pgView,
   uniqueIndex,
-  foreignKey,
   pgEnum,
   text,
   integer,
   index,
   boolean,
   numeric,
-  timestamp,
-  varchar
+  timestamp
 } from 'drizzle-orm/pg-core'
 
 export const blockType = pgEnum('BlockType', [
@@ -213,9 +210,9 @@ export const blockRelations = relations(block, ({ one }) => ({
   })
 }))
 
-export const productOrderCount = pgView('ProductOrderCount', {
-  count: integer('count').notNull(),
-  productId: text('productId').notNull()
-}).as(
-  sql`SELECT COUNT(*) AS count, "productId" FROM "_OrderToProduct" GROUP BY "productId"`
-)
+// export const productOrderCount = pgMaterializedView('ProductOrderCount', {
+//   count: integer('count').notNull(),
+//   productId: text('productId').notNull()
+// }).as(
+//   sql`SELECT COUNT(*) AS count, "productId" FROM "_OrderToProduct" GROUP BY "productId"`
+// )

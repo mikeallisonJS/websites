@@ -31,7 +31,7 @@ export async function generateMetadata({
 
   if (!product) return notFound()
 
-  const { url } = product.images[0] || {}
+  const url = product.images[0]?.url ?? ''
   const indexable = product.category.id !== 'bonus'
 
   return {

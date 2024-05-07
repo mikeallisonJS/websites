@@ -1,4 +1,5 @@
 import { sql } from '@vercel/postgres'
+import { OrderByOperators } from 'drizzle-orm'
 import { drizzle } from 'drizzle-orm/vercel-postgres'
 import { notFound } from 'next/navigation'
 import { ReactElement } from 'react'
@@ -52,29 +53,46 @@ export default async function CategoryPage({
 }: CategoryPageProps): Promise<ReactElement> {
   const { sort } = searchParams as { [key: string]: string }
 
-  let orderBy = (product: typeof schema.product, { asc }) => [
-    asc(product.order)
-  ]
-  switch (sort) {
-    case 'price-asc':
-      orderBy = (product, { asc }) => [asc(product.price)]
-      break
-    case 'price-desc':
-      orderBy = (product, { desc }) => [desc(product.price)]
-      break
-    case 'trending-desc':
-      orderBy = (product, { count }) => [count(product.orders)]
-      break
-    case 'latest-desc':
-      orderBy = (product, { desc }) => [desc(product.createdAt)]
-      break
-  }
+  // let orderBy = (product: typeof schema.product, { asc }: OrderByOperators) => [
+  //   asc(product.order)
+  // ]
+  // switch (sort) {
+  //   case 'price-asc':
+  //     orderBy = (product, { asc }) => [asc(product.price)]
+  //     break
+  //   case 'price-desc':
+  //     orderBy = (product, { desc }) => [desc(product.price)]
+  //     break
+  //   // case 'trending-desc':
+  //   //   orderBy = (product, { count }) => [count(product.orders)]
+  //   //   break
+  //   case 'latest-desc':
+  //     orderBy = (product, { desc }) => [desc(product.createdAt)]
+  //     break
+  // }
 
   const products = await db.query.product.findMany({
     where: (product, { eq, exists }) =>
       eq(product.categoryId, params.collection),
     with: { images: true },
-    orderBy
+    orderBy: (product, { asc, desc, sql }) => {
+      switch (sort) {
+        case 'price-asc':
+          return [asc(product.price)]
+        case 'price-desc':
+          return [desc(product.price)]
+        case 'trending-desc':
+          return [
+            desc(
+              sql`SELECT COUNT(*) AS count, "productId" FROM "_OrderToProduct" GROUP BY "productId`
+            )
+          ]
+        case 'latest-desc':
+          return [desc(product.createdAt)]
+        default:
+          return [asc(product.order)]
+      }
+    }
   })
 
   return (

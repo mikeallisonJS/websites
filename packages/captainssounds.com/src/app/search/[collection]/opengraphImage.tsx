@@ -1,25 +1,20 @@
-import { Pool } from '@neondatabase/serverless'
-
-import { PrismaNeon } from '@prisma/adapter-neon'
-import { PrismaClient } from '@prisma/client'
+import { sql } from '@vercel/postgres'
+import { drizzle } from 'drizzle-orm/vercel-postgres'
 
 import OpengraphImage from '../../../components/opengraphImage'
+import { schema } from '../../../lib/drizzle'
+
+const db = drizzle(sql, { schema })
 
 export const runtime = 'edge'
-
-const neon = new Pool({ connectionString: process.env.POSTGRES_PRISMA_URL })
-const adapter = new PrismaNeon(neon)
-const prisma = new PrismaClient({
-  adapter
-})
 
 export default async function Image({
   params
 }: {
   params: { collection: string }
 }) {
-  const collection = await prisma.category.findUnique({
-    where: { id: params.collection }
+  const collection = await db.query.category.findFirst({
+    where: (category, { eq }) => eq(category.id, params.collection)
   })
   const title = collection?.name
 
