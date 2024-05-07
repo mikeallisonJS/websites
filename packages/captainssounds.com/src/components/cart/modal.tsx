@@ -4,10 +4,9 @@ import { Dialog, Transition } from '@headlessui/react'
 import { ShoppingCartIcon } from '@heroicons/react/24/outline'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Fragment, useEffect, useRef, useState } from 'react'
+import { Fragment, useEffect, useRef } from 'react'
+import { useShoppingCart } from 'use-shopping-cart'
 
-import { DEFAULT_OPTION } from '../../lib/constants'
-import { useCart } from '../../lib/useCart'
 import { createUrl } from '../../lib/utils'
 import Price from '../price'
 
@@ -17,32 +16,59 @@ import { EditItemQuantityButton } from './editItemQuantityButton'
 import OpenCart from './openCart'
 
 export default function CartModal() {
-  const { cart, products } = useCart()
-  const [isOpen, setIsOpen] = useState(false)
-  const quantityRef = useRef(cart.length)
-  const openCart = (): void => setIsOpen(true)
-  const closeCart = (): void => setIsOpen(false)
+  const {
+    cartDetails,
+    cartCount,
+    handleCartClick,
+    handleCloseCart,
+    redirectToCheckout,
+    shouldDisplayCart,
+    totalPrice
+  } = useShoppingCart()
+
+  const quantityRef = useRef(cartCount)
 
   useEffect(() => {
     // Open cart modal when quantity changes.
-    if (cart.length !== quantityRef.current) {
-      // But only if it's not already open (quantity also changes when editing items in cart).
-      if (!isOpen) {
-        setIsOpen(true)
+    if (cartCount !== quantityRef.current) {
+      if (!shouldDisplayCart) {
+        handleCartClick()
       }
-
-      // Always update the quantity reference
-      quantityRef.current = cart.length
+      quantityRef.current = cartCount
     }
-  }, [isOpen, cart.length, quantityRef])
+  }, [shouldDisplayCart, cartCount, quantityRef, handleCartClick])
+
+  async function checkout(event: React.MouseEvent<HTMLButtonElement>) {
+    event.preventDefault()
+    if (cartCount !== undefined && cartCount > 0) {
+      // setStatus('loading')
+      try {
+        const res = await fetch('/api/session', {
+          method: 'POST',
+          body: JSON.stringify(cartDetails)
+        })
+        const data = await res.json()
+        const result = await redirectToCheckout(data.sessionId)
+        if (result?.error) {
+          console.error(result)
+          // setStatus('redirect-error')
+        }
+      } catch (error) {
+        console.error(error)
+        // setStatus('redirect-error')
+      }
+    } else {
+      // setStatus('no-items')
+    }
+  }
 
   return (
     <>
-      <button aria-label="Open cart" onClick={openCart}>
-        <OpenCart quantity={cart.length} />
+      <button type="button" aria-label="Open cart" onClick={handleCartClick}>
+        <OpenCart quantity={cartCount} />
       </button>
-      <Transition show={isOpen}>
-        <Dialog onClose={closeCart} className="relative z-50">
+      <Transition show={shouldDisplayCart}>
+        <Dialog onClose={handleCloseCart} className="relative z-50">
           <Transition.Child
             as={Fragment}
             enter="transition-all ease-in-out duration-300"
@@ -67,12 +93,16 @@ export default function CartModal() {
               <div className="flex items-center justify-between">
                 <p className="text-lg font-semibold">My Cart</p>
 
-                <button aria-label="Close cart" onClick={closeCart}>
+                <button
+                  type="button"
+                  aria-label="Close cart"
+                  onClick={handleCloseCart}
+                >
                   <CloseCart />
                 </button>
               </div>
 
-              {cart.length === 0 ? (
+              {cartCount === 0 ? (
                 <div className="mt-20 flex w-full flex-col items-center justify-center overflow-hidden">
                   <ShoppingCartIcon className="h-16" />
                   <p className="mt-6 text-center text-2xl font-bold">
@@ -82,16 +112,11 @@ export default function CartModal() {
               ) : (
                 <div className="flex h-full flex-col justify-between overflow-hidden p-1">
                   <ul className="grow overflow-auto py-4">
-                    {cart.map((item, i) => {
-                      const itemArray = item.id.split(':')
-                      const product = products[itemArray[0]]
+                    {Object.values(cartDetails ?? {}).map((item, i) => {
                       const params: Record<string, string> = {}
-                      for (let i = 1; i < itemArray.length; i = i + 2) {
-                        params[itemArray[i]] = itemArray[i + 1]
-                      }
 
                       const merchandiseUrl = createUrl(
-                        `/product/${product.id}`,
+                        `/product/${item.id}`,
                         new URLSearchParams(params)
                       )
 
@@ -102,11 +127,11 @@ export default function CartModal() {
                         >
                           <div className="relative flex w-full flex-row justify-between px-1 py-4">
                             <div className="absolute z-40 -mt-2 ml-[55px]">
-                              <DeleteItemButton item={item.id} />
+                              <DeleteItemButton id={item.id} />
                             </div>
                             <Link
                               href={merchandiseUrl}
-                              onClick={closeCart}
+                              onClick={handleCloseCart}
                               className="z-30 flex flex-row space-x-4"
                             >
                               <div className="relative h-16 w-16 cursor-pointer overflow-hidden rounded-md border border-neutral-300 bg-neutral-300 dark:border-neutral-700 dark:bg-neutral-900 dark:hover:bg-neutral-800">
@@ -114,32 +139,27 @@ export default function CartModal() {
                                   className="h-full w-full object-cover"
                                   width={64}
                                   height={64}
-                                  alt={product.name}
-                                  src={product.images[0]?.url ?? ''}
+                                  alt={item.name}
+                                  src={item.image ?? ''}
                                 />
                               </div>
 
                               <div className="flex flex-1 flex-col text-base">
                                 <span className="leading-tight">
-                                  {product.name}
+                                  {item.name}
                                 </span>
-                                {product.name !== DEFAULT_OPTION ? (
-                                  <p className="text-sm text-neutral-500 dark:text-neutral-400">
-                                    {product.name}
-                                  </p>
-                                ) : null}
                               </div>
                             </Link>
                             <div className="flex h-16 flex-col justify-between">
                               <Price
                                 className="flex justify-end space-y-2 text-right text-sm"
-                                amount={product.price.toString()}
+                                amount={item.price.toString()}
                                 currencyCode="USD"
-                                donation={product.donationware}
+                                donation={item.donationware}
                               />
                               <div className="ml-auto flex h-9 flex-row items-center rounded-full border border-neutral-200 dark:border-neutral-700">
                                 <EditItemQuantityButton
-                                  item={product}
+                                  id={item.id}
                                   type="minus"
                                 />
                                 <p className="w-6 text-center">
@@ -148,7 +168,7 @@ export default function CartModal() {
                                   </span>
                                 </p>
                                 <EditItemQuantityButton
-                                  item={product}
+                                  id={item.id}
                                   type="plus"
                                 />
                               </div>
@@ -163,8 +183,8 @@ export default function CartModal() {
                       <p>Taxes</p>
                       <Price
                         className="text-right text-base text-black dark:text-white"
-                        amount={cart.cost.totalTaxAmount.amount}
-                        currencyCode={cart.cost.totalTaxAmount.currencyCode}
+                        amount={totalPrice?.toString() ?? '0'}
+                        currencyCode={'USD'}
                       />
                     </div>
                     <div className="mb-3 flex items-center justify-between border-b border-neutral-200 pb-1 pt-1 dark:border-neutral-700">
@@ -175,17 +195,18 @@ export default function CartModal() {
                       <p>Total</p>
                       <Price
                         className="text-right text-base text-black dark:text-white"
-                        amount={cart.cost.totalAmount.amount}
-                        currencyCode={cart.cost.totalAmount.currencyCode}
+                        amount={totalPrice?.toString() ?? '0'}
+                        currencyCode={'USD'}
                       />
                     </div>
                   </div>
-                  <a
-                    href={cart.checkoutUrl}
-                    className="block w-full rounded-full bg-blue-600 p-3 text-center text-sm font-medium text-white opacity-90 hover:opacity-100"
+                  <button
+                    type="button"
+                    onClick={checkout}
+                    className="block w-full cursor-pointer rounded-full bg-blue-600 p-3 text-center text-sm font-medium text-white opacity-90 hover:opacity-100"
                   >
                     Proceed to Checkout
-                  </a>
+                  </button>
                 </div>
               )}
             </Dialog.Panel>

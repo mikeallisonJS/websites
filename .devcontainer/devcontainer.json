@@ -8,7 +8,7 @@
   "features": {
     "ghcr.io/devcontainers/features/node:1": {
       "nodeGypDependencies": true,
-      "version": "lts"
+      "version": "20.12.2"
     },
     "ghcr.io/devcontainers-contrib/features/vercel-cli:1": {
       "version": "latest"

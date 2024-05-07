@@ -1,13 +1,15 @@
-import { Image, Product } from '@prisma/client'
 import Link from 'next/link'
 
+import type { image, product } from '../lib/drizzle/schema'
 import Grid from './grid'
 import { GridTileImage } from './grid/tile'
 
 export default function ProductGridItems({
   products
 }: {
-  products: Array<Product & { images?: Image[] }>
+  products: Array<
+    typeof product.$inferSelect & { images?: (typeof image.$inferSelect)[] }
+  >
 }) {
   return (
     <>

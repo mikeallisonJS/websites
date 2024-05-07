@@ -2,16 +2,15 @@ import { Suspense } from 'react'
 
 import { cn } from '@websites/shared/react/lib'
 
-import { blockType, schema } from '../../lib/drizzle'
+import type { schema } from '../../lib/drizzle'
 import { AddToCart } from '../cart/addToCart'
 import Price from '../price'
-
-// import { VariantSelector } from './variantSelector'
 
 export function ProductDescription({
   product
 }: {
   product: typeof schema.product.$inferSelect & {
+    images: (typeof schema.image.$inferSelect)[]
     blocks: (typeof schema.block.$inferSelect)[]
   }
 }) {
@@ -27,12 +26,6 @@ export function ProductDescription({
           />
         </div>
       </div>
-      {/* <Suspense fallback={null}>
-        <VariantSelector
-          options={product.options}
-          variants={product.variants}
-        />
-      </Suspense> */}
 
       {product.blocks.map((block, blockIndex) => {
         switch (block.type) {
@@ -59,26 +52,15 @@ export function ProductDescription({
                   src={`https://youtube.com/embed/${block.value}`}
                   title={product.name}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                ></iframe>
+                />
               </div>
             )
           default:
             return null
         }
       })}
-      {/* {product.descriptionHtml ? (
-        <Prose
-          className="mb-6 text-sm leading-tight dark:text-white/[60%]"
-          html={product.descriptionHtml}
-        />
-      ) : null} */}
-
       <Suspense fallback={null}>
-        <AddToCart
-          id={product.id}
-          variants={[]} //product.variants}
-          availableForSale={true} //product.availableForSale}
-        />
+        <AddToCart product={product} />
       </Suspense>
     </>
   )

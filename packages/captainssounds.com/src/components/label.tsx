@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@websites/shared/react/lib'
 
 import Price from './price'
 
@@ -17,7 +17,7 @@ const Label = ({
 }) => {
   return (
     <div
-      className={clsx(
+      className={cn(
         '@container/label absolute bottom-0 left-0 flex w-full px-4 pb-4',
         {
           'lg:px-20 lg:pb-[35%]': position === 'center'

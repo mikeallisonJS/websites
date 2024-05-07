@@ -4,8 +4,6 @@ import Grid from '../../../components/grid'
 import ProductGridItems from '../../../components/productGridItems'
 import { db } from '../../../lib/drizzle'
 
-export const runtime = 'edge'
-
 export async function generateMetadata({
   params
 }: {
@@ -23,10 +21,8 @@ export async function generateMetadata({
 }
 
 export const generateStaticParams = async () => {
-  const categories = await prisma.category.findMany({
-    where: {
-      inNavigation: true
-    }
+  const categories = await db.query.category.findMany({
+    where: (category, { eq }) => eq(category.inNavigation, true)
   })
 
   return categories.map((category) => ({
@@ -72,7 +68,7 @@ export default async function CategoryPage({
   return (
     <section>
       {products.length === 0 ? (
-        <p className="py-3 text-lg">{`No products found in this collection`}</p>
+        <p className="py-3 text-lg">No products found in this collection</p>
       ) : (
         <Grid className="grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
           <ProductGridItems products={products} />

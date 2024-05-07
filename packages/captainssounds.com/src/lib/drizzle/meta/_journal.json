@@ -4,16 +4,16 @@
   "entries": [
     {
       "idx": 0,
-      "version": "5",
-      "when": 1714898563382,
-      "tag": "0000_stormy_misty_knight",
+      "version": "6",
+      "when": 1716717087327,
+      "tag": "0000_luxuriant_impossible_man",
       "breakpoints": true
     },
     {
       "idx": 1,
-      "version": "5",
-      "when": 1715059490042,
-      "tag": "0001_fair_omega_red",
+      "version": "6",
+      "when": 1716717111858,
+      "tag": "0001_silly_wallop",
       "breakpoints": true
     }
   ]

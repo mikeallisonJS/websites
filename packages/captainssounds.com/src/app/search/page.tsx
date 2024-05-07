@@ -1,7 +1,6 @@
 import Grid from '../../components/grid'
 import ProductGridItems from '../../components/productGridItems'
-
-export const runtime = 'edge'
+import { db } from '../../lib/drizzle'
 
 export const metadata = {
   title: 'Search',
@@ -15,11 +14,9 @@ export default async function SearchPage({
 }) {
   const { sort, q: searchValue } = searchParams as { [key: string]: string }
 
-  const products = await db.product.findMany({
-    where: {
-      category: { id: { not: 'bonus' } }
-    },
-    include: { images: true, _count: { select: { orders: true } } },
+  const products = await db.query.product.findMany({
+    where: (product, { ne }) => ne(product.categoryId, 'bonus'),
+    with: { images: true },
     orderBy: (product, { asc, desc, sql }) => {
       switch (sort) {
         case 'price-asc':

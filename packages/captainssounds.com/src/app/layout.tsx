@@ -1,6 +1,6 @@
 import { ClerkProvider } from '@clerk/nextjs'
 import { GeistSans } from 'geist/font/sans'
-import { ReactNode, Suspense } from 'react'
+import { type ReactNode, Suspense } from 'react'
 // import Stripe from 'stripe'
 
 import { Toaster } from '@websites/shared/react/components'

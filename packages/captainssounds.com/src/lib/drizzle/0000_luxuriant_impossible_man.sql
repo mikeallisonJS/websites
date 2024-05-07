@@ -2,7 +2,7 @@
 -- If you want to run this migration please uncomment this code before executing migrations
 /*
 DO $$ BEGIN
- CREATE TYPE "BlockType" AS ENUM('Youtube', 'List', 'Image', 'Text');
+ CREATE TYPE "public"."BlockType" AS ENUM('Text', 'Image', 'List', 'Youtube');
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
@@ -80,12 +80,6 @@ CREATE TABLE IF NOT EXISTS "Block" (
 	"productId" text NOT NULL
 );
 --> statement-breakpoint
-CREATE UNIQUE INDEX IF NOT EXISTS "Image_productId_order_key" ON "Image" ("order","productId");--> statement-breakpoint
-CREATE UNIQUE INDEX IF NOT EXISTS "Download_productId_key" ON "Download" ("productId");--> statement-breakpoint
-CREATE INDEX IF NOT EXISTS "Order_email_idx" ON "Order" ("email");--> statement-breakpoint
-CREATE UNIQUE INDEX IF NOT EXISTS "_OrderToProduct_AB_unique" ON "_OrderToProduct" ("A","B");--> statement-breakpoint
-CREATE INDEX IF NOT EXISTS "_OrderToProduct_B_index" ON "_OrderToProduct" ("B");--> statement-breakpoint
-CREATE UNIQUE INDEX IF NOT EXISTS "Category_order_key" ON "Category" ("order");--> statement-breakpoint
 DO $$ BEGIN
  ALTER TABLE "Image" ADD CONSTRAINT "Image_productId_fkey" FOREIGN KEY ("productId") REFERENCES "public"."Product"("id") ON DELETE set null ON UPDATE cascade;
 EXCEPTION
@@ -127,5 +121,11 @@ DO $$ BEGIN
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
-
+--> statement-breakpoint
+CREATE UNIQUE INDEX IF NOT EXISTS "Image_productId_order_key" ON "Image" ("order","productId");--> statement-breakpoint
+CREATE UNIQUE INDEX IF NOT EXISTS "Download_productId_key" ON "Download" ("productId");--> statement-breakpoint
+CREATE INDEX IF NOT EXISTS "Order_email_idx" ON "Order" ("email");--> statement-breakpoint
+CREATE UNIQUE INDEX IF NOT EXISTS "_OrderToProduct_AB_unique" ON "_OrderToProduct" ("A","B");--> statement-breakpoint
+CREATE INDEX IF NOT EXISTS "_OrderToProduct_B_index" ON "_OrderToProduct" ("B");--> statement-breakpoint
+CREATE UNIQUE INDEX IF NOT EXISTS "Category_order_key" ON "Category" ("order");
 */

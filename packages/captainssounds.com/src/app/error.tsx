@@ -3,6 +3,7 @@
 import { captureException } from '@sentry/nextjs'
 import { useEffect } from 'react'
 
+// biome-ignore lint/suspicious/noShadowRestrictedNames: <explanation>
 export default function Error({
   reset,
   error

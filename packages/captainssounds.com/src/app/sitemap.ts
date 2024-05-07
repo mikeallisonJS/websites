@@ -1,5 +1,4 @@
 import { db } from '../lib/drizzle'
-import { validateEnvironmentVariables } from '../lib/utils'
 
 type Route = {
   url: string
@@ -11,8 +10,6 @@ const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL
   : 'http://localhost:3000'
 
 export default async function sitemap() {
-  validateEnvironmentVariables()
-
   const routesMap = [''].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date().toISOString()
@@ -28,8 +25,8 @@ export default async function sitemap() {
         lastModified: new Date().toISOString()
       }))
     )
-  const productsPromise = prisma.product
-    .findMany({ where: { category: { id: { not: 'bonus' } } } })
+  const productsPromise = db.query.product
+    .findMany({ where: (product, { ne }) => ne(product.categoryId, 'bonus') })
     .then((products) =>
       products.map((product) => ({
         url: `${baseUrl}/product/${product.id}`,

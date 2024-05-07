@@ -15,7 +15,8 @@ export const blockType = pgEnum('BlockType', [
   'Youtube',
   'List',
   'Image',
-  'Text'
+  'Text',
+  'Soundcloud'
 ])
 
 export const image = pgTable(
@@ -142,6 +143,7 @@ export const product = pgTable('Product', {
   downloadId: text('downloadId'),
   donationware: boolean('donationware').default(false).notNull(),
   stripeId: text('stripeId'),
+  testStripeId: text('testStripeId'),
   categoryId: text('categoryId')
     .notNull()
     .references(() => category.id, {
@@ -193,7 +195,10 @@ export const categoryRelation = relations(category, ({ many }) => ({
 }))
 
 export const block = pgTable('Block', {
-  id: text('id').primaryKey().notNull(),
+  id: text('id')
+    .primaryKey()
+    .notNull()
+    .default(sql`gen_random_uuid()`),
   value: text('value').notNull(),
   type: blockType('type').notNull(),
   className: text('className').default('').notNull(),

@@ -6,7 +6,7 @@ import Link from 'next/link'
 import { usePathname, useSearchParams } from 'next/navigation'
 import { Fragment, Suspense, useEffect, useState } from 'react'
 
-import { schema } from '../../lib/drizzle'
+import type { schema } from '../../lib/drizzle'
 
 import Search, { SearchSkeleton } from './search'
 

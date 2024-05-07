@@ -1,18 +1,11 @@
-import { sql } from '@vercel/postgres'
-import { drizzle } from 'drizzle-orm/vercel-postgres'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { Suspense } from 'react'
 
 import Collections from '../../../components/collections'
 import { GridTileImage } from '../../../components/grid/tile'
 import { Gallery } from '../../../components/product/gallery'
 import { ProductDescription } from '../../../components/product/productDescription'
-import { schema } from '../../../lib/drizzle'
-
-export const runtime = 'edge'
-
-const db = drizzle(sql, { schema })
+import { db, type schema } from '../../../lib/drizzle'
 
 export async function generateMetadata({
   params
@@ -22,16 +15,14 @@ export async function generateMetadata({
   const product = await db.query.product.findFirst({
     where: (product, { eq }) => eq(product.id, params.handle),
     with: {
-      images: true,
-      blocks: true,
-      category: { columns: { id: true } }
+      images: true
     }
   })
 
   if (!product) return notFound()
 
   const url = product.images[0]?.url ?? ''
-  const indexable = product.category.id !== 'bonus'
+  const indexable = product.categoryId !== 'bonus'
 
   return {
     title: product.name,
@@ -59,6 +50,17 @@ export async function generateMetadata({
   }
 }
 
+export const generateStaticParams = async () => {
+  const products = await db.query.product.findMany({
+    where: (product, { ne }) => ne(product.categoryId, 'bonus'),
+    with: { images: true, blocks: true }
+  })
+
+  return products.map((product) => ({
+    handle: product.id
+  }))
+}
+
 export default async function ProductPage({
   params
 }: {
@@ -70,40 +72,14 @@ export default async function ProductPage({
       images: true,
       blocks: {
         orderBy: (block, { desc }) => [desc(block.order)]
-      },
-      category: { columns: { id: true } }
+      }
     }
   })
 
   if (!product) return notFound()
 
-  const productJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Product',
-    name: product.name,
-    description: product.description,
-    image: product.images[0].url,
-    offers: {
-      '@type': 'AggregateOffer',
-      availability: true
-        ? 'https://schema.org/InStock'
-        : 'https://schema.org/OutOfStock',
-      priceCurrency: product.price.toString()
-      // highPrice: product.priceRange.maxVariantPrice.amount,
-      // lowPrice: product.priceRange.minVariantPrice.amount
-    }
-  }
-
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(productJsonLd)
-        }}
-      />
-
-      {/* <div className="order-last min-h-screen w-full md:order-none"></div> */}
       <div className="mx-auto flex max-w-screen-2xl flex-col gap-8 px-4 pb-4 text-black md:flex-row dark:text-white">
         <div className="order-first w-full flex-none md:max-w-[125px]">
           <Collections />
@@ -111,46 +87,31 @@ export default async function ProductPage({
         <div className="mx-auto max-w-screen-2xl px-4">
           <div className="flex flex-col rounded-lg border border-neutral-200 bg-white p-8 md:p-12 lg:flex-row lg:gap-8 dark:border-neutral-800 dark:bg-black">
             <div className="h-full w-full basis-full lg:basis-1/2">
-              <Suspense
-                fallback={
-                  <div className="relative aspect-square h-full max-h-[550px] w-full overflow-hidden" />
-                }
-              >
-                <Gallery
-                  images={product.images.map(
-                    (image: typeof schema.image.$inferSelect) => ({
-                      src: image.url,
-                      altText: product.name
-                    })
-                  )}
-                />
-              </Suspense>
+              <Gallery
+                images={product.images.map(
+                  (image: typeof schema.image.$inferSelect) => ({
+                    src: image.url,
+                    altText: product.name
+                  })
+                )}
+              />
             </div>
-
             <div className="basis-full lg:basis-1/2">
               <ProductDescription product={product} />
             </div>
           </div>
         </div>
       </div>
-      <Suspense>
-        <RelatedProducts id={product.id} categoryId={product.category.id} />
-      </Suspense>
+      <RelatedProducts categoryId={product.categoryId} />
     </>
   )
 }
 
-async function RelatedProducts({
-  id,
-  categoryId
-}: {
-  id: string
-  categoryId: string
-}) {
+async function RelatedProducts({ categoryId }: { categoryId: string }) {
   const relatedProducts = await db.query.product.findMany({
     where: (product, { eq }) => eq(product.categoryId, categoryId),
     limit: 4,
-    with: { images: true }
+    with: { images: { limit: 1 } }
   })
 
   if (!relatedProducts.length) return null
