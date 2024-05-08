@@ -4,26 +4,26 @@ This is an NX monorepo for my personal websites. Everything is licensed under th
 
 ## Included websites
 
-- [mikeallisonJS](mikeallisonjs.com)
-- [Captain](captainofbass.com)
-- [Captain's Sounds](captainssounds.com)
-- [SLTDNB](sltdnb.com)
+- [mikeallisonJS](https://mikeallisonjs.com)
+- [Captain](https://captainofbass.com)
+- [Captain's Sounds](https://captainssounds.com)
+- [SLTDNB](https://sltdnb.com)
 
 ## Tech stack
 
-- Monorepo: [Nx](nx.dev)
-- Framework: [Next.js](nextjs.org)
-- Package Manager: [pnpm](pnpm.io)
-- Deployment: [Vercel](vercel.com)
-- Database: [Postgres on Vercel](vercel.com)
-- ORM: [Drizzle](orm.drizzle.team)
-- IDE: [VSCode with devcontainers](code.visualstudio.com)
-- eCommerce Backend: [Shopify](shopify.com) & [Gumroad](gumroad.com)
-- Styles: [Tailwind](tailwindcss.com)
-- Components: [ShadCN](ui.shadcn.com)
-- Analytics: [Posthog](posthog.com)
-- Logging: [Sentry](sentry.io)
-- Authentication: [Clerk](clerk.com)
+- Monorepo: [Nx](https://nx.dev)
+- Framework: [Next.js](https://nextjs.org)
+- Package Manager: [pnpm](https://pnpm.io)
+- Deployment: [Vercel](https://vercel.com)
+- Database: [Postgres on Vercel](https://vercel.com)
+- ORM: [Drizzle](https://orm.drizzle.team)
+- IDE: [VSCode with devcontainers](https://code.visualstudio.com)
+- eCommerce Backend: [Shopify](https://shopify.com) & [Gumroad](https://gumroad.com)
+- Styles: [Tailwind](https://tailwindcss.com)
+- Components: [ShadCN](https://ui.shadcn.com)
+- Analytics: [Posthog](https://posthog.com)
+- Logging: [Sentry](https://sentry.io)
+- Authentication: [Clerk](https://clerk.com)
 
 ## Getting started
 
