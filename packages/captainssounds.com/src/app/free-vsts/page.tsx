@@ -1,4 +1,4 @@
-import { PageContainer } from '@websites/shared/react/components'
+import { PageContainer } from '@mikeallisonjs/next-tailwind-shared-components'
 
 export const metadata = {
   title: 'Free VSTs',

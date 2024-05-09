@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-import { PastEvents } from '@websites/shared/react/components'
+import { StaggeredImageGallery } from '@mikeallisonjs/next-tailwind-shared-components/ui'
 
 import Bio from '../components/bio/bio'
 
@@ -70,7 +70,7 @@ export default function Index() {
           />
         </div>
         <Bio />
-        <PastEvents images={images} />
+        <StaggeredImageGallery images={images} basePath="/images/flyers" />
       </div>
     </div>
   )

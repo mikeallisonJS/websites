@@ -1,0 +1,29 @@
+{
+  "name": "next-tailwind-music-player",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/next-tailwind-music-player/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/rollup:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/next-tailwind-music-player",
+        "tsConfig": "packages/next-tailwind-music-player/tsconfig.lib.json",
+        "project": "packages/next-tailwind-music-player/package.json",
+        "entryFile": "packages/next-tailwind-music-player/src/index.ts",
+        "external": ["react", "react-dom", "react/jsx-runtime"],
+        "rollupConfig": "@nx/react/plugins/bundle-rollup",
+        "compiler": "swc",
+        "assets": [
+          {
+            "glob": "packages/next-tailwind-music-player/README.md",
+            "input": ".",
+            "output": "."
+          }
+        ]
+      }
+    }
+  }
+}

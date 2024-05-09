@@ -10,8 +10,8 @@ import {
   SheetContent,
   SheetTrigger,
   Button
-} from '@websites/shared/react/components'
-import { cn } from '@websites/shared/react/lib'
+} from '@mikeallisonjs/next-tailwind-shared-components/ui'
+import { cn } from '@mikeallisonjs/next-tailwind-shared-components/utils'
 
 export function MobileNav() {
   const [open, setOpen] = useState(false)

@@ -22,6 +22,18 @@
     "src/**/*.jsx",
     "src/**/*.ts",
     "src/**/*.tsx",
-    "src/musicPlayer/types.tsx"
+    "src/musicPlayer/types.tsx",
+    "../../../next-tailwind-music-player/src/context.tsx",
+    "../../../next-tailwind-music-player/src/controls.tsx",
+    "../../../next-tailwind-music-player/src/coverArt.tsx",
+    "../../../next-tailwind-music-player/src/player.tsx",
+    "../../../next-tailwind-music-player/src/playlist.tsx",
+    "../../../next-tailwind-music-player/src/playlistControl.tsx",
+    "../../../next-tailwind-music-player/src/progressBar.tsx",
+    "../../../next-tailwind-music-player/src/store.ts",
+    "../../../next-tailwind-music-player/src/trackDetails.tsx",
+    "../../../next-tailwind-music-player/src/types.ts",
+    "../../../next-tailwind-music-player/src/volumeControl.tsx",
+    "../../../next-tailwind-shared-components/src/bentoGrid.tsx"
   ]
 }

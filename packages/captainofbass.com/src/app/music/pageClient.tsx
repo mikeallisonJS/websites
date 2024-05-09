@@ -1,6 +1,6 @@
 'use client'
 
-import { MusicPlayerProvider } from '@websites/shared/react/components'
+import { MusicPlayerProvider } from '@mikeallisonjs/next-tailwind-music-player'
 
 import { songs } from '../../components/footer/footer'
 import MusicList, { MusicType } from '../../components/musicList/musicList'

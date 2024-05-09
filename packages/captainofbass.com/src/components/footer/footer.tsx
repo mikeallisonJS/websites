@@ -4,7 +4,7 @@ import {
   MusicPlayerProvider,
   Player,
   Track
-} from '@websites/shared/react/components'
+} from '@mikeallisonjs/next-tailwind-music-player'
 
 export const songs: Track[] = [
   {

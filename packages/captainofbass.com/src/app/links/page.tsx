@@ -19,7 +19,7 @@ import {
   Table,
   TableCell,
   TableRow
-} from '@websites/shared/react/components'
+} from '@mikeallisonjs/next-tailwind-shared-components/ui'
 
 import { GlassContainer } from '../../components/glassContainer'
 

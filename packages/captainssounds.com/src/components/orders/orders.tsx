@@ -11,7 +11,7 @@ import {
   TableHead,
   TableHeader,
   TableRow
-} from '@websites/shared/react/components'
+} from '@mikeallisonjs/next-tailwind-shared-components'
 
 import { db } from '../../lib/drizzle'
 

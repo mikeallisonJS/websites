@@ -2,12 +2,12 @@
 
 import Image from 'next/image'
 
+import { useMusicPlayerContext } from '@mikeallisonjs/next-tailwind-music-player'
 import {
   Table,
   TableCell,
-  TableRow,
-  useMusicPlayerContext
-} from '@websites/shared/react/components'
+  TableRow
+} from '@mikeallisonjs/next-tailwind-shared-components/ui'
 
 import { songs } from '../footer/footer'
 import { GlassContainer } from '../glassContainer'

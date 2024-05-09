@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 
-import { CSPostHogProvider } from '@websites/shared/react/components'
+import { CSPostHogProvider } from '@mikeallisonjs/next-tailwind-shared-components/providers'
 
 import Footer from '../components/footer/footer'
 import Header from '../components/header/header'

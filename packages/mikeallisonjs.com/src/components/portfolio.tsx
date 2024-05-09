@@ -23,7 +23,7 @@ import {
   BentoGrid,
   BentoGridItem,
   Button
-} from '@websites/shared/react/components'
+} from '@mikeallisonjs/next-tailwind-shared-components'
 
 const Overlay = ({
   children,
@@ -166,7 +166,7 @@ export function Portfolio() {
         </Overlay>
         <Overlay
           websiteUrl="https://captainssounds.com"
-          githubUrl="https://github.com/mikeallisonJS/websites"
+          githubUrl="https://github.com/mikeallisonjs/websites"
         >
           <BentoGridItem
             title="Captain's Sounds"
@@ -200,7 +200,7 @@ export function Portfolio() {
         </Overlay>
         <Overlay
           websiteUrl="https://captainofbass.com"
-          githubUrl="https://github.com/mikeallisonJS/websites"
+          githubUrl="https://github.com/mikeallisonjs/websites"
         >
           <BentoGridItem
             title="captainofbass.com"

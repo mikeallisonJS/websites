@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-import { AuroraBackground } from '@websites/shared/react/components'
+import { AuroraBackground } from '@mikeallisonjs/next-tailwind-shared-components'
 
 import { Hero } from '../components/hero'
 import { Portfolio } from '../components/portfolio'

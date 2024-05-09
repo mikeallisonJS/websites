@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 
-import { PageContainer } from '@websites/shared/react/components'
+import { PageContainer } from '@mikeallisonjs/next-tailwind-shared-components/ui'
 
 import Bio from '../../components/bio/bio'
 import { GlassContainer } from '../../components/glassContainer'

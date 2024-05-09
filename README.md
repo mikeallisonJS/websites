@@ -1,13 +1,15 @@
-# Websites
+# @mikeallisonJS/web
 
-This is an NX monorepo for my personal websites. Everything is licensed under the MIT license, so feel free to use any of this for your own development as you see fit.
+This is an NX monorepo for my public npm modules & applications.
 
-## Included websites
+Everything is licensed under the MIT license, so feel free to use any of this for your own development as you see fit. Likewise, feel free to fork, add issues or pull requests, and throw me star if you find it useful.
 
-- [mikeallisonJS](https://mikeallisonjs.com)
-- [Captain](https://captainofbass.com)
-- [Captain's Sounds](https://captainssounds.com)
-- [SLTDNB](https://sltdnb.com)
+## Included applications
+
+- [mikeallisonJS](https://mikeallisonjs.com) [(source)](packages/mikeallisonjs.com)
+- [Captain](https://captainofbass.com) [(source)](packages/captainofbass.com/)
+- [Captain's Sounds](https://captainssounds.com) [(source)](packages/captainofbass.com/)
+- [SLTDNB](https://sltdnb.com) [(source)](packages/sltdnb.com)
 
 ## Tech stack
 
@@ -28,10 +30,13 @@ This is an NX monorepo for my personal websites. Everything is licensed under th
 ## Getting started
 
 Login to vercel (you will need your own account, don't worry it's free to get started)
+
 `vercel login`
 
 Fetch secrets for all projects (you will need to change org_id and project_id in each package project.json)
+
 `sh scripts/fetch-secrets.sh`
 
 Run a project
+
 `nx serve packagename`

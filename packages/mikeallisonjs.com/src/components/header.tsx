@@ -28,7 +28,7 @@ export default function Header() {
             >
               Contact
             </Link>
-            <Link href="https://github.com/mikeallisonJS" target="_blank">
+            <Link href="https://github.com/mikeallisonjs" target="_blank">
               <IconBrandGithub />
             </Link>
           </nav>

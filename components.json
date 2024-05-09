@@ -3,14 +3,14 @@
   "style": "new-york",
   "rsc": true,
   "tailwind": {
-    "config": "packages/shared/react/lib/src/shadcnUtils/tailwind.config.js",
-    "css": "packages/shared/react/lib/src/shadcnUtils/global.css",
+    "config": "packages/next-tailwind-shared-components/src/utils/tailwind.config.js",
+    "css": "packages/next-tailwind-shared-components/src/utils/global.css",
     "baseColor": "stone",
     "cssVariables": true
   },
   "aliases": {
-    "components": "packages/shared/react/components/src",
-    "ui": "packages/shared/react/components/src",
-    "utils": "packages/shared/react/lib/src/shadcnUtils"
+    "components": "packages/next-tailwind-shared-components/src",
+    "ui": "packages/next-tailwind-shared-components/src/ui",
+    "utils": "packages/next-tailwind-shared-components/src/utils"
   }
 }

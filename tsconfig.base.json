@@ -15,10 +15,21 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@websites/shared/react/components": [
-        "packages/shared/react/components/src/index.tsx"
+      "@mikeallisonjs/next-tailwind-music-player": [
+        "packages/next-tailwind-music-player/src/index.ts"
       ],
-      "@websites/shared/react/lib": ["packages/shared/react/lib/src/index.ts"]
+      "@mikeallisonjs/next-tailwind-shared-components": [
+        "packages/next-tailwind-shared-components/src/index.ts"
+      ],
+      "@mikeallisonjs/next-tailwind-shared-components/ui": [
+        "packages/next-tailwind-shared-components/src/ui/index.ts"
+      ],
+      "@mikeallisonjs/next-tailwind-shared-components/providers": [
+        "packages/next-tailwind-shared-components/src/providers/index.ts"
+      ],
+      "@mikeallisonjs/next-tailwind-shared-components/utils": [
+        "packages/next-tailwind-shared-components/src/utils/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

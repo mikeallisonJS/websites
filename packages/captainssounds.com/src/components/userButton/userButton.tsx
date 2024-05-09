@@ -6,6 +6,9 @@ import {
   CurrencyDollarIcon,
   UserIcon
 } from '@heroicons/react/24/solid'
+import Image from 'next/image'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 
 import {
   DropdownMenu,
@@ -16,10 +19,7 @@ import {
   DropdownMenuPortal,
   DropdownMenuSeparator,
   DropdownMenuTrigger
-} from '@websites/shared/react/components'
-import Image from 'next/image'
-import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+} from '@mikeallisonjs/next-tailwind-shared-components'
 
 const UserButtonAndMenu = () => {
   const { user } = useUser()

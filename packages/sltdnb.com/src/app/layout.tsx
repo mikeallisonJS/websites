@@ -2,7 +2,7 @@ import { GeistSans } from 'geist/font/sans'
 import { ReactNode } from 'react'
 
 import './global.css'
-import { CSPostHogProvider } from '@websites/shared/react/components'
+import { CSPostHogProvider } from '@mikeallisonjs/next-tailwind-shared-components'
 
 export const metadata = {
   title: 'SLTDNB'

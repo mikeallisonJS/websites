@@ -1,8 +1,8 @@
 import { Suspense } from 'react'
 
-import { PageContainer } from '@websites/shared/react/components'
+import { PageContainer } from '@mikeallisonjs/next-tailwind-shared-components'
 
-import { Orders } from '../../../components/orders'
+import { Orders } from '../../../components/orders/orders'
 
 export default async function OrdersPage() {
   return (

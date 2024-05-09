@@ -1,8 +1,8 @@
 import { Arimo } from 'next/font/google'
 
 import './global.css'
-import { CSPostHogProvider } from '@websites/shared/react/components'
-import { cn } from '@websites/shared/react/lib'
+import { CSPostHogProvider } from '@mikeallisonjs/next-tailwind-shared-components'
+import { cn } from '@mikeallisonjs/shared/react/lib'
 
 import Header from '../components/header'
 
@@ -13,7 +13,7 @@ const arimo = Arimo({
 })
 
 export const metadata = {
-  title: 'mikeallisonJS',
+  title: 'mikeallisonjs',
   description: `
   Over ${new Date().getFullYear() - 2000} years experience designing
   cutting edge software solutions for global industry leading
