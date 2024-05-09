@@ -1,4 +1,4 @@
-import { getCollections, getPages, getProducts } from '../lib/shopify'
+import { getCollections, getProducts } from '../lib/shopify'
 import { validateEnvironmentVariables } from '../lib/utils'
 
 type Route = {
@@ -32,18 +32,11 @@ export default async function sitemap() {
     }))
   )
 
-  const pagesPromise = getPages().then((pages) =>
-    pages.map((page) => ({
-      url: `${baseUrl}/${page.handle}`,
-      lastModified: page.updatedAt
-    }))
-  )
-
   let fetchedRoutes: Route[] = []
 
   try {
     fetchedRoutes = (
-      await Promise.all([collectionsPromise, productsPromise, pagesPromise])
+      await Promise.all([collectionsPromise, productsPromise])
     ).flat()
   } catch (error) {
     throw JSON.stringify(error, null, 2)
