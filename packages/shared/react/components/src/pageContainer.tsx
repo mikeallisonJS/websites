@@ -1,8 +1,21 @@
 import { ReactNode } from 'react'
 
-export default function PageContainer({ children }: { children: ReactNode }) {
+import { cn } from '@websites/shared/react/lib'
+
+export default function PageContainer({
+  children,
+  className = ''
+}: {
+  children: ReactNode
+  className?: string
+}) {
   return (
-    <div className="mx-[5vw] mb-20 mt-4 flex w-[90vw] flex-col justify-center text-center">
+    <div
+      className={cn(
+        'mx-[5vw] mb-20 mt-4 flex w-[90vw] flex-col justify-center text-center',
+        className
+      )}
+    >
       {children}
     </div>
   )
