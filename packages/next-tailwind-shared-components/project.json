@@ -26,6 +26,11 @@
             "glob": "packages/next-tailwind-shared-components/src/utils/tailwind.config.js",
             "input": ".",
             "output": "./utils"
+          },
+          {
+            "glob": "packages/next-tailwind-shared-components/src/utils/global.css",
+            "input": ".",
+            "output": "./utils"
           }
         ]
       }

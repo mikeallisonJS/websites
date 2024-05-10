@@ -1,4 +1,21 @@
 {
   "name": "@mikeallisonjs/next-tailwind-shared-components",
-  "version": "0.9.0"
+  "version": "0.9.0",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "default": "./index.js"
+    },
+    "./ui": {
+      "types": "./ui/index.d.ts",
+      "default": "./ui/index.js"
+    },
+    "./utils": {
+      "types": "./utils/index.d.ts",
+      "default": "./utils/index.js"
+    },
+    "./utils/tailwind.config.js": {
+      "default": "./utils/tailwind.config.js"
+    }
+  }
 }

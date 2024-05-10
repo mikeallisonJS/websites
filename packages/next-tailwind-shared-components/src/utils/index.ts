@@ -1,2 +1,2 @@
 export * from './cn'
-export * from './tailwind.config'
+// export * from './tailwind.config.js'
