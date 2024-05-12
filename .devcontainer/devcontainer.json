@@ -32,7 +32,8 @@
         "csstools.postcss",
         "bradlc.vscode-tailwindcss",
         "github.vscode-pull-request-github",
-        "codeandstuff.package-json-upgrade"
+        "codeandstuff.package-json-upgrade",
+        "graphite.gti-vscode"
       ]
     }
   },
