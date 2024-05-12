@@ -1,5 +1,5 @@
 pnpm install
-npm i -g prettier
+npm i -g prettier @withgraphite/graphite-cli@stable
 
 sudo apt-get update && sudo apt-get install -y apt-transport-https ca-certificates curl gnupg
 curl -sLf --retry 3 --tlsv1.2 --proto "=https" 'https://packages.doppler.com/public/cli/gpg.DE2A7741A397C129.key' | sudo apt-key add -
