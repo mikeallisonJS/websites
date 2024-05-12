@@ -5,10 +5,29 @@ const { withSentryConfig } = require('@sentry/nextjs')
  * @type {import('@nx/next/plugins/with-nx').WithNxOptions}
  **/
 const nextConfig = {
+  typescript: {
+    ignoreBuildErrors: true
+  },
+  eslint: {
+    // Disabling on production builds because we're running checks on PRs via GitHub Actions.
+    ignoreDuringBuilds: true
+  },
   nx: {
-    // Set this to true if you would like to use SVGR
+    // Set this to true if you would like to to use SVGR
     // See: https://github.com/gregberge/svgr
     svgr: false
+  },
+  async rewrites() {
+    return [
+      {
+        source: '/ph/static/:path*',
+        destination: 'https://us-assets.i.posthog.com/static/:path*'
+      },
+      {
+        source: '/ph/:path*',
+        destination: 'https://us.i.posthog.com/:path*'
+      }
+    ]
   }
 }
 
@@ -48,19 +67,7 @@ const config = withSentryConfig(
     // See the following for more information:
     // https://docs.sentry.io/product/crons/
     // https://vercel.com/docs/cron-jobs
-    automaticVercelMonitors: true,
-    async rewrites() {
-      return [
-        {
-          source: '/ph/static/:path*',
-          destination: 'https://us-assets.i.posthog.com/static/:path*'
-        },
-        {
-          source: '/ph/:path*',
-          destination: 'https://us.i.posthog.com/:path*'
-        }
-      ]
-    }
+    automaticVercelMonitors: true
   }
 )
 
