@@ -1,8 +1,6 @@
 'use server'
 
 import { currentUser } from '@clerk/nextjs/server'
-import { sql } from '@vercel/postgres'
-import { drizzle } from 'drizzle-orm/vercel-postgres'
 import Link from 'next/link'
 
 import {
@@ -15,10 +13,7 @@ import {
   TableRow
 } from '@websites/shared/react/components'
 
-// eslint-disable-next-line import/no-namespace
-import * as schema from '../../lib/drizzle/schema'
-
-const db = drizzle(sql, { schema })
+import { db } from '../../lib/drizzle'
 
 export async function Orders() {
   const user = await currentUser()
