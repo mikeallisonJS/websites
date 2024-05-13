@@ -6,11 +6,14 @@ import Link from 'next/link'
 import { usePathname, useSearchParams } from 'next/navigation'
 import { Fragment, Suspense, useEffect, useState } from 'react'
 
-import { Menu } from '../../lib/shopify/types'
+import { schema } from '../../lib/drizzle'
 
 import Search, { SearchSkeleton } from './search'
 
-export default function MobileMenu({ menu }: { menu: Menu[] }) {
+type MobileMenuProps = {
+  categories: (typeof schema.category.$inferSelect)[]
+}
+export default function MobileMenu({ categories }: MobileMenuProps) {
   const pathname = usePathname()
   const searchParams = useSearchParams()
   const [isOpen, setIsOpen] = useState(false)
@@ -77,20 +80,33 @@ export default function MobileMenu({ menu }: { menu: Menu[] }) {
                     <Search />
                   </Suspense>
                 </div>
-                {menu.length ? (
-                  <ul className="flex w-full flex-col">
-                    {menu.map((item: Menu) => (
+                <ul className="flex w-full flex-col">
+                  <li className="py-2 text-xl text-black transition-colors hover:text-neutral-500 dark:text-white">
+                    <Link href="/" onClick={closeMobileMenu}>
+                      Home
+                    </Link>
+                  </li>
+                  {categories.map(
+                    (item: typeof schema.category.$inferSelect) => (
                       <li
                         className="py-2 text-xl text-black transition-colors hover:text-neutral-500 dark:text-white"
-                        key={item.title}
+                        key={item.name}
                       >
-                        <Link href={item.path} onClick={closeMobileMenu}>
-                          {item.title}
+                        <Link
+                          href={`/search/${item.id}`}
+                          onClick={closeMobileMenu}
+                        >
+                          {item.name}
                         </Link>
                       </li>
-                    ))}
-                  </ul>
-                ) : null}
+                    )
+                  )}
+                  <li className="py-2 text-xl text-black transition-colors hover:text-neutral-500 dark:text-white">
+                    <Link href="/search" onClick={closeMobileMenu}>
+                      All
+                    </Link>
+                  </li>
+                </ul>
               </div>
             </Dialog.Panel>
           </Transition.Child>

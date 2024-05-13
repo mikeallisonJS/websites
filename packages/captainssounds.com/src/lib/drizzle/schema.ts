@@ -2,15 +2,13 @@ import { relations, sql } from 'drizzle-orm'
 import {
   pgTable,
   uniqueIndex,
-  foreignKey,
   pgEnum,
   text,
   integer,
   index,
   boolean,
   numeric,
-  timestamp,
-  varchar
+  timestamp
 } from 'drizzle-orm/pg-core'
 
 export const blockType = pgEnum('BlockType', [
@@ -40,6 +38,13 @@ export const image = pgTable(
     }
   }
 )
+
+export const imageRelation = relations(image, ({ one }) => ({
+  product: one(product, {
+    fields: [image.productId],
+    references: [product.id]
+  })
+}))
 
 export const download = pgTable(
   'Download',
@@ -157,7 +162,8 @@ export const productRelations = relations(product, ({ one, many }) => ({
     references: [category.id]
   }),
   images: many(image),
-  download: one(download)
+  download: one(download),
+  blocks: many(block)
 }))
 
 export const downloadRelation = relations(download, ({ one }) => ({
@@ -203,3 +209,10 @@ export const blockRelations = relations(block, ({ one }) => ({
     references: [product.id]
   })
 }))
+
+// export const productOrderCount = pgMaterializedView('ProductOrderCount', {
+//   count: integer('count').notNull(),
+//   productId: text('productId').notNull()
+// }).as(
+//   sql`SELECT COUNT(*) AS count, "productId" FROM "_OrderToProduct" GROUP BY "productId"`
+// )

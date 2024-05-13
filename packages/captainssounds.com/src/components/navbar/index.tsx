@@ -1,9 +1,11 @@
 import { SignInButton, SignedIn, SignedOut } from '@clerk/nextjs'
+import { sql } from '@vercel/postgres'
+import { drizzle } from 'drizzle-orm/vercel-postgres'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Suspense } from 'react'
 
-import { getMenu } from '../../lib/shopify'
+import { schema } from '../../lib/drizzle'
 import Cart from '../cart'
 import OpenCart from '../cart/openCart'
 import { UserButton } from '../userButton/userButton'
@@ -11,15 +13,19 @@ import { UserButton } from '../userButton/userButton'
 import MobileMenu from './mobileMenu'
 import Search, { SearchSkeleton } from './search'
 
-export default async function Navbar() {
-  const menu = await getMenu('next-js-frontend-header-menu')
+const db = drizzle(sql, { schema })
 
+export default async function Navbar() {
+  const categories = await db.query.category.findMany({
+    where: (category, { eq }) => eq(category.inNavigation, true),
+    orderBy: (category, { asc }) => [asc(category.order)]
+  })
   return (
     <>
       <nav className="relative flex items-center justify-between p-4 lg:px-6">
         <div className="block flex-none md:hidden">
           <Suspense fallback={null}>
-            <MobileMenu menu={menu} />
+            <MobileMenu categories={categories} />
           </Suspense>
         </div>
         <div className="flex w-full items-center">
