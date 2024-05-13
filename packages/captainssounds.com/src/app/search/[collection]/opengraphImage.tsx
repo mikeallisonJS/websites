@@ -1,5 +1,5 @@
 import OpengraphImage from '../../../components/opengraphImage'
-import { getCollection } from '../../../lib/shopify'
+import { db } from '../../../lib/drizzle'
 
 export const runtime = 'edge'
 
@@ -8,8 +8,10 @@ export default async function Image({
 }: {
   params: { collection: string }
 }) {
-  const collection = await getCollection(params.collection)
-  const title = collection?.seo?.title || collection?.title
+  const collection = await db.query.category.findFirst({
+    where: (category, { eq }) => eq(category.id, params.collection)
+  })
+  const title = collection?.name
 
   return await OpengraphImage({ title })
 }

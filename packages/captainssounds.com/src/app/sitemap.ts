@@ -1,4 +1,5 @@
-import { getCollections, getProducts } from '../lib/shopify'
+import { db } from '../lib/drizzle'
+import { getProducts } from '../lib/shopify'
 import { validateEnvironmentVariables } from '../lib/utils'
 
 type Route = {
@@ -18,12 +19,16 @@ export default async function sitemap() {
     lastModified: new Date().toISOString()
   }))
 
-  const collectionsPromise = getCollections().then((collections) =>
-    collections.map((collection) => ({
-      url: `${baseUrl}${collection.path}`,
-      lastModified: collection.updatedAt
-    }))
-  )
+  const collectionsPromise = db.query.category
+    .findMany({
+      where: (category, { eq }) => eq(category.inNavigation, true)
+    })
+    .then((collections) =>
+      collections.map((collection) => ({
+        url: `${baseUrl}/search/${collection.id}`,
+        lastModified: new Date().toISOString()
+      }))
+    )
 
   const productsPromise = getProducts({}).then((products) =>
     products.map((product) => ({
