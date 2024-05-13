@@ -1,10 +1,10 @@
 import { notFound } from 'next/navigation'
-import { ReactElement } from 'react'
 
 import Grid from '../../../components/grid'
 import ProductGridItems from '../../../components/productGridItems'
 import { defaultSort, sorting } from '../../../lib/constants'
-import { getCollection, getCollectionProducts } from '../../../lib/shopify'
+import { db } from '../../../lib/drizzle'
+import { getCollectionProducts } from '../../../lib/shopify'
 
 export const runtime = 'edge'
 
@@ -13,16 +13,14 @@ export async function generateMetadata({
 }: {
   params: { collection: string }
 }) {
-  const collection = await getCollection(params.collection)
+  const collection = await db.query.category.findFirst({
+    where: (category, { eq }) => eq(category.id, params.collection)
+  })
 
   if (!collection) return notFound()
 
   return {
-    title: collection.seo?.title || collection.title,
-    description:
-      collection.seo?.description ||
-      collection.description ||
-      `${collection.title} products`
+    title: collection.name
   }
 }
 
@@ -32,7 +30,7 @@ export default async function CategoryPage({
 }: {
   params: { collection: string }
   searchParams?: { [key: string]: string | string[] | undefined }
-}): Promise<ReactElement> {
+}) {
   const { sort } = searchParams as { [key: string]: string }
   const { sortKey, reverse } =
     sorting.find((item) => item.slug === sort) || defaultSort
