@@ -32,7 +32,9 @@
         "graphite.gti-vscode",
         "oven.bun-vscode",
         "stivo.tailwind-fold",
-        "biomejs.biome"
+        "biomejs.biome",
+        "mtxr.sqltools",
+        "mtxr.sqltools-driver-pg"
       ]
     }
   },

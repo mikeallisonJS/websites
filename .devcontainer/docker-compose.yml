@@ -10,6 +10,29 @@ services:
       - home-node-bun:/home/node/.bun
     command: sleep infinity
     user: 1000:1000
+  db:
+    image: postgres:13
+    restart: unless-stopped
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - 4321:5432
+  db_proxy:
+    image: ghcr.io/neondatabase/wsproxy:latest
+    restart: unless-stopped
+    environment:
+      APPEND_PORT: 'postgres:5432'
+      ALLOW_ADDR_REGEX: '.*'
+      LOG_TRAFFIC: 'false'
+    ports:
+      - '5433:80'
+    depends_on:
+      - db
 volumes:
+  postgres-data:
   home-node-config:
   home-node-bun:

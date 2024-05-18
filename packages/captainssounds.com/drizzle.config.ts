@@ -5,6 +5,9 @@ export default defineConfig({
   out: './src/lib/drizzle',
   dialect: 'postgresql',
   dbCredentials: {
-    url: process.env.POSTGRES_URL as string
+    url:
+      process.env.NODE_ENV === 'production'
+        ? (process.env.POSTGRES_URL as string)
+        : 'postgres://postgres:postgres@db:5432/postgres'
   }
 })
