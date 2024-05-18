@@ -2,15 +2,12 @@
 // README at: https://github.com/devcontainers/templates/tree/main/src/typescript-node
 {
   "name": "Websites",
-  "dockerFile": "Dockerfile",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspaces",
   "features": {
     "ghcr.io/devcontainers-contrib/features/nx-npm:1": {
       "version": "latest"
-    },
-    "ghcr.io/devcontainers-contrib/features/zsh-plugins:0": {
-      "plugins": "ssh-agent npm",
-      "omzPlugins": "https://github.com/zsh-users/zsh-autosuggestions",
-      "username": "node"
     },
     "ghcr.io/devcontainers/features/node:1": {
       "nodeGypDependencies": true,
@@ -33,10 +30,13 @@
         "bradlc.vscode-tailwindcss",
         "github.vscode-pull-request-github",
         "codeandstuff.package-json-upgrade",
-        "graphite.gti-vscode"
+        "graphite.gti-vscode",
+        "mtxr.sqltools",
+        "mtxr.sqltools-driver-pg"
       ]
     }
   },
   "remoteUser": "node",
+  "containerUser": "node",
   "postCreateCommand": "bash /workspaces/websites/.devcontainer/post-create.sh"
 }

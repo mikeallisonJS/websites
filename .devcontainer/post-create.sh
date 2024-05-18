@@ -1,11 +1,7 @@
+#!/bin/bash
+
 pnpm install
-npm i -g prettier @withgraphite/graphite-cli@stable
+sudo npm i -g prettier @withgraphite/graphite-cli@stable vercel
 
-sudo apt-get update && sudo apt-get install -y apt-transport-https ca-certificates curl gnupg
-curl -sLf --retry 3 --tlsv1.2 --proto "=https" 'https://packages.doppler.com/public/cli/gpg.DE2A7741A397C129.key' | sudo apt-key add -
-echo "deb https://packages.doppler.com/public/cli/deb/debian any-version main" | sudo tee /etc/apt/sources.list.d/doppler-cli.list
-sudo apt-get update && sudo apt-get install -y doppler jq
-
-rm -rf ~/.oh-my-zsh/custom/plugins/nx-completion
-git clone https://github.com/jscutlery/nx-completion.git ~/.oh-my-zsh/custom/plugins/nx-completion
-cp .devcontainer/.zshrc ~/.zshrc
+# Remove the nx-native-file-cache folder to avoid issues with the nx cli
+sudo rm -rf /tmp/nx-native-file-cache/
