@@ -15,7 +15,8 @@
     },
     "ghcr.io/devcontainers-contrib/features/vercel-cli:1": {
       "version": "latest"
-    }
+    },
+    "ghcr.io/lumenpink/devcontainer-features/bun:0": {}
   },
   "customizations": {
     "vscode": {
@@ -30,7 +31,8 @@
         "bradlc.vscode-tailwindcss",
         "github.vscode-pull-request-github",
         "codeandstuff.package-json-upgrade",
-        "graphite.gti-vscode"
+        "graphite.gti-vscode",
+        "oven.bun-vscode"
       ]
     }
   },

@@ -13,7 +13,7 @@ This is an NX monorepo for my personal websites. Everything is licensed under th
 
 - Monorepo: [Nx](https://nx.dev)
 - Framework: [Next.js](https://nextjs.org)
-- Package Manager: [pnpm](https://pnpm.io)
+- Package Manager: [bun](https://bun.sh)
 - Deployment: [Vercel](https://vercel.com)
 - Database: [Postgres on Vercel](https://vercel.com)
 - ORM: [Drizzle](https://orm.drizzle.team)
