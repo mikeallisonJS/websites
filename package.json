@@ -4,6 +4,7 @@
   "license": "MIT",
   "scripts": {},
   "private": true,
+  "packageManager": "bun@1.1.9",
   "devDependencies": {
     "@0no-co/graphqlsp": "^1.12.3",
     "@babel/core": "^7.14.5",
@@ -35,7 +36,7 @@
     "babel-jest": "^29.4.1",
     "drizzle-kit": "^0.20.18",
     "eslint": "8.57.0",
-    "eslint-config-next": "14.2.2",
+    "eslint-config-next": "14.2.3",
     "eslint-config-prettier": "9.0.0",
     "eslint-plugin-import": "2.27.5",
     "eslint-plugin-jsx-a11y": "6.7.1",
@@ -104,5 +105,22 @@
     "uninstall": "^0.0.0",
     "vaul": "^0.9.1",
     "zustand": "^4.5.2"
-  }
+  },
+  "trustedDependencies": [
+    "@clerk/shared",
+    "@fortawesome/fontawesome-common-types",
+    "@fortawesome/fontawesome-svg-core",
+    "@fortawesome/free-brands-svg-icons",
+    "@fortawesome/free-regular-svg-icons",
+    "@fortawesome/free-solid-svg-icons",
+    "@sentry/cli",
+    "@swc/core",
+    "@vercel/git-hooks",
+    "bufferutil",
+    "es5-ext",
+    "esbuild",
+    "nx",
+    "sharp",
+    "utf-8-validate"
+  ]
 }
