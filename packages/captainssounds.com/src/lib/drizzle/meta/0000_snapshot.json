@@ -1,10 +1,8 @@
 {
-  "id": "00000000-0000-0000-0000-000000000000",
-  "prevId": "",
-  "version": "5",
-  "dialect": "pg",
+  "version": "6",
+  "dialect": "postgresql",
   "tables": {
-    "Image": {
+    "public.Image": {
       "name": "Image",
       "schema": "",
       "columns": {
@@ -37,7 +35,10 @@
       "indexes": {
         "Image_productId_order_key": {
           "name": "Image_productId_order_key",
-          "columns": ["order", "productId"],
+          "columns": [
+            "order",
+            "productId"
+          ],
           "isUnique": true
         }
       },
@@ -45,18 +46,22 @@
         "Image_productId_fkey": {
           "name": "Image_productId_fkey",
           "tableFrom": "Image",
+          "columnsFrom": [
+            "productId"
+          ],
           "tableTo": "Product",
           "schemaTo": "public",
-          "columnsFrom": ["productId"],
-          "columnsTo": ["id"],
-          "onDelete": "set null",
-          "onUpdate": "cascade"
+          "columnsTo": [
+            "id"
+          ],
+          "onUpdate": "cascade",
+          "onDelete": "set null"
         }
       },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
-    "Download": {
+    "public.Download": {
       "name": "Download",
       "schema": "",
       "columns": {
@@ -82,7 +87,9 @@
       "indexes": {
         "Download_productId_key": {
           "name": "Download_productId_key",
-          "columns": ["productId"],
+          "columns": [
+            "productId"
+          ],
           "isUnique": true
         }
       },
@@ -90,18 +97,22 @@
         "Download_productId_fkey": {
           "name": "Download_productId_fkey",
           "tableFrom": "Download",
+          "columnsFrom": [
+            "productId"
+          ],
           "tableTo": "Product",
           "schemaTo": "public",
-          "columnsFrom": ["productId"],
-          "columnsTo": ["id"],
-          "onDelete": "restrict",
-          "onUpdate": "cascade"
+          "columnsTo": [
+            "id"
+          ],
+          "onUpdate": "cascade",
+          "onDelete": "restrict"
         }
       },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
-    "Order": {
+    "public.Order": {
       "name": "Order",
       "schema": "",
       "columns": {
@@ -121,7 +132,9 @@
       "indexes": {
         "Order_email_idx": {
           "name": "Order_email_idx",
-          "columns": ["email"],
+          "columns": [
+            "email"
+          ],
           "isUnique": false
         }
       },
@@ -129,7 +142,7 @@
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
-    "_OrderToProduct": {
+    "public._OrderToProduct": {
       "name": "_OrderToProduct",
       "schema": "",
       "columns": {
@@ -149,12 +162,17 @@
       "indexes": {
         "_OrderToProduct_AB_unique": {
           "name": "_OrderToProduct_AB_unique",
-          "columns": ["A", "B"],
+          "columns": [
+            "A",
+            "B"
+          ],
           "isUnique": true
         },
         "_OrderToProduct_B_index": {
           "name": "_OrderToProduct_B_index",
-          "columns": ["B"],
+          "columns": [
+            "B"
+          ],
           "isUnique": false
         }
       },
@@ -162,28 +180,36 @@
         "_OrderToProduct_A_fkey": {
           "name": "_OrderToProduct_A_fkey",
           "tableFrom": "_OrderToProduct",
+          "columnsFrom": [
+            "A"
+          ],
           "tableTo": "Order",
           "schemaTo": "public",
-          "columnsFrom": ["A"],
-          "columnsTo": ["id"],
-          "onDelete": "cascade",
-          "onUpdate": "cascade"
+          "columnsTo": [
+            "id"
+          ],
+          "onUpdate": "cascade",
+          "onDelete": "cascade"
         },
         "_OrderToProduct_B_fkey": {
           "name": "_OrderToProduct_B_fkey",
           "tableFrom": "_OrderToProduct",
+          "columnsFrom": [
+            "B"
+          ],
           "tableTo": "Product",
           "schemaTo": "public",
-          "columnsFrom": ["B"],
-          "columnsTo": ["id"],
-          "onDelete": "cascade",
-          "onUpdate": "cascade"
+          "columnsTo": [
+            "id"
+          ],
+          "onUpdate": "cascade",
+          "onDelete": "cascade"
         }
       },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
-    "Link": {
+    "public.Link": {
       "name": "Link",
       "schema": "",
       "columns": {
@@ -230,18 +256,22 @@
         "Link_categoryId_fkey": {
           "name": "Link_categoryId_fkey",
           "tableFrom": "Link",
+          "columnsFrom": [
+            "categoryId"
+          ],
           "tableTo": "Category",
           "schemaTo": "public",
-          "columnsFrom": ["categoryId"],
-          "columnsTo": ["id"],
-          "onDelete": "restrict",
-          "onUpdate": "cascade"
+          "columnsTo": [
+            "id"
+          ],
+          "onUpdate": "cascade",
+          "onDelete": "restrict"
         }
       },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
-    "Product": {
+    "public.Product": {
       "name": "Product",
       "schema": "",
       "columns": {
@@ -322,18 +352,22 @@
         "Product_categoryId_fkey": {
           "name": "Product_categoryId_fkey",
           "tableFrom": "Product",
+          "columnsFrom": [
+            "categoryId"
+          ],
           "tableTo": "Category",
           "schemaTo": "public",
-          "columnsFrom": ["categoryId"],
-          "columnsTo": ["id"],
-          "onDelete": "restrict",
-          "onUpdate": "cascade"
+          "columnsTo": [
+            "id"
+          ],
+          "onUpdate": "cascade",
+          "onDelete": "restrict"
         }
       },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
-    "_prisma_migrations": {
+    "public._prisma_migrations": {
       "name": "_prisma_migrations",
       "schema": "",
       "columns": {
@@ -393,7 +427,7 @@
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
-    "Category": {
+    "public.Category": {
       "name": "Category",
       "schema": "",
       "columns": {
@@ -426,7 +460,9 @@
       "indexes": {
         "Category_order_key": {
           "name": "Category_order_key",
-          "columns": ["order"],
+          "columns": [
+            "order"
+          ],
           "isUnique": true
         }
       },
@@ -434,7 +470,7 @@
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
-    "Block": {
+    "public.Block": {
       "name": "Block",
       "schema": "",
       "columns": {
@@ -481,12 +517,16 @@
         "Block_productId_fkey": {
           "name": "Block_productId_fkey",
           "tableFrom": "Block",
+          "columnsFrom": [
+            "productId"
+          ],
           "tableTo": "Product",
           "schemaTo": "public",
-          "columnsFrom": ["productId"],
-          "columnsTo": ["id"],
-          "onDelete": "restrict",
-          "onUpdate": "cascade"
+          "columnsTo": [
+            "id"
+          ],
+          "onUpdate": "cascade",
+          "onDelete": "restrict"
         }
       },
       "compositePrimaryKeys": {},
@@ -494,14 +534,15 @@
     }
   },
   "enums": {
-    "BlockType": {
+    "public.BlockType": {
       "name": "BlockType",
-      "values": {
-        "Youtube": "Youtube",
-        "List": "List",
-        "Image": "Image",
-        "Text": "Text"
-      }
+      "schema": "public",
+      "values": [
+        "Youtube",
+        "List",
+        "Image",
+        "Text"
+      ]
     }
   },
   "schemas": {},
@@ -509,5 +550,7 @@
     "schemas": {},
     "tables": {},
     "columns": {}
-  }
+  },
+  "id": "00000000-0000-0000-0000-000000000000",
+  "prevId": ""
 }
