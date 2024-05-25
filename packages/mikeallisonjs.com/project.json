@@ -51,9 +51,6 @@
         "jestConfig": "packages/mikeallisonjs.com/jest.config.ts"
       }
     },
-    "lint": {
-      "executor": "@nx/eslint:lint"
-    },
     "fetch-secrets": {
       "executor": "nx:run-commands",
       "options": {
