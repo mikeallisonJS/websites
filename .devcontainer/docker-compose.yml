@@ -1,0 +1,13 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ..:/workspaces:delegated
+      - home-node-config:/home/node/.config
+    command: sleep infinity
+    user: 1000:1000
+volumes:
+  home-node-config:
