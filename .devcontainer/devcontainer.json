@@ -18,13 +18,13 @@
     },
     "ghcr.io/lumenpink/devcontainer-features/bun:0": {}
   },
+  "forwardPorts": [5555],
   "customizations": {
     "vscode": {
       "extensions": [
         "github.copilot-nightly",
-        "github.copilot-labs",
+        "github.copilot-chat",
         "eamodio.gitlens",
-        "syler.sass-indented",
         "esbenp.prettier-vscode",
         "nrwl.angular-console",
         "csstools.postcss",
@@ -32,7 +32,8 @@
         "github.vscode-pull-request-github",
         "codeandstuff.package-json-upgrade",
         "graphite.gti-vscode",
-        "oven.bun-vscode"
+        "oven.bun-vscode",
+        "stivo.tailwind-fold"
       ]
     }
   },

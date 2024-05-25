@@ -89,7 +89,7 @@
     "drizzle-up": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "drizzle-kit up:pg --config=drizzle.config.ts",
+        "command": "drizzle-kit up --config=drizzle.config.ts",
         "cwd": "packages/captainssounds.com"
       }
     },
