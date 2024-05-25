@@ -7,11 +7,6 @@
     "ghcr.io/devcontainers-contrib/features/nx-npm:1": {
       "version": "latest"
     },
-    "ghcr.io/devcontainers-contrib/features/zsh-plugins:0": {
-      "plugins": "ssh-agent npm",
-      "omzPlugins": "https://github.com/zsh-users/zsh-autosuggestions",
-      "username": "node"
-    },
     "ghcr.io/devcontainers/features/node:1": {
       "nodeGypDependencies": true,
       "version": "lts"
