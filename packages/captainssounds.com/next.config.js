@@ -32,6 +32,9 @@ const nextConfig = {
       }
     ]
   },
+  experimental: {
+    instrumentationHook: true
+  },
   async redirects() {
     return [
       {
