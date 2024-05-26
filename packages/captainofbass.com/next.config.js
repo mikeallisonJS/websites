@@ -28,6 +28,9 @@ const nextConfig = {
         destination: 'https://us.i.posthog.com/:path*'
       }
     ]
+  },
+  experimental: {
+    instrumentationHook: true
   }
 }
 
