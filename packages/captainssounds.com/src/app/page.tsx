@@ -2,7 +2,6 @@ import { Suspense } from 'react'
 
 import { Carousel } from '../components/carousel'
 import Collections from '../components/collections'
-import Footer from '../components/footer'
 import { ThreeItemGrid } from '../components/grid/threeItems'
 
 export const runtime = 'edge'
@@ -26,9 +25,6 @@ export default async function HomePage() {
       </div>
       <Suspense>
         <Carousel />
-        <Suspense>
-          <Footer />
-        </Suspense>
       </Suspense>
     </>
   )

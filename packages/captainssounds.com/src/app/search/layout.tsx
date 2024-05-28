@@ -2,7 +2,6 @@ import { ReactNode, Suspense } from 'react'
 
 import Collections from '../../components/collections'
 import FilterList from '../../components/filterList'
-import Footer from '../../components/footer'
 import { sorting } from '../../lib/constants'
 
 export default function SearchLayout({ children }: { children: ReactNode }) {
@@ -19,7 +18,6 @@ export default function SearchLayout({ children }: { children: ReactNode }) {
           <FilterList list={sorting} title="Sort by" />
         </div>
       </div>
-      <Footer />
     </Suspense>
   )
 }
