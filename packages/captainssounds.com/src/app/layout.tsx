@@ -27,9 +27,11 @@ export const metadata = {
 }
 
 export default async function RootLayout({
-  children
+  children,
+  footer
 }: {
   children: ReactNode
+  footer: ReactNode
 }) {
   return (
     <ClerkProvider>
@@ -40,6 +42,7 @@ export default async function RootLayout({
             <Suspense>
               <main>{children}</main>
             </Suspense>
+            {footer}
           </body>
         </html>
       </CSPostHogProvider>

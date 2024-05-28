@@ -1,7 +1,7 @@
-export default async function Footer() {
-  const currentYear = new Date().getFullYear()
-  const copyrightDate = 2020 + (currentYear > 2020 ? `-${currentYear}` : '')
+const currentYear = new Date().getFullYear()
+const copyrightDate = 2020 + (currentYear > 2020 ? `-${currentYear}` : '')
 
+export default async function Footer() {
   return (
     <footer className="text-sm text-neutral-500 dark:text-neutral-400">
       <div className="border-t border-neutral-200 py-6 text-sm dark:border-neutral-700">

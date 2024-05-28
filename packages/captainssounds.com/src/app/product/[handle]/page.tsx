@@ -3,7 +3,6 @@ import { notFound } from 'next/navigation'
 import { Suspense } from 'react'
 
 import Collections from '../../../components/collections'
-import Footer from '../../../components/footer'
 import { GridTileImage } from '../../../components/grid/tile'
 import { Gallery } from '../../../components/product/gallery'
 import { ProductDescription } from '../../../components/product/productDescription'
@@ -116,9 +115,6 @@ export default async function ProductPage({
       </div>
       <Suspense>
         <RelatedProducts id={product.id} />
-      </Suspense>
-      <Suspense>
-        <Footer />
       </Suspense>
     </>
   )
