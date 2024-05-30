@@ -1,0 +1,31 @@
+{
+  "extends": ["../../biome.json"],
+  "linter": {
+    "rules": {
+      "complexity": { "noUselessConstructor": "warn" },
+      "correctness": {
+        "noInvalidUseBeforeDeclaration": "warn",
+        "noUndeclaredVariables": "off",
+        "noUnusedVariables": "warn"
+      },
+      "style": { "noNamespace": "error" },
+      "suspicious": { "noDuplicateClassMembers": "off" }
+    },
+    "ignore": ["!**/*", ".next/**/*", "**/*"]
+  },
+  "overrides": [
+    {
+      "include": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "linter": { "rules": {} }
+    },
+    { "include": ["*.ts", "*.tsx"] },
+    { "include": ["*.js", "*.jsx"] },
+    { "include": ["*.spec.ts", "*.spec.tsx", "*.spec.js", "*.spec.jsx"] },
+    {
+      "include": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "linter": { "rules": {} }
+    },
+    { "include": ["*.js", "*.jsx"], "linter": { "rules": {} } },
+    { "include": ["*.spec.ts", "*.spec.tsx", "*.spec.js", "*.spec.jsx"] }
+  ]
+}

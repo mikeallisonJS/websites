@@ -25,7 +25,6 @@
         "github.copilot-nightly",
         "github.copilot-chat",
         "eamodio.gitlens",
-        "esbenp.prettier-vscode",
         "nrwl.angular-console",
         "csstools.postcss",
         "bradlc.vscode-tailwindcss",
@@ -33,7 +32,8 @@
         "codeandstuff.package-json-upgrade",
         "graphite.gti-vscode",
         "oven.bun-vscode",
-        "stivo.tailwind-fold"
+        "stivo.tailwind-fold",
+        "biomejs.biome"
       ]
     }
   },
