@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
   displayName: 'sltdnb.com',
   preset: '../../jest.preset.js',

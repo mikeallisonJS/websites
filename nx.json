@@ -23,14 +23,6 @@
         }
       }
     },
-    "@nx/eslint:lint": {
-      "inputs": [
-        "default",
-        "{workspaceRoot}/.eslintrc.json",
-        "{workspaceRoot}/.eslintignore"
-      ],
-      "cache": true
-    },
     "@nx/next:build": {
       "cache": true,
       "dependsOn": ["^build"],
@@ -56,21 +48,11 @@
   "generators": {
     "@nx/next": {
       "application": {
-        "style": "tailwind",
-        "linter": "eslint"
+        "style": "tailwind"
       }
     },
     "@nx/react": {
       "library": {}
     }
-  },
-  "plugins": [
-    {
-      "plugin": "@nx/eslint/plugin",
-      "options": {
-        "targetName": "lint",
-        "extensions": ["ts", "tsx", "js", "jsx", "html", "vue"]
-      }
-    }
-  ]
+  }
 }

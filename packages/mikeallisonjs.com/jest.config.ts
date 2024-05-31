@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
   displayName: 'mikeallisonjs.com',
   preset: '../../jest.preset.js',

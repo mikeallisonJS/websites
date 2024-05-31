@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
   displayName: 'captainofbass.com',
   preset: '../../jest.preset.js',
