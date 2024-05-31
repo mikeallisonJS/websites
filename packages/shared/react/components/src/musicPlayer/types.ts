@@ -1,5 +1,3 @@
-'use client'
-
 export interface Track {
   ID: string
   coverArt: string

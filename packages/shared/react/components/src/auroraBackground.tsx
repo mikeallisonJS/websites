@@ -1,5 +1,6 @@
 'use client'
-import React, { ReactNode } from 'react'
+import type React from 'react'
+import type { ReactNode } from 'react'
 
 import { cn } from '@websites/shared/react/lib'
 
@@ -44,9 +45,9 @@ export const AuroraBackground = ({
             after:[background-size:200%,_100%] dark:invert-0 dark:[background-image:var(--dark-gradient),var(--aurora)] after:dark:[background-image:var(--dark-gradient),var(--aurora)]`,
 
               showRadialGradient &&
-                `[mask-image:radial-gradient(ellipse_at_100%_0%,black_10%,var(--transparent)_70%)]`
+                '[mask-image:radial-gradient(ellipse_at_100%_0%,black_10%,var(--transparent)_70%)]'
             )}
-          ></div>
+          />
         </div>
         {children}
       </div>

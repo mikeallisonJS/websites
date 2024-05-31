@@ -1,4 +1,4 @@
-const { join } = require('path')
+const { join } = require('node:path')
 
 const {
   default: flattenColorPalette
@@ -50,8 +50,8 @@ module.exports = {
         }
       },
       borderRadius: {
-        lg: `var(--radius)`,
-        md: `calc(var(--radius) - 2px)`,
+        lg: 'var(--radius)',
+        md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)'
       },
       keyframes: {
@@ -90,8 +90,8 @@ module.exports = {
 }
 
 function addVariablesForColors({ addBase, theme }) {
-  let allColors = flattenColorPalette(theme('colors'))
-  let newVars = Object.fromEntries(
+  const allColors = flattenColorPalette(theme('colors'))
+  const newVars = Object.fromEntries(
     Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
   )
 

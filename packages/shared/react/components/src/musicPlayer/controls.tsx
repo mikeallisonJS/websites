@@ -1,4 +1,5 @@
 import { faPlay } from '@fortawesome/free-solid-svg-icons/faPlay'
+import { faPause } from '@fortawesome/free-solid-svg-icons/faPause'
 import { faStepBackward } from '@fortawesome/free-solid-svg-icons/faStepBackward'
 import { faStepForward } from '@fortawesome/free-solid-svg-icons/faStepForward'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -6,8 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { cn } from '@websites/shared/react/lib'
 
 import { Button } from '../button'
-import { Track } from './types'
-import { faPause } from '@fortawesome/free-solid-svg-icons/faPause'
+import type { Track } from './types'
 
 type ControlsProps = {
   currentTrackIndex: number

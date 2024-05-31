@@ -1,11 +1,11 @@
 'use client'
 
 import {
+  type MotionValue,
   motion,
   useScroll,
-  useTransform,
   useSpring,
-  MotionValue
+  useTransform
 } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -70,7 +70,9 @@ export const HeroParallax = ({
   return (
     <div
       ref={ref}
-      className={`h-[${(rowCount + 1) * 100}vh] relative flex  flex-col self-auto overflow-hidden pt-16 antialiased [perspective:1000px] [transform-style:preserve-3d]`}
+      className={`h-[${
+        (rowCount + 1) * 100
+      }vh] relative flex  flex-col self-auto overflow-hidden pt-16 antialiased [perspective:1000px] [transform-style:preserve-3d]`}
     >
       {children}
       <motion.div
@@ -85,7 +87,7 @@ export const HeroParallax = ({
         {productRows.map((row, i) =>
           i % 2 === 1 ? (
             <motion.div
-              className={`mb-20 flex flex-row-reverse space-x-20 space-x-reverse`}
+              className="mb-20 flex flex-row-reverse space-x-20 space-x-reverse"
               key={`hero-row-${i}`}
             >
               {row.map(
@@ -101,7 +103,7 @@ export const HeroParallax = ({
             </motion.div>
           ) : (
             <motion.div
-              className={`mb-20 flex  flex-row space-x-20`}
+              className="mb-20 flex  flex-row space-x-20"
               key={`hero-row-${i}`}
             >
               {row.map(
@@ -156,7 +158,7 @@ export const ProductCard = ({
           alt={product.title}
         />
       </Link>
-      <div className="pointer-events-none absolute inset-0 h-full w-full bg-black opacity-0 group-hover/product:opacity-80"></div>
+      <div className="pointer-events-none absolute inset-0 h-full w-full bg-black opacity-0 group-hover/product:opacity-80" />
       <h2 className="absolute bottom-4 left-4 text-white opacity-0 group-hover/product:opacity-100">
         {product.title}
       </h2>
