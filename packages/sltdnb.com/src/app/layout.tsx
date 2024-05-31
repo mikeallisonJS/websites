@@ -1,5 +1,5 @@
 import { GeistSans } from 'geist/font/sans'
-import { ReactNode } from 'react'
+import type { ReactNode } from 'react'
 
 import './global.css'
 import { CSPostHogProvider } from '@websites/shared/react/components'

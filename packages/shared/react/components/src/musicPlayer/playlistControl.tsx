@@ -3,7 +3,7 @@ import { faList } from '@fortawesome/free-solid-svg-icons/faList'
 import { faRepeat } from '@fortawesome/free-solid-svg-icons/faRepeat'
 import { faShuffle } from '@fortawesome/free-solid-svg-icons/faShuffle'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { ReactNode } from 'react'
+import type { ReactNode } from 'react'
 
 import { cn } from '@websites/shared/react/lib'
 

@@ -1,6 +1,6 @@
 'use client'
 
-import { ReactNode, useRef, useEffect } from 'react'
+import { useRef, useEffect } from 'react'
 
 import { cn } from '@websites/shared/react/lib'
 
@@ -67,6 +67,7 @@ export default function Player({
         className
       )}
     >
+      {/* biome-ignore lint/a11y/useMediaCaption: <explanation> */}
       <audio ref={audioRef} src={playlist?.[0].source} />
       {/* <div className="w-full h-1"></div> */}
       <div

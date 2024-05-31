@@ -1,6 +1,7 @@
 'use client'
 
 import { captureException } from '@sentry/nextjs'
+// biome-ignore lint/suspicious/noShadowRestrictedNames: <explanation>
 import Error from 'next/error'
 import { useEffect } from 'react'
 
@@ -10,7 +11,7 @@ export default function GlobalError(props: { error: unknown }) {
   }, [props.error])
 
   return (
-    <html>
+    <html lang="en">
       <body>
         <Error statusCode={500} title="Error" />
       </body>

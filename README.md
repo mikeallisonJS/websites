@@ -24,6 +24,7 @@ This is an NX monorepo for my personal websites. Everything is licensed under th
 - Analytics: [Posthog](https://posthog.com)
 - Logging: [Sentry](https://sentry.io)
 - Authentication: [Clerk](https://clerk.com)
+- Formatting/Linting: [Biome](https://biomejs.dev)
 
 ## Getting started
 

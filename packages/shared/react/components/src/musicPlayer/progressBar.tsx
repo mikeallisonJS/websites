@@ -5,10 +5,10 @@ import { cn } from '@websites/shared/react/lib'
 import { Slider } from '../slider'
 
 function secondsToString(seconds: number) {
-  let minutes = Math.floor(seconds / 60).toString()
-  let mseconds = Math.floor(seconds % 60).toString()
+  const minutes = Math.floor(seconds / 60).toString()
+  const mseconds = Math.floor(seconds % 60).toString()
 
-  return minutes + ':' + (mseconds.length < 2 ? '0' : '') + mseconds
+  return `${minutes}:${mseconds.length < 2 ? '0' : ''}${mseconds}`
 }
 
 type ProgressBarProps = {

@@ -2,7 +2,7 @@
 
 import { createStore } from 'zustand'
 
-import { RepeatMode, Track } from './types'
+import { RepeatMode, type Track } from './types'
 
 export interface MusicStoreProps {
   audioRef: HTMLAudioElement | null

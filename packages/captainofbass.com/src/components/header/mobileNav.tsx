@@ -1,15 +1,15 @@
 'use client'
 
 import Image from 'next/image'
-import Link, { LinkProps } from 'next/link'
+import Link, { type LinkProps } from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
 import {
+  Button,
   Sheet,
   SheetContent,
-  SheetTrigger,
-  Button
+  SheetTrigger
 } from '@websites/shared/react/components'
 import { cn } from '@websites/shared/react/lib'
 
@@ -46,21 +46,21 @@ export function MobileNav() {
               strokeWidth="1.5"
               strokeLinecap="round"
               strokeLinejoin="round"
-            ></path>
+            />
             <path
               d="M3 12H16"
               stroke="currentColor"
               strokeWidth="1.5"
               strokeLinecap="round"
               strokeLinejoin="round"
-            ></path>
+            />
             <path
               d="M3 19H21"
               stroke="currentColor"
               strokeWidth="1.5"
               strokeLinecap="round"
               strokeLinejoin="round"
-            ></path>
+            />
           </svg>
           <span className="sr-only">Toggle Menu</span>
         </Button>

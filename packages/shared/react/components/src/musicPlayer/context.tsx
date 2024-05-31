@@ -1,12 +1,12 @@
 'use client'
 
-import { createContext, useRef, useContext } from 'react'
+import { createContext, useContext, useRef } from 'react'
 import { useStore } from 'zustand'
 
 import {
-  MusicState,
-  MusicStore,
-  MusicStoreProps,
+  type MusicState,
+  type MusicStore,
+  type MusicStoreProps,
   createMusicStore
 } from './store'
 

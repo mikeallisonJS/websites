@@ -5,7 +5,7 @@ import { ScrollArea } from '../scrollArea'
 import { Table, TableBody, TableCell, TableRow } from '../table'
 
 import CoverArt from './coverArt'
-import { Track } from './types'
+import type { Track } from './types'
 
 type PlaylistProps = {
   playlist: Track[]
