@@ -45,6 +45,7 @@ Thumbs.db
 # NX
 /migrations.json
 .nx/cache
+.nx/workspace-data
 
 # Next.js
 .next
