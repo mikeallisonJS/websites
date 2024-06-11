@@ -29,7 +29,8 @@
         "graphite.gti-vscode",
         "oven.bun-vscode",
         "stivo.tailwind-fold",
-        "biomejs.biome"
+        "biomejs.biome",
+        "yoavbls.pretty-ts-errors"
       ]
     }
   },
