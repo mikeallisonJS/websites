@@ -106,6 +106,34 @@
         "command": "drizzle-kit studio --config=drizzle.config.ts --port 5555",
         "cwd": "packages/captainssounds.com"
       }
+    },
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "bunx @biomejs/biome lint .",
+        "cwd": "packages/captainssounds.com"
+      }
+    },
+    "check": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "bunx @biomejs/biome check .",
+        "cwd": "packages/captainssounds.com"
+      }
+    },
+    "format": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "bunx @biomejs/biome format .",
+        "cwd": "packages/captainssounds.com"
+      }
+    },
+    "email": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "bunx email dev",
+        "cwd": "packages/captainssounds.com/src"
+      }
     }
   }
 }
