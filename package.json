@@ -49,7 +49,7 @@
     "utils": "^0.3.1"
   },
   "dependencies": {
-    "@clerk/nextjs": "^5.1.4",
+    "@clerk/nextjs": "^5.1.6",
     "@fortawesome/fontawesome-svg-core": "^6.5.2",
     "@fortawesome/free-brands-svg-icons": "^6.5.2",
     "@fortawesome/free-regular-svg-icons": "^6.5.2",
