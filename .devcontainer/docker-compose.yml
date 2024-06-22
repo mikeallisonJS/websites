@@ -7,7 +7,9 @@ services:
     volumes:
       - ..:/workspaces:delegated
       - home-node-config:/home/node/.config
+      - home-node-bun:/home/node/.bun
     command: sleep infinity
     user: 1000:1000
 volumes:
   home-node-config:
+  home-node-bun:

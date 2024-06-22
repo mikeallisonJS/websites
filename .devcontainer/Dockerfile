@@ -6,5 +6,11 @@ ARG USER_UID=1000
 ARG USER_GID=$USER_UID
 RUN if [ "$USER_GID" != "1000" ] || [ "$USER_UID" != "1000" ]; then groupmod --gid $USER_GID node && usermod --uid $USER_UID --gid $USER_GID node; fi
 
+ENV BUN_INSTALL="/home/node/.bun"
+ENV PATH=$BUN_INSTALL/bin:$PATH
+
 RUN apt-get update
 RUN apt-get install -y apt-transport-https ca-certificates curl gnupg
+
+RUN chown -R node:node /home/node/.bun
+RUN chown -R node:node /home/node/.config

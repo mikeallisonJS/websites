@@ -15,14 +15,13 @@
     },
     "ghcr.io/devcontainers-contrib/features/vercel-cli:1": {
       "version": "latest"
-    },
-    "ghcr.io/lumenpink/devcontainer-features/bun:0": {}
+    }
   },
   "forwardPorts": [5555],
   "customizations": {
     "vscode": {
       "extensions": [
-        "github.copilot-nightly",
+        "github.copilot",
         "github.copilot-chat",
         "eamodio.gitlens",
         "nrwl.angular-console",
