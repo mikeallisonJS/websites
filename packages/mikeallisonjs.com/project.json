@@ -57,6 +57,13 @@
         "command": "VERCEL_ORG_ID=team_QQB0m2nnVhvxOyCiJtHju9zQ VERCEL_PROJECT_ID=prj_yrPbgelWZ5lC3gIn7qL7CmjoiTSC vercel env pull",
         "cwd": "packages/mikeallisonjs.com"
       }
+    },
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "bunx @biomejs/biome check .",
+        "cwd": "packages/mikeallisonjs.com"
+      }
     }
   }
 }

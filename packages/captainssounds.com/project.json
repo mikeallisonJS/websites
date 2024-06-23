@@ -106,6 +106,13 @@
         "command": "drizzle-kit studio --config=drizzle.config.ts --port 5555",
         "cwd": "packages/captainssounds.com"
       }
+    },
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "bunx @biomejs/biome check .",
+        "cwd": "packages/captainssounds.com"
+      }
     }
   }
 }

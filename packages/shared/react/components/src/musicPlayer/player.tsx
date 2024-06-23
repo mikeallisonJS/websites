@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 
 import { cn } from '@websites/shared/react/lib'
 
@@ -52,7 +52,7 @@ export default function Player({
 
   useEffect(() => {
     setAudioRef(audioRef.current)
-  }, [audioRef, setAudioRef])
+  }, [setAudioRef])
 
   const onPlaylistSelect = (index: number) => {
     setCurrentTrackIndex(index)

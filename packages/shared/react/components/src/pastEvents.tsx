@@ -29,6 +29,7 @@ export default function PastEvents({ images }: PastEventsProps) {
                     key={image}
                     className='text-center" flex justify-center'
                     onClick={() => setSelectedImage(image)}
+                    onKeyDown={() => setSelectedImage(image)}
                   >
                     <Image
                       width={300}
