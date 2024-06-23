@@ -1,5 +1,5 @@
-import { faPlay } from '@fortawesome/free-solid-svg-icons/faPlay'
 import { faPause } from '@fortawesome/free-solid-svg-icons/faPause'
+import { faPlay } from '@fortawesome/free-solid-svg-icons/faPlay'
 import { faStepBackward } from '@fortawesome/free-solid-svg-icons/faStepBackward'
 import { faStepForward } from '@fortawesome/free-solid-svg-icons/faStepForward'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'

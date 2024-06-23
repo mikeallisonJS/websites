@@ -88,7 +88,10 @@ export const HeroParallax = ({
           i % 2 === 1 ? (
             <motion.div
               className="mb-20 flex flex-row-reverse space-x-20 space-x-reverse"
-              key={`hero-row-${i}`}
+              key={`hero-row-${
+                // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+                i
+              }`}
             >
               {row.map(
                 (product) =>
@@ -104,7 +107,10 @@ export const HeroParallax = ({
           ) : (
             <motion.div
               className="mb-20 flex  flex-row space-x-20"
-              key={`hero-row-${i}`}
+              key={`hero-row-${
+                // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+                i
+              }`}
             >
               {row.map(
                 (product) =>

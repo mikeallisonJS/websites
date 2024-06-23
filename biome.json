@@ -1,12 +1,15 @@
 {
   "$schema": "https://biomejs.dev/schemas/1.7.3/schema.json",
+  "files": {
+    "ignore": ["dist", ".next", ".vercel"]
+  },
   "formatter": {
     "indentStyle": "space"
   },
   "linter": {
     "rules": {
       "a11y": {
-        "noSvgWithoutTitle": "warn",
+        "noSvgWithoutTitle": "off",
         "useButtonType": "warn",
         "useKeyWithClickEvents": "warn"
       },

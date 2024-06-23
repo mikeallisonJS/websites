@@ -6,9 +6,6 @@
   "service": "app",
   "workspaceFolder": "/workspaces",
   "features": {
-    "ghcr.io/devcontainers-contrib/features/nx-npm:1": {
-      "version": "latest"
-    },
     "ghcr.io/devcontainers/features/node:1": {
       "nodeGypDependencies": true,
       "version": "lts"

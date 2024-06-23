@@ -3,7 +3,7 @@ git config diff.lockb.textconv bun
 git config diff.lockb.binary true
 
 bun install
-bun install -g @withgraphite/graphite-cli@stable
+bun install -g @withgraphite/graphite-cli@stable nx@latest
 
 # Remove the nx-native-file-cache folder to avoid permission issues with the nx cli
 sudo rm -rf /tmp/nx-native-file-cache/
