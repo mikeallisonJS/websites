@@ -113,6 +113,13 @@
         "command": "bunx @biomejs/biome check .",
         "cwd": "packages/captainssounds.com"
       }
+    },
+    "email": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "bunx email dev",
+        "cwd": "packages/captainssounds.com/src"
+      }
     }
   }
 }

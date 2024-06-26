@@ -3,6 +3,8 @@ import { drizzle } from 'drizzle-orm/vercel-postgres'
 import { NextRequest } from 'next/server'
 
 import { order, orderToProduct } from '../../../../lib/drizzle/schema'
+import { getOrdersForEmailOrUser } from 'packages/captainssounds.com/src/getOrders'
+import { sendEmail } from 'packages/captainssounds.com/src/lib/mailgun/order'
 
 const db = drizzle(sql)
 
@@ -11,6 +13,7 @@ export async function POST(req: NextRequest) {
   const data = await req.formData()
   const validation = params.get('validation')
   const email = data.get('email')
+  const firstName = data.get('full_name')
   const permalink = data.get('permalink')
 
   if (
@@ -33,6 +36,17 @@ export async function POST(req: NextRequest) {
         .insert(orderToProduct)
         .values({ orderId: result[0].id, productId: permalink as string })
         .onConflictDoNothing()
+    })
+    const { products } = await getOrdersForEmailOrUser({
+      email: email as string
+    })
+    sendEmail({
+      firstName: firstName as string,
+      email: email as string,
+      productDownloads: products.map((product) => ({
+        name: product.name,
+        url: product.download?.url ?? ''
+      }))
     })
     // revalidateTag()
     return new Response(null, { status: 200 })

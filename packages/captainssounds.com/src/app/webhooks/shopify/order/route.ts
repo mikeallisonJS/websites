@@ -1,10 +1,12 @@
-import crypto from 'crypto'
+import crypto from 'node:crypto'
 
 import { sql } from '@vercel/postgres'
 import { drizzle } from 'drizzle-orm/vercel-postgres'
-import { NextRequest } from 'next/server'
+import type { NextRequest } from 'next/server'
 
 import { order, orderToProduct } from '../../../../lib/drizzle/schema'
+import { getOrdersForEmailOrUser } from 'packages/captainssounds.com/src/getOrders'
+import { sendEmail } from 'packages/captainssounds.com/src/lib/mailgun/order'
 
 const db = drizzle(sql)
 
@@ -34,6 +36,17 @@ export async function POST(req: NextRequest) {
           .insert(orderToProduct)
           .values({ orderId: result[0].id, productId: body.line_items[0].sku })
           .onConflictDoNothing()
+      })
+      const { products } = await getOrdersForEmailOrUser({
+        email: body.contact_email
+      })
+      sendEmail({
+        firstName: body.customer.first_name,
+        email: body.contact_email,
+        productDownloads: products.map((product) => ({
+          name: product.name,
+          url: product.download?.url ?? ''
+        }))
       })
     }
     // revalidateTag()
