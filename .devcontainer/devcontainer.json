@@ -18,8 +18,7 @@
   "customizations": {
     "vscode": {
       "extensions": [
-        "github.copilot",
-        "github.copilot-chat",
+        "supermaven.supermaven",
         "eamodio.gitlens",
         "nrwl.angular-console",
         "csstools.postcss",
