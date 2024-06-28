@@ -2,7 +2,7 @@ import { graphql } from 'gql.tada'
 
 import { TAGS } from '../../constants'
 import { shopifyFetch } from '../shopifyFetch'
-import { ShopifyProductOperation } from '../types'
+import type { ShopifyProductOperation } from '../types'
 
 import productFragment from './productFragment'
 import { reshapeProduct } from './reshapeProduct'

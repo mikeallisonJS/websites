@@ -29,7 +29,6 @@ const baseUrl = process.env.VERCEL_URL
   : 'https://captainssounds.com'
 
 export const OrderSuccess = ({
-  email,
   firstName,
   productDownloads
 }: OrderSuccessProps) => {

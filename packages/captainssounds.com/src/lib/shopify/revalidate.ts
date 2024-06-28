@@ -1,6 +1,6 @@
 import { revalidateTag } from 'next/cache'
 import { headers } from 'next/headers'
-import { NextRequest, NextResponse } from 'next/server'
+import { type NextRequest, NextResponse } from 'next/server'
 
 import { TAGS } from '../constants'
 

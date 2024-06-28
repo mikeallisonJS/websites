@@ -3,6 +3,7 @@
 import { captureException } from '@sentry/nextjs'
 import { useEffect } from 'react'
 
+// biome-ignore lint/suspicious/noShadowRestrictedNames: <explanation>
 export default function Error({
   reset,
   error
@@ -23,6 +24,7 @@ export default function Error({
         please try your action again.
       </p>
       <button
+        type="button"
         className="mx-auto mt-4 flex w-full items-center justify-center rounded-full bg-blue-600 p-4 tracking-wide text-white hover:opacity-90"
         onClick={() => reset()}
       >

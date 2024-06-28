@@ -1,7 +1,7 @@
 import { graphql } from 'gql.tada'
 
 import { shopifyFetch } from '../shopifyFetch'
-import { ShopifyAddToCartOperation } from '../types'
+import type { ShopifyAddToCartOperation } from '../types'
 
 import cartFragment from './cartFragment'
 import { reshapeCart } from './reshapeCart'

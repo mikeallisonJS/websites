@@ -1,9 +1,9 @@
 'use client'
 
-import clsx from 'clsx'
+import { cn } from '@websites/shared/react/lib'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 
-import { ProductOption, ProductVariant } from '../../lib/shopify/types'
+import type { ProductOption, ProductVariant } from '../../lib/shopify/types'
 import { createUrl } from '../../lib/utils'
 
 type Combination = {
@@ -32,12 +32,11 @@ export function VariantSelector({
   const combinations: Combination[] = variants.map((variant) => ({
     id: variant.id,
     availableForSale: variant.availableForSale,
-    // Adds key / value pairs for each variant (ie. "color": "Black" and "size": 'M").
     ...variant.selectedOptions.reduce(
-      (accumulator, option) => ({
-        ...accumulator,
-        [option.name.toLowerCase()]: option.value
-      }),
+      (accumulator: Record<string, string>, option) => {
+        accumulator[option.name.toLowerCase()] = option.value
+        return accumulator
+      },
       {}
     )
   }))
@@ -89,13 +88,14 @@ export function VariantSelector({
           return (
             <button
               key={value}
+              type="button"
               aria-disabled={!isAvailableForSale}
               disabled={!isAvailableForSale}
               onClick={() => {
                 router.replace(optionUrl, { scroll: false })
               }}
               title={`${option.name} ${value}${!isAvailableForSale ? ' (Out of Stock)' : ''}`}
-              className={clsx(
+              className={cn(
                 'flex min-w-[48px] items-center justify-center rounded-full border bg-neutral-100 px-2 py-1 text-sm dark:border-neutral-800 dark:bg-neutral-900',
                 {
                   'cursor-default ring-2 ring-blue-600': isActive,

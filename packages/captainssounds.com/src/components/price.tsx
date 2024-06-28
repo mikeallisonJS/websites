@@ -1,5 +1,6 @@
-import clsx from 'clsx'
-import { ComponentProps } from 'react'
+import type { ComponentProps } from 'react'
+
+import { cn } from '@websites/shared/react/lib'
 
 const Price = ({
   amount,
@@ -17,9 +18,9 @@ const Price = ({
       style: 'currency',
       currency: currencyCode,
       currencyDisplay: 'narrowSymbol'
-    }).format(parseFloat(amount))}`}
+    }).format(Number.parseFloat(amount))}`}
     <span
-      className={clsx('ml-1 inline', currencyCodeClassName)}
+      className={cn('ml-1 inline', currencyCodeClassName)}
     >{`${currencyCode}`}</span>
   </p>
 )

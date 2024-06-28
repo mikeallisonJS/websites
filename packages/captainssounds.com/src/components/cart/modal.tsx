@@ -37,11 +37,11 @@ export default function CartModal({ cart }: { cart: Cart | undefined }) {
       // Always update the quantity reference
       quantityRef.current = cart?.totalQuantity
     }
-  }, [isOpen, cart?.totalQuantity, quantityRef])
+  }, [isOpen, cart?.totalQuantity])
 
   return (
     <>
-      <button aria-label="Open cart" onClick={openCart}>
+      <button aria-label="Open cart" onClick={openCart} type="button">
         <OpenCart quantity={cart?.totalQuantity} />
       </button>
       <Transition show={isOpen}>
@@ -70,7 +70,11 @@ export default function CartModal({ cart }: { cart: Cart | undefined }) {
               <div className="flex items-center justify-between">
                 <p className="text-lg font-semibold">My Cart</p>
 
-                <button aria-label="Close cart" onClick={closeCart}>
+                <button
+                  type="button"
+                  aria-label="Close cart"
+                  onClick={closeCart}
+                >
                   <CloseCart />
                 </button>
               </div>
@@ -89,13 +93,12 @@ export default function CartModal({ cart }: { cart: Cart | undefined }) {
                       const merchandiseSearchParams =
                         {} as MerchandiseSearchParams
 
-                      item.merchandise.selectedOptions.forEach(
-                        ({ name, value }) => {
-                          if (value !== DEFAULT_OPTION) {
-                            merchandiseSearchParams[name.toLowerCase()] = value
-                          }
+                      for (const { name, value } of item.merchandise
+                        .selectedOptions) {
+                        if (value !== DEFAULT_OPTION) {
+                          merchandiseSearchParams[name.toLowerCase()] = value
                         }
-                      )
+                      }
 
                       const merchandiseUrl = createUrl(
                         `/product/${item.merchandise.product.handle}`,
@@ -104,6 +107,7 @@ export default function CartModal({ cart }: { cart: Cart | undefined }) {
 
                       return (
                         <li
+                          // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
                           key={i}
                           className="flex w-full flex-col border-b border-neutral-300 dark:border-neutral-700"
                         >

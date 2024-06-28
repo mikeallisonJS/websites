@@ -4,8 +4,6 @@ import { Carousel } from '../components/carousel'
 import Collections from '../components/collections'
 import { ThreeItemGrid } from '../components/grid/threeItems'
 
-export const runtime = 'edge'
-
 export const metadata = {
   openGraph: {
     type: 'website'
