@@ -1,8 +1,6 @@
 import OpengraphImage from '../../../components/opengraphImage'
 import { db } from '../../../lib/drizzle'
 
-export const runtime = 'edge'
-
 export default async function Image({
   params
 }: {
