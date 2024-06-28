@@ -1,4 +1,6 @@
-curl -fsSL https://bun.sh/install | bash -s "bun-v1.1.16"
+sudo chown -R node:node /home/node
+
+curl -fsSL https://bun.sh/install | bash -s "bun-v1.1.17"
 git config diff.lockb.textconv bun
 git config diff.lockb.binary true
 

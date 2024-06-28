@@ -1,5 +1,5 @@
 # Update the VARIANT arg in docker-compose.yml to pick a Node version
-FROM mcr.microsoft.com/vscode/devcontainers/typescript-node:0-20-bullseye
+FROM mcr.microsoft.com/vscode/devcontainers/typescript-node:20-bookworm
 
 # Update args in docker-compose.yaml to set the UID/GID of the "node" user.
 ARG USER_UID=1000
@@ -11,6 +11,3 @@ ENV PATH=$BUN_INSTALL/bin:$PATH
 
 RUN apt-get update
 RUN apt-get install -y apt-transport-https ca-certificates curl gnupg
-
-RUN chown -R node:node /home/node/.bun
-RUN chown -R node:node /home/node/.config
