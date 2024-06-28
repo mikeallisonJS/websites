@@ -61,28 +61,35 @@
     "drizzle-pull": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "drizzle-kit introspect:pg --config=drizzle.config.ts",
+        "command": "drizzle-kit introspect --config=drizzle.config.ts",
         "cwd": "packages/captainssounds.com"
       }
     },
     "drizzle-generate": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "drizzle-kit generate:pg --config=drizzle.config.ts",
+        "command": "drizzle-kit generate --config=drizzle.config.ts",
         "cwd": "packages/captainssounds.com"
       }
     },
     "drizzle-push": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "drizzle-kit push:pg --config=drizzle.config.ts",
+        "command": "drizzle-kit push --config=drizzle.config.ts",
+        "cwd": "packages/captainssounds.com"
+      }
+    },
+    "drizzle-migrate": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "drizzle-kit migrate --config=drizzle.config.ts",
         "cwd": "packages/captainssounds.com"
       }
     },
     "drizzle-drop": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "drizzle-kit drop:pg --config=drizzle.config.ts",
+        "command": "drizzle-kit drop --config=drizzle.config.ts",
         "cwd": "packages/captainssounds.com"
       }
     },
@@ -96,7 +103,7 @@
     "drizzle-check": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "drizzle-kit check:pg --config=drizzle.config.ts",
+        "command": "drizzle-kit check --config=drizzle.config.ts",
         "cwd": "packages/captainssounds.com"
       }
     },
@@ -119,6 +126,13 @@
       "options": {
         "command": "bunx email dev",
         "cwd": "packages/captainssounds.com/src"
+      },
+      "stripe-test-copy": {
+        "executor": "nx:run-commands",
+        "options": {
+          "command": "npx ts-node ./src/stripeProdToTest.ts",
+          "cwd": "packages/captainssounds.com"
+        }
       }
     }
   }

@@ -8,7 +8,7 @@ import { Gallery } from '../../../components/product/gallery'
 import { ProductDescription } from '../../../components/product/productDescription'
 import { HIDDEN_PRODUCT_TAG } from '../../../lib/constants'
 import { getProduct, getProductRecommendations } from '../../../lib/shopify'
-import { Image } from '../../../lib/shopify/types'
+import type { Image } from '../../../lib/shopify/types'
 
 export const runtime = 'edge'
 
@@ -80,6 +80,7 @@ export default async function ProductPage({
     <>
       <script
         type="application/ld+json"
+        // biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(productJsonLd)
         }}

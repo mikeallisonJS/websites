@@ -16,7 +16,7 @@ export function Gallery({
   const pathname = usePathname()
   const searchParams = useSearchParams()
   const imageSearchParam = searchParams.get('image')
-  const imageIndex = imageSearchParam ? parseInt(imageSearchParam) : 0
+  const imageIndex = imageSearchParam ? Number.parseInt(imageSearchParam) : 0
 
   const nextSearchParams = new URLSearchParams(searchParams.toString())
   const nextImageIndex = imageIndex + 1 < images.length ? imageIndex + 1 : 0
@@ -57,7 +57,7 @@ export function Gallery({
               >
                 <ArrowLeftIcon className="h-5" />
               </Link>
-              <div className="mx-1 h-6 w-px bg-neutral-500"></div>
+              <div className="mx-1 h-6 w-px bg-neutral-500" />
               <Link
                 aria-label="Next product image"
                 href={nextUrl}

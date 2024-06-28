@@ -1,10 +1,10 @@
 import { sql } from '@vercel/postgres'
 import { drizzle } from 'drizzle-orm/vercel-postgres'
-import { NextRequest } from 'next/server'
+import type { NextRequest } from 'next/server'
 
-import { order, orderToProduct } from '../../../../lib/drizzle/schema'
 import { getOrdersForEmailOrUser } from 'packages/captainssounds.com/src/getOrders'
 import { sendEmail } from 'packages/captainssounds.com/src/lib/mailgun/order'
+import { order, orderToProduct } from '../../../../lib/drizzle/schema'
 
 const db = drizzle(sql)
 
@@ -49,6 +49,7 @@ export async function POST(req: NextRequest) {
       }))
     })
     // revalidateTag()
+
     return new Response(null, { status: 200 })
   }
   return new Response('Unauthorized Request', {

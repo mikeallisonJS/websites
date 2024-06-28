@@ -27,20 +27,23 @@ export default function FilterItemDropdown({ list }: { list: ListItem[] }) {
   }, [])
 
   useEffect(() => {
-    list.forEach((listItem: ListItem) => {
+    for (const listItem of list) {
       if (
         ('path' in listItem && pathname === listItem.path) ||
         ('slug' in listItem && searchParams.get('sort') === listItem.slug)
       ) {
         setActive(listItem.title)
       }
-    })
+    }
   }, [pathname, list, searchParams])
 
   return (
     <div className="relative" ref={ref}>
       <div
         onClick={() => {
+          setOpenSelect(!openSelect)
+        }}
+        onKeyDown={() => {
           setOpenSelect(!openSelect)
         }}
         className="flex w-full items-center justify-between rounded border border-black/30 px-4 py-2 text-sm dark:border-white/30"
@@ -53,9 +56,13 @@ export default function FilterItemDropdown({ list }: { list: ListItem[] }) {
           onClick={() => {
             setOpenSelect(false)
           }}
+          onKeyDown={() => {
+            setOpenSelect(false)
+          }}
           className="absolute z-40 w-full rounded-b-md bg-white p-4 shadow-md dark:bg-black"
         >
           {list.map((item: ListItem, i) => (
+            // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
             <FilterItem key={i} item={item} />
           ))}
         </div>

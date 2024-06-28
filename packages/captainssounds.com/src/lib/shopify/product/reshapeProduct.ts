@@ -1,6 +1,6 @@
 import { HIDDEN_PRODUCT_TAG } from '../../constants'
 import { removeEdgesAndNodes } from '../removeEdgesAndNodes'
-import { ShopifyProduct } from '../types'
+import type { ShopifyProduct } from '../types'
 
 import { reshapeImages } from './reshapeImages'
 

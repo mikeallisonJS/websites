@@ -8,6 +8,7 @@ export default function Loading() {
         .map((_, index) => {
           return (
             <Grid.Item
+              // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
               key={index}
               className="animate-pulse bg-neutral-100 dark:bg-neutral-900"
             />

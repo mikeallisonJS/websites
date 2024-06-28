@@ -6,7 +6,7 @@ import Link from 'next/link'
 import { usePathname, useSearchParams } from 'next/navigation'
 import { Fragment, Suspense, useEffect, useState } from 'react'
 
-import { schema } from '../../lib/drizzle'
+import type { schema } from '../../lib/drizzle'
 
 import Search, { SearchSkeleton } from './search'
 
@@ -28,8 +28,9 @@ export default function MobileMenu({ categories }: MobileMenuProps) {
     }
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
-  }, [isOpen])
+  }, [])
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     setIsOpen(false)
   }, [pathname, searchParams])
@@ -37,6 +38,7 @@ export default function MobileMenu({ categories }: MobileMenuProps) {
   return (
     <>
       <button
+        type="button"
         onClick={openMobileMenu}
         aria-label="Open mobile menu"
         className="flex h-11 w-11 items-center justify-center rounded-md border border-neutral-200 text-black transition-colors md:hidden dark:border-neutral-700 dark:text-white"
@@ -68,6 +70,7 @@ export default function MobileMenu({ categories }: MobileMenuProps) {
             <Dialog.Panel className="fixed bottom-0 left-0 right-0 top-0 flex h-full w-full flex-col bg-white pb-6 dark:bg-black">
               <div className="p-4">
                 <button
+                  type="button"
                   className="mb-4 flex h-11 w-11 items-center justify-center rounded-md border border-neutral-200 text-black transition-colors dark:border-neutral-700 dark:text-white"
                   onClick={closeMobileMenu}
                   aria-label="Close mobile menu"

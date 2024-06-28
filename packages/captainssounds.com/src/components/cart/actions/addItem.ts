@@ -7,10 +7,11 @@ import { TAGS } from '../../../lib/constants'
 import { addToCart, createCart, getCart } from '../../../lib/shopify'
 
 export async function addItem(
-  prevState: any,
+  _prevState: unknown,
   selectedVariantId: string | undefined
 ) {
   let cartId = cookies().get('cartId')?.value
+  // biome-ignore lint/suspicious/noImplicitAnyLet: <explanation>
   let cart
 
   if (cartId) {
@@ -30,7 +31,7 @@ export async function addItem(
   try {
     await addToCart(cartId, [{ merchandiseId: selectedVariantId, quantity: 1 }])
     revalidateTag(TAGS.cart)
-  } catch (e) {
+  } catch (_e) {
     return 'Error adding item to cart'
   }
 }

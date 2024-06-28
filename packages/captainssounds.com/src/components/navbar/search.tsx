@@ -2,7 +2,7 @@
 
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { FormEvent } from 'react'
+import type { FormEvent } from 'react'
 
 import { createUrl } from '../../lib/utils'
 

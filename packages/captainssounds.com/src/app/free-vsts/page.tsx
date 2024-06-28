@@ -28,17 +28,23 @@ export default function Page() {
         <a
           href="https://www.kvraudio.com/plugins/windows/macosx/vst-plugins/vst3-plugins/audio-units/aax-plugins/rack-extensions/instruments/free/most-popular"
           target="_blank"
+          rel="noreferrer"
         >
           KVR list
         </a>
         <br />
-        <a href="https://blog.landr.com/best-free-vst-plugins/" target="_blank">
+        <a
+          href="https://blog.landr.com/best-free-vst-plugins/"
+          target="_blank"
+          rel="noreferrer"
+        >
           LANDR list
         </a>
         <br />
         <a
           href="https://theproaudiofiles.com/11-free-soft-synth-plugins-for-your-collection/"
           target="_blank"
+          rel="noreferrer"
         >
           theproaudiofiles.com list
         </a>
@@ -46,6 +52,7 @@ export default function Page() {
         <a
           href="https://thehomerecordings.com/free-synth-vst-plugins/"
           target="_blank"
+          rel="noreferrer"
         >
           thehomerecordings.com&nbsp;list
         </a>
@@ -61,14 +68,22 @@ export default function Page() {
           <strong>Packages or Companies with several products</strong>
         </span>
         <br />
-        <a href="https://www.gvst.co.uk/downloads.htm" target="_blank">
+        <a
+          href="https://www.gvst.co.uk/downloads.htm"
+          target="_blank"
+          rel="noreferrer"
+        >
           GVST
         </a>
         <br />
         Several great effect plugins &amp; Synths
         <br />
         <br />
-        <a href="https://www.meldaproduction.com/effects/free" target="_blank">
+        <a
+          href="https://www.meldaproduction.com/effects/free"
+          target="_blank"
+          rel="noreferrer"
+        >
           Melda
         </a>
         <br />
@@ -78,6 +93,7 @@ export default function Page() {
         <a
           href="https://www.native-instruments.com/en/products/komplete/bundles/komplete-start/get-komplete-start/"
           target="_blank"
+          rel="noreferrer"
         >
           Native Instruments - Komplete Start
         </a>
@@ -85,21 +101,33 @@ export default function Page() {
         Synths, Effects, Instruments
       </p>
       <p>
-        <a href="https://www.plugin-alliance.com/" target="_blank">
+        <a
+          href="https://www.plugin-alliance.com/"
+          target="_blank"
+          rel="noreferrer"
+        >
           Plugin Alliance
         </a>
         <br />
         Effects
         <br />
         <br />
-        <a href="https://www.reaper.fm/reaplugs/" target="_blank">
+        <a
+          href="https://www.reaper.fm/reaplugs/"
+          target="_blank"
+          rel="noreferrer"
+        >
           Reaper - ReaPlugs
         </a>
         <br />
         Plugins from Reaper DAW as VSTs
         <br />
         <br />
-        <a href="https://tal-software.com/products" target="_blank">
+        <a
+          href="https://tal-software.com/products"
+          target="_blank"
+          rel="noreferrer"
+        >
           TAL
         </a>
         <br />
@@ -110,6 +138,7 @@ export default function Page() {
         <a
           href="https://www.voxengo.com/group/free-vst-plugin-download/"
           target="_blank"
+          rel="noreferrer"
         >
           Voxengo
         </a>
@@ -122,13 +151,21 @@ export default function Page() {
           <strong>Analyzers</strong>
         </span>
         <br />
-        <a href="https://www.meldaproduction.com/MOscilloscope" target="_blank">
+        <a
+          href="https://www.meldaproduction.com/MOscilloscope"
+          target="_blank"
+          rel="noreferrer"
+        >
           Melda - MOscilliscope
           <br />
         </a>
         <a href="http://armandomontanez.com/smexoscope/">s(M)exoscope</a>
         <br />
-        <a href="https://www.voxengo.com/product/span/" target="_blank">
+        <a
+          href="https://www.voxengo.com/product/span/"
+          target="_blank"
+          rel="noreferrer"
+        >
           Voxengo - SPAN
         </a>
         <br />
@@ -137,11 +174,19 @@ export default function Page() {
           <strong>Auto-tuners</strong>
         </span>
         <br />
-        <a href="https://www.gvst.co.uk/gsnap.htm" target="_blank">
+        <a
+          href="https://www.gvst.co.uk/gsnap.htm"
+          target="_blank"
+          rel="noreferrer"
+        >
           GVST - GSnap
         </a>
         <br />
-        <a href="https://www.meldaproduction.com/MAutoPitch" target="_blank">
+        <a
+          href="https://www.meldaproduction.com/MAutoPitch"
+          target="_blank"
+          rel="noreferrer"
+        >
           Melda - MAutopitch
         </a>
         <br />
@@ -150,7 +195,11 @@ export default function Page() {
           <strong>Bit Crushers</strong>
         </span>
         <br />
-        <a href="https://www.meldaproduction.com/MBitFun" target="_blank">
+        <a
+          href="https://www.meldaproduction.com/MBitFun"
+          target="_blank"
+          rel="noreferrer"
+        >
           Melda - MBitFun
         </a>
         <br />
@@ -159,11 +208,19 @@ export default function Page() {
           <strong>Clippers</strong>
         </span>
         <br />
-        <a href="https://www.vennaudio.com/free-clip/" target="_blank">
+        <a
+          href="https://www.vennaudio.com/free-clip/"
+          target="_blank"
+          rel="noreferrer"
+        >
           Venn Audio - Free Clip
         </a>
         <br />
-        <a href="https://www.gvst.co.uk/gclip.htm" target="_blank">
+        <a
+          href="https://www.gvst.co.uk/gclip.htm"
+          target="_blank"
+          rel="noreferrer"
+        >
           GVST - GClip
         </a>
         (Windows Only)
@@ -176,6 +233,7 @@ export default function Page() {
         <a
           href="https://klanghelm.com/contents/products/DC1A/DC1A.php"
           target="_blank"
+          rel="noreferrer"
         >
           Klanghelm - DCA1
         </a>
@@ -183,17 +241,26 @@ export default function Page() {
         <a
           href="https://klanghelm.com/contents/products/MJUCjr/MJUCjr.php"
           target="_blank"
+          rel="noreferrer"
         >
           Klanghelm - MJuc Jr
         </a>
         (Mu Compressor)
         <br />
-        <a href="https://www.meldaproduction.com/MCompressor" target="_blank">
+        <a
+          href="https://www.meldaproduction.com/MCompressor"
+          target="_blank"
+          rel="noreferrer"
+        >
           Melda - MCompressor
         </a>
         (Adjustable Compressor)
         <br />
-        <a href="https://xferrecords.com/freeware/" target="_blank">
+        <a
+          href="https://xferrecords.com/freeware/"
+          target="_blank"
+          rel="noreferrer"
+        >
           Xfer - OTT
         </a>
         (modeled after Abletons OTT Multiband dynamics, but still useful)
@@ -203,13 +270,18 @@ export default function Page() {
           <strong>Filters</strong>
         </span>
         <br />
-        <a href="https://www.meldaproduction.com/MComb" target="_blank">
+        <a
+          href="https://www.meldaproduction.com/MComb"
+          target="_blank"
+          rel="noreferrer"
+        >
           Melda - MComb (Comb filter)
         </a>
         <br />
         <a
           href="https://www.plugin-alliance.com/en/products/bx_cleansweep_v2.html"
           target="_blank"
+          rel="noreferrer"
         >
           Plugin Alliance - bx_cleansweep
         </a>
@@ -220,18 +292,23 @@ export default function Page() {
           <strong>Glitch</strong>
         </span>
         <br />
-        <a href="http://illformed.org/" target="_blank">
+        <a href="http://illformed.org/" target="_blank" rel="noreferrer">
           Illformed - Glitch 1
         </a>
         (may require JBridge)
         <br />
-        <a href="https://glitchmachines.com/products/fracture/" target="_blank">
+        <a
+          href="https://glitchmachines.com/products/fracture/"
+          target="_blank"
+          rel="noreferrer"
+        >
           GlitchMachines - Fracture
         </a>
         <br />
         <a
           href="https://glitchmachines.com/products/hysteresis/"
           target="_blank"
+          rel="noreferrer"
         >
           GlitchMachines - Hysteresis
         </a>
@@ -242,33 +319,49 @@ export default function Page() {
           <strong>Instruments</strong>
         </span>
         <br />
-        <a href="https://asb2m10.github.io/dexed/" target="_blank">
+        <a
+          href="https://asb2m10.github.io/dexed/"
+          target="_blank"
+          rel="noreferrer"
+        >
           Dexed
         </a>
         - Yamaha DX7 clone
         <br />
-        <a href="http://bit.ly/Helm-Synth" target="_blank">
+        <a href="http://bit.ly/Helm-Synth" target="_blank" rel="noreferrer">
           Helm
         </a>
         - Free, but excellent synth
         <br />
-        <a href="https://www.spitfireaudio.com/labs/" target="_blank">
+        <a
+          href="https://www.spitfireaudio.com/labs/"
+          target="_blank"
+          rel="noreferrer"
+        >
           Spitfire Audio - Labs
         </a>
         (Excellent Sampled Instruments)
         <br />
-        <a href="https://vcvrack.com/" target="_blank">
+        <a href="https://vcvrack.com/" target="_blank" rel="noreferrer">
           VCV RACK
         </a>
         - The mother of Free modular synths
         <br />
         You will need to install 0.6.2c version before the latest to get the Vst
         bridge -
-        <a href="https://vcvrack.com/downloads/" target="_blank">
+        <a
+          href="https://vcvrack.com/downloads/"
+          target="_blank"
+          rel="noreferrer"
+        >
           available here
         </a>
         <br />
-        <a href="https://github.com/bsp2/VeeSeeVSTRack" target="_blank">
+        <a
+          href="https://github.com/bsp2/VeeSeeVSTRack"
+          target="_blank"
+          rel="noreferrer"
+        >
           VeeSeeVST Rack
         </a>
         - A pre-built vst of vcv rack with several free modules included
@@ -276,6 +369,7 @@ export default function Page() {
         <a
           href="https://blog.wavosaur.com/text-to-speech-vst-vst-speek/"
           target="_blank"
+          rel="noreferrer"
         >
           Wavosaur - VST Speek
         </a>
@@ -289,6 +383,7 @@ export default function Page() {
         <a
           href="https://www.plugin-alliance.com/en/products/bx_subfilter.html"
           target="_blank"
+          rel="noreferrer"
         >
           Plugin Alliance - bx_subfilter
         </a>
@@ -302,6 +397,7 @@ export default function Page() {
         <a
           href="https://www.meldaproduction.com/MConvolutionEZ"
           target="_blank"
+          rel="noreferrer"
         >
           Melda - MConvolutionEZ
         </a>
@@ -315,15 +411,24 @@ export default function Page() {
         <a
           href="https://klanghelm.com/contents/products/IVGI/IVGI.php"
           target="_blank"
+          rel="noreferrer"
         >
           Klanghelm - IVGI
         </a>
         <br />
-        <a href="https://www.softube.com/index.php?id=satknob" target="_blank">
+        <a
+          href="https://www.softube.com/index.php?id=satknob"
+          target="_blank"
+          rel="noreferrer"
+        >
           Softtube - Saturation Knob
         </a>
         <br />
-        <a href="https://www.voxengo.com/product/tubeamp/" target="_blank">
+        <a
+          href="https://www.voxengo.com/product/tubeamp/"
+          target="_blank"
+          rel="noreferrer"
+        >
           Voxengo - Tube Amp
         </a>
         <br />
@@ -335,22 +440,35 @@ export default function Page() {
         <a
           href="https://www.izotope.com/en/products/downloads/ozone_imager2.html"
           target="_blank"
+          rel="noreferrer"
         >
           Izotope - Ozone Imager
         </a>
         &nbsp;2
         <br />
-        <a href="https://polyversemusic.com/products/wider/" target="_blank">
+        <a
+          href="https://polyversemusic.com/products/wider/"
+          target="_blank"
+          rel="noreferrer"
+        >
           Polyverse - Wider
         </a>
         (My fav plugin for generating width)
         <br />
-        <a href="https://www.voxengo.com/product/msed/" target="_blank">
+        <a
+          href="https://www.voxengo.com/product/msed/"
+          target="_blank"
+          rel="noreferrer"
+        >
           Voxengo - MSED
         </a>
         Mid/Side Adjuster
         <br />
-        <a href="https://xferrecords.com/freeware/" target="_blank">
+        <a
+          href="https://xferrecords.com/freeware/"
+          target="_blank"
+          rel="noreferrer"
+        >
           Xfer - Dimension Expander
         </a>
         (chorus spatial expander to emulate NI Massive dimension expander)
@@ -363,6 +481,7 @@ export default function Page() {
         <a
           href="https://xenakios.wordpress.com/paulxstretch-plugin/"
           target="_blank"
+          rel="noreferrer"
         >
           Xenakios - PaulXStretch
         </a>
@@ -376,6 +495,7 @@ export default function Page() {
         <a
           href="https://www.izotope.com/en/products/vinyl.html"
           target="_blank"
+          rel="noreferrer"
         >
           Izotope - Vinyl
         </a>
@@ -388,6 +508,7 @@ export default function Page() {
         <a
           href="https://www.izotope.com/en/products/mix/vocal-doubler.html"
           target="_blank"
+          rel="noreferrer"
         >
           Izotope - Vocal Doubler
         </a>

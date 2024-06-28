@@ -1,8 +1,8 @@
 'use client'
 
 import { XMarkIcon } from '@heroicons/react/24/outline'
-import clsx from 'clsx'
-import { FormEvent } from 'react'
+import { cn } from '@websites/shared/react/lib'
+import type { FormEvent } from 'react'
 import { useFormState, useFormStatus } from 'react-dom'
 
 import type { CartItem } from '../../lib/shopify/types'
@@ -21,7 +21,7 @@ function SubmitButton() {
       }}
       aria-label="Remove cart item"
       aria-disabled={pending}
-      className={clsx(
+      className={cn(
         'ease flex h-[17px] w-[17px] items-center justify-center rounded-full bg-neutral-500 transition-all duration-200',
         {
           'cursor-not-allowed px-0': pending

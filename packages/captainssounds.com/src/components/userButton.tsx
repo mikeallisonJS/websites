@@ -1,11 +1,13 @@
 'use client'
 
-import { useUser, useClerk } from '@clerk/nextjs'
+import { useClerk, useUser } from '@clerk/nextjs'
 import {
   ArrowRightEndOnRectangleIcon,
   CurrencyDollarIcon,
   UserIcon
 } from '@heroicons/react/24/solid'
+import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 
 import {
   DropdownMenu,
@@ -17,9 +19,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger
 } from '@websites/shared/react/components'
-import Image from 'next/image'
-import Link from 'next/link'
-import { useRouter } from 'next/navigation'
 
 const UserButtonAndMenu = () => {
   const { user } = useUser()

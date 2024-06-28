@@ -1,5 +1,6 @@
-import clsx from 'clsx'
 import { Suspense } from 'react'
+
+import { cn } from '@websites/shared/react/lib'
 
 import { db } from '../lib/drizzle'
 
@@ -36,16 +37,16 @@ export default function Collections() {
     <Suspense
       fallback={
         <div className="col-span-2 hidden h-[400px] w-full flex-none py-4 lg:block">
-          <div className={clsx(skeleton, activeAndTitles)} />
-          <div className={clsx(skeleton, activeAndTitles)} />
-          <div className={clsx(skeleton, items)} />
-          <div className={clsx(skeleton, items)} />
-          <div className={clsx(skeleton, items)} />
-          <div className={clsx(skeleton, items)} />
-          <div className={clsx(skeleton, items)} />
-          <div className={clsx(skeleton, items)} />
-          <div className={clsx(skeleton, items)} />
-          <div className={clsx(skeleton, items)} />
+          <div className={cn(skeleton, activeAndTitles)} />
+          <div className={cn(skeleton, activeAndTitles)} />
+          <div className={cn(skeleton, items)} />
+          <div className={cn(skeleton, items)} />
+          <div className={cn(skeleton, items)} />
+          <div className={cn(skeleton, items)} />
+          <div className={cn(skeleton, items)} />
+          <div className={cn(skeleton, items)} />
+          <div className={cn(skeleton, items)} />
+          <div className={cn(skeleton, items)} />
         </div>
       }
     >

@@ -1,14 +1,14 @@
 import { relations, sql } from 'drizzle-orm'
 import {
-  pgTable,
-  uniqueIndex,
-  pgEnum,
-  text,
-  integer,
-  index,
   boolean,
+  index,
+  integer,
   numeric,
-  timestamp
+  pgEnum,
+  pgTable,
+  text,
+  timestamp,
+  uniqueIndex
 } from 'drizzle-orm/pg-core'
 
 export const blockType = pgEnum('BlockType', [
@@ -68,10 +68,7 @@ export const download = pgTable(
 export const order = pgTable(
   'Order',
   {
-    id: text('id')
-      .primaryKey()
-      .notNull()
-      .default(sql`gen_random_uuid()`),
+    id: text('id').primaryKey().notNull().default(sql`gen_random_uuid()`),
     email: text('email').notNull()
   },
   (table) => {

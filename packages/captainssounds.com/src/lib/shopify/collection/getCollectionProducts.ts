@@ -5,7 +5,7 @@ import productFragment from '../product/productFragment'
 import { reshapeProducts } from '../product/reshapeProducts'
 import { removeEdgesAndNodes } from '../removeEdgesAndNodes'
 import { shopifyFetch } from '../shopifyFetch'
-import { ShopifyCollectionProductsOperation } from '../types'
+import type { ShopifyCollectionProductsOperation } from '../types'
 
 const getCollectionProductsQuery = graphql(
   `

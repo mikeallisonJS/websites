@@ -6,8 +6,6 @@ import { defaultSort, sorting } from '../../../lib/constants'
 import { db } from '../../../lib/drizzle'
 import { getCollectionProducts } from '../../../lib/shopify'
 
-export const runtime = 'edge'
-
 export async function generateMetadata({
   params
 }: {
@@ -43,7 +41,7 @@ export default async function CategoryPage({
   return (
     <section>
       {products.length === 0 ? (
-        <p className="py-3 text-lg">{`No products found in this collection`}</p>
+        <p className="py-3 text-lg">No products found in this collection</p>
       ) : (
         <Grid className="grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
           <ProductGridItems products={products} />

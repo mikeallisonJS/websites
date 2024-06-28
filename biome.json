@@ -1,7 +1,14 @@
 {
   "$schema": "https://biomejs.dev/schemas/1.7.3/schema.json",
   "files": {
-    "ignore": ["dist", ".next", ".vercel"]
+    "ignore": [
+      "dist",
+      ".next",
+      ".vercel",
+      "graphql-env.d.ts",
+      "drizzle/meta",
+      "storefront.schema.json"
+    ]
   },
   "formatter": {
     "indentStyle": "space"

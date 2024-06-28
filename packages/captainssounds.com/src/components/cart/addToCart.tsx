@@ -1,12 +1,12 @@
 'use client'
 
 import { PlusIcon } from '@heroicons/react/24/outline'
-import clsx from 'clsx'
+import { cn } from '@websites/shared/react/lib'
 import { useSearchParams } from 'next/navigation'
-import { FormEvent } from 'react'
+import type { FormEvent } from 'react'
 import { useFormState, useFormStatus } from 'react-dom'
 
-import { ProductVariant } from '../../lib/shopify/types'
+import type { ProductVariant } from '../../lib/shopify/types'
 import LoadingDots from '../loadingDots'
 
 import { addItem } from './actions'
@@ -25,7 +25,11 @@ function SubmitButton({
 
   if (!availableForSale) {
     return (
-      <button aria-disabled className={clsx(buttonClasses, disabledClasses)}>
+      <button
+        aria-disabled
+        type="button"
+        className={cn(buttonClasses, disabledClasses)}
+      >
         Out Of Stock
       </button>
     )
@@ -34,9 +38,10 @@ function SubmitButton({
   if (!selectedVariantId) {
     return (
       <button
+        type="button"
         aria-label="Please select an option"
         aria-disabled
-        className={clsx(buttonClasses, disabledClasses)}
+        className={cn(buttonClasses, disabledClasses)}
       >
         <div className="absolute left-0 ml-4">
           <PlusIcon className="h-5" />
@@ -48,12 +53,13 @@ function SubmitButton({
 
   return (
     <button
+      type="button"
       onClick={(e: FormEvent<HTMLButtonElement>) => {
         if (pending) e.preventDefault()
       }}
       aria-label="Add to cart"
       aria-disabled={pending}
-      className={clsx(buttonClasses, {
+      className={cn(buttonClasses, {
         'hover:opacity-90': true,
         disabledClasses: pending
       })}
