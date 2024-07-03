@@ -1,5 +1,3 @@
-'use server'
-
 import { revalidateTag } from 'next/cache'
 import { cookies } from 'next/headers'
 
