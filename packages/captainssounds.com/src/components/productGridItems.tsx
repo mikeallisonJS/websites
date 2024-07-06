@@ -1,6 +1,7 @@
 import Link from 'next/link'
 
 import type { image, product } from '../lib/drizzle/schema'
+
 import Grid from './grid'
 import { GridTileImage } from './grid/tile'
 

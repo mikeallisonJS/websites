@@ -6,7 +6,7 @@ import { Suspense } from 'react'
 import { db } from '../../lib/drizzle'
 import Cart from '../cart'
 import OpenCart from '../cart/openCart'
-import { UserButton } from '../userButton/userButton'
+import { UserButton } from '../userButton'
 
 import MobileMenu from './mobileMenu'
 import Search, { SearchSkeleton } from './search'

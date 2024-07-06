@@ -12,6 +12,7 @@ function FilterItemList({ list }: { list: ListItem[] }) {
   return (
     <>
       {list.map((item: ListItem, i) => (
+        // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
         <FilterItem key={i} item={item} />
       ))}
     </>

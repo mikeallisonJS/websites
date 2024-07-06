@@ -28,8 +28,9 @@ export default function MobileMenu({ categories }: MobileMenuProps) {
     }
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
-  }, [isOpen])
+  }, [])
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     setIsOpen(false)
   }, [pathname, searchParams])

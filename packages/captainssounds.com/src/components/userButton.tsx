@@ -1,6 +1,6 @@
 'use client'
 
-import { useUser, useClerk } from '@clerk/nextjs'
+import { useClerk, useUser } from '@clerk/nextjs'
 import {
   ArrowRightEndOnRectangleIcon,
   CurrencyDollarIcon,

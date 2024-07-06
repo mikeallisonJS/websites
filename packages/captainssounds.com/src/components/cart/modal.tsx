@@ -114,7 +114,6 @@ export default function CartModal() {
                   <ul className="grow overflow-auto py-4">
                     {Object.values(cartDetails ?? {}).map((item, i) => {
                       const params: Record<string, string> = {}
-
                       const merchandiseUrl = createUrl(
                         `/product/${item.id}`,
                         new URLSearchParams(params)
@@ -122,6 +121,7 @@ export default function CartModal() {
 
                       return (
                         <li
+                          // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
                           key={i}
                           className="flex w-full flex-col border-b border-neutral-300 dark:border-neutral-700"
                         >
