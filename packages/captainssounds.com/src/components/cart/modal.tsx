@@ -37,7 +37,7 @@ export default function CartModal({ cart }: { cart: Cart | undefined }) {
       // Always update the quantity reference
       quantityRef.current = cart?.totalQuantity
     }
-  }, [isOpen, cart?.totalQuantity, quantityRef])
+  }, [isOpen, cart?.totalQuantity])
 
   return (
     <>
@@ -89,13 +89,12 @@ export default function CartModal({ cart }: { cart: Cart | undefined }) {
                       const merchandiseSearchParams =
                         {} as MerchandiseSearchParams
 
-                      item.merchandise.selectedOptions.forEach(
-                        ({ name, value }) => {
-                          if (value !== DEFAULT_OPTION) {
-                            merchandiseSearchParams[name.toLowerCase()] = value
-                          }
+                      for (const { name, value } of item.merchandise
+                        .selectedOptions) {
+                        if (value !== DEFAULT_OPTION) {
+                          merchandiseSearchParams[name.toLowerCase()] = value
                         }
-                      )
+                      }
 
                       const merchandiseUrl = createUrl(
                         `/product/${item.merchandise.product.handle}`,
@@ -104,6 +103,7 @@ export default function CartModal({ cart }: { cart: Cart | undefined }) {
 
                       return (
                         <li
+                          // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
                           key={i}
                           className="flex w-full flex-col border-b border-neutral-300 dark:border-neutral-700"
                         >

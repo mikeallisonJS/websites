@@ -7,7 +7,7 @@ import { TAGS } from '../../../lib/constants'
 import { removeFromCart, updateCart } from '../../../lib/shopify'
 
 export async function updateItemQuantity(
-  prevState: any,
+  _prevState: unknown,
   payload: {
     lineId: string
     variantId: string
@@ -37,7 +37,7 @@ export async function updateItemQuantity(
       }
     ])
     revalidateTag(TAGS.cart)
-  } catch (e) {
+  } catch (_e) {
     return 'Error updating item quantity'
   }
 }

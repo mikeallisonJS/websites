@@ -1,6 +1,6 @@
 import { Suspense } from 'react'
 
-import { SortFilterItem } from '../../lib/constants'
+import type { SortFilterItem } from '../../lib/constants'
 
 import FilterItemDropdown from './dropdown'
 import { FilterItem } from './item'
@@ -12,6 +12,7 @@ function FilterItemList({ list }: { list: ListItem[] }) {
   return (
     <>
       {list.map((item: ListItem, i) => (
+        // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
         <FilterItem key={i} item={item} />
       ))}
     </>

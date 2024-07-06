@@ -1,5 +1,5 @@
 import { removeEdgesAndNodes } from '../removeEdgesAndNodes'
-import { Connection, Image } from '../types'
+import type { Connection, Image } from '../types'
 
 export const reshapeImages = (
   images: Connection<Image>,

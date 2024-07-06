@@ -2,7 +2,7 @@
 
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import clsx from 'clsx'
-import { FormEvent } from 'react'
+import type { FormEvent } from 'react'
 import { useFormState, useFormStatus } from 'react-dom'
 
 import type { CartItem } from '../../lib/shopify/types'

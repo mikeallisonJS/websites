@@ -3,10 +3,10 @@
 import { PlusIcon } from '@heroicons/react/24/outline'
 import clsx from 'clsx'
 import { useSearchParams } from 'next/navigation'
-import { FormEvent } from 'react'
+import type { FormEvent } from 'react'
 import { useFormState, useFormStatus } from 'react-dom'
 
-import { ProductVariant } from '../../lib/shopify/types'
+import type { ProductVariant } from '../../lib/shopify/types'
 import LoadingDots from '../loadingDots'
 
 import { addItem } from './actions'

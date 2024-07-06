@@ -6,6 +6,7 @@ import CartModal from './modal'
 
 export default async function Cart() {
   const cartId = cookies().get('cartId')?.value
+  // biome-ignore lint/suspicious/noImplicitAnyLet: <explanation>
   let cart
 
   if (cartId) {

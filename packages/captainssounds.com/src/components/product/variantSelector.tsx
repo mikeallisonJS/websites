@@ -3,7 +3,7 @@
 import clsx from 'clsx'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 
-import { ProductOption, ProductVariant } from '../../lib/shopify/types'
+import type { ProductOption, ProductVariant } from '../../lib/shopify/types'
 import { createUrl } from '../../lib/utils'
 
 type Combination = {
@@ -32,12 +32,11 @@ export function VariantSelector({
   const combinations: Combination[] = variants.map((variant) => ({
     id: variant.id,
     availableForSale: variant.availableForSale,
-    // Adds key / value pairs for each variant (ie. "color": "Black" and "size": 'M").
     ...variant.selectedOptions.reduce(
-      (accumulator, option) => ({
-        ...accumulator,
-        [option.name.toLowerCase()]: option.value
-      }),
+      (accumulator: Record<string, string>, option) => {
+        accumulator[option.name.toLowerCase()] = option.value
+        return accumulator
+      },
       {}
     )
   }))

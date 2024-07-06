@@ -9,6 +9,7 @@ import { createUrl } from '../../lib/utils'
 
 import type { ListItem, PathFilterItem } from '.'
 
+// biome-ignore lint/suspicious/noRedeclare: <explanation>
 function PathFilterItem({ item }: { item: PathFilterItem }) {
   const pathname = usePathname()
   const searchParams = useSearchParams()
@@ -35,6 +36,7 @@ function PathFilterItem({ item }: { item: PathFilterItem }) {
   )
 }
 
+// biome-ignore lint/suspicious/noRedeclare: <explanation>
 function SortFilterItem({ item }: { item: SortFilterItem }) {
   const pathname = usePathname()
   const searchParams = useSearchParams()
@@ -44,7 +46,7 @@ function SortFilterItem({ item }: { item: SortFilterItem }) {
     pathname,
     new URLSearchParams({
       ...(q && { q }),
-      ...(item.slug && item.slug.length && { sort: item.slug })
+      ...(item.slug?.length && { sort: item.slug })
     })
   )
   const DynamicTag = active ? 'p' : Link

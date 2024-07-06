@@ -18,7 +18,7 @@ export async function Orders() {
     return null
   }
 
-  const { orders, products, links } = await getOrdersForEmailOrUser({ user })
+  const { orders, products } = await getOrdersForEmailOrUser({ user })
 
   return orders.length === 0 ? (
     <div>No orders found</div>

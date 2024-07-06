@@ -1,6 +1,6 @@
 import { ClerkProvider } from '@clerk/nextjs'
 import { GeistSans } from 'geist/font/sans'
-import { ReactNode, Suspense } from 'react'
+import { type ReactNode, Suspense } from 'react'
 
 import Navbar from '../components/navbar'
 import { CSPostHogProvider } from '../components/posthogProvider'

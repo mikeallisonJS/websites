@@ -1,4 +1,4 @@
-import { DocumentNode, print } from 'graphql'
+import { type DocumentNode, print } from 'graphql'
 
 import { SHOPIFY_GRAPHQL_API_ENDPOINT } from '../constants'
 import { isShopifyError } from '../typeGuards'
@@ -12,7 +12,7 @@ const domain = process.env.SHOPIFY_STORE_DOMAIN
   ? ensureStartsWith(process.env.SHOPIFY_STORE_DOMAIN, 'https://')
   : ''
 const endpoint = `${domain}${SHOPIFY_GRAPHQL_API_ENDPOINT}`
-const key = process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN!
+const key = process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN as string
 
 export async function shopifyFetch<T>({
   cache = 'force-cache',

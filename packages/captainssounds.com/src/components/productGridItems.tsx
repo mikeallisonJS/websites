@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-import { Product } from '../lib/shopify/types'
+import type { Product } from '../lib/shopify/types'
 
 import Grid from './grid'
 import { GridTileImage } from './grid/tile'

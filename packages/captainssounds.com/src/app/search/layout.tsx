@@ -1,4 +1,4 @@
-import { ReactNode, Suspense } from 'react'
+import { type ReactNode, Suspense } from 'react'
 
 import Collections from '../../components/collections'
 import FilterList from '../../components/filterList'

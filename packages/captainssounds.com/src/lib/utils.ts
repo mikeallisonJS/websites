@@ -1,4 +1,4 @@
-import { ReadonlyURLSearchParams } from 'next/navigation'
+import type { ReadonlyURLSearchParams } from 'next/navigation'
 
 export const createUrl = (
   pathname: string,
@@ -22,11 +22,11 @@ export const validateEnvironmentVariables = () => {
   ]
   const missingEnvironmentVariables = [] as string[]
 
-  requiredEnvironmentVariables.forEach((envVar) => {
+  for (const envVar of requiredEnvironmentVariables) {
     if (!process.env[envVar]) {
       missingEnvironmentVariables.push(envVar)
     }
-  })
+  }
 
   if (missingEnvironmentVariables.length) {
     throw new Error(

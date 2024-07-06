@@ -1,6 +1,6 @@
 import { Suspense } from 'react'
 
-import { Product } from '../../lib/shopify/types'
+import type { Product } from '../../lib/shopify/types'
 import { AddToCart } from '../cart/addToCart'
 import Price from '../price'
 import Prose from '../prose'
