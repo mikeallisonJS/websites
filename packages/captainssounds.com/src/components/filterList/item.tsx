@@ -1,9 +1,8 @@
 'use client'
 
+import clsx from 'clsx'
 import Link from 'next/link'
 import { usePathname, useSearchParams } from 'next/navigation'
-
-import { cn } from '@websites/shared/react/lib'
 
 import type { SortFilterItem } from '../../lib/constants'
 import { createUrl } from '../../lib/utils'
@@ -24,7 +23,7 @@ function PathFilterItem({ item }: { item: PathFilterItem }) {
     <li className="mt-2 flex text-black dark:text-white" key={item.title}>
       <DynamicTag
         href={createUrl(item.path, newParams)}
-        className={cn(
+        className={clsx(
           'w-full text-sm underline-offset-4 hover:underline dark:hover:text-neutral-100',
           {
             'underline underline-offset-4': active
@@ -37,7 +36,6 @@ function PathFilterItem({ item }: { item: PathFilterItem }) {
   )
 }
 
-// biome-ignore lint/suspicious/noRedeclare: <explanation>
 function SortFilterItem({ item }: { item: SortFilterItem }) {
   const pathname = usePathname()
   const searchParams = useSearchParams()
@@ -60,7 +58,7 @@ function SortFilterItem({ item }: { item: SortFilterItem }) {
       <DynamicTag
         prefetch={!active ? false : undefined}
         href={href}
-        className={cn('w-full hover:underline hover:underline-offset-4', {
+        className={clsx('w-full hover:underline hover:underline-offset-4', {
           'underline underline-offset-4': active
         })}
       >

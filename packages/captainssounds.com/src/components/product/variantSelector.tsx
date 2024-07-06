@@ -1,6 +1,6 @@
 'use client'
 
-import { cn } from '@websites/shared/react/lib'
+import clsx from 'clsx'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 
 import type { ProductOption, ProductVariant } from '../../lib/shopify/types'
@@ -88,14 +88,13 @@ export function VariantSelector({
           return (
             <button
               key={value}
-              type="button"
               aria-disabled={!isAvailableForSale}
               disabled={!isAvailableForSale}
               onClick={() => {
                 router.replace(optionUrl, { scroll: false })
               }}
               title={`${option.name} ${value}${!isAvailableForSale ? ' (Out of Stock)' : ''}`}
-              className={cn(
+              className={clsx(
                 'flex min-w-[48px] items-center justify-center rounded-full border bg-neutral-100 px-2 py-1 text-sm dark:border-neutral-800 dark:bg-neutral-900',
                 {
                   'cursor-default ring-2 ring-blue-600': isActive,

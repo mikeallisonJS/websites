@@ -1,7 +1,7 @@
 'use client'
 
 import { PlusIcon } from '@heroicons/react/24/outline'
-import { cn } from '@websites/shared/react/lib'
+import clsx from 'clsx'
 import { useSearchParams } from 'next/navigation'
 import type { FormEvent } from 'react'
 import { useFormState, useFormStatus } from 'react-dom'
@@ -25,11 +25,7 @@ function SubmitButton({
 
   if (!availableForSale) {
     return (
-      <button
-        aria-disabled
-        type="button"
-        className={cn(buttonClasses, disabledClasses)}
-      >
+      <button aria-disabled className={clsx(buttonClasses, disabledClasses)}>
         Out Of Stock
       </button>
     )
@@ -38,10 +34,9 @@ function SubmitButton({
   if (!selectedVariantId) {
     return (
       <button
-        type="button"
         aria-label="Please select an option"
         aria-disabled
-        className={cn(buttonClasses, disabledClasses)}
+        className={clsx(buttonClasses, disabledClasses)}
       >
         <div className="absolute left-0 ml-4">
           <PlusIcon className="h-5" />
@@ -53,13 +48,12 @@ function SubmitButton({
 
   return (
     <button
-      type="button"
       onClick={(e: FormEvent<HTMLButtonElement>) => {
         if (pending) e.preventDefault()
       }}
       aria-label="Add to cart"
       aria-disabled={pending}
-      className={cn(buttonClasses, {
+      className={clsx(buttonClasses, {
         'hover:opacity-90': true,
         disabledClasses: pending
       })}

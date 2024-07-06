@@ -1,7 +1,7 @@
 'use client'
 
 import { MinusIcon, PlusIcon } from '@heroicons/react/24/outline'
-import { cn } from '@websites/shared/react/lib'
+import clsx from 'clsx'
 import type { FormEvent } from 'react'
 import { useFormState, useFormStatus } from 'react-dom'
 
@@ -23,7 +23,7 @@ function SubmitButton({ type }: { type: 'plus' | 'minus' }) {
         type === 'plus' ? 'Increase item quantity' : 'Reduce item quantity'
       }
       aria-disabled={pending}
-      className={cn(
+      className={clsx(
         'ease flex h-full min-w-[36px] max-w-[36px] flex-none items-center justify-center rounded-full px-2 transition-all duration-200 hover:border-neutral-800 hover:opacity-80',
         {
           'cursor-not-allowed': pending,

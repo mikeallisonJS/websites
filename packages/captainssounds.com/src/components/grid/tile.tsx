@@ -1,7 +1,6 @@
+import clsx from 'clsx'
 import Image from 'next/image'
 import type { ComponentProps } from 'react'
-
-import { cn } from '@websites/shared/react/lib'
 
 import Label from '../label'
 
@@ -22,7 +21,7 @@ export function GridTileImage({
 } & ComponentProps<typeof Image>) {
   return (
     <div
-      className={cn(
+      className={clsx(
         'group flex h-full w-full items-center justify-center overflow-hidden rounded-lg border bg-white hover:border-blue-600 dark:bg-black',
         {
           relative: label,
@@ -33,7 +32,7 @@ export function GridTileImage({
     >
       {props.src ? (
         <Image
-          className={cn('relative h-full w-full object-contain', {
+          className={clsx('relative h-full w-full object-contain', {
             'transition duration-300 ease-in-out group-hover:scale-105':
               isInteractive
           })}
