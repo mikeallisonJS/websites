@@ -6,6 +6,8 @@ import { defaultSort, sorting } from '../../../lib/constants'
 import { db } from '../../../lib/drizzle'
 import { getCollectionProducts } from '../../../lib/shopify'
 
+export const runtime = 'edge'
+
 export async function generateMetadata({
   params
 }: {
