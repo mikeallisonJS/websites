@@ -36,6 +36,7 @@ function PathFilterItem({ item }: { item: PathFilterItem }) {
   )
 }
 
+// biome-ignore lint/suspicious/noRedeclare: <explanation>
 function SortFilterItem({ item }: { item: SortFilterItem }) {
   const pathname = usePathname()
   const searchParams = useSearchParams()
