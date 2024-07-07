@@ -1,20 +1,11 @@
-const { composePlugins, withNx } = require('@nx/next')
 const { withSentryConfig } = require('@sentry/nextjs')
 
-/**
- * @type {import('@nx/next/plugins/with-nx').WithNxOptions}
- **/
 const nextConfig = {
   typescript: {
     ignoreBuildErrors: true
   },
   eslint: {
     ignoreDuringBuilds: true
-  },
-  nx: {
-    // Set this to true if you would like to to use SVGR
-    // See: https://github.com/gregberge/svgr
-    svgr: false
   },
   async rewrites() {
     return [
@@ -33,7 +24,7 @@ const nextConfig = {
   }
 }
 
-const sentryConfig = withSentryConfig(
+const config = withSentryConfig(
   nextConfig,
   {
     // For all available options, see:
@@ -73,9 +64,4 @@ const sentryConfig = withSentryConfig(
   }
 )
 
-const plugins = [
-  // Add more Next.js plugins to this list if needed.
-  withNx
-]
-
-module.exports = composePlugins(...plugins)(sentryConfig)
+module.exports = config
