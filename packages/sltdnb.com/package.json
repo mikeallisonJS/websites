@@ -1,0 +1,13 @@
+{
+  "name": "sltdnb.com",
+  "version": "2.0.0",
+  "license": "MIT",
+  "scripts": {
+    "check": "bunx @biomejs/biome check .",
+    "format": "bunx @biomejs/biome format .",
+    "lint": "bunx @biomejs/biome lint .",
+    "build": "next build",
+    "serve": "next dev -p 4200",
+    "fetch-secrets": "VERCEL_ORG_ID=team_QQB0m2nnVhvxOyCiJtHju9zQ VERCEL_PROJECT_ID=prj_Pyy5aEbpZLRa3w4BDoI4iYFLfh1n vercel env pull"
+  }
+}

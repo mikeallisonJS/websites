@@ -1,6 +1,6 @@
 # Websites
 
-This is an NX monorepo for my personal websites. Everything is licensed under the MIT license, so feel free to use any of this for your own development as you see fit.
+This is a bun monorepo for my personal websites. Everything is licensed under the MIT license, so feel free to use any of this for your own development as you see fit.
 
 ## Included websites
 
@@ -11,7 +11,7 @@ This is an NX monorepo for my personal websites. Everything is licensed under th
 
 ## Tech stack
 
-- Monorepo: [Nx](https://nx.dev)
+- Monorepo: [bun](https://bun.sh)
 - Framework: [Next.js](https://nextjs.org)
 - Package Manager: [bun](https://bun.sh)
 - Deployment: [Vercel](https://vercel.com)
@@ -29,10 +29,10 @@ This is an NX monorepo for my personal websites. Everything is licensed under th
 ## Getting started
 
 Login to vercel (you will need your own account, don't worry it's free to get started)
-`vercel login`
+`bunx vercel login`
 
 Fetch secrets for all projects (you will need to change org_id and project_id in each package project.json)
 `sh scripts/fetch-secrets.sh`
 
 Run a project
-`nx serve packagename`
+`bun w packagename serve`

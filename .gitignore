@@ -41,12 +41,6 @@ Thumbs.db
 
 .angular
 
-
-# NX
-/migrations.json
-.nx/cache
-.nx/workspace-data
-
 # Next.js
 .next
 out
