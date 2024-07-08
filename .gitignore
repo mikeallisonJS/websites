@@ -39,9 +39,10 @@ testem.log
 .DS_Store
 Thumbs.db
 
-.angular
-
 # Next.js
 .next
 out
 .env*.local
+
+# Vercel
+.vercel

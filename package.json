@@ -97,6 +97,7 @@
     "@fortawesome/free-regular-svg-icons",
     "@fortawesome/free-solid-svg-icons",
     "@sentry/cli",
+    "@swc/core",
     "@vercel/git-hooks",
     "bufferutil",
     "es5-ext",
