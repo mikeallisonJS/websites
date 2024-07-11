@@ -11,7 +11,7 @@ import {
   SheetContent,
   SheetTrigger
 } from '@websites/shared/react/components'
-import { cn } from '@websites/shared/react/lib'
+import { cn } from 'packages/shared-react-lib/src'
 
 export function MobileNav() {
   const [open, setOpen] = useState(false)

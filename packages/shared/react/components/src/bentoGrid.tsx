@@ -1,4 +1,4 @@
-import { cn } from '@websites/shared/react/lib'
+import { cn } from 'packages/shared-react-lib/src'
 
 export const BentoGrid = ({
   className,
