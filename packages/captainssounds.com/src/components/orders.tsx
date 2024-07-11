@@ -9,7 +9,7 @@ import {
   TableHead,
   TableHeader,
   TableRow
-} from '@websites/shared/react/components'
+} from '@mikeallisonjs/shared-react-components'
 import { getOrdersForEmailOrUser } from '../getOrders'
 
 export async function Orders() {

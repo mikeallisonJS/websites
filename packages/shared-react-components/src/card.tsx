@@ -1,6 +1,6 @@
 import { forwardRef } from 'react'
 
-import { cn } from 'packages/shared-react-lib/src'
+import { cn } from '@mikeallisonjs/shared-react-lib'
 
 const Card = forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
   ({ className, ...props }, ref) => (

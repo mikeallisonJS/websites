@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 
-import { CSPostHogProvider } from '@websites/shared/react/components'
+import { CSPostHogProvider } from '@mikeallisonjs/shared-react-components'
 
 import Footer from '../components/footer/footer'
 import Header from '../components/header/header'

@@ -4,7 +4,7 @@ import { faStepBackward } from '@fortawesome/free-solid-svg-icons/faStepBackward
 import { faStepForward } from '@fortawesome/free-solid-svg-icons/faStepForward'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-import { cn } from 'packages/shared-react-lib/src'
+import { cn } from '@mikeallisonjs/shared-react-lib'
 
 import { Button } from '../button'
 import type { Track } from './types'

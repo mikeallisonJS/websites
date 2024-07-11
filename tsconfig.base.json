@@ -15,8 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@websites/shared/react/components": [
-        "packages/shared/react/components/src/index.tsx"
+      "@mikeallisonjs/shared-react-components": [
+        "packages/shared-react-components/src/index.tsx"
       ],
       "@mikeallisonjs/shared-react-lib": [
         "packages/shared-react-lib/src/index.ts"

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-import { cn } from 'packages/shared-react-lib/src'
+import { cn } from '@mikeallisonjs/shared-react-lib'
 
 import { Slider } from '../slider'
 

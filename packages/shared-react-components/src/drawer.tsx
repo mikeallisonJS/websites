@@ -3,7 +3,7 @@
 import React from 'react'
 import { Drawer as DrawerPrimitive } from 'vaul'
 
-import { cn } from 'packages/shared-react-lib/src'
+import { cn } from '@mikeallisonjs/shared-react-lib'
 
 const Drawer = ({
   shouldScaleBackground = true,
