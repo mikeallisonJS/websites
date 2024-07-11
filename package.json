@@ -105,5 +105,5 @@
     "sharp",
     "utf-8-validate"
   ],
-  "workspaces": ["packages/*"]
+  "workspaces": ["apps/*", "packages/*"]
 }
