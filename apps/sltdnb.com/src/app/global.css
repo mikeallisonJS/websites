@@ -1,4 +1,4 @@
-@import '../../../shared/react/lib/src/shadcnUtils/global.css';
+@import '../../../../packages/shared/react/lib/src/shadcnUtils/global.css';
 
 @media (prefers-color-scheme: dark) {
   html {
