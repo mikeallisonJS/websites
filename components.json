@@ -9,8 +9,8 @@
     "cssVariables": true
   },
   "aliases": {
-    "components": "packages/shared/react/components/src",
-    "ui": "packages/shared/react/components/src",
+    "components": "packages/shared-react-components/src",
+    "ui": "packages/shared-react-components/src",
     "utils": "packages/shared-react-lib/src/shadcnUtils"
   }
 }
