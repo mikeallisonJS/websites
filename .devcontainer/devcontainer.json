@@ -5,15 +5,7 @@
   "dockerComposeFile": "docker-compose.yml",
   "service": "app",
   "workspaceFolder": "/workspaces",
-  "features": {
-    "ghcr.io/devcontainers/features/node:1": {
-      "nodeGypDependencies": true,
-      "version": "lts"
-    },
-    "ghcr.io/devcontainers-contrib/features/vercel-cli:1": {
-      "version": "latest"
-    }
-  },
+  "features": {},
   "forwardPorts": [5555],
   "customizations": {
     "vscode": {

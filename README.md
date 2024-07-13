@@ -11,6 +11,7 @@ This is a bun monorepo for my personal websites. Everything is licensed under th
 
 ## Tech stack
 
+- Custom Debian slim bun devcontainer
 - Monorepo: [bun](https://bun.sh)
 - Framework: [Next.js](https://nextjs.org)
 - Package Manager: [bun](https://bun.sh)
