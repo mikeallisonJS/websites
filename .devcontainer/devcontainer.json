@@ -20,7 +20,6 @@
       "extensions": [
         "supermaven.supermaven",
         "eamodio.gitlens",
-        "nrwl.angular-console",
         "csstools.postcss",
         "bradlc.vscode-tailwindcss",
         "github.vscode-pull-request-github",
