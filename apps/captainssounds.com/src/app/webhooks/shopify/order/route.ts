@@ -4,8 +4,8 @@ import { sql } from '@vercel/postgres'
 import { drizzle } from 'drizzle-orm/vercel-postgres'
 import type { NextRequest } from 'next/server'
 
-import { getOrdersForEmailOrUser } from 'packages/captainssounds.com/src/getOrders'
-import { sendEmail } from 'packages/captainssounds.com/src/lib/mailgun/order'
+import { getOrdersForEmailOrUser } from 'apps/captainssounds.com/src/getOrders'
+import { sendEmail } from 'apps/captainssounds.com/src/lib/mailgun/order'
 import { order, orderToProduct } from '../../../../lib/drizzle/schema'
 
 const db = drizzle(sql)
