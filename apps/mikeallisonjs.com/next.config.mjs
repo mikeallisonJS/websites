@@ -12,10 +12,6 @@ const nextConfig = {
   experimental: {
     instrumentationHook: true
   },
-  transpilePackages: [
-    '@websites/shared-react-components',
-    '@websites/shared-react-lib'
-  ],
   async rewrites() {
     return [
       {

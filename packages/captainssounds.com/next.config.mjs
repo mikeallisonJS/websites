@@ -1,11 +1,39 @@
-const { withSentryConfig } = require('@sentry/nextjs')
+import { withSentryConfig } from '@sentry/nextjs'
 
+/** @type {import('next').NextConfig} */
 const nextConfig = {
   typescript: {
     ignoreBuildErrors: true
   },
   eslint: {
     ignoreDuringBuilds: true
+  },
+  images: {
+    formats: ['image/avif', 'image/webp'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'cdn.shopify.com',
+        pathname: '/s/files/**'
+      },
+      {
+        protocol: 'https',
+        hostname: 'img.clerk.com',
+        pathname: '/**'
+      }
+    ]
+  },
+  experimental: {
+    instrumentationHook: true
+  },
+  async redirects() {
+    return [
+      {
+        source: '/password',
+        destination: '/',
+        permanent: true
+      }
+    ]
   },
   async rewrites() {
     return [
@@ -18,13 +46,10 @@ const nextConfig = {
         destination: 'https://us.i.posthog.com/:path*'
       }
     ]
-  },
-  experimental: {
-    instrumentationHook: true
   }
 }
 
-const config = withSentryConfig(
+export default withSentryConfig(
   nextConfig,
   {
     // For all available options, see:
@@ -33,7 +58,7 @@ const config = withSentryConfig(
     // Suppresses source map uploading logs during build
     silent: true,
     org: 'captain-fs',
-    project: 'captainofbass'
+    project: 'captainssounds'
   },
   {
     // For all available options, see:
@@ -63,5 +88,3 @@ const config = withSentryConfig(
     automaticVercelMonitors: true
   }
 )
-
-module.exports = config

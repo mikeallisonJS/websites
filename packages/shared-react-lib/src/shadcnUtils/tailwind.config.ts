@@ -1,4 +1,3 @@
-import { join } from 'node:path'
 import TailwindAnimate from 'tailwindcss-animate'
 
 const {
@@ -10,7 +9,7 @@ export const tailwindConfig = {
     // relative path by consumer app
     './src/{app,pages,components}/**/*.{js,jsx,ts,tsx}',
     // path to ui-kit components (relative to current dir)
-    join(__dirname, '../../../components/src/**/*.{js,jsx,ts,tsx}')
+    '../../packages/shared-react-components/src/**/*.{js,jsx,ts,tsx}'
   ],
   theme: {
     extend: {
