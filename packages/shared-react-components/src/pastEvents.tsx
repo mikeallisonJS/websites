@@ -37,6 +37,7 @@ export default function PastEvents({ images }: PastEventsProps) {
                       className="h-auto max-w-full cursor-pointer rounded-lg"
                       src={`/images/flyers/${image}`}
                       alt={image}
+                      priority={innerIndex < 3}
                     />
                   </div>
                 )
