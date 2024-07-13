@@ -18,7 +18,7 @@ import {
   DropdownMenuPortal,
   DropdownMenuSeparator,
   DropdownMenuTrigger
-} from '@websites/shared/react/components'
+} from '@mikeallisonjs/shared-react-components'
 
 const UserButtonAndMenu = () => {
   const { user } = useUser()

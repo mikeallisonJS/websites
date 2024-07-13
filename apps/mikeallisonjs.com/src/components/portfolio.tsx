@@ -23,7 +23,7 @@ import {
   BentoGrid,
   BentoGridItem,
   Button
-} from '@websites/shared/react/components'
+} from '@mikeallisonjs/shared-react-components'
 
 const Overlay = ({
   children,

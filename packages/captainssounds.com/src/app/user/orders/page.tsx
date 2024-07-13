@@ -1,6 +1,6 @@
 import { Suspense } from 'react'
 
-import { PageContainer } from '@websites/shared/react/components'
+import { PageContainer } from '@mikeallisonjs/shared-react-components'
 
 import { Orders } from '../../../components/orders'
 

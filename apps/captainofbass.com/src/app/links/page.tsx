@@ -19,7 +19,7 @@ import {
   Table,
   TableCell,
   TableRow
-} from '@websites/shared/react/components'
+} from '@mikeallisonjs/shared-react-components'
 
 import { GlassContainer } from '../../components/glassContainer'
 

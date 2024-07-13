@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-import { PastEvents } from '@websites/shared/react/components'
+import { PastEvents } from '@mikeallisonjs/shared-react-components'
 
 import Bio from '../components/bio/bio'
 

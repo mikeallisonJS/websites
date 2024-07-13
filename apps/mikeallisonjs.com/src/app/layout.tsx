@@ -1,8 +1,8 @@
 import { Arimo } from 'next/font/google'
 
 import './global.css'
-import { CSPostHogProvider } from '@websites/shared/react/components'
-import { cn } from '@websites/shared/react/lib'
+import { CSPostHogProvider } from '@mikeallisonjs/shared-react-components'
+import { cn } from '@mikeallisonjs/shared-react-lib'
 
 import Header from '../components/header'
 

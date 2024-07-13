@@ -7,7 +7,7 @@ import {
   TableCell,
   TableRow,
   useMusicPlayerContext
-} from '@websites/shared/react/components'
+} from '@mikeallisonjs/shared-react-components'
 
 import { songs } from '../footer/footer'
 import { GlassContainer } from '../glassContainer'
