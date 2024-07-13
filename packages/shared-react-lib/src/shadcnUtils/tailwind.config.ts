@@ -1,11 +1,11 @@
-const { join } = require('node:path')
+import { join } from 'node:path'
+import TailwindAnimate from 'tailwindcss-animate'
 
 const {
   default: flattenColorPalette
 } = require('tailwindcss/lib/util/flattenColorPalette')
-const TailwindAnimate = require('tailwindcss-animate')
 
-module.exports = {
+export const tailwindConfig = {
   content: [
     // relative path by consumer app
     './src/{app,pages,components}/**/*.{js,jsx,ts,tsx}',
@@ -89,7 +89,10 @@ module.exports = {
   plugins: [TailwindAnimate, addVariablesForColors, require('flowbite/plugin')]
 }
 
-function addVariablesForColors({ addBase, theme }) {
+function addVariablesForColors({
+  addBase,
+  theme
+}: { addBase: any; theme: any }) {
   const allColors = flattenColorPalette(theme('colors'))
   const newVars = Object.fromEntries(
     Object.entries(allColors).map(([key, val]) => [`--${key}`, val])

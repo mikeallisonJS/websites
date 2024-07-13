@@ -27,7 +27,7 @@ export default function PastEvents({ images }: PastEventsProps) {
                 innerIndex % 3 === colIndex && (
                   <div
                     key={image}
-                    className='text-center" flex justify-center'
+                    className="text-center flex justify-center"
                     onClick={() => setSelectedImage(image)}
                     onKeyDown={() => setSelectedImage(image)}
                   >

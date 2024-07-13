@@ -1,5 +1,6 @@
-const { withSentryConfig } = require('@sentry/nextjs')
+import { withSentryConfig } from '@sentry/nextjs'
 
+/** @type {import('next').NextConfig} */
 const nextConfig = {
   typescript: {
     ignoreBuildErrors: true
@@ -11,6 +12,10 @@ const nextConfig = {
   experimental: {
     instrumentationHook: true
   },
+  transpilePackages: [
+    '@websites/shared-react-components',
+    '@websites/shared-react-lib'
+  ],
   async rewrites() {
     return [
       {
@@ -25,7 +30,7 @@ const nextConfig = {
   }
 }
 
-const config = withSentryConfig(
+export default withSentryConfig(
   nextConfig,
   {
     // For all available options, see:
@@ -64,5 +69,3 @@ const config = withSentryConfig(
     automaticVercelMonitors: true
   }
 )
-
-module.exports = config

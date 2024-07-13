@@ -10,12 +10,5 @@
     "src/**/*.spec.tsx",
     "src/**/*.spec.js",
     "src/**/*.spec.jsx"
-  ],
-  "include": [
-    "src/**/*.js",
-    "src/**/*.jsx",
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    "src/musicPlayer/types.tsx"
   ]
 }

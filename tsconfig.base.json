@@ -2,26 +2,14 @@
   "compileOnSave": false,
   "compilerOptions": {
     "rootDir": ".",
-    "sourceMap": true,
-    "declaration": false,
     "moduleResolution": "node",
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "lib": ["es2017", "dom"],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
-    "baseUrl": ".",
-    "paths": {
-      "@mikeallisonjs/shared-react-components": [
-        "packages/shared-react-components/src/index.tsx"
-      ],
-      "@mikeallisonjs/shared-react-lib": [
-        "packages/shared-react-lib/src/index.ts"
-      ]
-    }
+    "baseUrl": "."
   },
   "exclude": ["node_modules", "tmp"]
 }
