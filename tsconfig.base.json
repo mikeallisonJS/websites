@@ -9,15 +9,7 @@
     "lib": ["dom", "dom.iterable", "esnext"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
-    "baseUrl": ".",
-    "paths": {
-      "@mikeallisonjs/shared/react/components": [
-        "packages/shared/react/components/src/index.tsx"
-      ],
-      "@mikeallisonjs/shared/react/lib": [
-        "packages/shared/react/lib/src/index.ts"
-      ]
-    }
+    "baseUrl": "."
   },
   "exclude": ["node_modules", "tmp"]
 }
