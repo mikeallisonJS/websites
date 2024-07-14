@@ -18,7 +18,8 @@
     "drizzle-check": "dotenv -e .env.local -- drizzle-kit check --config=drizzle.config.ts",
     "drizzle-studio": "dotenv -e .env.local -- drizzle-kit studio --config=drizzle.config.ts --port 5555",
     "email": "bunx email dev --dir src/emails",
-    "stripe-test-copy": "dotenv -e .env.local -- npx ts-node ./src/stripeProdToTest.ts"
+    "stripe-test-copy": "dotenv -e .env.local -- npx ts-node ./src/stripeProdToTest.ts",
+    "import-ts": "dotenv -e .env.local -- bun --bun ./src/imports/importTSFromDb.ts"
   },
   "dependencies": {
     "@mikeallisonjs/shared-react-components": "workspace:*",

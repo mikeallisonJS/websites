@@ -1,6 +1,6 @@
 import type { FunctionComponent } from 'react'
 
-import { cn } from '@websites/shared/react/lib'
+import { cn } from '@mikeallisonjs/shared-react-lib'
 
 interface TextProps {
   html: string

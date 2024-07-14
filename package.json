@@ -6,6 +6,7 @@
     "check": "bunx @biomejs/biome check .",
     "format": "bunx @biomejs/biome format .",
     "lint": "bunx @biomejs/biome lint .",
+    "ts-node": "ts-node --compiler-options \"{\\\"module\\\":\\\"commonjs\\\"}\"",
     "w": "manypkg run"
   },
   "private": true,

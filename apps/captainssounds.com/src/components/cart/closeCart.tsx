@@ -1,6 +1,6 @@
 import { XMarkIcon } from '@heroicons/react/24/outline'
 
-import { cn } from '@websites/shared/react/lib'
+import { cn } from '@mikeallisonjs/shared-react-lib'
 
 export default function CloseCart({ className }: { className?: string }) {
   return (

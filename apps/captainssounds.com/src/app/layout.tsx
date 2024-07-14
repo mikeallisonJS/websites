@@ -2,7 +2,7 @@ import { ClerkProvider } from '@clerk/nextjs'
 import { GeistSans } from 'geist/font/sans'
 import { type ReactNode, Suspense } from 'react'
 
-import { Toaster } from '@websites/shared/react/components'
+import { Toaster } from '@mikeallisonjs/shared-react-components'
 
 import Navbar from '../components/navbar'
 import { CSPostHogProvider } from '../components/posthogProvider'

@@ -12,12 +12,7 @@ export async function generateMetadata({
 }: {
   params: { handle: string }
 }) {
-  const product = await db.query.product.findFirst({
-    where: (product, { eq }) => eq(product.id, params.handle),
-    with: {
-      images: true
-    }
-  })
+  const { product } = await import(`../../../lib/products/${params.handle}`)
 
   if (!product) return notFound()
 
@@ -51,13 +46,10 @@ export async function generateMetadata({
 }
 
 export const generateStaticParams = async () => {
-  const products = await db.query.product.findMany({
-    where: (product, { ne }) => ne(product.categoryId, 'bonus'),
-    with: { images: true, blocks: true }
-  })
+  const { productIds } = await import('../../../lib/productIds')
 
-  return products.map((product) => ({
-    handle: product.id
+  return productIds.map((product) => ({
+    handle: product
   }))
 }
 
@@ -66,15 +58,7 @@ export default async function ProductPage({
 }: {
   params: { handle: string }
 }) {
-  const product = await db.query.product.findFirst({
-    where: (product, { eq }) => eq(product.id, params.handle),
-    with: {
-      images: true,
-      blocks: {
-        orderBy: (block, { desc }) => [desc(block.order)]
-      }
-    }
-  })
+  const { product } = await import(`../../../lib/products/${params.handle}`)
 
   if (!product) return notFound()
 
