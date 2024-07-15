@@ -19,7 +19,8 @@
     "drizzle-studio": "dotenv -e .env.local -- drizzle-kit studio --config=drizzle.config.ts --port 5555",
     "email": "bunx email dev --dir src/emails",
     "stripe-test-copy": "dotenv -e .env.local -- npx ts-node ./src/stripeProdToTest.ts",
-    "import-ts": "dotenv -e .env.local -- bun --bun ./src/imports/importTSFromDb.ts"
+    "import-ts": "dotenv -e .env.local -- bun --bun ./src/imports/importTSFromDb.ts",
+    "import-shopify": "dotenv -e .env.local -- bun --bun ./src/imports/importFromShopify.ts"
   },
   "dependencies": {
     "@mikeallisonjs/shared-react-components": "workspace:*",
