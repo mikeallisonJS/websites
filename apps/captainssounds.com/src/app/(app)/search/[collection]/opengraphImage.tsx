@@ -1,5 +1,5 @@
-import OpengraphImage from '../../../components/opengraphImage'
-import { db } from '../../../lib/drizzle'
+import OpengraphImage from '../../../../components/opengraphImage'
+import { db } from '../../../../lib/drizzle'
 
 export default async function Image({
   params

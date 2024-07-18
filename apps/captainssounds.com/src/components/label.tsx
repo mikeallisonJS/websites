@@ -1,4 +1,4 @@
-import { cn } from '@websites/shared/react/lib'
+import { cn } from '@mikeallisonjs/shared-react-lib'
 
 import Price from './price'
 

@@ -1,6 +1,6 @@
-import Grid from '../../components/grid'
-import ProductGridItems from '../../components/productGridItems'
-import { db } from '../../lib/drizzle'
+import Grid from '../../../components/grid'
+import ProductGridItems from '../../../components/productGridItems'
+import { db } from '../../../lib/drizzle'
 
 export const metadata = {
   title: 'Search',

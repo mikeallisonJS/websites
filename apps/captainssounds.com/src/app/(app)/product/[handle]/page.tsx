@@ -1,11 +1,11 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
-import Collections from '../../../components/collections'
-import { GridTileImage } from '../../../components/grid/tile'
-import { Gallery } from '../../../components/product/gallery'
-import { ProductDescription } from '../../../components/product/productDescription'
-import { db, type schema } from '../../../lib/drizzle'
+import Collections from '../../../../components/collections'
+import { GridTileImage } from '../../../../components/grid/tile'
+import { Gallery } from '../../../../components/product/gallery'
+import { ProductDescription } from '../../../../components/product/productDescription'
+import { db, type schema } from '../../../../lib/drizzle'
 
 export async function generateMetadata({
   params

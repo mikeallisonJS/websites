@@ -2,13 +2,15 @@ import { ClerkProvider } from '@clerk/nextjs'
 import { GeistSans } from 'geist/font/sans'
 import { type ReactNode, Suspense } from 'react'
 
-import { Toaster } from '@websites/shared/react/components'
+import { Toaster } from '@mikeallisonjs/shared-react-components'
 
-import Navbar from '../components/navbar'
-import { CSPostHogProvider } from '../components/posthogProvider'
-import CartProvider from '../lib/cartProvider'
+import Navbar from '../../components/navbar'
+import { CSPostHogProvider } from '../../components/posthogProvider'
+import CartProvider from '../../lib/cartProvider'
 
-import './globals.css'
+import { Footer } from './footer'
+
+import '../globals.css'
 
 const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL
   ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
@@ -30,11 +32,9 @@ export const metadata = {
 }
 
 export default async function RootLayout({
-  children,
-  footer
+  children
 }: {
   children: ReactNode
-  footer: ReactNode
 }) {
   return (
     <ClerkProvider>
@@ -46,7 +46,7 @@ export default async function RootLayout({
               <Suspense>
                 <main>{children}</main>
               </Suspense>
-              {footer}
+              <Footer />
             </CartProvider>
             <Toaster />
           </body>

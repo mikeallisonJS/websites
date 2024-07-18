@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { usePathname, useSearchParams } from 'next/navigation'
 
-import { cn } from '@websites/shared/react/lib'
+import { cn } from '@mikeallisonjs/shared-react-lib'
 
 import type { SortFilterItem } from '../../lib/constants'
 import { createUrl } from '../../lib/utils'

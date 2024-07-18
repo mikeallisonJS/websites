@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import type { ComponentProps } from 'react'
 
-import { cn } from '@websites/shared/react/lib'
+import { cn } from '@mikeallisonjs/shared-react-lib'
 
 import Label from '../label'
 

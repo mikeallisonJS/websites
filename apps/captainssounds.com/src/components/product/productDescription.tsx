@@ -1,6 +1,6 @@
 import { Suspense } from 'react'
 
-import { cn } from '@websites/shared/react/lib'
+import { cn } from '@mikeallisonjs/shared-react-lib'
 
 import type { schema } from '../../lib/drizzle'
 import { AddToCart } from '../cart/addToCart'

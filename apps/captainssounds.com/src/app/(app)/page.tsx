@@ -1,8 +1,8 @@
 import { Suspense } from 'react'
 
-import { Carousel } from '../components/carousel'
-import Collections from '../components/collections'
-import { ThreeItemGrid } from '../components/grid/threeItems'
+import { Carousel } from '../../components/carousel'
+import Collections from '../../components/collections'
+import { ThreeItemGrid } from '../../components/grid/threeItems'
 
 export const metadata = {
   openGraph: {

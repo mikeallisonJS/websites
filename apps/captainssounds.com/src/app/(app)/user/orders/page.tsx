@@ -2,7 +2,7 @@ import { Suspense } from 'react'
 
 import { PageContainer } from '@mikeallisonjs/shared-react-components'
 
-import { Orders } from '../../../components/orders'
+import { Orders } from '../../../../components/orders'
 
 export default async function OrdersPage() {
   return (

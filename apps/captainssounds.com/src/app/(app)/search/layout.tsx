@@ -1,8 +1,8 @@
 import type { ReactNode } from 'react'
 
-import Collections from '../../components/collections'
-import FilterList from '../../components/filterList'
-import { sorting } from '../../lib/constants'
+import Collections from '../../../components/collections'
+import FilterList from '../../../components/filterList'
+import { sorting } from '../../../lib/constants'
 
 export default function SearchLayout({ children }: { children: ReactNode }) {
   return (

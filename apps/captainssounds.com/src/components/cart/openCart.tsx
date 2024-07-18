@@ -1,6 +1,6 @@
 import { ShoppingCartIcon } from '@heroicons/react/24/outline'
 
-import { cn } from '@websites/shared/react/lib'
+import { cn } from '@mikeallisonjs/shared-react-lib'
 
 export default function OpenCart({
   className,
