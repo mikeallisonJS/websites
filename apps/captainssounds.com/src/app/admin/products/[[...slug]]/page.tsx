@@ -35,7 +35,7 @@ export default async function Page({
       </div>
       <div className="order-last w-full md:order-none">
         <Suspense>
-          <Product productId={productId} />
+          <Product productId={productId} categories={categories} />
         </Suspense>
       </div>
     </div>

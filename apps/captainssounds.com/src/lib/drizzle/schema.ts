@@ -192,10 +192,7 @@ export const categoryRelation = relations(category, ({ many }) => ({
 }))
 
 export const block = pgTable('Block', {
-  id: text('id')
-    .primaryKey()
-    .notNull()
-    .default(sql`gen_random_uuid()`),
+  id: text('id').primaryKey().notNull().default(sql`gen_random_uuid()`),
   value: text('value').notNull(),
   type: blockType('type').notNull(),
   className: text('className').default('').notNull(),

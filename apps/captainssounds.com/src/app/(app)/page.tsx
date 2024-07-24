@@ -3,6 +3,7 @@ import { Suspense } from 'react'
 import { Carousel } from '../../components/carousel'
 import Collections from '../../components/collections'
 import { ThreeItemGrid } from '../../components/grid/threeItems'
+import { currentUser } from '@clerk/nextjs/server'
 
 export const metadata = {
   openGraph: {

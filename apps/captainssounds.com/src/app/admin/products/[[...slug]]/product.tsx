@@ -1,8 +1,13 @@
-import { Input, Label } from '@mikeallisonjs/shared-react-components'
+import { db, type schema } from '../../../../lib/drizzle'
+import { ProductForm } from './productForm'
 
-import { db } from '../../../../lib/drizzle'
-
-export async function Product({ productId }: { productId?: string }) {
+export async function Product({
+  productId,
+  categories
+}: {
+  productId?: string
+  categories: Pick<typeof schema.category.$inferSelect, 'id' | 'name'>[]
+}) {
   const product =
     productId === undefined
       ? undefined
@@ -12,16 +17,7 @@ export async function Product({ productId }: { productId?: string }) {
   return (
     <div>
       {product !== undefined ? (
-        <form>
-          <div>
-            <Label htmlFor="name">Name</Label>
-            <Input id="name" defaultValue={product.name} />
-          </div>
-          <div>
-            <Label htmlFor="description">Description</Label>
-            <Input id="description" defaultValue={product.description ?? ''} />
-          </div>
-        </form>
+        <ProductForm product={product} categories={categories} />
       ) : null}
     </div>
   )
