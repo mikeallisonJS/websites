@@ -136,6 +136,7 @@ export const product = pgTable('Product', {
   id: text('id').primaryKey().notNull(),
   name: text('name').notNull(),
   description: text('description'),
+  htmlDescription: text('htmlDescription'),
   free: boolean('free').default(false).notNull(),
   downloadId: text('downloadId'),
   donationware: boolean('donationware').default(false).notNull(),
@@ -161,8 +162,7 @@ export const productRelations = relations(product, ({ one, many }) => ({
     references: [category.id]
   }),
   images: many(image),
-  download: one(download),
-  blocks: many(block)
+  download: one(download)
 }))
 
 export const downloadRelation = relations(download, ({ one }) => ({
@@ -189,22 +189,4 @@ export const category = pgTable(
 
 export const categoryRelation = relations(category, ({ many }) => ({
   products: many(product)
-}))
-
-export const block = pgTable('Block', {
-  id: text('id').primaryKey().notNull().default(sql`gen_random_uuid()`),
-  value: text('value').notNull(),
-  type: blockType('type').notNull(),
-  className: text('className').default('').notNull(),
-  order: integer('order').notNull(),
-  productId: text('productId')
-    .notNull()
-    .references(() => product.id, { onDelete: 'restrict', onUpdate: 'cascade' })
-})
-
-export const blockRelations = relations(block, ({ one }) => ({
-  product: one(product, {
-    fields: [block.productId],
-    references: [product.id]
-  })
 }))

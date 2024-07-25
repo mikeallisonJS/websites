@@ -1,70 +1,9 @@
 {
+  "id": "a338b6a9-7eec-4222-b188-25717ca8c27f",
+  "prevId": "9169451f-c061-4530-8a4d-023cdb7ce851",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
-    "public.Block": {
-      "name": "Block",
-      "schema": "",
-      "columns": {
-        "id": {
-          "name": "id",
-          "type": "text",
-          "primaryKey": true,
-          "notNull": true,
-          "default": "gen_random_uuid()"
-        },
-        "value": {
-          "name": "value",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "type": {
-          "name": "type",
-          "type": "BlockType",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "className": {
-          "name": "className",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true,
-          "default": "''"
-        },
-        "order": {
-          "name": "order",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "productId": {
-          "name": "productId",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true
-        }
-      },
-      "indexes": {},
-      "foreignKeys": {
-        "Block_productId_Product_id_fk": {
-          "name": "Block_productId_Product_id_fk",
-          "tableFrom": "Block",
-          "columnsFrom": [
-            "productId"
-          ],
-          "tableTo": "Product",
-          "columnsTo": [
-            "id"
-          ],
-          "onUpdate": "cascade",
-          "onDelete": "restrict"
-        }
-      },
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
-    },
     "public.Category": {
       "name": "Category",
       "schema": "",
@@ -97,6 +36,7 @@
       },
       "indexes": {
         "Category_order_key": {
+          "name": "Category_order_key",
           "columns": [
             {
               "expression": "order",
@@ -105,11 +45,10 @@
               "nulls": "last"
             }
           ],
-          "with": {},
-          "name": "Category_order_key",
           "isUnique": true,
+          "concurrently": false,
           "method": "btree",
-          "concurrently": false
+          "with": {}
         }
       },
       "foreignKeys": {},
@@ -141,6 +80,7 @@
       },
       "indexes": {
         "Download_productId_key": {
+          "name": "Download_productId_key",
           "columns": [
             {
               "expression": "productId",
@@ -149,26 +89,25 @@
               "nulls": "last"
             }
           ],
-          "with": {},
-          "name": "Download_productId_key",
           "isUnique": true,
+          "concurrently": false,
           "method": "btree",
-          "concurrently": false
+          "with": {}
         }
       },
       "foreignKeys": {
         "Download_productId_Product_id_fk": {
           "name": "Download_productId_Product_id_fk",
           "tableFrom": "Download",
+          "tableTo": "Product",
           "columnsFrom": [
             "productId"
           ],
-          "tableTo": "Product",
           "columnsTo": [
             "id"
           ],
-          "onUpdate": "cascade",
-          "onDelete": "restrict"
+          "onDelete": "restrict",
+          "onUpdate": "cascade"
         }
       },
       "compositePrimaryKeys": {},
@@ -206,6 +145,7 @@
       },
       "indexes": {
         "Image_productId_order_key": {
+          "name": "Image_productId_order_key",
           "columns": [
             {
               "expression": "order",
@@ -220,26 +160,25 @@
               "nulls": "last"
             }
           ],
-          "with": {},
-          "name": "Image_productId_order_key",
           "isUnique": true,
+          "concurrently": false,
           "method": "btree",
-          "concurrently": false
+          "with": {}
         }
       },
       "foreignKeys": {
         "Image_productId_Product_id_fk": {
           "name": "Image_productId_Product_id_fk",
           "tableFrom": "Image",
+          "tableTo": "Product",
           "columnsFrom": [
             "productId"
           ],
-          "tableTo": "Product",
           "columnsTo": [
             "id"
           ],
-          "onUpdate": "cascade",
-          "onDelete": "set null"
+          "onDelete": "set null",
+          "onUpdate": "cascade"
         }
       },
       "compositePrimaryKeys": {},
@@ -292,15 +231,15 @@
         "Link_categoryId_Category_id_fk": {
           "name": "Link_categoryId_Category_id_fk",
           "tableFrom": "Link",
+          "tableTo": "Category",
           "columnsFrom": [
             "categoryId"
           ],
-          "tableTo": "Category",
           "columnsTo": [
             "id"
           ],
-          "onUpdate": "cascade",
-          "onDelete": "restrict"
+          "onDelete": "restrict",
+          "onUpdate": "cascade"
         }
       },
       "compositePrimaryKeys": {},
@@ -326,6 +265,7 @@
       },
       "indexes": {
         "Order_email_idx": {
+          "name": "Order_email_idx",
           "columns": [
             {
               "expression": "email",
@@ -334,11 +274,10 @@
               "nulls": "last"
             }
           ],
-          "with": {},
-          "name": "Order_email_idx",
           "isUnique": false,
+          "concurrently": false,
           "method": "btree",
-          "concurrently": false
+          "with": {}
         }
       },
       "foreignKeys": {},
@@ -364,6 +303,7 @@
       },
       "indexes": {
         "_OrderToProduct_AB_unique": {
+          "name": "_OrderToProduct_AB_unique",
           "columns": [
             {
               "expression": "A",
@@ -378,13 +318,13 @@
               "nulls": "last"
             }
           ],
-          "with": {},
-          "name": "_OrderToProduct_AB_unique",
           "isUnique": true,
+          "concurrently": false,
           "method": "btree",
-          "concurrently": false
+          "with": {}
         },
         "_OrderToProduct_B_index": {
+          "name": "_OrderToProduct_B_index",
           "columns": [
             {
               "expression": "B",
@@ -393,39 +333,38 @@
               "nulls": "last"
             }
           ],
-          "with": {},
-          "name": "_OrderToProduct_B_index",
           "isUnique": false,
+          "concurrently": false,
           "method": "btree",
-          "concurrently": false
+          "with": {}
         }
       },
       "foreignKeys": {
         "_OrderToProduct_A_Order_id_fk": {
           "name": "_OrderToProduct_A_Order_id_fk",
           "tableFrom": "_OrderToProduct",
+          "tableTo": "Order",
           "columnsFrom": [
             "A"
           ],
-          "tableTo": "Order",
           "columnsTo": [
             "id"
           ],
-          "onUpdate": "cascade",
-          "onDelete": "cascade"
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
         },
         "_OrderToProduct_B_Product_id_fk": {
           "name": "_OrderToProduct_B_Product_id_fk",
           "tableFrom": "_OrderToProduct",
+          "tableTo": "Product",
           "columnsFrom": [
             "B"
           ],
-          "tableTo": "Product",
           "columnsTo": [
             "id"
           ],
-          "onUpdate": "cascade",
-          "onDelete": "cascade"
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
         }
       },
       "compositePrimaryKeys": {},
@@ -449,6 +388,12 @@
         },
         "description": {
           "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "htmlDescription": {
+          "name": "htmlDescription",
           "type": "text",
           "primaryKey": false,
           "notNull": false
@@ -518,15 +463,15 @@
         "Product_categoryId_Category_id_fk": {
           "name": "Product_categoryId_Category_id_fk",
           "tableFrom": "Product",
+          "tableTo": "Category",
           "columnsFrom": [
             "categoryId"
           ],
-          "tableTo": "Category",
           "columnsTo": [
             "id"
           ],
-          "onUpdate": "cascade",
-          "onDelete": "restrict"
+          "onDelete": "restrict",
+          "onUpdate": "cascade"
         }
       },
       "compositePrimaryKeys": {},
@@ -547,11 +492,10 @@
     }
   },
   "schemas": {},
+  "sequences": {},
   "_meta": {
+    "columns": {},
     "schemas": {},
-    "tables": {},
-    "columns": {}
-  },
-  "id": "9169451f-c061-4530-8a4d-023cdb7ce851",
-  "prevId": "00000000-0000-0000-0000-000000000000"
+    "tables": {}
+  }
 }

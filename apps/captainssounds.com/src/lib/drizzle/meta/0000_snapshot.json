@@ -1,7 +1,5 @@
 {
-  "id": "00000000-0000-0000-0000-000000000000",
-  "prevId": "",
-  "version": "6",
+  "version": "7",
   "dialect": "postgresql",
   "tables": {
     "public.Image": {
@@ -36,28 +34,41 @@
       },
       "indexes": {
         "Image_productId_order_key": {
-          "name": "Image_productId_order_key",
           "columns": [
-            "order",
-            "productId"
+            {
+              "expression": "order",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            },
+            {
+              "expression": "productId",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
           ],
-          "isUnique": true
+          "with": {},
+          "name": "Image_productId_order_key",
+          "isUnique": true,
+          "method": "btree",
+          "concurrently": false
         }
       },
       "foreignKeys": {
         "Image_productId_fkey": {
           "name": "Image_productId_fkey",
           "tableFrom": "Image",
-          "tableTo": "Product",
-          "schemaTo": "public",
           "columnsFrom": [
             "productId"
           ],
+          "tableTo": "Product",
+          "schemaTo": "public",
           "columnsTo": [
             "id"
           ],
-          "onDelete": "set null",
-          "onUpdate": "cascade"
+          "onUpdate": "cascade",
+          "onDelete": "set null"
         }
       },
       "compositePrimaryKeys": {},
@@ -88,27 +99,35 @@
       },
       "indexes": {
         "Download_productId_key": {
-          "name": "Download_productId_key",
           "columns": [
-            "productId"
+            {
+              "expression": "productId",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
           ],
-          "isUnique": true
+          "with": {},
+          "name": "Download_productId_key",
+          "isUnique": true,
+          "method": "btree",
+          "concurrently": false
         }
       },
       "foreignKeys": {
         "Download_productId_fkey": {
           "name": "Download_productId_fkey",
           "tableFrom": "Download",
-          "tableTo": "Product",
-          "schemaTo": "public",
           "columnsFrom": [
             "productId"
           ],
+          "tableTo": "Product",
+          "schemaTo": "public",
           "columnsTo": [
             "id"
           ],
-          "onDelete": "restrict",
-          "onUpdate": "cascade"
+          "onUpdate": "cascade",
+          "onDelete": "restrict"
         }
       },
       "compositePrimaryKeys": {},
@@ -133,11 +152,19 @@
       },
       "indexes": {
         "Order_email_idx": {
-          "name": "Order_email_idx",
           "columns": [
-            "email"
+            {
+              "expression": "email",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
           ],
-          "isUnique": false
+          "with": {},
+          "name": "Order_email_idx",
+          "isUnique": false,
+          "method": "btree",
+          "concurrently": false
         }
       },
       "foreignKeys": {},
@@ -163,49 +190,70 @@
       },
       "indexes": {
         "_OrderToProduct_AB_unique": {
-          "name": "_OrderToProduct_AB_unique",
           "columns": [
-            "A",
-            "B"
+            {
+              "expression": "A",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            },
+            {
+              "expression": "B",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
           ],
-          "isUnique": true
+          "with": {},
+          "name": "_OrderToProduct_AB_unique",
+          "isUnique": true,
+          "method": "btree",
+          "concurrently": false
         },
         "_OrderToProduct_B_index": {
-          "name": "_OrderToProduct_B_index",
           "columns": [
-            "B"
+            {
+              "expression": "B",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
           ],
-          "isUnique": false
+          "with": {},
+          "name": "_OrderToProduct_B_index",
+          "isUnique": false,
+          "method": "btree",
+          "concurrently": false
         }
       },
       "foreignKeys": {
         "_OrderToProduct_A_fkey": {
           "name": "_OrderToProduct_A_fkey",
           "tableFrom": "_OrderToProduct",
-          "tableTo": "Order",
-          "schemaTo": "public",
           "columnsFrom": [
             "A"
           ],
+          "tableTo": "Order",
+          "schemaTo": "public",
           "columnsTo": [
             "id"
           ],
-          "onDelete": "cascade",
-          "onUpdate": "cascade"
+          "onUpdate": "cascade",
+          "onDelete": "cascade"
         },
         "_OrderToProduct_B_fkey": {
           "name": "_OrderToProduct_B_fkey",
           "tableFrom": "_OrderToProduct",
-          "tableTo": "Product",
-          "schemaTo": "public",
           "columnsFrom": [
             "B"
           ],
+          "tableTo": "Product",
+          "schemaTo": "public",
           "columnsTo": [
             "id"
           ],
-          "onDelete": "cascade",
-          "onUpdate": "cascade"
+          "onUpdate": "cascade",
+          "onDelete": "cascade"
         }
       },
       "compositePrimaryKeys": {},
@@ -258,16 +306,16 @@
         "Link_categoryId_fkey": {
           "name": "Link_categoryId_fkey",
           "tableFrom": "Link",
-          "tableTo": "Category",
-          "schemaTo": "public",
           "columnsFrom": [
             "categoryId"
           ],
+          "tableTo": "Category",
+          "schemaTo": "public",
           "columnsTo": [
             "id"
           ],
-          "onDelete": "restrict",
-          "onUpdate": "cascade"
+          "onUpdate": "cascade",
+          "onDelete": "restrict"
         }
       },
       "compositePrimaryKeys": {},
@@ -354,16 +402,16 @@
         "Product_categoryId_fkey": {
           "name": "Product_categoryId_fkey",
           "tableFrom": "Product",
-          "tableTo": "Category",
-          "schemaTo": "public",
           "columnsFrom": [
             "categoryId"
           ],
+          "tableTo": "Category",
+          "schemaTo": "public",
           "columnsTo": [
             "id"
           ],
-          "onDelete": "restrict",
-          "onUpdate": "cascade"
+          "onUpdate": "cascade",
+          "onDelete": "restrict"
         }
       },
       "compositePrimaryKeys": {},
@@ -461,11 +509,19 @@
       },
       "indexes": {
         "Category_order_key": {
-          "name": "Category_order_key",
           "columns": [
-            "order"
+            {
+              "expression": "order",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
           ],
-          "isUnique": true
+          "with": {},
+          "name": "Category_order_key",
+          "isUnique": true,
+          "method": "btree",
+          "concurrently": false
         }
       },
       "foreignKeys": {},
@@ -520,16 +576,16 @@
         "Block_productId_fkey": {
           "name": "Block_productId_fkey",
           "tableFrom": "Block",
-          "tableTo": "Product",
-          "schemaTo": "public",
           "columnsFrom": [
             "productId"
           ],
+          "tableTo": "Product",
+          "schemaTo": "public",
           "columnsTo": [
             "id"
           ],
-          "onDelete": "restrict",
-          "onUpdate": "cascade"
+          "onUpdate": "cascade",
+          "onDelete": "restrict"
         }
       },
       "compositePrimaryKeys": {},
@@ -539,13 +595,13 @@
   "enums": {
     "public.BlockType": {
       "name": "BlockType",
+      "schema": "public",
       "values": [
         "Text",
         "Image",
         "List",
         "Youtube"
-      ],
-      "schema": "public"
+      ]
     }
   },
   "schemas": {},
@@ -556,5 +612,7 @@
   },
   "internal": {
     "tables": {}
-  }
+  },
+  "id": "00000000-0000-0000-0000-000000000000",
+  "prevId": ""
 }

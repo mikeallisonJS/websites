@@ -2,6 +2,7 @@
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import {
+  Button,
   Form,
   FormControl,
   FormDescription,
@@ -26,6 +27,7 @@ const FormSchema = z.object({
   id: z.string(),
   name: z.string(),
   description: z.string(),
+  htmlDescription: z.string(),
   free: z.boolean(),
   downloadId: z.string(),
   donationware: z.boolean(),
@@ -45,10 +47,23 @@ export function ProductForm({
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      ...product
-    } as typeof FormSchema
+      // ...product
+      id: product?.id ?? '',
+      name: product?.name ?? '',
+      description: product?.description ?? '',
+      htmlDescription: product?.htmlDescription ?? '',
+      free: product?.free ?? false,
+      downloadId: product?.downloadId ?? '',
+      donationware: product?.donationware ?? false,
+      stripeId: product?.stripeId ?? '',
+      testStripeId: product?.testStripeId ?? '',
+      categoryId: product?.categoryId ?? '',
+      price: (product?.price ?? 0) as number
+    }
   })
-  function onSubmit(_data: z.infer<typeof FormSchema>) {}
+  function onSubmit(_data: z.infer<typeof FormSchema>) {
+    console.log(_data)
+  }
   return (
     <div>
       {product !== undefined ? (
@@ -107,6 +122,18 @@ export function ProductForm({
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Description</FormLabel>
+                  <FormControl>
+                    <Textarea value={field.value} onChange={field.onChange} />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="htmlDescription"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>HTML Description</FormLabel>
                   <FormControl>
                     <Textarea value={field.value} onChange={field.onChange} />
                   </FormControl>
@@ -191,6 +218,7 @@ export function ProductForm({
                 </FormItem>
               )}
             />
+            <Button type="submit">Save</Button>
           </form>
         </Form>
       ) : null}

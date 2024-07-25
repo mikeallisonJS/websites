@@ -15,6 +15,13 @@
       "when": 1716717111858,
       "tag": "0001_silly_wallop",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1721892448700,
+      "tag": "0002_magenta_nightshade",
+      "breakpoints": true
     }
   ]
 }
