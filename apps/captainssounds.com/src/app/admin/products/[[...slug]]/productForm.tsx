@@ -34,14 +34,27 @@ const FormSchema = z.object({
   stripeId: z.string(),
   testStripeId: z.string(),
   categoryId: z.string(),
-  price: z.number()
+  price: z.coerce.number(),
+  download: z
+    .object({
+      url: z.string()
+    })
+    .nullable(),
+  images: z.array(
+    z.object({
+      url: z.string()
+    })
+  )
 })
 
 export function ProductForm({
   product,
   categories
 }: {
-  product?: typeof schema.product.$inferSelect
+  product?: typeof schema.product.$inferSelect & {
+    download?: typeof schema.download.$inferSelect | null
+    images?: (typeof schema.image.$inferSelect)[]
+  }
   categories: Pick<typeof schema.category.$inferSelect, 'id' | 'name'>[]
 }) {
   const form = useForm<z.infer<typeof FormSchema>>({
@@ -58,7 +71,9 @@ export function ProductForm({
       stripeId: product?.stripeId ?? '',
       testStripeId: product?.testStripeId ?? '',
       categoryId: product?.categoryId ?? '',
-      price: (product?.price ?? 0) as number
+      price: (product?.price ?? 0) as number,
+      download: product?.download,
+      images: product?.images
     }
   })
   function onSubmit(_data: z.infer<typeof FormSchema>) {
@@ -76,7 +91,7 @@ export function ProductForm({
                 <FormItem>
                   <FormLabel>Id</FormLabel>
                   <FormControl>
-                    <Input value={field.value} onChange={field.onChange} />
+                    <Input {...field} />
                   </FormControl>
                 </FormItem>
               )}
@@ -111,7 +126,7 @@ export function ProductForm({
                 <FormItem>
                   <FormLabel>Name</FormLabel>
                   <FormControl>
-                    <Input value={field.value} onChange={field.onChange} />
+                    <Input {...field} />
                   </FormControl>
                 </FormItem>
               )}
@@ -123,7 +138,7 @@ export function ProductForm({
                 <FormItem>
                   <FormLabel>Description</FormLabel>
                   <FormControl>
-                    <Textarea value={field.value} onChange={field.onChange} />
+                    <Textarea {...field} />
                   </FormControl>
                 </FormItem>
               )}
@@ -135,7 +150,7 @@ export function ProductForm({
                 <FormItem>
                   <FormLabel>HTML Description</FormLabel>
                   <FormControl>
-                    <Textarea value={field.value} onChange={field.onChange} />
+                    <Textarea {...field} />
                   </FormControl>
                 </FormItem>
               )}
@@ -177,7 +192,7 @@ export function ProductForm({
                 <FormItem>
                   <FormLabel>Download ID</FormLabel>
                   <FormControl>
-                    <Input value={field.value} onChange={field.onChange} />
+                    <Input {...field} />
                   </FormControl>
                 </FormItem>
               )}
@@ -189,7 +204,7 @@ export function ProductForm({
                 <FormItem>
                   <FormLabel>Stripe ID</FormLabel>
                   <FormControl>
-                    <Input value={field.value} onChange={field.onChange} />
+                    <Input {...field} />
                   </FormControl>
                 </FormItem>
               )}
@@ -201,7 +216,7 @@ export function ProductForm({
                 <FormItem>
                   <FormLabel>Test Stripe ID</FormLabel>
                   <FormControl>
-                    <Input value={field.value} onChange={field.onChange} />
+                    <Input {...field} />
                   </FormControl>
                 </FormItem>
               )}
@@ -213,11 +228,55 @@ export function ProductForm({
                 <FormItem>
                   <FormLabel>Price</FormLabel>
                   <FormControl>
-                    <Input value={field.value} onChange={field.onChange} />
+                    <Input type="number" min={0} step={0.01} {...field} />
                   </FormControl>
                 </FormItem>
               )}
             />
+            <FormField
+              control={form.control}
+              name="download.url"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Download URL</FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+            {form.getValues('images')
+              ? form.getValues('images').map((_image, index) => (
+                  <FormField
+                    key={`image_${
+                      // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+                      index
+                    }`}
+                    control={form.control}
+                    name={`images.${index}.url`}
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Image {index + 1}</FormLabel>
+                        <FormControl>
+                          <Input {...field} />
+                        </FormControl>
+                      </FormItem>
+                    )}
+                  />
+                ))
+              : null}
+            <Button
+              onClick={() =>
+                form.setValue(`images.${form.getValues('images').length}`, {
+                  ...form.getValues('images'),
+                  [form.getValues('images').length]: {
+                    url: ''
+                  }
+                })
+              }
+            >
+              Add Image
+            </Button>
             <Button type="submit">Save</Button>
           </form>
         </Form>

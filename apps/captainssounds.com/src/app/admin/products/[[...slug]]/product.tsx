@@ -12,7 +12,11 @@ export async function Product({
     productId === undefined
       ? undefined
       : await db.query.product.findFirst({
-          where: (product, { eq }) => eq(product.id, productId)
+          where: (product, { eq }) => eq(product.id, productId),
+          with: {
+            images: true,
+            download: true
+          }
         })
   return (
     <div>

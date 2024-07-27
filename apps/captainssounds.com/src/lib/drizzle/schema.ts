@@ -149,7 +149,7 @@ export const product = pgTable('Product', {
       onUpdate: 'cascade'
     }),
   order: integer('order').default(0).notNull(),
-  price: numeric('price', { precision: 65, scale: 30 }).default('0').notNull(),
+  price: numeric('price', { precision: 8, scale: 2 }).default('0').notNull(),
   createdAt: timestamp('createdAt', { precision: 3, mode: 'string' })
     .defaultNow()
     .notNull()
