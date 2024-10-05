@@ -27,11 +27,7 @@ export default async function Navbar() {
               />
             </Link>
           </div>
-          <div className="hidden justify-center md:flex md:w-1/3">
-            <Suspense fallback={<SearchSkeleton />}>
-              <Search />
-            </Suspense>
-          </div>
+          <div className="hidden justify-center md:flex md:w-1/3" />
           <div className="flex justify-end md:w-1/3">
             <ul className=" gap-6 text-sm md:flex md:items-center">
               <li>

@@ -1,5 +1,5 @@
-import Link from 'next/link'
 import { PageContainer } from '@mikeallisonjs/shared-react-components'
+import Link from 'next/link'
 
 export const runtime = 'edge'
 

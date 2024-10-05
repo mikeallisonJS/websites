@@ -4,16 +4,9 @@ import { Dialog, Transition } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import Link from 'next/link'
 import { usePathname, useSearchParams } from 'next/navigation'
-import { Fragment, Suspense, useEffect, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 
-import type { schema } from '../../lib/drizzle'
-
-import Search, { SearchSkeleton } from './search'
-
-type MobileMenuProps = {
-  categories: (typeof schema.category.$inferSelect)[]
-}
-export default function MobileMenu({ categories }: MobileMenuProps) {
+export default function MobileMenu() {
   const pathname = usePathname()
   const searchParams = useSearchParams()
   const [isOpen, setIsOpen] = useState(false)
@@ -75,36 +68,10 @@ export default function MobileMenu({ categories }: MobileMenuProps) {
                 >
                   <XMarkIcon className="h-6" />
                 </button>
-
-                <div className="mb-4 w-full">
-                  <Suspense fallback={<SearchSkeleton />}>
-                    <Search />
-                  </Suspense>
-                </div>
                 <ul className="flex w-full flex-col">
                   <li className="py-2 text-xl text-black transition-colors hover:text-neutral-500 dark:text-white">
                     <Link href="/" onClick={closeMobileMenu}>
                       Home
-                    </Link>
-                  </li>
-                  {categories.map(
-                    (item: typeof schema.category.$inferSelect) => (
-                      <li
-                        className="py-2 text-xl text-black transition-colors hover:text-neutral-500 dark:text-white"
-                        key={item.name}
-                      >
-                        <Link
-                          href={`/search/${item.id}`}
-                          onClick={closeMobileMenu}
-                        >
-                          {item.name}
-                        </Link>
-                      </li>
-                    )
-                  )}
-                  <li className="py-2 text-xl text-black transition-colors hover:text-neutral-500 dark:text-white">
-                    <Link href="/search" onClick={closeMobileMenu}>
-                      All
                     </Link>
                   </li>
                 </ul>
