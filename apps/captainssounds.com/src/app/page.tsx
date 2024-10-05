@@ -1,8 +1,5 @@
-import { Suspense } from 'react'
-
-import { Carousel } from '../components/carousel'
-import Collections from '../components/collections'
-import { ThreeItemGrid } from '../components/grid/threeItems'
+import Link from 'next/link'
+import { PageContainer } from '@mikeallisonjs/shared-react-components'
 
 export const runtime = 'edge'
 
@@ -14,18 +11,21 @@ export const metadata = {
 
 export default async function HomePage() {
   return (
-    <>
-      <div className="mx-auto flex max-w-screen-2xl flex-col gap-8 px-4 pb-4 text-black md:flex-row dark:text-white">
-        <div className="order-first w-full flex-none md:max-w-[125px]">
-          <Collections />
-        </div>
-        <div className="order-last w-full md:order-none">
-          <ThreeItemGrid />
-        </div>
+    <PageContainer>
+      <div className="mx-auto flex max-w-screen-2xl flex-col  pb-4 text-black dark:text-white">
+        <h1>Shop offline for rebuild.</h1>
+        <h2>Some products are available on gumroad in the meantime.</h2>
+        <h1>
+          <Link href="captainofbass.gumroad.com">Gumroad Store</Link>
+        </h1>
       </div>
-      <Suspense>
-        <Carousel />
-      </Suspense>
-    </>
+      <div>
+        <h1>Existing user downloads available here:</h1>
+        <h2>(login in the top right first)</h2>
+        <h2>
+          <Link href="/user/orders">Downloads</Link>
+        </h2>
+      </div>
+    </PageContainer>
   )
 }
