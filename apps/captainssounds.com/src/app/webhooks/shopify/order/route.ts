@@ -40,7 +40,7 @@ export async function POST(req: NextRequest) {
       const { products } = await getOrdersForEmailOrUser({
         email: body.contact_email
       })
-      sendEmail({
+      await sendEmail({
         firstName: body.customer.first_name,
         email: body.contact_email,
         productDownloads: products.map((product) => ({
