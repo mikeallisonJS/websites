@@ -17,12 +17,12 @@ interface sendEmailProps {
   }>
 }
 
-export function sendEmail({
+export async function sendEmail({
   firstName,
   email,
   productDownloads
 }: sendEmailProps) {
-  const html = render(
+  const html = await render(
     OrderSuccess({
       firstName,
       email,
@@ -33,7 +33,7 @@ export function sendEmail({
     }
   )
 
-  const text = render(
+  const text = await render(
     OrderSuccess({
       firstName,
       email,
