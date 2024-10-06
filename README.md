@@ -6,7 +6,7 @@ This is a bun monorepo for my personal websites. Everything is licensed under th
 
 - [mikeallisonJS](https://mikeallisonjs.com)
 - [Captain](https://captainofbass.com)
-- [Captain's Sounds](https://captainssounds.com)
+- [Captain's Sounds](https://captainssounds.com) (currently rebuilding)
 - [SLTDNB](https://sltdnb.com)
 
 ## Tech stack
