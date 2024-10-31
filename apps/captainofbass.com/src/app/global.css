@@ -1,4 +1,4 @@
-@import '../../../../packages/shared-react-lib/src/shadcnUtils/global.css';
+@import "../../../../packages/shared-react-lib/src/shadcnUtils/global.css";
 
 @media (prefers-color-scheme: dark) {
   html {
@@ -7,7 +7,7 @@
 }
 
 @supports (font: -apple-system-body) and (-webkit-appearance: none) {
-  img[loading='lazy'] {
+  img[loading="lazy"] {
     clip-path: inset(0.6px);
   }
 }
@@ -43,8 +43,8 @@ body {
   font-family: inherit;
   line-height: inherit;
   margin: 0;
+  background: url("/images/captain-1024.webp");
   background-color: rgb(18, 18, 18);
-  background: url('/images/captain-1024.webp');
   background-position-x: 51%;
   background-position-y: 50%;
   background-size: cover;

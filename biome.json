@@ -18,7 +18,8 @@
       "a11y": {
         "noSvgWithoutTitle": "off",
         "useButtonType": "warn",
-        "useKeyWithClickEvents": "warn"
+        "useKeyWithClickEvents": "warn",
+        "useGenericFontNames": "warn"
       },
       "complexity": {
         "noForEach": "warn",
@@ -38,6 +39,7 @@
       },
       "suspicious": {
         "noArrayIndexKey": "warn",
+        "noDuplicateFontNames": "warn",
         "noExplicitAny": "warn",
         "noImplicitAnyLet": "warn",
         "noShadowRestrictedNames": "warn"
@@ -55,5 +57,13 @@
     "enabled": true,
     "clientKind": "git",
     "useIgnoreFile": true
+  },
+  "css": {
+    "formatter": {
+      "enabled": true
+    },
+    "linter": {
+      "enabled": true
+    }
   }
 }
