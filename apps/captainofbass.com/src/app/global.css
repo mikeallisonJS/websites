@@ -43,8 +43,8 @@ body {
   font-family: inherit;
   line-height: inherit;
   margin: 0;
-  background-color: rgb(18, 18, 18);
   background: url("/images/captain-1024.webp");
+  background-color: rgb(18, 18, 18);
   background-position-x: 51%;
   background-position-y: 50%;
   background-size: cover;

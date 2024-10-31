@@ -20,7 +20,7 @@
     "quickfix.biome": "explicit",
     "source.organizeImports.biome": "explicit"
   },
-  "[css]": {
+  "[postcss]": {
     "editor.defaultFormatter": "biomejs.biome"
   }
 }
