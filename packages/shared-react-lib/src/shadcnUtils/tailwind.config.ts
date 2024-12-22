@@ -85,7 +85,7 @@ export const tailwindConfig = {
       }
     }
   },
-  plugins: [TailwindAnimate, addVariablesForColors, require('flowbite/plugin')]
+  plugins: [TailwindAnimate, addVariablesForColors]
 }
 
 function addVariablesForColors({

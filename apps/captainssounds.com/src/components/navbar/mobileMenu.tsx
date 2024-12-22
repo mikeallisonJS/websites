@@ -63,6 +63,7 @@ export default function MobileMenu() {
               <div className="p-4">
                 <button
                   className="mb-4 flex h-11 w-11 items-center justify-center rounded-md border border-neutral-200 text-black transition-colors dark:border-neutral-700 dark:text-white"
+                  type="button"
                   onClick={closeMobileMenu}
                   aria-label="Close mobile menu"
                 >
