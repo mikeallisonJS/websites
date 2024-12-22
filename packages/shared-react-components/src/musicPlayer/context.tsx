@@ -18,7 +18,7 @@ export function MusicPlayerProvider({
   children,
   ...props
 }: Partial<MusicPlayerProviderProps>) {
-  const storeRef = useRef<MusicStore>()
+  const storeRef = useRef<MusicStore>(null)
   if (!storeRef.current) {
     storeRef.current = createMusicStore(props)
   }

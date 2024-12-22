@@ -2,11 +2,8 @@ import { SignInButton, SignedIn, SignedOut } from '@clerk/nextjs'
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { Suspense } from 'react'
 
 import { UserButton } from '../userButton'
-
-import Search, { SearchSkeleton } from './search'
 
 export default async function Navbar() {
   return (
