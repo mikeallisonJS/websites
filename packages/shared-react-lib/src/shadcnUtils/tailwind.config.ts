@@ -1,9 +1,5 @@
 import TailwindAnimate from 'tailwindcss-animate'
 
-const {
-  default: flattenColorPalette
-} = require('tailwindcss/lib/util/flattenColorPalette')
-
 export const tailwindConfig = {
   content: [
     // relative path by consumer app
@@ -85,19 +81,5 @@ export const tailwindConfig = {
       }
     }
   },
-  plugins: [TailwindAnimate, addVariablesForColors, require('flowbite/plugin')]
-}
-
-function addVariablesForColors({
-  addBase,
-  theme
-}: { addBase: any; theme: any }) {
-  const allColors = flattenColorPalette(theme('colors'))
-  const newVars = Object.fromEntries(
-    Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
-  )
-
-  addBase({
-    ':root': newVars
-  })
+  plugins: [TailwindAnimate]
 }
