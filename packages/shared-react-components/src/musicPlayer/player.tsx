@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react'
 
 import { cn } from '@mikeallisonjs/shared-react-lib'
 
-import { Drawer, DrawerContent } from '../drawer'
+import { Drawer, DrawerContent, DrawerTitle } from '../drawer'
 
 import { useMusicPlayerContext } from './context'
 import Controls from './controls'
@@ -123,6 +123,7 @@ export default function Player({
         modal={false}
       >
         <DrawerContent className={cn('z-20 md:z-0 md:pb-[62px]', className)}>
+          <DrawerTitle>Playlist</DrawerTitle>
           <div className="flex pt-2 md:hidden">
             <div
               className={cn(

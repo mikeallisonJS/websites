@@ -25,6 +25,7 @@ export default function Error({
       </p>
       <button
         className="mx-auto mt-4 flex w-full items-center justify-center rounded-full bg-blue-600 p-4 tracking-wide text-white hover:opacity-90"
+        type="button"
         onClick={() => reset()}
       >
         Try Again

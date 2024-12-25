@@ -1,12 +1,11 @@
-import dynamic from 'next/dynamic'
+import MusicClient from './pageClient'
 
 import { PageContainer } from '@mikeallisonjs/shared-react-components'
 
-const DynamicMusicClient = dynamic(() => import('./pageClient'), { ssr: false })
 export default function Music() {
   return (
     <PageContainer>
-      <DynamicMusicClient />
+      <MusicClient />
     </PageContainer>
   )
 }

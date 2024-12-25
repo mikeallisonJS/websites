@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import { useState } from 'react'
 
-import { Dialog, DialogContent } from './dialog'
+import { Dialog, DialogContent, DialogTitle } from './dialog'
 
 type PastEventsProps = {
   images: string[]
@@ -47,6 +47,7 @@ export default function PastEvents({ images }: PastEventsProps) {
       </div>
       <Dialog open={selectedImage != null} onOpenChange={handleOpenChanged}>
         <DialogContent className="z-50 min-h-[calc(100vh-140px)] min-w-[100vw]">
+          <DialogTitle>Image</DialogTitle>
           {selectedImage && (
             <Image
               src={`/images/flyers/${selectedImage}`}
