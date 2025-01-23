@@ -1,5 +1,5 @@
 {
-  "lockfileVersion": 0,
+  "lockfileVersion": 1,
   "workspaces": {
     "": {
       "name": "websites",
@@ -62,7 +62,7 @@
         "@tailwindcss/container-queries": "^0.1.1",
         "@tailwindcss/typography": "^0.5.15",
         "@types/node": "^22.10.2",
-        "@types/react": "19.0.5",
+        "@types/react": "19.0.8",
         "@types/react-dom": "19.0.3",
         "@vercel/git-hooks": "^1.0.0",
         "autoprefixer": "^10.4.20",
@@ -82,32 +82,32 @@
       "name": "captainofbass.com",
       "version": "2.0.0",
       "dependencies": {
-        "@mikeallisonjs/shared-react-components": "packages/shared-react-components",
-        "@mikeallisonjs/shared-react-lib": "packages/shared-react-lib",
+        "@mikeallisonjs/shared-react-components": "workspace:*",
+        "@mikeallisonjs/shared-react-lib": "workspace:*",
       },
     },
     "apps/captainssounds.com": {
       "name": "captainssounds.com",
       "version": "2.0.0",
       "dependencies": {
-        "@mikeallisonjs/shared-react-components": "packages/shared-react-components",
-        "@mikeallisonjs/shared-react-lib": "packages/shared-react-lib",
+        "@mikeallisonjs/shared-react-components": "workspace:*",
+        "@mikeallisonjs/shared-react-lib": "workspace:*",
       },
     },
     "apps/mikeallisonjs.com": {
       "name": "mikeallisonjs.com",
       "version": "2.0.0",
       "dependencies": {
-        "@mikeallisonjs/shared-react-components": "packages/shared-react-components",
-        "@mikeallisonjs/shared-react-lib": "packages/shared-react-lib",
+        "@mikeallisonjs/shared-react-components": "workspace:*",
+        "@mikeallisonjs/shared-react-lib": "workspace:*",
       },
     },
     "apps/sltdnb.com": {
       "name": "sltdnb.com",
       "version": "2.0.0",
       "dependencies": {
-        "@mikeallisonjs/shared-react-components": "packages/shared-react-components",
-        "@mikeallisonjs/shared-react-lib": "packages/shared-react-lib",
+        "@mikeallisonjs/shared-react-components": "workspace:*",
+        "@mikeallisonjs/shared-react-lib": "workspace:*",
       },
     },
     "packages/shared-react-components": {
@@ -381,9 +381,9 @@
 
     "@mapbox/node-pre-gyp": ["@mapbox/node-pre-gyp@1.0.11", "", { "dependencies": { "detect-libc": "^2.0.0", "https-proxy-agent": "^5.0.0", "make-dir": "^3.1.0", "node-fetch": "^2.6.7", "nopt": "^5.0.0", "npmlog": "^5.0.1", "rimraf": "^3.0.2", "semver": "^7.3.5", "tar": "^6.1.11" }, "bin": { "node-pre-gyp": "bin/node-pre-gyp" } }, "sha512-Yhlar6v9WQgUp/He7BdgzOz8lqMQ8sU+jkCq7Wx8Myc5YFJLbEe7lgui/V7G1qB1DJykHSGwreceSaD60Y0PUQ=="],
 
-    "@mikeallisonjs/shared-react-components": ["@mikeallisonjs/shared-react-components@workspace:packages/shared-react-components", {}],
+    "@mikeallisonjs/shared-react-components": ["@mikeallisonjs/shared-react-components@workspace:packages/shared-react-components"],
 
-    "@mikeallisonjs/shared-react-lib": ["@mikeallisonjs/shared-react-lib@workspace:packages/shared-react-lib", {}],
+    "@mikeallisonjs/shared-react-lib": ["@mikeallisonjs/shared-react-lib@workspace:packages/shared-react-lib"],
 
     "@neondatabase/serverless": ["@neondatabase/serverless@0.9.4", "", { "dependencies": { "@types/pg": "8.11.6" } }, "sha512-D0AXgJh6xkf+XTlsO7iwE2Q1w8981E1cLCPAALMU2YKtkF/1SF6BiAzYARZFYo175ON+b1RNIy9TdSFHm5nteg=="],
 
@@ -751,7 +751,7 @@
 
     "@types/pg-pool": ["@types/pg-pool@2.0.6", "", { "dependencies": { "@types/pg": "*" } }, "sha512-TaAUE5rq2VQYxab5Ts7WZhKNmuN78Q6PiFonTDdpbx8a1H0M1vhy3rhiMjl+e2iHmogyMw7jZF4FrE6eJUy5HQ=="],
 
-    "@types/react": ["@types/react@19.0.5", "", { "dependencies": { "csstype": "^3.0.2" } }, "sha512-i4OQzFiqsUCfoBns/KHpz+4QcvfjoCsTUi+mugo3lrSRA3+x0gJVvhZhAJrwLGEqz4EXiFVP4hPnOugx+m2uhg=="],
+    "@types/react": ["@types/react@19.0.8", "", { "dependencies": { "csstype": "^3.0.2" } }, "sha512-9P/o1IGdfmQxrujGbIMDyYaaCykhLKc0NGCtYcECNUr9UAaDe4gwvV9bR6tvd5Br1SG0j+PBpbKr2UYY8CwqSw=="],
 
     "@types/react-dom": ["@types/react-dom@19.0.3", "", { "peerDependencies": { "@types/react": "^19.0.0" } }, "sha512-0Knk+HJiMP/qOZgMyNFamlIjw9OFCsyC2ZbigmEEyXXixgre6IQpm/4V+r3qH4GC1JPvRJKInw+on2rV6YZLeA=="],
 
@@ -935,9 +935,9 @@
 
     "caniuse-lite": ["caniuse-lite@1.0.30001690", "", {}, "sha512-5ExiE3qQN6oF8Clf8ifIDcMRCRE/dMGcETG/XGMD8/XiXm6HXQgQTh1yZYLXXpSOsEUlJm1Xr7kGULZTuGtP/w=="],
 
-    "captainofbass.com": ["captainofbass.com@workspace:apps/captainofbass.com", { "dependencies": { "@mikeallisonjs/shared-react-components": "packages/shared-react-components", "@mikeallisonjs/shared-react-lib": "packages/shared-react-lib" } }],
+    "captainofbass.com": ["captainofbass.com@workspace:apps/captainofbass.com"],
 
-    "captainssounds.com": ["captainssounds.com@workspace:apps/captainssounds.com", { "dependencies": { "@mikeallisonjs/shared-react-components": "packages/shared-react-components", "@mikeallisonjs/shared-react-lib": "packages/shared-react-lib" } }],
+    "captainssounds.com": ["captainssounds.com@workspace:apps/captainssounds.com"],
 
     "center-align": ["center-align@0.1.3", "", { "dependencies": { "align-text": "^0.1.3", "lazy-cache": "^1.0.3" } }, "sha512-Baz3aNe2gd2LP2qk5U+sDk/m4oSuwSDcBfayTCTBoWpfIGO5XFxPmjILQII4NGiZjD6DoDI6kf7gKaxkf7s3VQ=="],
 
@@ -1401,7 +1401,7 @@
 
     "micromatch": ["micromatch@4.0.8", "", { "dependencies": { "braces": "^3.0.3", "picomatch": "^2.3.1" } }, "sha512-PXwfBhYu0hBCPw8Dn0E+WDYb7af3dSLVWKi3HGv84IdF4TyFoC0ysxFd0Goxw7nSv4T/PzEJQxsYsEiFCKo2BA=="],
 
-    "mikeallisonjs.com": ["mikeallisonjs.com@workspace:apps/mikeallisonjs.com", { "dependencies": { "@mikeallisonjs/shared-react-components": "packages/shared-react-components", "@mikeallisonjs/shared-react-lib": "packages/shared-react-lib" } }],
+    "mikeallisonjs.com": ["mikeallisonjs.com@workspace:apps/mikeallisonjs.com"],
 
     "mime-db": ["mime-db@1.52.0", "", {}, "sha512-sPU4uV7dYlvtWJxwwxHD0PuihVNiE7TyAbQ5SWxDCB9mUYvOgroQOwYQQOKPJ8CIbE+1ETVlOoK1UC2nU3gYvg=="],
 
@@ -1705,7 +1705,7 @@
 
     "slash": ["slash@3.0.0", "", {}, "sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q=="],
 
-    "sltdnb.com": ["sltdnb.com@workspace:apps/sltdnb.com", { "dependencies": { "@mikeallisonjs/shared-react-components": "packages/shared-react-components", "@mikeallisonjs/shared-react-lib": "packages/shared-react-lib" } }],
+    "sltdnb.com": ["sltdnb.com@workspace:apps/sltdnb.com"],
 
     "snake-case": ["snake-case@3.0.4", "", { "dependencies": { "dot-case": "^3.0.4", "tslib": "^2.0.3" } }, "sha512-LAOh4z89bGQvl9pFfNF8V146i7o7/CqFPbqzYgP+yYzDIDeS9HaNFtXABamRW+AQzEVODcvE79ljJ+8a9YSdMg=="],
 
