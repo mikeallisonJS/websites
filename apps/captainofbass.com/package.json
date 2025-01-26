@@ -7,7 +7,7 @@
     "format": "bunx @biomejs/biome format .",
     "lint": "bunx @biomejs/biome lint .",
     "build": "next build",
-    "serve": "next dev -p 4200 --turbo",
+    "serve": "next dev -p 4200",
     "fetch-secrets": "VERCEL_ORG_ID=team_QQB0m2nnVhvxOyCiJtHju9zQ VERCEL_PROJECT_ID=prj_pQLIpdu6XGacFbjMNpUy3b7Z1kqc vercel env pull"
   },
   "dependencies": {
