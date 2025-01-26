@@ -2,9 +2,9 @@
  * Don't forget to update your APPs global.css to include this file!
  */
 
-@import 'tailwindcss';
+@import "tailwindcss";
 
-@config './tailwind.config.ts';
+@config "./tailwind.config.ts";
 
 /*
   The default border color has changed to `currentColor` in Tailwind CSS v4,
