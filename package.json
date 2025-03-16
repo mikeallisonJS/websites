@@ -7,13 +7,16 @@
     "check": "eslint .",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\" && eslint --fix .",
     "lint": "eslint .",
-    "w": "manypkg run"
+    "dev:mjs": "bun --cwd apps/mikeallisonjs.com dev",
+    "dev:slt": "bun --cwd apps/sltdnb.com dev",
+    "dev:cob": "bun --cwd apps/captainofbass.com dev",
+    "dev:cs": "bun --cwd apps/captainssounds.com dev",
+    "dev:all": "bun --cwd apps/mikeallisonjs.com dev & bun --cwd apps/sltdnb.com dev & bun --cwd apps/captainofbass.com dev & bun --cwd apps/captainssounds.com dev"
   },
   "private": true,
   "devDependencies": {
     "@babel/core": "^7.26.0",
     "@babel/preset-react": "^7.26.3",
-    "@manypkg/cli": "^0.23.0",
     "@shadcn/ui": "^0.0.4",
     "@tailwindcss/container-queries": "^0.1.1",
     "@tailwindcss/typography": "^0.5.15",
