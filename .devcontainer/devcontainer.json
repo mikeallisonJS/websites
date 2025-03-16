@@ -26,7 +26,8 @@
         "codeandstuff.package-json-upgrade",
         "oven.bun-vscode",
         "stivo.tailwind-fold",
-        "biomejs.biome",
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint",
         "yoavbls.pretty-ts-errors"
       ]
     }

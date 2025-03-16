@@ -1,0 +1,9 @@
+dist
+.next
+.vercel
+graphql-env.d.ts
+drizzle/meta
+**/drizzle/**
+**/src/lib/drizzle/meta/**
+storefront.schema.json
+node_modules 

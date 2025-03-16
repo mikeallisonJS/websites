@@ -24,7 +24,7 @@ This is a bun monorepo for my personal websites. Everything is licensed under th
 - Analytics: [Posthog](https://posthog.com)
 - Logging: [Sentry](https://sentry.io)
 - Authentication: [Clerk](https://clerk.com)
-- Formatting/Linting: [Biome](https://biomejs.dev)
+- Formatting/Linting: [ESLint](https://eslint.org) & [Prettier](https://prettier.io)
 
 ## Getting started
 
@@ -35,4 +35,4 @@ Fetch secrets for all projects (you will need to change org_id and project_id in
 `sh scripts/fetch-secrets.sh`
 
 Run a project
-`bun w packagename serve`
+`bun w packagename dev`

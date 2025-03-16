@@ -15,7 +15,7 @@ export const metadata = {
   metadataBase: new URL(baseUrl),
   title: {
     default: "Captain's Sounds",
-    template: `%s | "Captain's Sounds"`
+    template: "%s | Captain's Sounds"
   },
   robots: {
     follow: true,
