@@ -91,7 +91,10 @@ export const tailwindConfig = {
 function addVariablesForColors({
   addBase,
   theme
-}: { addBase: any; theme: any }) {
+}: {
+  addBase: any
+  theme: any
+}) {
   const allColors = flattenColorPalette(theme('colors'))
   const newVars = Object.fromEntries(
     Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
