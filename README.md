@@ -35,4 +35,4 @@ Fetch secrets for all projects (you will need to change org_id and project_id in
 `sh scripts/fetch-secrets.sh`
 
 Run a project
-`bun w packagename dev`
+`bun dev:{package abbreviation}`
