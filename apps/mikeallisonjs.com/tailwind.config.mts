@@ -1,7 +1,7 @@
-import { type Config } from 'tailwindcss'
+import type { Config } from 'tailwindcss'
 import { tailwindConfig } from '@mikeallisonjs/shared-react-lib'
 
-export default {
+const config: Config = {
   ...tailwindConfig,
   theme: {
     ...tailwindConfig.theme,
@@ -12,4 +12,6 @@ export default {
       }
     }
   }
-} satisfies Config
+}
+
+export default config
