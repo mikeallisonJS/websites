@@ -2,7 +2,7 @@
   "compileOnSave": false,
   "compilerOptions": {
     "rootDir": ".",
-    "moduleResolution": "node16",
+    "moduleResolution": "node",
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",

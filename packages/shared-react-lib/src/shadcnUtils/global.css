@@ -2,10 +2,7 @@
  * Don't forget to update your APPs global.css to include this file!
  */
 
-@import "tailwindcss";
-@import "tw-animate-css";
-
-
+@layer theme {
   :root {
     --background: hsl(0 0% 100%);
     --foreground: hsl(240 10% 3.9%);
@@ -50,7 +47,7 @@
     --input: hsl(240 3.7% 15.9%);
     --ring: hsl(240 4.9% 83.9%);
   }
-
+}
 
 @layer base {
   * {

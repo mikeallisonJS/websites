@@ -9,8 +9,8 @@ import {
   useMusicPlayerContext
 } from '@mikeallisonjs/shared-react-components'
 
-import { songs } from '../footer/footer'
-import { GlassContainer } from '../glassContainer'
+import { songs } from '../../_footer/footer'
+import { GlassContainer } from '../../../components/glassContainer'
 
 export enum MusicType {
   Originals = 'Originals',

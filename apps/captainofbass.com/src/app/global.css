@@ -1,4 +1,8 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
 @import "../../../../packages/shared-react-lib/src/shadcnUtils/global.css";
+@source "../../../../packages/shared-react-components";
 
 @media (prefers-color-scheme: dark) {
   html {

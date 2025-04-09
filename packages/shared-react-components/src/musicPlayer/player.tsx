@@ -67,7 +67,6 @@ export default function Player({
         className
       )}
     >
-      {/* biome-ignore lint/a11y/useMediaCaption: <explanation> */}
       <audio ref={audioRef} src={playlist?.[0].source} />
       {/* <div className="w-full h-1"></div> */}
       <div

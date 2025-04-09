@@ -1,7 +1,6 @@
 'use client'
 
 import { captureException } from '@sentry/nextjs'
-// biome-ignore lint/suspicious/noShadowRestrictedNames: <explanation>
 import Error from 'next/error'
 import { useEffect } from 'react'
 
