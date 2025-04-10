@@ -2,6 +2,8 @@
  * Don't forget to update your APPs global.css to include this file!
  */
 
+ @custom-variant dark (&:where(.dark, .dark *));
+
 @layer theme {
   :root {
     --background: hsl(0 0% 100%);
