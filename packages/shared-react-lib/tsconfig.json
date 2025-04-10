@@ -1,18 +1,18 @@
 {
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
+    "moduleResolution": "node16",
+    "module": "Node16",
     "jsx": "react-jsx",
-    "allowJs": false,
-    "esModuleInterop": false,
-    "moduleResolution": "bundler",
-    "allowSyntheticDefaultImports": true,
-    "strict": true
+    "outDir": "./dist",
+    "esModuleInterop": true
   },
-  "files": [],
-  "include": [],
-  "references": [
-    {
-      "path": "./tsconfig.lib.json"
-    }
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.mts"
   ],
-  "extends": "../../tsconfig.base.json"
+  "exclude": [
+    "node_modules"
+  ]
 }

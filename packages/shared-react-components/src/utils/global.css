@@ -2,7 +2,10 @@
  * Don't forget to update your APPs global.css to include this file!
  */
 
- @custom-variant dark (&:where(.dark, .dark *));
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:where(.dark, .dark *));
 
 @layer theme {
   :root {

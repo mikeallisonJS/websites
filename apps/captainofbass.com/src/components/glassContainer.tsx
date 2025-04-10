@@ -6,7 +6,7 @@ type GlassContainerProps = {
 
 export function GlassContainer({ children }: GlassContainerProps) {
   return (
-    <div className="bg-background/20 supports-[backdrop-filter]:bg-background/30 rounded p-8 backdrop-blur">
+    <div className="bg-white/60 bg-background/20 supports-[backdrop-filter]:bg-background/30 rounded p-8 backdrop-blur">
       {children}
     </div>
   )

@@ -11,12 +11,14 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "incremental": true,
+    "module": "Node16",
+    "moduleResolution": "node16",
     "plugins": [
       {
         "name": "next"
       }
     ],
-    "types": ["jest", "node"]
+    "types": ["node"]
   },
   "include": [
     "**/*.ts",

@@ -1,14 +1,9 @@
-import Player from './src/musicPlayer/player'
 import PageContainer from './src/pageContainer'
 import PastEvents from './src/pastEvents'
 
-export { PastEvents, PageContainer, Player }
-export {
-  MusicPlayerProvider,
-  useMusicPlayerContext
-} from './src/musicPlayer/context'
-export type { Track } from './src/musicPlayer/types'
+export { PastEvents, PageContainer }
 
+export * from './src/musicPlayer'
 export * from './src/auroraBackground'
 export * from './src/bentoGrid'
 export * from './src/button'
