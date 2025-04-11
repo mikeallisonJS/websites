@@ -11,7 +11,7 @@ import './global.css'
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <CSPostHogProvider>
-      <html lang="en" className="dark">
+      <html lang="en">
         <body>
           <Header />
           {children}

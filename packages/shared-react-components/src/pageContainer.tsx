@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 
-import { cn } from '@mikeallisonjs/shared-react-lib'
+import { cn } from './utils/cn'
 
 export default function PageContainer({
   children,

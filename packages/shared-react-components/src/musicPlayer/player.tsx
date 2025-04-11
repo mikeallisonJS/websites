@@ -2,9 +2,9 @@
 
 import { useEffect, useRef } from 'react'
 
-import { cn } from '@mikeallisonjs/shared-react-lib'
+import { cn } from '../utils/cn'
 
-import { Drawer, DrawerContent, DrawerTitle } from '../drawer'
+import { Drawer, DrawerContent, DrawerTitle } from '@mikeallisonjs/shared-react-components/src/drawer'
 
 import { useMusicPlayerContext } from './context'
 import Controls from './controls'
@@ -63,12 +63,12 @@ export default function Player({
   return (
     <div
       className={cn(
-        'bg-popover text-popover-foreground fixed bottom-0 z-10 box-border flex h-[62px] w-[100vw] overflow-hidden px-1 align-middle shadow-md ',
-        className
+        'bg-popover text-popover-foreground bottom-0 z-10 box-border flex h-[62px] w-[100vw] px-1 align-middle shadow-md ',
+        className,
+        'bg-white/60 fixed overflow-hidden'
       )}
     >
       <audio ref={audioRef} src={playlist?.[0].source} />
-      {/* <div className="w-full h-1"></div> */}
       <div
         className={cn(
           'flex w-full flex-row flex-nowrap items-center justify-between',
@@ -98,7 +98,7 @@ export default function Player({
           currentTime={currentTime}
           onSeek={seek}
           duration={duration}
-          className=" grow-6 hidden md:flex"
+          className="grow-6 hidden md:flex"
         />
         <VolumeControl
           volume={volume}
@@ -121,7 +121,7 @@ export default function Player({
         onClose={closeDrawer}
         modal={false}
       >
-        <DrawerContent className={cn('z-20 md:z-0 md:pb-[62px]', className)}>
+        <DrawerContent className={cn('z-20 md:z-0 md:pb-[62px]', className, 'bg-white/60')}>
           <DrawerTitle>Playlist</DrawerTitle>
           <div className="flex pt-2 md:hidden">
             <div

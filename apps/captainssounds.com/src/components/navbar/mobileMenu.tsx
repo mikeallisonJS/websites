@@ -42,11 +42,11 @@ export default function MobileMenu() {
           <Transition.Child
             as={Fragment}
             enter="transition-all ease-in-out duration-300"
-            enterFrom="opacity-0 backdrop-blur-none"
-            enterTo="opacity-100 backdrop-blur-[.5px]"
+            enterFrom="opacity-0 backdrop-blur-sm-none"
+            enterTo="opacity-100 backdrop-blur-sm-[.5px]"
             leave="transition-all ease-in-out duration-200"
-            leaveFrom="opacity-100 backdrop-blur-[.5px]"
-            leaveTo="opacity-0 backdrop-blur-none"
+            leaveFrom="opacity-100 backdrop-blur-sm-[.5px]"
+            leaveTo="opacity-0 backdrop-blur-sm-none"
           >
             <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
           </Transition.Child>

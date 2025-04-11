@@ -3,8 +3,8 @@
 import * as React from "react"
 import { DayPicker } from "react-day-picker"
 
-import { cn } from '@mikeallisonjs/shared-react-lib'
-import { buttonVariants } from "packages/shared-react-components/src/button"
+import { cn } from './utils/cn'
+import { buttonVariants } from "./button"
 import { ChevronLeftIcon, ChevronRightIcon } from "@radix-ui/react-icons"
 
 function Calendar({

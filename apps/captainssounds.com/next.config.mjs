@@ -5,9 +5,6 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true
   },
-  eslint: {
-    ignoreDuringBuilds: true
-  },
   images: {
     formats: ['image/avif', 'image/webp'],
     remotePatterns: [
@@ -22,9 +19,6 @@ const nextConfig = {
         pathname: '/**'
       }
     ]
-  },
-  experimental: {
-    instrumentationHook: true
   },
   async redirects() {
     return [

@@ -4,7 +4,7 @@ import * as React from "react"
 import useEmblaCarousel, {
   type UseEmblaCarouselType,
 } from "embla-carousel-react"
-import { cn } from '@mikeallisonjs/shared-react-lib'
+import { cn } from './utils/cn'
 import { Button } from "packages/shared-react-components/src/button"
 import { ArrowLeftIcon, ArrowRightIcon } from "@radix-ui/react-icons"
 

@@ -4,6 +4,7 @@ import Image from 'next/image'
 
 import {
   Table,
+  TableBody,
   TableCell,
   TableRow,
   useMusicPlayerContext
@@ -35,6 +36,7 @@ export default function MusicList({ type }: MusicListProps) {
     <GlassContainer>
       <div className="text-3xl">{type} </div>
       <Table>
+        <TableBody>
         {songDisplay.map((song) => (
           <TableRow
             key={song.ID}
@@ -51,8 +53,9 @@ export default function MusicList({ type }: MusicListProps) {
             </TableCell>
             <TableCell className="w-80">{song.artist}</TableCell>
             <TableCell>{song.title}</TableCell>
-          </TableRow>
-        ))}
+            </TableRow>
+          ))}
+        </TableBody>
       </Table>
     </GlassContainer>
   )

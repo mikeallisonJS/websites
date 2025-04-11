@@ -5,7 +5,6 @@ import {
   Player,
   type Track
 } from '@mikeallisonjs/shared-react-components'
-import { GlassContainer } from '../../components/glassContainer'
 
 export const songs: Track[] = [
   {
@@ -140,10 +139,8 @@ export const songs: Track[] = [
 
 export default function Footer() {
   return (
-    <GlassContainer>
-      <MusicPlayerProvider playlist={songs}>
-        <Player className="bg-white/60 bg-background/55 supports-[backdrop-filter]:bg-background/60 backdrop-blur" />
-      </MusicPlayerProvider>
-    </GlassContainer>
+    <MusicPlayerProvider playlist={songs}>
+      <Player className="bg-background/55 supports-[backdrop-filter]:bg-background/60 backdrop-blur-sm" />
+    </MusicPlayerProvider>
   )
 }

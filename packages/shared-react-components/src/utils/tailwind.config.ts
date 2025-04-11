@@ -1,4 +1,4 @@
-import type { Config } from 'tailwindcss'
+import type { Config } from 'tailwindcss/dist/lib.mjs'
 
 export const tailwindConfig: Config = {
     darkMode: 'class',
@@ -6,7 +6,7 @@ export const tailwindConfig: Config = {
     // relative path by consumer app
     './src/{app,pages,components}/**/*.{js,jsx,ts,tsx}',
     // path to ui-kit components (relative to current dir)
-    '../../packages/shared-react-components/src/**/*.{js,jsx,ts,tsx}'
+    '../**/*.{js,jsx,ts,tsx}'
   ],
   theme: {
   	extend: {

@@ -54,7 +54,7 @@ const images = [
 export default function Index() {
   return (
     <div className="mx-[5vw]">
-      <div className="mt-70 mx[5vw] mb-16 flex w-[90vw] flex-col justify-center gap-8">
+      <div className="mt-0 mx[5vw] mb-16 flex w-[90vw] flex-col justify-center gap-8">
         <div className="flex w-[100%] justify-center">
           <Image
             src="/images/cpt-border.png"

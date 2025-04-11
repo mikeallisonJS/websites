@@ -2,7 +2,7 @@
 import type React from 'react'
 import type { ReactNode } from 'react'
 
-import { cn } from '@mikeallisonjs/shared-react-lib'
+import { cn } from './utils/cn'
 
 interface AuroraBackgroundProps extends React.HTMLProps<HTMLDivElement> {
   children: ReactNode

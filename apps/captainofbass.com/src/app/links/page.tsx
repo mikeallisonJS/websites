@@ -17,6 +17,7 @@ import Link from 'next/link'
 import {
   PageContainer,
   Table,
+  TableBody,
   TableCell,
   TableRow
 } from '@mikeallisonjs/shared-react-components'
@@ -29,104 +30,106 @@ export default function Music() {
       <GlassContainer>
         <div className="text-2xl">Where to find Captain</div>
         <Table className="text-left">
-          <TableRow>
-            <TableCell>
-              <Link href="/epk">
-                <FontAwesomeIcon icon={faNewspaper} /> Electronic Press Kit
-                (EPK)
-              </Link>
-            </TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>
-              <Link href="/donate">
-                <FontAwesomeIcon icon={faMoneyBill1} /> Donate (EPK)
-              </Link>
-            </TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>
-              <Link
-                href="https://open.spotify.com/artist/4XHSbdpOsFpEWPOdj9nxfH"
-                target="_blank"
-              >
-                <FontAwesomeIcon icon={faSpotify} /> Spotify
-              </Link>
-            </TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>
-              <Link href="https://soundcloud.com/captainofbass" target="_blank">
-                <FontAwesomeIcon icon={faSoundcloud} /> SoundCloud
-              </Link>
-            </TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>
-              <Link href="https://mixcloud.com/captainofbass" target="_blank">
-                <FontAwesomeIcon icon={faMixcloud} /> MixCloud
-              </Link>
-            </TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>
-              <Link href="https://mixcloud.com/mikeallison" target="_blank">
-                <FontAwesomeIcon icon={faMixcloud} /> MixCloud (pre Captain)
-              </Link>
-            </TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>
-              <Link href="https://audius.co/captainofbass" target="_blank">
-                <FontAwesomeIcon icon={faBitcoin} /> Audius
-              </Link>
-            </TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>
-              <Link href="https://instagram.com/captainofbass" target="_blank">
-                <FontAwesomeIcon icon={faInstagram} /> Instagram
-              </Link>
-            </TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>
-              <Link href="https://youtube.com/c/captainofbass" target="_blank">
-                <FontAwesomeIcon icon={faYoutube} /> Youtube
-              </Link>
-            </TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>
-              <Link href="https://facebook.com/captainofbass" target="_blank">
-                <FontAwesomeIcon icon={faFacebook} /> Facebook
-              </Link>
-            </TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>
-              <Link href="https://x.com/captainofbass" target="_blank">
-                <FontAwesomeIcon icon={faXTwitter} /> X
-              </Link>
-            </TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>
-              <Link
-                href="https://www.linkedin.com/in/captainofbass"
-                target="_blank"
-              >
-                <FontAwesomeIcon icon={faLinkedin} /> LinkedIn
-              </Link>
-            </TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>
-              <Link href="mailto:mike@captainofbass.com" target="_blank">
-                <FontAwesomeIcon icon={faEnvelope} /> Email
-              </Link>
-            </TableCell>
-          </TableRow>
+          <TableBody>
+            <TableRow>
+              <TableCell>
+                <Link href="/epk">
+                  <FontAwesomeIcon icon={faNewspaper} /> Electronic Press Kit
+                  (EPK)
+                </Link>
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>
+                <Link href="/donate">
+                  <FontAwesomeIcon icon={faMoneyBill1} /> Donate (EPK)
+                </Link>
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>
+                <Link
+                  href="https://open.spotify.com/artist/4XHSbdpOsFpEWPOdj9nxfH"
+                  target="_blank"
+                >
+                  <FontAwesomeIcon icon={faSpotify} /> Spotify
+                </Link>
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>
+                <Link href="https://soundcloud.com/captainofbass" target="_blank">
+                  <FontAwesomeIcon icon={faSoundcloud} /> SoundCloud
+                </Link>
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>
+                <Link href="https://mixcloud.com/captainofbass" target="_blank">
+                  <FontAwesomeIcon icon={faMixcloud} /> MixCloud
+                </Link>
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>
+                <Link href="https://mixcloud.com/mikeallison" target="_blank">
+                  <FontAwesomeIcon icon={faMixcloud} /> MixCloud (pre Captain)
+                </Link>
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>
+                <Link href="https://audius.co/captainofbass" target="_blank">
+                  <FontAwesomeIcon icon={faBitcoin} /> Audius
+                </Link>
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>
+                <Link href="https://instagram.com/captainofbass" target="_blank">
+                  <FontAwesomeIcon icon={faInstagram} /> Instagram
+                </Link>
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>
+                <Link href="https://youtube.com/c/captainofbass" target="_blank">
+                  <FontAwesomeIcon icon={faYoutube} /> Youtube
+                </Link>
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>
+                <Link href="https://facebook.com/captainofbass" target="_blank">
+                  <FontAwesomeIcon icon={faFacebook} /> Facebook
+                </Link>
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>
+                <Link href="https://x.com/captainofbass" target="_blank">
+                  <FontAwesomeIcon icon={faXTwitter} /> X
+                </Link>
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>
+                <Link
+                  href="https://www.linkedin.com/in/captainofbass"
+                  target="_blank"
+                >
+                  <FontAwesomeIcon icon={faLinkedin} /> LinkedIn
+                </Link>
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>
+                <Link href="mailto:mike@captainofbass.com" target="_blank">
+                  <FontAwesomeIcon icon={faEnvelope} /> Email
+                </Link>
+              </TableCell>
+              </TableRow>
+            </TableBody>
         </Table>
       </GlassContainer>
     </PageContainer>

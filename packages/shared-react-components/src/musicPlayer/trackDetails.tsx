@@ -1,4 +1,4 @@
-import { cn } from '@mikeallisonjs/shared-react-lib'
+import { cn } from '../utils/cn'
 
 type TrackDetailsProps = {
   title: string

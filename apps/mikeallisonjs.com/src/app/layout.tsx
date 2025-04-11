@@ -2,7 +2,7 @@ import { Arimo } from 'next/font/google'
 
 import './global.css'
 import { CSPostHogProvider } from '@mikeallisonjs/shared-react-components'
-import { cn } from '@mikeallisonjs/shared-react-lib'
+import { cn } from '@mikeallisonjs/shared-react-components'
 
 import Header from '../components/header'
 

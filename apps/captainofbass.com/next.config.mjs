@@ -4,9 +4,6 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true
   },
-  eslint: {
-    ignoreDuringBuilds: true
-  },
   async rewrites() {
     return [
       {
@@ -18,9 +15,6 @@ const nextConfig = {
         destination: 'https://us.i.posthog.com/:path*'
       }
     ]
-  },
-  experimental: {
-    instrumentationHook: true
   }
 }
 
