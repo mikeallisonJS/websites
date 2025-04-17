@@ -2,8 +2,8 @@
 
 import { MusicPlayerProvider } from '@mikeallisonjs/shared-react-components'
 
-import { songs } from '../../components/footer/footer'
-import MusicList, { MusicType } from '../../components/musicList/musicList'
+import { songs } from '../_footer/footer'
+import MusicList, { MusicType } from './_musicList/musicList'
 
 export default function MusicClient() {
   return (

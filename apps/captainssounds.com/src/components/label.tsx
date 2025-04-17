@@ -22,7 +22,7 @@ const Label = ({
         }
       )}
     >
-      <div className="flex items-center rounded-full border bg-white/70 p-1 text-xs font-semibold text-black backdrop-blur-md dark:border-neutral-800 dark:bg-black/70 dark:text-white">
+      <div className="flex items-center rounded-full border bg-white/70 p-1 text-xs font-semibold text-black backdrop-blur-sm dark:border-neutral-800 dark:bg-black/70 dark:text-white">
         <h3 className="mr-4 line-clamp-2 grow  pl-2 leading-none tracking-tight">
           {title}
         </h3>

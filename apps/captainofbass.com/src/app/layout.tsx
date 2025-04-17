@@ -2,8 +2,8 @@ import type { ReactNode } from 'react'
 
 import { CSPostHogProvider } from '@mikeallisonjs/shared-react-components'
 
-import Footer from '../components/footer/footer'
-import Header from '../components/header/header'
+import Footer from './_footer/footer'
+import Header from './_header/header'
 
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import './global.css'

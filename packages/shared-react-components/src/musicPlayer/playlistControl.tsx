@@ -5,7 +5,7 @@ import { faShuffle } from '@fortawesome/free-solid-svg-icons/faShuffle'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import type { ReactNode } from 'react'
 
-import { cn } from '@mikeallisonjs/shared-react-lib'
+import { cn } from '../utils/cn'
 
 import { Toggle } from '../toggle'
 

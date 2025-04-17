@@ -1,7 +1,7 @@
 import { faVolumeDown, faVolumeUp } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-import { cn } from '@mikeallisonjs/shared-react-lib'
+import { cn } from '../utils/cn'
 
 import { Button } from '../button'
 import { Slider } from '../slider'

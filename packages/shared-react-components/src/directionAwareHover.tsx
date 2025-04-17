@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import Image from 'next/image'
 import { useRef, useState } from 'react'
 
-import { cn } from '@mikeallisonjs/shared-react-lib'
+import { cn } from './utils/cn'
 
 export const DirectionAwareHover = ({
   imageUrl,

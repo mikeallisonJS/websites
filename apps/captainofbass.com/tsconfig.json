@@ -16,7 +16,7 @@
         "name": "next"
       }
     ],
-    "types": ["jest", "node"]
+    "types": ["node"]
   },
   "include": [
     "**/*.ts",

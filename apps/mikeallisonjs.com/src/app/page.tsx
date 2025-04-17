@@ -10,7 +10,7 @@ export default function Component() {
   return (
     <div className="flex min-h-[100dvh] flex-col">
       <section className="mt-[-48px] w-full pb-12 md:pb-12 lg:pb-16 xl:pb-24">
-        <AuroraBackground className="h-[60vh]">
+        <AuroraBackground className="h-[50vh]">
           <Hero />
         </AuroraBackground>
       </section>

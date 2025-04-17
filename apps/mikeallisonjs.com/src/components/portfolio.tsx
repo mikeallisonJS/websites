@@ -36,7 +36,7 @@ const Overlay = ({
 }) => (
   <div className="relative">
     {children}
-    <div className="hover:bg-background/30 absolute bottom-0 top-0 z-10 m-4 flex h-[14.1rem] min-h-[8rem] w-[100%] flex-col items-center  justify-center gap-4 rounded-xl opacity-0 backdrop-blur hover:opacity-100 sm:w-[36rem] md:w-[12.5rem] lg:w-[16rem]">
+    <div className="hover:bg-background/30 absolute bottom-0 top-0 z-10 m-4 flex h-[14.1rem] min-h-[8rem] w-[100%] flex-col items-center justify-center gap-4 rounded-xl opacity-0 backdrop-blur-sm hover:opacity-100 sm:w-[36rem] md:w-[12.5rem] lg:w-[16rem]">
       <Link href={websiteUrl} target="_blank">
         <Button>website</Button>
       </Link>
@@ -63,7 +63,7 @@ export function Portfolio() {
       </div>
       <BentoGrid className="mx-auto max-w-4xl">
         <Overlay
-          websiteUrl="https://nextsteps.is/"
+          websiteUrl="https://nextstep.is/"
           githubUrl="https://github.com/JesusFilm/core"
         >
           <BentoGridItem
@@ -97,7 +97,7 @@ export function Portfolio() {
           />
         </Overlay>
         <Overlay
-          websiteUrl="https://admin.nextsteps.is/"
+          websiteUrl="https://admin.nextstep.is/"
           githubUrl="https://github.com/JesusFilm/core"
         >
           <BentoGridItem

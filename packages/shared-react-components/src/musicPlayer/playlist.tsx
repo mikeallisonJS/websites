@@ -1,7 +1,7 @@
 import { faPlay } from '@fortawesome/free-solid-svg-icons/faPlay'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-import { ScrollArea } from '../scrollArea'
+import { ScrollArea } from '../scroll-area'
 import { Table, TableBody, TableCell, TableRow } from '../table'
 
 import CoverArt from './coverArt'
