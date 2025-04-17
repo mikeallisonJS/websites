@@ -3,8 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import { cn } from '../utils/cn'
 
-import { Button } from '@mikeallisonjs/shared-react-components/src/button'
-import { Slider } from '@mikeallisonjs/shared-react-components/src/slider'
+import { Button } from '../button'
+import { Slider } from '../slider'
 
 type VolumeControlProps = {
   volume: number

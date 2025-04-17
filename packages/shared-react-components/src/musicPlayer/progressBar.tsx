@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 
 import { cn } from '../utils/cn'
 
-import { Slider } from '@mikeallisonjs/shared-react-components/src/slider'
+import { Slider } from '../slider'
 
 function secondsToString(seconds: number) {
   const minutes = Math.floor(seconds / 60).toString()

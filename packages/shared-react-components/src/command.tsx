@@ -11,7 +11,7 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-} from "packages/shared-react-components/src/dialog"
+} from "./dialog"
 
 function Command({
   className,

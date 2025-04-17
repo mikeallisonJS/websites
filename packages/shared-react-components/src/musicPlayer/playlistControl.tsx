@@ -7,7 +7,7 @@ import type { ReactNode } from 'react'
 
 import { cn } from '../utils/cn'
 
-import { Toggle } from '@mikeallisonjs/shared-react-components/src/toggle'
+import { Toggle } from '../toggle'
 
 import { RepeatMode } from './types'
 

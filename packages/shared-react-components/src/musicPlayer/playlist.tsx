@@ -1,8 +1,8 @@
 import { faPlay } from '@fortawesome/free-solid-svg-icons/faPlay'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-import { ScrollArea } from '@mikeallisonjs/shared-react-components/src/scroll-area'
-import { Table, TableBody, TableCell, TableRow } from '@mikeallisonjs/shared-react-components/src/table'
+import { ScrollArea } from '../scroll-area'
+import { Table, TableBody, TableCell, TableRow } from '../table'
 
 import CoverArt from './coverArt'
 import type { Track } from './types'
