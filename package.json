@@ -41,7 +41,7 @@
     "pg": "^8.13.1",
     "postcss": "^8.4.49",
     "prettier": "^3.5.3",
-    "sharp": "^0.33.5",
+    "sharp": "^0.34.0",
     "tailwindcss": "^4.0.0",
     "tw-animate-css": "^1.0.0",
     "ts-node": "10.9.2",
