@@ -62,6 +62,38 @@ export function Portfolio() {
         </p>
       </div>
       <BentoGrid className="mx-auto max-w-4xl">
+      <Overlay
+          websiteUrl="https://freevstvault.com/"
+        >
+          <BentoGridItem
+            title="Free VST Vault"
+            description="An AI powered audio plugin directory."
+            header={
+              <Image
+                src="/images/freevstvault.png"
+                alt="nextsteps"
+                width={400}
+                height={200}
+                className="rounded-xl"
+                style={{
+                  width: '100%',
+                  height: '14rem',
+                  objectFit: 'cover'
+                }}
+              />
+            }
+            icon={
+              <div className="flex gap-2">
+                <IconBrandNextjs />
+                <IconBrandNodejs />
+                <IconBrandTypescript />
+                <IconBrandVercel />
+                <IconBrandGoogle />
+              </div>
+            }
+            className="md:h-[390px]"
+          />
+        </Overlay>
         <Overlay
           websiteUrl="https://nextstep.is/"
           githubUrl="https://github.com/JesusFilm/core"
