@@ -199,7 +199,6 @@ export function Portfolio() {
         </Overlay>
         <Overlay
           websiteUrl="https://captainssounds.com"
-          githubUrl="https://github.com/mikeallisonJS/websites"
         >
           <BentoGridItem
             title="Captain's Sounds"
