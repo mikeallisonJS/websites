@@ -18,7 +18,7 @@
   "customizations": {
     "vscode": {
       "extensions": [
-        "supermaven.supermaven",
+        "esbenp.prettier-vscode",
         "eamodio.gitlens",
         "csstools.postcss",
         "bradlc.vscode-tailwindcss",

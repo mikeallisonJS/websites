@@ -1,8 +1,9 @@
+import { CSPostHogProvider } from '@mikeallisonjs/shared-react-components'
 import { GeistSans } from 'geist/font/sans'
+
 import type { ReactNode } from 'react'
 
 import './global.css'
-import { CSPostHogProvider } from '@mikeallisonjs/shared-react-components'
 
 export const metadata = {
   title: 'SLTDNB'

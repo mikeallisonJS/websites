@@ -1,10 +1,8 @@
 import { faVolumeDown, faVolumeUp } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-
-import { cn } from '@mikeallisonjs/ui/lib/utils'
-
 import { Button } from '@mikeallisonjs/ui/components/button'
 import { Slider } from '@mikeallisonjs/ui/components/slider'
+import { cn } from '@mikeallisonjs/ui/lib/utils'
 
 type VolumeControlProps = {
   volume: number

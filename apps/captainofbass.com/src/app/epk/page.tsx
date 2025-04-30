@@ -1,8 +1,7 @@
 'use client'
 
-import Link from 'next/link'
-
 import { PageContainer } from '@mikeallisonjs/shared-react-components'
+import Link from 'next/link'
 
 import Bio from '@/components/bio/bio'
 import { GlassContainer } from '@/components/glassContainer'

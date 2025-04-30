@@ -1,10 +1,15 @@
 import { faPlay } from '@fortawesome/free-solid-svg-icons/faPlay'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-
 import { ScrollArea } from '@mikeallisonjs/ui/components/scroll-area'
-import { Table, TableBody, TableCell, TableRow } from '@mikeallisonjs/ui/components/table'
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableRow
+} from '@mikeallisonjs/ui/components/table'
 
 import CoverArt from './cover-art'
+
 import type { Track } from './types'
 
 type PlaylistProps = {

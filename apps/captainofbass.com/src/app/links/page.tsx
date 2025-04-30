@@ -12,17 +12,16 @@ import { faEnvelope } from '@fortawesome/free-regular-svg-icons/faEnvelope'
 import { faMoneyBill1 } from '@fortawesome/free-regular-svg-icons/faMoneyBill1'
 import { faNewspaper } from '@fortawesome/free-regular-svg-icons/faNewspaper'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Link from 'next/link'
-
+import { PageContainer } from '@mikeallisonjs/shared-react-components'
 import {
-    Table,
-    TableBody,
-    TableCell,
+  Table,
+  TableBody,
+  TableCell,
   TableRow
 } from '@mikeallisonjs/ui/components/table'
+import Link from 'next/link'
 
 import { GlassContainer } from '@/components/glassContainer'
-import { PageContainer } from '@mikeallisonjs/shared-react-components'
 
 export default function Music() {
   return (
@@ -58,7 +57,10 @@ export default function Music() {
             </TableRow>
             <TableRow>
               <TableCell>
-                <Link href="https://soundcloud.com/captainofbass" target="_blank">
+                <Link
+                  href="https://soundcloud.com/captainofbass"
+                  target="_blank"
+                >
                   <FontAwesomeIcon icon={faSoundcloud} /> SoundCloud
                 </Link>
               </TableCell>
@@ -86,14 +88,20 @@ export default function Music() {
             </TableRow>
             <TableRow>
               <TableCell>
-                <Link href="https://instagram.com/captainofbass" target="_blank">
+                <Link
+                  href="https://instagram.com/captainofbass"
+                  target="_blank"
+                >
                   <FontAwesomeIcon icon={faInstagram} /> Instagram
                 </Link>
               </TableCell>
             </TableRow>
             <TableRow>
               <TableCell>
-                <Link href="https://youtube.com/c/captainofbass" target="_blank">
+                <Link
+                  href="https://youtube.com/c/captainofbass"
+                  target="_blank"
+                >
                   <FontAwesomeIcon icon={faYoutube} /> Youtube
                 </Link>
               </TableCell>
@@ -128,8 +136,8 @@ export default function Music() {
                   <FontAwesomeIcon icon={faEnvelope} /> Email
                 </Link>
               </TableCell>
-              </TableRow>
-            </TableBody>
+            </TableRow>
+          </TableBody>
         </Table>
       </GlassContainer>
     </PageContainer>

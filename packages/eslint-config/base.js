@@ -1,8 +1,9 @@
-import js from "@eslint/js";
-import eslintConfigPrettier from "eslint-config-prettier";
-import onlyWarn from "eslint-plugin-only-warn";
-import tseslint from "typescript-eslint";
-import pluginImport from "eslint-plugin-import";
+import js from '@eslint/js'
+import eslintConfigPrettier from 'eslint-config-prettier'
+import pluginImport from 'eslint-plugin-import'
+import onlyWarn from 'eslint-plugin-only-warn'
+import prettierPlugin from 'eslint-plugin-prettier'
+import tseslint from 'typescript-eslint'
 
 /**
  * A shared ESLint configuration for the repository.
@@ -17,38 +18,39 @@ export const config = [
     plugins: {
       onlyWarn,
       import: pluginImport,
+      prettier: prettierPlugin
     },
     rules: {
-      "import/order": [
-        "warn",
+      'import/order': [
+        'warn',
         {
           groups: [
-            "builtin",
-            "external",
-            "internal",
-            "parent",
-            "sibling",
-            "index",
-            "object",
-            "type",
+            'builtin',
+            'external',
+            'internal',
+            'parent',
+            'sibling',
+            'index',
+            'object',
+            'type'
           ],
-          "newlines-between": "always",
+          'newlines-between': 'always',
           alphabetize: {
-            order: "asc",
-            caseInsensitive: true,
+            order: 'asc',
+            caseInsensitive: true
           },
           pathGroups: [
             {
-              pattern: "@mikeallisonjs/**",
-              group: "internal",
-              position: "before",
-            },
-          ],
-        },
-      ],
-    },
+              pattern: '@mikeallisonjs/**',
+              group: 'internal',
+              position: 'before'
+            }
+          ]
+        }
+      ]
+    }
   },
   {
-    ignores: ["dist/**"],
-  },
-];
+    ignores: ['dist/**']
+  }
+]
