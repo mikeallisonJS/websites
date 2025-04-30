@@ -1,4 +1,9 @@
 import {
+  BentoGrid,
+  BentoGridItem,
+} from '@mikeallisonjs/shared-react-components'
+import { Button } from '@mikeallisonjs/ui/components/button'
+import {
   IconBrandAlgolia,
   IconBrandAngular,
   IconBrandAws,
@@ -17,13 +22,9 @@ import {
 } from '@tabler/icons-react'
 import Image from 'next/image'
 import Link from 'next/link'
+
 import type { ReactNode } from 'react'
 
-import {
-  BentoGrid,
-  BentoGridItem,
-  Button
-} from '@mikeallisonjs/shared-react-components'
 
 const Overlay = ({
   children,
