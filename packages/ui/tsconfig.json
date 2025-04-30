@@ -1,0 +1,15 @@
+{
+  "extends": "@mikeallisonjs/typescript-config/react-library.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@mikeallisonjs/ui/*": ["./src/*"]
+    }
+  },
+  "include": [
+    ".",
+    "../../apps/captainssounds/src/components/page-container.tsx"
+  ],
+  "exclude": ["node_modules", "dist"]
+}

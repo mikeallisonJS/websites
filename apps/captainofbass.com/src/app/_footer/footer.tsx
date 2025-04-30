@@ -4,7 +4,7 @@ import {
   MusicPlayerProvider,
   Player,
   type Track
-} from '@mikeallisonjs/shared-react-components'
+} from './music-player'
 
 export const songs: Track[] = [
   {

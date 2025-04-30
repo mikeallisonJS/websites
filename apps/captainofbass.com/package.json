@@ -12,6 +12,11 @@
     "fetch-secrets": "VERCEL_ORG_ID=team_QQB0m2nnVhvxOyCiJtHju9zQ VERCEL_PROJECT_ID=prj_pQLIpdu6XGacFbjMNpUy3b7Z1kqc vercel env pull"
   },
   "dependencies": {
-    "@mikeallisonjs/shared-react-components": "workspace:*"
+    "@fortawesome/fontawesome-svg-core": "^6.7.2",
+    "@fortawesome/free-brands-svg-icons": "^6.7.2",
+    "@fortawesome/free-regular-svg-icons": "^6.7.2",
+    "@fortawesome/free-solid-svg-icons": "^6.7.2",
+    "@fortawesome/react-fontawesome": "^0.2.2",
+    "zustand": "^5.0.2"
   }
 }

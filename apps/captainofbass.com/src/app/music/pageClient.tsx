@@ -1,9 +1,9 @@
 'use client'
 
-import { MusicPlayerProvider } from '@mikeallisonjs/shared-react-components'
-
-import { songs } from '../_footer/footer'
 import MusicList, { MusicType } from './_musicList/musicList'
+
+import { songs } from '@/app/_footer/footer'
+import { MusicPlayerProvider } from '@/app/_footer/music-player'
 
 export default function MusicClient() {
   return (

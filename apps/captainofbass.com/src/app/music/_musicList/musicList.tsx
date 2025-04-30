@@ -1,17 +1,16 @@
 'use client'
 
-import Image from 'next/image'
-
 import {
   Table,
   TableBody,
   TableCell,
   TableRow,
-  useMusicPlayerContext
-} from '@mikeallisonjs/shared-react-components'
+} from '@mikeallisonjs/ui/components/table'
+import Image from 'next/image'
 
-import { songs } from '../../_footer/footer'
-import { GlassContainer } from '../../../components/glassContainer'
+import { songs } from '@/app/_footer/footer'
+import { useMusicPlayerContext } from '@/app/_footer/music-player/context'
+import { GlassContainer } from '@/components/glassContainer'
 
 export enum MusicType {
   Originals = 'Originals',

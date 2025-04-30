@@ -3,13 +3,11 @@
 import Link from 'next/link'
 
 import {
-  PageContainer,
-  Table,
-  TableCell,
-  TableRow
+  PageContainer
 } from '@mikeallisonjs/shared-react-components'
 
-import { GlassContainer } from '../../components/glassContainer'
+import { GlassContainer } from '@/components/glassContainer'
+import { Table, TableCell, TableRow } from '@mikeallisonjs/ui/components/table'
 
 export default function Donate() {
   return (
