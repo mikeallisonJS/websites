@@ -4,8 +4,8 @@ import Link from 'next/link'
 
 import { PageContainer } from '@mikeallisonjs/shared-react-components'
 
-import Bio from '../../components/bio/bio'
-import { GlassContainer } from '../../components/glassContainer'
+import Bio from '@/components/bio/bio'
+import { GlassContainer } from '@/components/glassContainer'
 
 export default function Epk() {
   return (

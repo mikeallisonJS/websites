@@ -1,10 +1,9 @@
+import { AuroraBackground } from '@mikeallisonjs/shared-react-components'
 import Link from 'next/link'
 
-import { AuroraBackground } from '@mikeallisonjs/shared-react-components'
-
-import { Hero } from '../components/hero'
-import { Portfolio } from '../components/portfolio'
-import { Services } from '../components/services'
+import { Hero } from '@/components/hero'
+import { Portfolio } from '@/components/portfolio'
+import { Services } from '@/components/services'
 
 export default function Component() {
   return (

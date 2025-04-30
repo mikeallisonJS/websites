@@ -12,6 +12,7 @@
     "fetch-secrets": "VERCEL_ORG_ID=team_QQB0m2nnVhvxOyCiJtHju9zQ VERCEL_PROJECT_ID=prj_yrPbgelWZ5lC3gIn7qL7CmjoiTSC vercel env pull"
   },
   "dependencies": {
-    "@mikeallisonjs/shared-react-components": "workspace:*"
+    "@tabler/icons-react": "^3.26.0",
+    "framer-motion": "^12.0.0"
   }
 }

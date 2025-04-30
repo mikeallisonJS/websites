@@ -15,14 +15,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Link from 'next/link'
 
 import {
-  PageContainer,
-  Table,
-  TableBody,
-  TableCell,
+    Table,
+    TableBody,
+    TableCell,
   TableRow
-} from '@mikeallisonjs/shared-react-components'
+} from '@mikeallisonjs/ui/components/table'
 
-import { GlassContainer } from '../../components/glassContainer'
+import { GlassContainer } from '@/components/glassContainer'
+import { PageContainer } from '@mikeallisonjs/shared-react-components'
 
 export default function Music() {
   return (
