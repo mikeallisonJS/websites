@@ -9,8 +9,7 @@
     "lint": "bun --filter \"*\" lint",
     "dev:mjs": "bun --cwd apps/mikeallisonjs.com dev",
     "dev:slt": "bun --cwd apps/sltdnb.com dev",
-    "dev:cob": "bun --cwd apps/captainofbass.com dev",
-    "dev:all": "bun --cwd apps/mikeallisonjs.com dev & bun --cwd apps/sltdnb.com dev & bun --cwd apps/captainofbass.com dev"
+    "dev:cob": "bun --cwd apps/captainofbass.com dev"
   },
   "private": true,
   "devDependencies": {
