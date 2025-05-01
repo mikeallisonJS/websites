@@ -1,6 +1,6 @@
 import {
   BentoGrid,
-  BentoGridItem,
+  BentoGridItem
 } from '@mikeallisonjs/shared-react-components'
 import { Button } from '@mikeallisonjs/ui/components/button'
 import {
@@ -24,7 +24,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import type { ReactNode } from 'react'
-
 
 const Overlay = ({
   children,
@@ -63,9 +62,7 @@ export function Portfolio() {
         </p>
       </div>
       <BentoGrid className="mx-auto max-w-4xl">
-      <Overlay
-          websiteUrl="https://freevstvault.com/"
-        >
+        <Overlay websiteUrl="https://freevstvault.com/">
           <BentoGridItem
             title="Free VST Vault"
             description="An AI powered audio plugin directory."
@@ -197,9 +194,7 @@ export function Portfolio() {
             className="md:h-[390px]"
           />
         </Overlay>
-        <Overlay
-          websiteUrl="https://captainssounds.com"
-        >
+        <Overlay websiteUrl="https://captainssounds.com">
           <BentoGridItem
             title="Captain's Sounds"
             description="A Next.js eCommerce site for music production"
