@@ -1,12 +1,56 @@
 'use client'
 
-import {
-  MusicPlayerProvider,
-  Player,
-  type Track
-} from './music-player'
+import { MusicPlayerProvider, Player, type Track } from './music-player'
 
 export const songs: Track[] = [
+  {
+    ID: 'idontwanna',
+    coverArt: '/images/albums/transitions.png',
+    title: "I Don't Wanna",
+    artist: 'Blunter S. Whompson & Captain',
+    source:
+      'https://www.mediafire.com/file_premium/jrro0qru1tblw5y/Blunter_S_Whompson_%2526_Captain_-_I_Don%2527t_Wanna.mp3/file'
+  },
+  {
+    ID: 'together',
+    coverArt: '/images/albums/transitions.png',
+    title: 'Together',
+    artist: 'Blunter S. Whompson & Captain',
+    source:
+      'https://www.mediafire.com/file_premium/t11fkjudsntejat/Blunter_S_Whompson_%2526_Captain_-_Together.mp3/file'
+  },
+  {
+    ID: 'gtfo',
+    coverArt: '/images/albums/transitions.png',
+    title: 'GTFO',
+    artist: 'Blunter S. Whompson & Captain',
+    source:
+      'https://www.mediafire.com/file_premium/8rkoz4tvebb0zqq/Blunter_S_Whompson_%2526_Captain_-_GTFO.mp3/file'
+  },
+  {
+    ID: 'didgeridont',
+    coverArt: '/images/albums/transitions.png',
+    title: 'Didgeridont',
+    artist: 'Blunter S. Whompson & Captain',
+    source:
+      'https://www.mediafire.com/file_premium/8qnqio989mu25fh/Blunter_S_Whompson_%2526_Captain_-_Didgeridont.mp3/file'
+  },
+  {
+    ID: 'painkiller',
+    coverArt: '/images/albums/transitions.png',
+    title: 'Pain Killer',
+    artist: 'Blunter S. Whompson & Captain',
+    source:
+      'https://www.mediafire.com/file_premium/3lsiyq4xtxv0pzv/Blunter_S_Whompson_%2526_Captain_-_Pain_Killer_%2528feat_Hexadevi%2529.mp3/file'
+  },
+  {
+    ID: 'angerivory',
+    coverArt: '/images/albums/broken-aux.jpg',
+    title: 'Anger & Ivory',
+    artist: 'Captain',
+    source:
+      'https://www.mediafire.com/file_premium/a371zdfth6jqhwn/Captain_-_Anger_%2526_Ivory.mp3/file'
+  },
   {
     ID: 'uebok-2024',
     coverArt: '/images/albums/uebok.png',

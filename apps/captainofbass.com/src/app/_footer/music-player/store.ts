@@ -16,6 +16,7 @@ export interface MusicStoreProps {
   repeatMode: RepeatMode
   shuffled: boolean
   volume: number
+  showBrowserAlert: boolean
 }
 export interface MusicState extends MusicStoreProps {
   closeDrawer: () => void
@@ -29,6 +30,7 @@ export interface MusicState extends MusicStoreProps {
   setRepeatMode: (repeatMode: RepeatMode) => void
   setShuffled: (shuffled: boolean) => void
   setVolume: (volume: number) => void
+  hideBrowserAlert: () => void
 }
 
 export type MusicStore = ReturnType<typeof createMusicStore>
@@ -45,7 +47,8 @@ export const createMusicStore = (initProps?: Partial<MusicStoreProps>) => {
     playlist: [],
     repeatMode: RepeatMode.NORMAL,
     shuffled: false,
-    volume: 100
+    volume: 100,
+    showBrowserAlert: false
   }
   const mergedProps = { ...DEFAULT_PROPS, ...initProps }
 
@@ -99,8 +102,27 @@ export const createMusicStore = (initProps?: Partial<MusicStoreProps>) => {
       if (audioRef == null) return
       audioRef.pause()
       audioRef.currentTime = 0
-      audioRef.src = playlist[index].source
-      if (isPlaying) audioRef.play()
+
+      // Fix TypeScript error by ensuring source exists before setting it
+      const source = playlist[index]?.source
+      if (source) {
+        audioRef.src = source
+      }
+
+      if (isPlaying && audioRef) {
+        try {
+          const playPromise = audioRef.play()
+          if (playPromise !== undefined) {
+            playPromise.catch((error) => {
+              console.error('Error playing audio:', error)
+              set({ showBrowserAlert: true })
+            })
+          }
+        } catch (error) {
+          console.error('Error playing audio:', error)
+          set({ showBrowserAlert: true })
+        }
+      }
     },
     setPlaylist: (playlist: Track[]) => set({ playlist }),
     setRepeatMode: (repeatMode: RepeatMode) => set({ repeatMode }),
@@ -119,8 +141,26 @@ export const createMusicStore = (initProps?: Partial<MusicStoreProps>) => {
     play: () => {
       const { audioRef } = get()
       if (audioRef == null) return
-      audioRef.play()
-      set({ isPlaying: true })
+
+      try {
+        const playPromise = audioRef.play()
+        if (playPromise !== undefined) {
+          playPromise.catch((error) => {
+            console.error('Error playing audio:', error)
+            set({
+              isPlaying: false,
+              showBrowserAlert: true
+            })
+          })
+        }
+        set({ isPlaying: true })
+      } catch (error) {
+        console.error('Error playing audio:', error)
+        set({
+          isPlaying: false,
+          showBrowserAlert: true
+        })
+      }
     },
     seek: (progress: number) => {
       const { audioRef } = get()
@@ -128,6 +168,7 @@ export const createMusicStore = (initProps?: Partial<MusicStoreProps>) => {
       audioRef.currentTime = progress
     },
     openDrawer: () => set({ isDrawerOpen: true }),
-    closeDrawer: () => set({ isDrawerOpen: false })
+    closeDrawer: () => set({ isDrawerOpen: false }),
+    hideBrowserAlert: () => set({ showBrowserAlert: false })
   }))
 }

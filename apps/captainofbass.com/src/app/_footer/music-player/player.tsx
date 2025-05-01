@@ -1,9 +1,14 @@
 'use client'
 
-import { Drawer, DrawerContent, DrawerTitle } from '@mikeallisonjs/ui/components/drawer'
+import {
+  Drawer,
+  DrawerContent,
+  DrawerTitle
+} from '@mikeallisonjs/ui/components/drawer'
 import { cn } from '@mikeallisonjs/ui/lib/utils'
 import { useEffect, useRef } from 'react'
 
+import BrowserCompatibilityAlert from './browser-compatibility-alert'
 import { useMusicPlayerContext } from './context'
 import Controls from './controls'
 import CoverArt from './cover-art'
@@ -44,7 +49,9 @@ export default function Player({
     setShuffled,
     setCurrentTrackIndex,
     setVolume,
-    volume
+    volume,
+    showBrowserAlert,
+    hideBrowserAlert
   } = useMusicPlayerContext((s) => s)
   const audioRef = useRef<HTMLAudioElement>(null)
 
@@ -66,7 +73,18 @@ export default function Player({
         'bg-white/60 fixed overflow-hidden'
       )}
     >
-      <audio ref={audioRef} src={playlist?.[0].source} />
+      <audio
+        ref={audioRef}
+        src={
+          playlist && playlist.length > 0 && playlist[0] && playlist[0].source
+            ? playlist[0].source
+            : ''
+        }
+      />
+      <BrowserCompatibilityAlert
+        isOpen={showBrowserAlert}
+        onClose={hideBrowserAlert}
+      />
       <div
         className={cn(
           'flex w-full flex-row flex-nowrap items-center justify-between',
@@ -119,7 +137,9 @@ export default function Player({
         onClose={closeDrawer}
         modal={false}
       >
-        <DrawerContent className={cn('z-20 md:z-0 md:pb-[62px]', className, 'bg-white/60')}>
+        <DrawerContent
+          className={cn('z-20 md:z-0 md:pb-[62px]', className, 'bg-white/60')}
+        >
           <DrawerTitle>Playlist</DrawerTitle>
           <div className="flex pt-2 md:hidden">
             <div
