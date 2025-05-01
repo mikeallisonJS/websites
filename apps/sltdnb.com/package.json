@@ -12,6 +12,7 @@
     "fetch-secrets": "VERCEL_ORG_ID=team_QQB0m2nnVhvxOyCiJtHju9zQ VERCEL_PROJECT_ID=prj_Pyy5aEbpZLRa3w4BDoI4iYFLfh1n vercel env pull"
   },
   "dependencies": {
+    "babel-plugin-react-compiler": "^19.1.0-rc.1",
     "geist": "^1.3.1"
   }
 }
