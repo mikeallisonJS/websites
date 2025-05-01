@@ -1,10 +1,11 @@
-@import "tailwindcss";
-@import "tw-animate-css";
+@import 'tailwindcss';
+@import 'tw-animate-css';
 
-@import "../../../../packages/ui/src/styles/globals.css";
+@import '../../../../packages/ui/src/styles/globals.css';
+@import '../../../../packages/shared-react-components/globals.css';
 
 @supports (font: -apple-system-body) and (-webkit-appearance: none) {
-  img[loading="lazy"] {
+  img[loading='lazy'] {
     clip-path: inset(0.6px);
   }
 }
@@ -40,7 +41,7 @@ body {
   font-family: inherit;
   line-height: inherit;
   margin: 0;
-  background: url("/images/captain-1024.webp");
+  background: url('/images/captain-1024.webp');
   background-color: rgb(18, 18, 18);
   background-position-x: 51%;
   background-position-y: 50%;
