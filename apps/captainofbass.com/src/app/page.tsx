@@ -2,6 +2,7 @@ import { PastEvents } from '@mikeallisonjs/shared-react-components'
 import Image from 'next/image'
 
 import Bio from '../components/bio/bio'
+import { YouTubeVideo } from '../components/youtubeVideo'
 
 const images = [
   'dystopia-24-3.jpg',
@@ -54,19 +55,26 @@ export default function Index() {
   return (
     <div className="mx-[5vw]">
       <div className="mt-0 mb-16 flex w-[90vw] flex-col justify-center gap-8">
-        <div className="flex w-[100%] justify-center">
-          <Image
-            src="/images/cpt-border.png"
-            alt="logo"
-            width={617}
-            height={181}
-            priority
-            style={{
-              maxWidth: '90vw',
-              height: '22vh',
-              marginTop: 'calc(100vh - 24vh - 130px)'
-            }}
-          />
+        <div
+          className="flex w-full flex-col items-center justify-center"
+          style={{ height: '100vh' }}
+        >
+          <div className="w-full mb-6">
+            <YouTubeVideo videoId="3YIr_vl4Hlc" />
+          </div>
+          <div className="flex w-[100%] justify-center -mt-[15px]">
+            <Image
+              src="/images/cpt-border.png"
+              alt="logo"
+              width={617}
+              height={181}
+              priority
+              style={{
+                maxWidth: '90vw',
+                height: '18vh'
+              }}
+            />
+          </div>
         </div>
         <Bio />
         <PastEvents images={images} />
