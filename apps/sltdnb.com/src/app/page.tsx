@@ -5,6 +5,9 @@ import {
 import Image from 'next/image'
 
 const images = [
+  'sltdnb-25-7.png',
+  'sltdnb-25-5.png',
+  'sltdnb-24-6.png',
   'sltdnb-24-1.png',
   'sltdnb-23-12.png',
   'sltdnb-23-9.png',
