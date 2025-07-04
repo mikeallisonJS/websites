@@ -11,6 +11,15 @@ const nextConfig = {
   experimental: {
     reactCompiler: true
   },
+  async redirects() {
+    return [
+      {
+        source: '/bencollette',
+        destination: 'https://www.facebook.com/events/9612278905545399',
+        permanent: false
+      }
+    ]
+  },
   async rewrites() {
     return [
       {
