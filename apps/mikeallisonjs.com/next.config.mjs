@@ -9,7 +9,8 @@ const nextConfig = {
     ignoreDuringBuilds: process.env.NODE_ENV === 'development'
   },
   experimental: {
-    reactCompiler: true
+    reactCompiler: true,
+    ppr: 'incremental'
   },
   async rewrites() {
     return [
