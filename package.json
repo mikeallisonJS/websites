@@ -24,7 +24,7 @@
     "@typescript-eslint/parser": "^8.26.1",
     "@mikeallisonjs/eslint-config": "workspace:*",
     "@mikeallisonjs/typescript-config": "workspace:*",
-    "dotenv-cli": "^8.0.0",
+    "dotenv-cli": "^9.0.0",
     "postcss": "^8.4.49",
     "prettier": "^3.5.3",
     "sharp": "^0.34.0",
