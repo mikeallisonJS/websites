@@ -37,7 +37,7 @@
   "dependencies": {
     "@mikeallisonjs/shared-react-components": "workspace:*",
     "@mikeallisonjs/ui": "workspace:*",
-    "@sentry/nextjs": "^9.0.0",
+    "@sentry/nextjs": "^10.0.0",
     "@sentry/utils": "^8.47.0",
     "next": "^15.4.0-canary.128",
     "react": "19.1.1",
