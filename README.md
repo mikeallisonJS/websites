@@ -14,12 +14,11 @@ This is a bun monorepo for my personal websites. Everything is licensed under th
 - Framework: [Next.js](https://nextjs.org)
 - Package Manager: [bun](https://bun.sh)
 - Deployment: [Vercel](https://vercel.com)
-- IDE: [VSCode with devcontainers](https://code.visualstudio.com)
+- IDE: [Cursor](https://cursor.com)
 - Styles: [Tailwind](https://tailwindcss.com)
 - Components: [ShadCN](https://ui.shadcn.com)
 - Analytics: [Posthog](https://posthog.com)
 - Logging: [Sentry](https://sentry.io)
-- Authentication: [Clerk](https://clerk.com)
 - Formatting: [ESLint](https://eslint.org)
 - Linting [Prettier](https://prettier.io)
 

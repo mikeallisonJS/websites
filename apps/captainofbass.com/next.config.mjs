@@ -1,16 +1,11 @@
 import { withSentryConfig } from '@sentry/nextjs'
 
 const nextConfig = {
+  cacheComponents: true,
   typescript: {
     ignoreBuildErrors: process.env.NODE_ENV === 'development'
   },
-  eslint: {
-    ignoreDuringBuilds: process.env.NODE_ENV === 'development'
-  },
-  experimental: {
-    reactCompiler: true,
-    ppr: 'incremental'
-  },
+  reactCompiler: true,
   async rewrites() {
     return [
       {

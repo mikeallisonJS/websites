@@ -1,8 +1,15 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 
 export function Hero() {
+  const [yearsExperience, setYearsExperience] = useState(24)
+
+  useEffect(() => {
+    setYearsExperience(new Date().getFullYear() - 2000)
+  }, [])
+
   return (
     <motion.div
       initial={{ opacity: 0.0, y: 40 }}
@@ -22,9 +29,8 @@ export function Hero() {
               <span className="text-secondary">JS</span>
             </h1>
             <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
-              Over {new Date().getFullYear() - 2000} years experience designing
-              cutting edge software solutions for global industry leading
-              businesses.
+              Over {yearsExperience} years experience designing cutting edge
+              software solutions for global industry leading businesses.
             </p>
           </div>
         </div>
