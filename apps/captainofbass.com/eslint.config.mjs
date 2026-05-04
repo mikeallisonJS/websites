@@ -8,8 +8,7 @@ export default [
       '@typescript-eslint/no-unused-vars': 'warn',
       '@typescript-eslint/no-explicit-any': 'warn',
       'react-hooks/rules-of-hooks': 'warn',
-      '@next/next/no-html-link-for-pages': 'warn',
-      'react/no-unescaped-entities': 'warn'
+      '@next/next/no-html-link-for-pages': 'warn'
     }
   }
 ]
