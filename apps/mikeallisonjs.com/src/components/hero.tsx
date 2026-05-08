@@ -11,30 +11,101 @@ export function Hero() {
   }, [])
 
   return (
-    <motion.div
-      initial={{ opacity: 0.0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{
-        delay: 0.1,
-        duration: 0.8,
-        ease: 'easeInOut'
-      }}
-      className="relative flex flex-col items-center justify-center gap-4 px-4"
-    >
-      <div className="container px-4 md:px-6">
-        <div className="flex flex-col items-center space-y-4 text-center">
-          <div className="space-y-2">
-            <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-9xl/none">
-              <span className="text-primary">mikeallison</span>
-              <span className="text-secondary">JS</span>
-            </h1>
-            <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
-              Over {yearsExperience} years experience designing cutting edge
-              software solutions for global industry leading businesses.
-            </p>
-          </div>
+    <div className="relative isolate w-full overflow-hidden">
+      {/* Glow orbs */}
+      <div
+        aria-hidden
+        className="orb-a pointer-events-none absolute -left-32 -top-24 h-[28rem] w-[28rem] rounded-full opacity-60 blur-3xl"
+        style={{
+          background:
+            'radial-gradient(circle, rgba(140, 147, 251, 0.45) 0%, rgba(140, 147, 251, 0) 70%)'
+        }}
+      />
+      <div
+        aria-hidden
+        className="orb-b pointer-events-none absolute -right-24 top-32 h-[26rem] w-[26rem] rounded-full opacity-50 blur-3xl"
+        style={{
+          background:
+            'radial-gradient(circle, rgba(141, 214, 255, 0.4) 0%, rgba(141, 214, 255, 0) 70%)'
+        }}
+      />
+      <div
+        aria-hidden
+        className="orb-c pointer-events-none absolute bottom-0 left-1/3 h-[22rem] w-[22rem] rounded-full opacity-40 blur-3xl"
+        style={{
+          background:
+            'radial-gradient(circle, rgba(95, 237, 131, 0.25) 0%, rgba(95, 237, 131, 0) 70%)'
+        }}
+      />
+
+      {/* Grid backdrop */}
+      <div
+        aria-hidden
+        className="grid-backdrop pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_75%)]"
+      />
+
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: 'easeOut' }}
+        className="relative mx-auto flex min-h-[78vh] max-w-5xl flex-col items-center justify-center px-6 py-24 text-center"
+      >
+        {/* Status pill */}
+        <div className="mb-10 inline-flex items-center gap-2 rounded-full border border-[color:var(--subtle-gray)] bg-white/[0.04] px-4 py-1.5 font-mono text-xs text-[color:var(--ui-gray)] backdrop-blur-sm">
+          <span className="relative flex h-2 w-2">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[color:var(--neon-green)] opacity-60" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-[color:var(--neon-green)]" />
+          </span>
+          <span className="text-[color:var(--faded-silver)]">
+            available for new builds
+          </span>
         </div>
-      </div>
-    </motion.div>
+
+        {/* Wordmark */}
+        <h1 className="text-balance text-5xl font-semibold tracking-tight sm:text-7xl md:text-8xl lg:text-[8.5rem]">
+          <span className="text-[color:var(--polar-blue)]">mikeallison</span>
+          <span className="text-[color:var(--neon-green)]">JS</span>
+          <span
+            className="cursor-blink ml-1 inline-block h-[0.85em] w-[0.08em] translate-y-[0.08em] bg-[color:var(--neon-green)] align-baseline"
+            aria-hidden
+          />
+        </h1>
+
+        {/* Tagline */}
+        <p className="mt-6 max-w-2xl text-pretty text-lg leading-relaxed text-[color:var(--faded-silver)] sm:text-xl">
+          Over{' '}
+          <span className="text-[color:var(--polar-blue)]">
+            {yearsExperience} years
+          </span>{' '}
+          designing cutting-edge software for global, industry-leading
+          businesses.
+        </p>
+
+        {/* Terminal command */}
+        <div className="mt-10 inline-flex items-center gap-2 rounded-md border border-[color:var(--subtle-gray)] bg-black/40 px-4 py-2 font-mono text-sm shadow-[0_0_0_1px_rgba(140,147,251,0.05),0_8px_32px_-12px_rgba(140,147,251,0.4)] backdrop-blur-sm">
+          <span className="text-[color:var(--cosmic-violet)]">~</span>
+          <span className="text-[color:var(--neon-green)]">$</span>
+          <span className="text-[color:var(--ui-gray)]">cat</span>
+          <span className="text-[color:var(--faded-silver)]">portfolio.md</span>
+        </div>
+
+        {/* CTA hint */}
+        <a
+          href="#portfolio"
+          className="group mt-10 flex flex-col items-center gap-2 text-xs font-medium uppercase tracking-[0.2em] text-[color:var(--ui-gray)] transition-colors hover:text-[color:var(--polar-blue)]"
+        >
+          <span>scroll</span>
+          <svg
+            className="h-4 w-4 transition-transform group-hover:translate-y-1"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="m5 9 7 7 7-7" />
+          </svg>
+        </a>
+      </motion.div>
+    </div>
   )
 }

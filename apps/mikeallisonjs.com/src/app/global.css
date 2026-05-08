@@ -10,9 +10,74 @@
   }
 }
 
+/* Refero "midnight command center" palette */
+:root,
+.dark {
+  --deep-space: #0d1117;
+  --midnight-ink: #000000;
+  --code-canvas: #151a22;
+  --subtle-gray: #21262d;
+  --ash-gray: #283041;
+
+  --ghost-white: #ffffff;
+  --faded-silver: #f0f6fc;
+  --ui-gray: #9198a1;
+  --muted-text: #7c8980;
+
+  --polar-blue: #8dd6ff;
+  --spring-green: #08872b;
+  --cosmic-violet: #8c93fb;
+  --neon-green: #5fed83;
+  --interface-blue: #1f6feb;
+
+  /* Override shadcn tokens */
+  --background: var(--deep-space);
+  --foreground: var(--ghost-white);
+  --card: var(--code-canvas);
+  --card-foreground: var(--ghost-white);
+  --popover: var(--code-canvas);
+  --popover-foreground: var(--ghost-white);
+  --primary: var(--polar-blue);
+  --primary-foreground: var(--deep-space);
+  --secondary: var(--spring-green);
+  --secondary-foreground: var(--ghost-white);
+  --muted: var(--subtle-gray);
+  --muted-foreground: var(--ui-gray);
+  --accent: var(--cosmic-violet);
+  --accent-foreground: var(--deep-space);
+  --border: var(--subtle-gray);
+  --input: var(--subtle-gray);
+  --ring: var(--polar-blue);
+  --radius: 0.375rem;
+}
+
+@theme inline {
+  --font-sans:
+    var(--font-mona-sans), Inter, ui-sans-serif, system-ui, sans-serif;
+  --font-mono:
+    var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --color-deep-space: var(--deep-space);
+  --color-midnight-ink: var(--midnight-ink);
+  --color-code-canvas: var(--code-canvas);
+  --color-subtle-gray: var(--subtle-gray);
+  --color-ash-gray: var(--ash-gray);
+  --color-ghost-white: var(--ghost-white);
+  --color-faded-silver: var(--faded-silver);
+  --color-ui-gray: var(--ui-gray);
+  --color-muted-text: var(--muted-text);
+  --color-polar-blue: var(--polar-blue);
+  --color-spring-green: var(--spring-green);
+  --color-cosmic-violet: var(--cosmic-violet);
+  --color-neon-green: var(--neon-green);
+  --color-interface-blue: var(--interface-blue);
+}
+
 body {
-  font-family: var(--font-arimo), sans-serif;
-  background-color: #000;
+  font-family: var(--font-mona-sans), Inter, sans-serif;
+  background-color: var(--deep-space);
+  color: var(--ghost-white);
+  font-feature-settings: 'ss01', 'ss02', 'cv11';
 }
 
 h1,
@@ -21,21 +86,77 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-arimo), sans-serif;
+  font-family: var(--font-mona-sans), Inter, sans-serif;
+  letter-spacing: -0.02em;
 }
 
-@theme inline {
-  --animate-aurora: aurora 60s linear infinite;
-  @keyframes aurora {
-    from {
-      background-position:
-        50% 50%,
-        50% 50%;
-    }
-    to {
-      background-position:
-        350% 50%,
-        350% 50%;
-    }
+code,
+pre,
+.font-mono {
+  font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
+}
+
+/* Blinking terminal cursor */
+@keyframes blink {
+  0%,
+  49% {
+    opacity: 1;
   }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.cursor-blink {
+  animation: blink 1.05s steps(1) infinite;
+}
+
+/* Slow drifting glow orbs for the hero */
+@keyframes drift-a {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(40px, -30px, 0) scale(1.05);
+  }
+}
+@keyframes drift-b {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(-50px, 40px, 0) scale(1.1);
+  }
+}
+@keyframes drift-c {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(30px, 50px, 0) scale(0.95);
+  }
+}
+
+.orb-a {
+  animation: drift-a 18s ease-in-out infinite;
+}
+.orb-b {
+  animation: drift-b 22s ease-in-out infinite;
+}
+.orb-c {
+  animation: drift-c 26s ease-in-out infinite;
+}
+
+/* Faint dot grid backdrop */
+.grid-backdrop {
+  background-image: radial-gradient(
+    circle at 1px 1px,
+    rgba(255, 255, 255, 0.06) 1px,
+    transparent 0
+  );
+  background-size: 24px 24px;
 }

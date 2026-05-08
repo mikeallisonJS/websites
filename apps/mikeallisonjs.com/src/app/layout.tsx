@@ -1,14 +1,22 @@
 import { CSPostHogProvider } from '@mikeallisonjs/shared-react-components'
 import { cn } from '@mikeallisonjs/ui/lib/utils'
-import { Arimo } from 'next/font/google'
+import { Mona_Sans, JetBrains_Mono } from 'next/font/google'
 import './global.css'
 
 import Header from '../components/header'
 
-const arimo = Arimo({
+const monaSans = Mona_Sans({
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-arimo'
+  variable: '--font-mona-sans',
+  weight: ['400', '500', '600', '700', '800']
+})
+
+const jetBrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-jetbrains-mono',
+  weight: ['400', '500', '600']
 })
 
 export const metadata = {
@@ -26,7 +34,14 @@ export default function RootLayout({
 }) {
   return (
     <CSPostHogProvider>
-      <html lang="en" className={cn('dark scroll-smooth', arimo.variable)}>
+      <html
+        lang="en"
+        className={cn(
+          'dark scroll-smooth',
+          monaSans.variable,
+          jetBrainsMono.variable
+        )}
+      >
         <body>
           <Header />
           {children}
