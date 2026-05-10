@@ -138,13 +138,6 @@ export function Portfolio() {
   return (
     <div className="container mx-auto max-w-7xl px-4 md:px-6">
       <header className="mb-12 flex flex-col items-start gap-3">
-        <div className="flex items-center gap-2 font-mono text-xs text-[color:var(--ui-gray)]">
-          <span className="text-[color:var(--neon-green)]">$</span>
-          <span>ls ./projects</span>
-          <span className="text-[color:var(--muted-text)]">
-            — {projects.length} entries
-          </span>
-        </div>
         <h2 className="text-4xl font-semibold tracking-tight text-[color:var(--ghost-white)] sm:text-5xl md:text-6xl">
           Portfolio
         </h2>

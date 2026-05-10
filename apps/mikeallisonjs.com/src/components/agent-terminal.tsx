@@ -309,7 +309,7 @@ export function AgentTerminal() {
   }, [busy])
 
   return (
-    <div className="w-full max-w-2xl overflow-hidden rounded-2xl border border-[color:var(--subtle-gray)] bg-black/50 text-left shadow-[0_0_60px_-20px_rgba(140,147,251,0.5)] backdrop-blur-md">
+    <div className="mx-auto flex min-h-0 w-full max-w-[80rem] flex-1 flex-col overflow-hidden rounded-2xl border border-[color:var(--subtle-gray)] bg-black/50 text-left shadow-[0_0_60px_-20px_rgba(140,147,251,0.5)] backdrop-blur-md">
       {/* Titlebar */}
       <div className="relative flex items-center border-b border-[color:var(--subtle-gray)] bg-black/50 px-4 py-2.5 font-mono text-xs">
         <div className="flex gap-1.5">
@@ -340,7 +340,7 @@ export function AgentTerminal() {
       {/* Transcript */}
       <div
         ref={scrollRef}
-        className="flex max-h-[26rem] min-h-[14rem] flex-col gap-3 overflow-y-auto px-4 py-4 font-mono text-[13px] leading-relaxed"
+        className="flex flex-1 min-h-0 flex-col gap-3 overflow-y-auto px-4 py-4 font-mono text-[13px] leading-relaxed"
       >
         {turns.length === 0 && (
           <div className="space-y-1.5 text-[color:var(--ui-gray)]">

@@ -13,7 +13,7 @@ export function Hero() {
   }, [])
 
   return (
-    <div className="relative isolate w-full overflow-hidden">
+    <div className="relative isolate flex min-h-dvh w-full flex-col overflow-hidden">
       {/* Glow orbs */}
       <div
         aria-hidden
@@ -50,22 +50,11 @@ export function Hero() {
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: 'easeOut' }}
-        className="relative mx-auto flex max-w-5xl flex-col items-center px-6 pb-16 pt-8 text-center md:pt-10"
+        className="relative mx-auto flex flex-1 max-w-[80rem] flex-col items-center px-6 pb-16 pt-8 text-center md:pt-10"
       >
         {/* Interactive agent terminal */}
-        <div className="w-full">
+        <div className="flex min-h-0 w-full flex-1 flex-col">
           <AgentTerminal />
-        </div>
-
-        {/* Status pill */}
-        <div className="mt-10 inline-flex items-center gap-2 rounded-full border border-[color:var(--subtle-gray)] bg-white/[0.04] px-4 py-1.5 font-mono text-xs text-[color:var(--ui-gray)] backdrop-blur-sm">
-          <span className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[color:var(--neon-green)] opacity-60" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-[color:var(--neon-green)]" />
-          </span>
-          <span className="text-[color:var(--faded-silver)]">
-            available for new builds
-          </span>
         </div>
 
         {/* Tagline */}
@@ -81,7 +70,7 @@ export function Hero() {
         {/* CTA hint */}
         <a
           href="#portfolio"
-          className="group mt-10 flex flex-col items-center gap-2 text-xs font-medium uppercase tracking-[0.2em] text-[color:var(--ui-gray)] transition-colors hover:text-[color:var(--polar-blue)]"
+          className="group mt-auto flex flex-col items-center gap-2 pt-10 text-xs font-medium uppercase tracking-[0.2em] text-[color:var(--ui-gray)] transition-colors hover:text-[color:var(--polar-blue)]"
         >
           <span>scroll</span>
           <svg
