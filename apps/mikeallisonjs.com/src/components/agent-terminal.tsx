@@ -110,6 +110,40 @@ function renderInlineLinks(text: string) {
   })
 }
 
+function useSpeech(onTranscript: (text: string) => void) {
+  const [listening, setListening] = useState(false)
+  const recogRef = useRef<SpeechRecognition | null>(null)
+
+  const supported = typeof window !== 'undefined' &&
+    ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window)
+
+  const toggle = useCallback(() => {
+    if (!supported) return
+    if (listening) {
+      recogRef.current?.stop()
+      return
+    }
+    const SR = (window.SpeechRecognition ?? (window as unknown as { webkitSpeechRecognition: typeof SpeechRecognition }).webkitSpeechRecognition)
+    const r = new SR()
+    r.lang = 'en-US'
+    r.interimResults = false
+    r.maxAlternatives = 1
+    r.onstart = () => setListening(true)
+    r.onend = () => setListening(false)
+    r.onerror = () => setListening(false)
+    r.onresult = (e) => {
+      const text = e.results[0]?.[0]?.transcript ?? ''
+      if (text) onTranscript(text)
+    }
+    recogRef.current = r
+    r.start()
+  }, [listening, onTranscript, supported])
+
+  useEffect(() => () => recogRef.current?.stop(), [])
+
+  return { listening, supported, toggle }
+}
+
 export function AgentTerminal() {
   const [turns, setTurns] = useState<Turn[]>([])
   const [input, setInput] = useState('')
@@ -287,6 +321,13 @@ export function AgentTerminal() {
     [busy, transcript]
   )
 
+  const { listening, supported: speechSupported, toggle: toggleSpeech } = useSpeech(
+    useCallback((text: string) => {
+      const combined = (input ? `${input} ${text}` : text).trim()
+      void send(combined)
+    }, [input, send])
+  )
+
   const onSubmit = (e: FormEvent) => {
     e.preventDefault()
     void send(input)
@@ -394,13 +435,30 @@ export function AgentTerminal() {
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={onKeyDown}
           placeholder={
-            busy ? '' : 'ask about Mike — projects, jobs, skills'
+            listening ? 'listening…' : busy ? '' : 'ask about Mike — projects, jobs, skills'
           }
           disabled={busy}
           className="flex-1 bg-transparent text-[color:var(--ghost-white)] placeholder:text-[color:var(--muted-text)] focus:outline-none disabled:opacity-60"
           autoComplete="off"
           spellCheck={false}
         />
+        {speechSupported && (
+          <button
+            type="button"
+            onClick={toggleSpeech}
+            disabled={busy}
+            aria-label={listening ? 'Stop listening' : 'Speak'}
+            className="shrink-0 text-[color:var(--muted-text)] transition-colors hover:text-[color:var(--ghost-white)] disabled:opacity-40"
+          >
+            <svg
+              className={`h-4 w-4 transition-colors ${listening ? 'animate-pulse text-[color:var(--neon-green)]' : ''}`}
+              viewBox="0 0 24 24"
+              fill="currentColor"
+            >
+              <path d="M12 1a4 4 0 0 1 4 4v7a4 4 0 0 1-8 0V5a4 4 0 0 1 4-4zm-1 18.93V22h2v-2.07A8.001 8.001 0 0 0 20 12h-2a6 6 0 0 1-12 0H4a8.001 8.001 0 0 0 7 7.93z" />
+            </svg>
+          </button>
+        )}
       </form>
     </div>
   )
