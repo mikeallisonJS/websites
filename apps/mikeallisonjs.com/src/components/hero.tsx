@@ -3,6 +3,8 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 
+import { AgentTerminal } from './agent-terminal'
+
 export function Hero() {
   const [yearsExperience, setYearsExperience] = useState(24)
 
@@ -48,10 +50,15 @@ export function Hero() {
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: 'easeOut' }}
-        className="relative mx-auto flex min-h-[78vh] max-w-5xl flex-col items-center justify-center px-6 py-24 text-center"
+        className="relative mx-auto flex max-w-5xl flex-col items-center px-6 pb-16 pt-8 text-center md:pt-10"
       >
+        {/* Interactive agent terminal */}
+        <div className="w-full">
+          <AgentTerminal />
+        </div>
+
         {/* Status pill */}
-        <div className="mb-10 inline-flex items-center gap-2 rounded-full border border-[color:var(--subtle-gray)] bg-white/[0.04] px-4 py-1.5 font-mono text-xs text-[color:var(--ui-gray)] backdrop-blur-sm">
+        <div className="mt-10 inline-flex items-center gap-2 rounded-full border border-[color:var(--subtle-gray)] bg-white/[0.04] px-4 py-1.5 font-mono text-xs text-[color:var(--ui-gray)] backdrop-blur-sm">
           <span className="relative flex h-2 w-2">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[color:var(--neon-green)] opacity-60" />
             <span className="relative inline-flex h-2 w-2 rounded-full bg-[color:var(--neon-green)]" />
@@ -61,33 +68,15 @@ export function Hero() {
           </span>
         </div>
 
-        {/* Wordmark */}
-        <h1 className="text-balance text-5xl font-semibold tracking-tight sm:text-7xl md:text-8xl lg:text-[8.5rem]">
-          <span className="text-[color:var(--polar-blue)]">mikeallison</span>
-          <span className="text-[color:var(--neon-green)]">JS</span>
-          <span
-            className="cursor-blink ml-1 inline-block h-[0.85em] w-[0.08em] translate-y-[0.08em] bg-[color:var(--neon-green)] align-baseline"
-            aria-hidden
-          />
-        </h1>
-
         {/* Tagline */}
-        <p className="mt-6 max-w-2xl text-pretty text-lg leading-relaxed text-[color:var(--faded-silver)] sm:text-xl">
+        <h1 className="mt-6 max-w-3xl text-balance text-pretty text-2xl font-medium leading-snug text-[color:var(--faded-silver)] sm:text-3xl md:text-4xl">
           Over{' '}
           <span className="text-[color:var(--polar-blue)]">
             {yearsExperience} years
           </span>{' '}
           designing cutting-edge software for global, industry-leading
           businesses.
-        </p>
-
-        {/* Terminal command */}
-        <div className="mt-10 inline-flex items-center gap-2 rounded-md border border-[color:var(--subtle-gray)] bg-black/40 px-4 py-2 font-mono text-sm shadow-[0_0_0_1px_rgba(140,147,251,0.05),0_8px_32px_-12px_rgba(140,147,251,0.4)] backdrop-blur-sm">
-          <span className="text-[color:var(--cosmic-violet)]">~</span>
-          <span className="text-[color:var(--neon-green)]">$</span>
-          <span className="text-[color:var(--ui-gray)]">cat</span>
-          <span className="text-[color:var(--faded-silver)]">portfolio.md</span>
-        </div>
+        </h1>
 
         {/* CTA hint */}
         <a

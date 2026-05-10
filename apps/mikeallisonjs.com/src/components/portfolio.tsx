@@ -20,194 +20,41 @@ import {
 import Image from 'next/image'
 import Link from 'next/link'
 
-import type { ReactNode } from 'react'
+import type { ComponentType } from 'react'
 
-type Project = {
-  slug: string
-  title: string
-  description: string
-  image: string
-  websiteUrl: string
-  githubUrl?: string
-  stack: ReactNode
-  tags: string[]
+import { projects, type ProjectData } from '@/lib/agent/projects'
+
+const iconMap: Record<string, ComponentType<{ size?: number }>> = {
+  BrandAlgolia: IconBrandAlgolia,
+  BrandAngular: IconBrandAngular,
+  BrandAws: IconBrandAws,
+  BrandGoogle: IconBrandGoogle,
+  BrandGraphql: IconBrandGraphql,
+  BrandGumroad: IconBrandGumroad,
+  BrandNextjs: IconBrandNextjs,
+  BrandNodejs: IconBrandNodejs,
+  BrandReact: IconBrandReact,
+  BrandTerraform: IconBrandTerraform,
+  BrandTypescript: IconBrandTypescript,
+  BrandVercel: IconBrandVercel,
+  BrandWordpress: IconBrandWordpress,
+  Coffee: IconCoffee,
+  Diamond: IconDiamond
 }
 
-const projects: Project[] = [
-  {
-    slug: 'freevstvault',
-    title: 'Free VST Vault',
-    description: 'An AI-powered audio plugin directory.',
-    image: '/images/freevstvault.png',
-    websiteUrl: 'https://freevstvault.com/',
-    stack: (
-      <>
-        <IconBrandNextjs size={18} />
-        <IconBrandNodejs size={18} />
-        <IconBrandTypescript size={18} />
-        <IconBrandVercel size={18} />
-        <IconBrandGoogle size={18} />
-      </>
-    ),
-    tags: ['next', 'ai', 'vercel']
-  },
-  {
-    slug: 'nextsteps',
-    title: 'NextSteps',
-    description:
-      'A Next.js site connecting visitors to Jesusfilm content through engaging visual journeys.',
-    image: '/images/nextsteps.jpeg',
-    websiteUrl: 'https://nextstep.is/',
-    githubUrl: 'https://github.com/JesusFilm/core',
-    stack: (
-      <>
-        <IconBrandNextjs size={18} />
-        <IconBrandNodejs size={18} />
-        <IconBrandGraphql size={18} />
-        <IconBrandTypescript size={18} />
-        <IconBrandVercel size={18} />
-        <IconBrandTerraform size={18} />
-      </>
-    ),
-    tags: ['next', 'graphql', 'terraform']
-  },
-  {
-    slug: 'nextsteps-admin',
-    title: 'NextSteps Admin',
-    description:
-      'Empowering content managers to author new visual journeys for visitors.',
-    image: '/images/nextsteps-admin.jpeg',
-    websiteUrl: 'https://admin.nextstep.is/',
-    githubUrl: 'https://github.com/JesusFilm/core',
-    stack: (
-      <>
-        <IconBrandNextjs size={18} />
-        <IconBrandNodejs size={18} />
-        <IconBrandGraphql size={18} />
-        <IconBrandTypescript size={18} />
-        <IconBrandAws size={18} />
-        <IconBrandTerraform size={18} />
-      </>
-    ),
-    tags: ['next', 'aws', 'graphql']
-  },
-  {
-    slug: 'jfm-watch',
-    title: 'Jesusfilm Watch',
-    description:
-      'Showcasing Jesusfilm videos in an easy-to-use, AI-searchable content library.',
-    image: '/images/jfm-watch.png',
-    websiteUrl: 'https://jesusfilm.org/watch',
-    githubUrl: 'https://github.com/JesusFilm/core',
-    stack: (
-      <>
-        <IconBrandNextjs size={18} />
-        <IconBrandNodejs size={18} />
-        <IconBrandGraphql size={18} />
-        <IconBrandTypescript size={18} />
-        <IconBrandVercel size={18} />
-        <IconBrandAlgolia size={18} />
-      </>
-    ),
-    tags: ['next', 'algolia', 'video']
-  },
-  {
-    slug: 'captainssounds',
-    title: "Captain's Sounds",
-    description: 'A Next.js eCommerce site for music production.',
-    image: '/images/captainssounds.jpeg',
-    websiteUrl: 'https://captainssounds.com',
-    stack: (
-      <>
-        <IconBrandNextjs size={18} />
-        <IconBrandGraphql size={18} />
-        <IconBrandTypescript size={18} />
-        <IconBrandVercel size={18} />
-        <IconBrandGumroad size={18} />
-        <IconBrandGoogle size={18} />
-      </>
-    ),
-    tags: ['next', 'ecommerce', 'audio']
-  },
-  {
-    slug: 'captainofbass',
-    title: 'captainofbass.com',
-    description: 'A Next.js site for music artist Captain (my music project).',
-    image: '/images/captainofbass.png',
-    websiteUrl: 'https://captainofbass.com',
-    githubUrl: 'https://github.com/mikeallisonJS/websites',
-    stack: (
-      <>
-        <IconBrandNextjs size={18} />
-        <IconBrandTypescript size={18} />
-        <IconBrandVercel size={18} />
-      </>
-    ),
-    tags: ['next', 'music']
-  },
-  {
-    slug: 'pbmtv',
-    title: 'PBMTV',
-    description:
-      'Public Broadcasting Music Television — a non-profit broadcast network.',
-    image: '/images/pbmtv.png',
-    websiteUrl: 'https://pbmtv.org',
-    stack: (
-      <>
-        <IconBrandReact size={18} />
-        <IconBrandNodejs size={18} />
-        <IconBrandWordpress size={18} />
-      </>
-    ),
-    tags: ['react', 'wordpress']
-  },
-  {
-    slug: 'mpdx',
-    title: 'MPDX',
-    description: 'An open-source solution for fundraising and donor management.',
-    image: '/images/mpdx.png',
-    websiteUrl: 'https://mpdx.org',
-    githubUrl: 'https://github.com/CruGlobal/mpdx-react',
-    stack: (
-      <>
-        <IconBrandAngular size={18} />
-        <IconDiamond size={18} />
-      </>
-    ),
-    tags: ['angular', 'ruby', 'oss']
-  },
-  {
-    slug: 'compass',
-    title: 'Compass Learning',
-    description: 'Nationwide online learning platforms for K-12 students.',
-    image: '/images/compass.png',
-    websiteUrl: 'https://edgenuity.com',
-    stack: (
-      <>
-        <IconBrandAngular size={18} />
-      </>
-    ),
-    tags: ['angular', 'edtech']
-  },
-  {
-    slug: 'agilix',
-    title: 'Agilix',
-    description:
-      'Online learning platform powering countless learning and test-taking solutions.',
-    image: '/images/agilix.png',
-    websiteUrl: 'https://agilix.com',
-    stack: (
-      <>
-        <IconBrandAngular size={18} />
-        <IconBrandNodejs size={18} />
-        <IconCoffee size={18} />
-      </>
-    ),
-    tags: ['angular', 'java', 'edtech']
-  }
-]
+function StackIcons({ stack }: { stack: string[] }) {
+  return (
+    <>
+      {stack.map((name) => {
+        const Icon = iconMap[name]
+        if (!Icon) return null
+        return <Icon key={name} size={18} />
+      })}
+    </>
+  )
+}
 
-function ProjectCard({ project }: { project: Project }) {
+function ProjectCard({ project }: { project: ProjectData }) {
   return (
     <article className="group relative flex flex-col overflow-hidden rounded-2xl border border-[color:var(--subtle-gray)] bg-white/[0.03] backdrop-blur-sm transition-all duration-300 hover:border-[color:var(--cosmic-violet)]/50 hover:bg-white/[0.05] hover:shadow-[0_0_40px_-12px_rgba(140,147,251,0.4)]">
       {/* Code editor titlebar */}
@@ -266,7 +113,7 @@ function ProjectCard({ project }: { project: Project }) {
             {project.title}
           </h3>
           <div className="flex items-center gap-1.5 text-[color:var(--ui-gray)]">
-            {project.stack}
+            <StackIcons stack={project.stack} />
           </div>
         </div>
         <p className="text-sm leading-relaxed text-[color:var(--ui-gray)]">
