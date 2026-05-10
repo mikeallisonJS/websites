@@ -14,11 +14,7 @@ export default function Page() {
       <div className="breeze-wallpaper flex min-h-dvh flex-col pt-[42px]">
         <div className="flex flex-1 flex-col gap-3 p-3">
           {/* Konsole — agent terminal fills first screen */}
-          <section
-            id="agent"
-            className="flex min-h-0 flex-col"
-            style={{ minHeight: 'calc(100dvh - 42px - 1.5rem)' }}
-          >
+          <section id="agent" className="flex flex-col">
             <Hero />
           </section>
 

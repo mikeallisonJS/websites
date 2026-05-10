@@ -17,10 +17,10 @@ export function Hero() {
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
-      className="flex min-h-0 flex-1 flex-col"
+      className="flex flex-col"
     >
       {/* Agent terminal — Konsole window */}
-      <div className="flex min-h-0 w-full flex-1 flex-col">
+      <div className="w-full">
         <AgentTerminal />
       </div>
 
