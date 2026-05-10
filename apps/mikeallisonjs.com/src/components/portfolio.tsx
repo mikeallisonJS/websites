@@ -56,20 +56,7 @@ function StackIcons({ stack }: { stack: string[] }) {
 
 function ProjectCard({ project }: { project: ProjectData }) {
   return (
-    <article className="group relative flex flex-col overflow-hidden rounded-2xl border border-[color:var(--subtle-gray)] bg-white/[0.03] backdrop-blur-sm transition-all duration-300 hover:border-[color:var(--cosmic-violet)]/50 hover:bg-white/[0.05] hover:shadow-[0_0_40px_-12px_rgba(140,147,251,0.4)]">
-      {/* Code editor titlebar */}
-      <div className="flex items-center gap-2 border-b border-[color:var(--subtle-gray)] bg-black/30 px-4 py-2.5 font-mono text-xs">
-        <div className="flex gap-1.5">
-          <span className="h-2.5 w-2.5 rounded-full bg-[color:var(--subtle-gray)]" />
-          <span className="h-2.5 w-2.5 rounded-full bg-[color:var(--subtle-gray)]" />
-          <span className="h-2.5 w-2.5 rounded-full bg-[color:var(--subtle-gray)]" />
-        </div>
-        <span className="ml-2 truncate text-[color:var(--ui-gray)]">
-          {project.slug}
-          <span className="text-[color:var(--muted-text)]">.tsx</span>
-        </span>
-      </div>
-
+    <article className="group relative flex flex-col overflow-hidden rounded-xl border border-[#3d4248] bg-[#1e2226] shadow-md transition-all duration-300 hover:border-[#3daee9]/40 hover:shadow-[0_4px_24px_rgba(0,0,0,0.4)]">
       {/* Preview image */}
       <div className="relative aspect-[16/10] overflow-hidden">
         <Image
@@ -137,10 +124,7 @@ function ProjectCard({ project }: { project: ProjectData }) {
 export function Portfolio() {
   return (
     <div className="container mx-auto max-w-7xl px-4 md:px-6">
-      <header className="mb-12 flex flex-col items-start gap-3">
-        <h2 className="text-4xl font-semibold tracking-tight text-[color:var(--ghost-white)] sm:text-5xl md:text-6xl">
-          Portfolio
-        </h2>
+      <header className="mb-6 flex flex-col items-start gap-3">
         <p className="max-w-2xl text-base text-[color:var(--ui-gray)] md:text-lg">
           A selection of professional and personal projects shipped over the
           years.

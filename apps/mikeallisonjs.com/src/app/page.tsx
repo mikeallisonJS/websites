@@ -2,6 +2,7 @@ import { IconArrowRight, IconBrandGithub } from '@tabler/icons-react'
 import Link from 'next/link'
 
 import { Hero } from '@/components/hero'
+import { BrowserWindow } from '@/components/browser-window'
 import { KdePanel } from '@/components/kde-panel'
 import { KdeWindow } from '@/components/kde-window'
 import { Portfolio } from '@/components/portfolio'
@@ -21,12 +22,17 @@ export default function Page() {
             <Hero />
           </section>
 
-          {/* Dolphin — Portfolio */}
-          <KdeWindow id="portfolio" title="Portfolio">
-            <div className="py-10 md:py-14">
+          {/* Browser — Portfolio */}
+          <BrowserWindow
+            id="portfolio"
+            title="Portfolio"
+            url="mikeallisonjs.com/portfolio"
+            contentClassName="max-h-[70vh] overflow-y-auto"
+          >
+            <div className="pb-10 pt-5 md:pb-14 md:pt-7">
               <Portfolio />
             </div>
-          </KdeWindow>
+          </BrowserWindow>
 
           {/* Kate — Services */}
           <KdeWindow id="services" title="Services">
