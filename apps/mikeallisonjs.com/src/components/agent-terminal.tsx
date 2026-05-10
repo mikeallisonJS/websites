@@ -350,24 +350,31 @@ export function AgentTerminal() {
   }, [busy])
 
   return (
-    <div className="mx-auto flex min-h-0 w-full max-w-[80rem] flex-1 flex-col overflow-hidden rounded-2xl border border-[color:var(--subtle-gray)] bg-black/50 text-left shadow-[0_0_60px_-20px_rgba(140,147,251,0.5)] backdrop-blur-md">
-      {/* Titlebar */}
-      <div className="relative flex items-center border-b border-[color:var(--subtle-gray)] bg-black/50 px-4 py-2.5 font-mono text-xs">
+    <div className="mx-auto flex min-h-0 w-full max-w-[80rem] flex-1 flex-col overflow-hidden rounded-[6px] border border-[#3d4248] bg-[#232629] text-left shadow-[0_8px_32px_rgba(0,0,0,0.55)]">
+      {/* Breeze title bar */}
+      <div
+        className="relative flex h-[30px] shrink-0 items-center px-2.5 font-mono text-[11px]"
+        style={{
+          background: 'linear-gradient(to bottom, #3b4045 0%, #31363b 100%)',
+          borderBottom: '1px solid #2e3338',
+        }}
+      >
         <div className="flex gap-1.5">
-          <span className="h-2.5 w-2.5 rounded-full bg-[color:var(--subtle-gray)]" />
-          <span className="h-2.5 w-2.5 rounded-full bg-[color:var(--subtle-gray)]" />
-          <span className="h-2.5 w-2.5 rounded-full bg-[color:var(--subtle-gray)]" />
+          <span className="h-3 w-3 cursor-default rounded-full bg-[#3d4248] transition-colors hover:bg-[#da4453]" />
+          <span className="h-3 w-3 cursor-default rounded-full bg-[#3d4248] transition-colors hover:bg-[#f67400]" />
+          <span className="h-3 w-3 cursor-default rounded-full bg-[#3d4248] transition-colors hover:bg-[#27ae60]" />
         </div>
-        <span className="pointer-events-none absolute left-1/2 -translate-x-1/2 text-[color:var(--ui-gray)]">
+        <span className="pointer-events-none absolute left-1/2 -translate-x-1/2 text-[#7f8c8d]">
+          Agent —{' '}
           <span className="text-[color:var(--polar-blue)]">mikeallison</span>
           <span className="text-[color:var(--neon-green)]">JS</span>
         </span>
         <span
-          className="ml-auto flex items-center gap-2 text-[color:var(--muted-text)]"
+          className="ml-auto flex items-center gap-2 text-[#7f8c8d]"
           title={`${usage.prompt_tokens} in / ${usage.completion_tokens} out / ${usage.total_tokens} total tokens`}
         >
           <span className="hidden items-center gap-1 sm:inline-flex">
-            <span className="text-[color:var(--cosmic-violet)]">↑</span>
+            <span className="text-[#3daee9]">↑</span>
             {formatTokens(usage.prompt_tokens)}
           </span>
           <span className="hidden items-center gap-1 sm:inline-flex">
@@ -407,14 +414,14 @@ export function AgentTerminal() {
 
       {/* Suggestions */}
       {turns.length === 0 && (
-        <div className="flex flex-wrap gap-1.5 border-t border-[color:var(--subtle-gray)] bg-black/30 px-4 py-3">
+        <div className="flex flex-wrap gap-1.5 border-t border-[#2e3338] bg-[#1e2226] px-4 py-3">
           {SUGGESTIONS.map((s) => (
             <button
               key={s}
               type="button"
               onClick={() => void send(s)}
               disabled={busy}
-              className="rounded-full border border-[color:var(--subtle-gray)] bg-white/[0.03] px-3 py-1 font-mono text-[11px] text-[color:var(--cosmic-violet)] transition-colors hover:border-[color:var(--cosmic-violet)]/60 hover:bg-white/[0.06] disabled:opacity-50"
+              className="rounded-full border border-[#3d4248] bg-white/[0.03] px-3 py-1 font-mono text-[11px] text-[#3daee9] transition-colors hover:border-[#3daee9]/50 hover:bg-white/[0.06] disabled:opacity-50"
             >
               {s}
             </button>
@@ -425,7 +432,7 @@ export function AgentTerminal() {
       {/* Input */}
       <form
         onSubmit={onSubmit}
-        className="flex items-center gap-2 border-t border-[color:var(--subtle-gray)] bg-black/50 px-4 py-3 font-mono text-sm"
+        className="flex items-center gap-2 border-t border-[#2e3338] bg-[#1e2226] px-4 py-3 font-mono text-sm"
       >
         <span className="text-[color:var(--cosmic-violet)]">~</span>
         <span className="text-[color:var(--neon-green)]">$</span>

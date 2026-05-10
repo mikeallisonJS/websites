@@ -38,10 +38,6 @@ export function Services() {
       <div className="grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:items-start lg:gap-16">
         {/* Left: heading */}
         <div className="flex flex-col gap-5">
-          <div className="flex items-center gap-2 font-mono text-xs text-[color:var(--ui-gray)]">
-            <span className="text-[color:var(--neon-green)]">$</span>
-            <span>cat services.ts</span>
-          </div>
           <h2 className="text-balance text-4xl font-semibold tracking-tight text-[color:var(--ghost-white)] sm:text-5xl md:text-6xl">
             Tailored solutions for your business
           </h2>

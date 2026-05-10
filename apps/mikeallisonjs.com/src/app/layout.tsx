@@ -3,7 +3,6 @@ import { cn } from '@mikeallisonjs/ui/lib/utils'
 import { Mona_Sans, JetBrains_Mono } from 'next/font/google'
 import './global.css'
 
-import Header from '../components/header'
 
 const monaSans = Mona_Sans({
   subsets: ['latin'],
@@ -43,7 +42,6 @@ export default function RootLayout({
         )}
       >
         <body>
-          <Header />
           {children}
         </body>
       </html>
