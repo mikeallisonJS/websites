@@ -12,7 +12,7 @@ export function KdeWindow({
   return (
     <div
       id={id}
-      className="overflow-hidden rounded-[6px] border border-[#3d4248] bg-[#232629] shadow-[0_8px_32px_rgba(0,0,0,0.55)]"
+      className="mx-auto w-full max-w-[80rem] overflow-hidden rounded-[6px] border border-[#3d4248] bg-[#232629] shadow-[0_8px_32px_rgba(0,0,0,0.55)]"
     >
       {/* Breeze title bar */}
       <div
