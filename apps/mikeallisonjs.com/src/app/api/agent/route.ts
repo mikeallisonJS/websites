@@ -1,6 +1,7 @@
 import { NextRequest } from 'next/server'
 
 import {
+  OpenRouterError,
   streamOpenRouter,
   type ChatMessage
 } from '@/lib/agent/openrouter'
@@ -27,6 +28,42 @@ const MAX_USER_TURNS = 12
 const MAX_TOOL_ROUNDS = 6
 const MAX_MESSAGE_CHARS = 2000
 
+function friendlyAgentError(err: unknown): string {
+  if (err instanceof DOMException && err.name === 'AbortError') {
+    return 'Cancelled. Ask again whenever.'
+  }
+  if (err instanceof OpenRouterError) {
+    const upstream = err.upstreamMessage?.toLowerCase() ?? ''
+    switch (err.status) {
+      case 401:
+      case 403:
+        return "The agent's keys aren't working — Mike will sort it. The portfolio's just below in the meantime."
+      case 402:
+        return "The agent's tab ran out for the month. Scroll down — the projects are right there."
+      case 408:
+        return 'Agent took too long thinking. Skip the chat — the work is right below.'
+      case 429:
+        if (upstream.includes('per-day') || upstream.includes('daily')) {
+          return "Agent's used up its free quota for today. The portfolio is right below, no waiting required."
+        }
+        return "Agent's catching its breath. Try again in a sec — or just scroll, the work is right below."
+      case 500:
+      case 502:
+      case 503:
+      case 504:
+        return "Agent's offline. The portfolio works without it — scroll on down."
+    }
+    if (upstream.includes('all providers returned errors')) {
+      return 'Every free model is busy at once. The projects are below — go take a look.'
+    }
+    return "The agent tripped on something. The work's still right here — scroll down."
+  }
+  if (err instanceof TypeError && /fetch failed/i.test(err.message)) {
+    return "Can't reach the agent. The portfolio doesn't need a network — it's right below."
+  }
+  return "Something tripped up the agent. The portfolio still works — it's just below."
+}
+
 const SYSTEM_PROMPT = `You are an interactive agent embedded in the hero of mikeallisonjs.com — Mike Allison's portfolio site. You behave like a CLI agent (think Claude Code): when the visitor asks something, you call tools to look up the truth before you answer.
 
 Rules:
@@ -46,7 +83,10 @@ function sseLine(payload: unknown) {
 
 function getClientKey(req: NextRequest): string {
   const fwd = req.headers.get('x-forwarded-for')
-  if (fwd) return fwd.split(',')[0].trim()
+  if (fwd) {
+    const first = fwd.split(',')[0]
+    if (first) return first.trim()
+  }
   const real = req.headers.get('x-real-ip')
   if (real) return real
   return 'anonymous'
@@ -82,7 +122,8 @@ export async function POST(req: NextRequest) {
     .slice(-MAX_USER_TURNS)
     .map((m) => ({ role: m.role, content: m.content.slice(0, MAX_MESSAGE_CHARS) }))
 
-  if (cleaned.length === 0 || cleaned[cleaned.length - 1].role !== 'user') {
+  const last = cleaned[cleaned.length - 1]
+  if (!last || last.role !== 'user') {
     return new Response(
       JSON.stringify({ error: 'Last message must be from user.' }),
       { status: 400, headers: { 'Content-Type': 'application/json' } }
@@ -215,10 +256,7 @@ export async function POST(req: NextRequest) {
         })
         controller.close()
       } catch (err) {
-        send({
-          type: 'error',
-          message: err instanceof Error ? err.message : String(err)
-        })
+        send({ type: 'error', message: friendlyAgentError(err) })
         controller.close()
       }
     }

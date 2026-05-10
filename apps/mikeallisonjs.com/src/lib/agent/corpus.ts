@@ -28,7 +28,7 @@ function parseFrontmatter(raw: string): {
   const data: Record<string, unknown> = {}
   for (const line of block.split('\n')) {
     const m = line.match(/^([A-Za-z0-9_-]+):\s*(.*)$/)
-    if (!m) continue
+    if (!m || !m[1] || m[2] == null) continue
     const key = m[1]
     let value: string | string[] = m[2].trim()
     if (value.startsWith('[') && value.endsWith(']')) {

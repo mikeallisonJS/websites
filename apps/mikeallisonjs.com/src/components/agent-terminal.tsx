@@ -6,8 +6,31 @@ import {
   useMemo,
   useRef,
   useState,
-  type FormEvent
+  type FormEvent,
+  type KeyboardEvent
 } from 'react'
+
+const SPINNER_FRAMES = ['✢', '✳', '✶', '✻', '✸', '✳', '✶', '✻']
+const THINKING_VERBS = [
+  'Thinking',
+  'Pondering',
+  'Mulling',
+  'Cogitating',
+  'Hatching',
+  'Plotting',
+  'Brewing',
+  'Considering',
+  'Deliberating',
+  'Musing',
+  'Ruminating',
+  'Reasoning',
+  'Synthesizing',
+  'Percolating',
+  'Marinating',
+  'Computing',
+  'Cooking',
+  'Crunching'
+]
 
 type ToolCallEntry = {
   id: string
@@ -269,6 +292,22 @@ export function AgentTerminal() {
     void send(input)
   }
 
+  const onKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Escape' && busy) {
+      e.preventDefault()
+      abortRef.current?.abort()
+    }
+  }
+
+  useEffect(() => {
+    if (!busy) return
+    const onWindowKey = (e: globalThis.KeyboardEvent) => {
+      if (e.key === 'Escape') abortRef.current?.abort()
+    }
+    window.addEventListener('keydown', onWindowKey)
+    return () => window.removeEventListener('keydown', onWindowKey)
+  }, [busy])
+
   return (
     <div className="w-full max-w-2xl overflow-hidden rounded-2xl border border-[color:var(--subtle-gray)] bg-black/50 text-left shadow-[0_0_60px_-20px_rgba(140,147,251,0.5)] backdrop-blur-md">
       {/* Titlebar */}
@@ -353,20 +392,15 @@ export function AgentTerminal() {
           ref={inputRef}
           value={input}
           onChange={(e) => setInput(e.target.value)}
+          onKeyDown={onKeyDown}
           placeholder={
-            busy ? 'thinking…' : 'ask about Mike — projects, jobs, skills'
+            busy ? '' : 'ask about Mike — projects, jobs, skills'
           }
           disabled={busy}
           className="flex-1 bg-transparent text-[color:var(--ghost-white)] placeholder:text-[color:var(--muted-text)] focus:outline-none disabled:opacity-60"
           autoComplete="off"
           spellCheck={false}
         />
-        {busy && (
-          <span
-            className="cursor-blink h-3 w-[0.5em] bg-[color:var(--neon-green)]"
-            aria-hidden
-          />
-        )}
       </form>
     </div>
   )
@@ -399,17 +433,66 @@ function UserLine({ content }: { content: string }) {
   )
 }
 
+function ThinkingIndicator() {
+  const [frame, setFrame] = useState(0)
+  const [verbIdx, setVerbIdx] = useState(() =>
+    Math.floor(Math.random() * THINKING_VERBS.length)
+  )
+  const [elapsed, setElapsed] = useState(0)
+
+  useEffect(() => {
+    const start = Date.now()
+    const spinner = window.setInterval(
+      () => setFrame((f) => (f + 1) % SPINNER_FRAMES.length),
+      120
+    )
+    const verb = window.setInterval(
+      () => setVerbIdx((i) => (i + 1) % THINKING_VERBS.length),
+      3500
+    )
+    const tick = window.setInterval(
+      () => setElapsed(Math.floor((Date.now() - start) / 1000)),
+      1000
+    )
+    return () => {
+      window.clearInterval(spinner)
+      window.clearInterval(verb)
+      window.clearInterval(tick)
+    }
+  }, [])
+
+  return (
+    <div className="flex items-center gap-2">
+      <span
+        aria-hidden
+        className="inline-block w-3 text-center text-[color:var(--cosmic-violet)]"
+      >
+        {SPINNER_FRAMES[frame]}
+      </span>
+      <span className="text-[color:var(--polar-blue)]">
+        {THINKING_VERBS[verbIdx]}
+        <span className="ml-0.5 text-[color:var(--ui-gray)]">…</span>
+      </span>
+      <span className="text-[color:var(--muted-text)]">
+        ({elapsed}s · esc to interrupt)
+      </span>
+    </div>
+  )
+}
+
 function AssistantBlock({
   turn
 }: {
   turn: Extract<Turn, { kind: 'assistant' }>
 }) {
+  const showThinking = turn.streaming && !turn.content
   return (
     <div className="space-y-2">
       {turn.toolCalls.map((call) => (
         <ToolCallView key={call.id} call={call} />
       ))}
-      {(turn.content || turn.streaming) && (
+      {showThinking && <ThinkingIndicator />}
+      {turn.content && (
         <div className="whitespace-pre-wrap break-words text-[color:var(--faded-silver)]">
           {renderInlineLinks(turn.content)}
           {turn.streaming && (

@@ -39,6 +39,42 @@ export type OpenRouterStreamResult = {
 
 const OPENROUTER_URL = 'https://openrouter.ai/api/v1/chat/completions'
 
+export class OpenRouterError extends Error {
+  status: number
+  code?: number | string
+  upstreamMessage?: string
+  constructor(opts: {
+    status: number
+    code?: number | string
+    upstreamMessage?: string
+    message: string
+  }) {
+    super(opts.message)
+    this.name = 'OpenRouterError'
+    this.status = opts.status
+    this.code = opts.code
+    this.upstreamMessage = opts.upstreamMessage
+  }
+}
+
+function parseOpenRouterErrorBody(body: string): {
+  code?: number | string
+  message?: string
+} {
+  if (!body) return {}
+  try {
+    const parsed = JSON.parse(body) as {
+      error?: { code?: number | string; message?: string }
+    }
+    if (parsed?.error) {
+      return { code: parsed.error.code, message: parsed.error.message }
+    }
+  } catch {
+    // not JSON — fall through
+  }
+  return { message: body.slice(0, 300) }
+}
+
 export async function* streamOpenRouter(opts: {
   apiKey: string
   models: string[]
@@ -79,9 +115,13 @@ export async function* streamOpenRouter(opts: {
 
   if (!res.ok || !res.body) {
     const errBody = await res.text().catch(() => '')
-    throw new Error(
-      `OpenRouter error ${res.status}: ${errBody.slice(0, 500) || res.statusText}`
-    )
+    const parsed = parseOpenRouterErrorBody(errBody)
+    throw new OpenRouterError({
+      status: res.status,
+      code: parsed.code,
+      upstreamMessage: parsed.message,
+      message: parsed.message ?? res.statusText ?? 'Unknown OpenRouter error.'
+    })
   }
 
   const reader = res.body.getReader()
@@ -131,11 +171,23 @@ export async function* streamOpenRouter(opts: {
           finish_reason?: string | null
         }>
         usage?: Partial<Usage> | null
+        error?: { code?: number | string; message?: string }
       }
       try {
         chunk = JSON.parse(data)
       } catch {
         continue
+      }
+
+      // OpenRouter can emit a terminal error chunk mid-stream (e.g. all
+      // upstream models failed after fallback). Treat it like an HTTP error.
+      if (chunk.error) {
+        throw new OpenRouterError({
+          status: 0,
+          code: chunk.error.code,
+          upstreamMessage: chunk.error.message,
+          message: chunk.error.message ?? 'OpenRouter returned a stream error.'
+        })
       }
 
       if (chunk.usage) {
