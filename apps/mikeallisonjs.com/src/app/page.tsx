@@ -1,53 +1,43 @@
 import { IconArrowRight, IconBrandGithub } from '@tabler/icons-react'
 import Link from 'next/link'
 
-import { Hero } from '@/components/hero'
 import { BrowserWindow } from '@/components/browser-window'
-import { KdePanel } from '@/components/kde-panel'
+import { DesktopShell } from '@/components/desktop-shell'
+import { Hero } from '@/components/hero'
 import { KdeWindow } from '@/components/kde-window'
 import { Portfolio } from '@/components/portfolio'
 import { Services } from '@/components/services'
 
 export default function Page() {
   return (
-    <>
-      <div className="breeze-wallpaper flex min-h-dvh flex-col pt-[42px]">
-        <div className="flex flex-1 flex-col gap-3 p-3">
-          {/* Konsole — agent terminal fills first screen */}
-          <section id="agent" className="flex flex-col">
-            <Hero />
-          </section>
-
-          {/* Browser — Portfolio */}
-          <BrowserWindow
-            id="portfolio"
-            title="Portfolio"
-            url="mikeallisonjs.com/portfolio"
-            contentClassName="max-h-[70vh] overflow-y-auto"
-          >
-            <div className="pb-10 pt-5 md:pb-14 md:pt-7">
-              <Portfolio />
-            </div>
-          </BrowserWindow>
-
-          {/* Kate — Services */}
-          <KdeWindow id="services" title="Services">
-            <div className="py-10 md:py-14">
-              <Services />
-            </div>
-          </KdeWindow>
-
-          {/* KMail — Contact */}
-          <KdeWindow id="contact" title="Contact">
-            <div className="py-10 md:py-14">
-              <ContactSection />
-            </div>
-          </KdeWindow>
-        </div>
-      </div>
-
-      <KdePanel />
-    </>
+    <DesktopShell
+      agent={<Hero />}
+      portfolio={
+        <BrowserWindow
+          title="Portfolio"
+          url="mikeallisonjs.com/portfolio"
+          contentClassName="max-h-[70vh] overflow-y-auto"
+        >
+          <div className="pb-10 pt-5 md:pb-14 md:pt-7">
+            <Portfolio />
+          </div>
+        </BrowserWindow>
+      }
+      services={
+        <KdeWindow title="Services">
+          <div className="py-10 md:py-14">
+            <Services />
+          </div>
+        </KdeWindow>
+      }
+      contact={
+        <KdeWindow title="Contact">
+          <div className="py-10 md:py-14">
+            <ContactSection />
+          </div>
+        </KdeWindow>
+      }
+    />
   )
 }
 

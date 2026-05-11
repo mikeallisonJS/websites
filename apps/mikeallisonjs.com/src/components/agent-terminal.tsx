@@ -414,7 +414,7 @@ export function AgentTerminal() {
   }, [busy])
 
   return (
-    <div className="mx-auto flex w-full max-w-[80rem] flex-col overflow-hidden rounded-[6px] border border-[#3d4248] bg-[#232629] text-left shadow-[0_8px_32px_rgba(0,0,0,0.55)]" style={{ height: '80vh' }}>
+    <div className="mx-auto flex min-h-0 w-full max-w-[80rem] flex-1 flex-col overflow-hidden rounded-[6px] border border-[#3d4248] bg-[#232629] text-left shadow-[0_8px_32px_rgba(0,0,0,0.55)]">
       {/* Breeze title bar */}
       <div
         className="relative flex h-[30px] shrink-0 items-center px-2.5 font-mono text-[11px]"
