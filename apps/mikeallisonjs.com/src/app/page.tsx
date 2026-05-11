@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import { IconArrowRight, IconBrandGithub } from '@tabler/icons-react'
 import Link from 'next/link'
 
@@ -10,34 +11,36 @@ import { Services } from '@/components/services'
 
 export default function Page() {
   return (
-    <DesktopShell
-      agent={<Hero />}
-      portfolio={
-        <BrowserWindow
-          title="Portfolio"
-          url="mikeallisonjs.com/portfolio"
-          contentClassName="max-h-[70vh] overflow-y-auto"
-        >
-          <div className="pb-10 pt-5 md:pb-14 md:pt-7">
-            <Portfolio />
-          </div>
-        </BrowserWindow>
-      }
-      services={
-        <KdeWindow title="Services">
-          <div className="py-10 md:py-14">
-            <Services />
-          </div>
-        </KdeWindow>
-      }
-      contact={
-        <KdeWindow title="Contact">
-          <div className="py-10 md:py-14">
-            <ContactSection />
-          </div>
-        </KdeWindow>
-      }
-    />
+    <Suspense fallback={null}>
+      <DesktopShell
+        agent={<Hero />}
+        portfolio={
+          <BrowserWindow
+            title="Portfolio"
+            url="mikeallisonjs.com/portfolio"
+            contentClassName="max-h-[70vh] overflow-y-auto"
+          >
+            <div className="pb-10 pt-5 md:pb-14 md:pt-7">
+              <Portfolio />
+            </div>
+          </BrowserWindow>
+        }
+        services={
+          <KdeWindow title="Services">
+            <div className="py-10 md:py-14">
+              <Services />
+            </div>
+          </KdeWindow>
+        }
+        contact={
+          <KdeWindow title="Contact">
+            <div className="py-10 md:py-14">
+              <ContactSection />
+            </div>
+          </KdeWindow>
+        }
+      />
+    </Suspense>
   )
 }
 

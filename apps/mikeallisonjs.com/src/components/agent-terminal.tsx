@@ -135,13 +135,16 @@ function renderMarkdown(content: string, streaming: boolean): React.ReactNode {
         if (/^-{3,}$/.test(line.trim()))
           return <hr key={i} className="my-2 border-[#3d4248]" />
         const listMatch = line.match(/^(\s*)[-*] (.*)$/)
-        if (listMatch)
+        if (listMatch) {
+          const indent = listMatch[1] ?? ''
+          const text = listMatch[2] ?? ''
           return (
-            <div key={i} className="flex gap-2" style={{ paddingLeft: listMatch[1].length * 12 }}>
+            <div key={i} className="flex gap-2" style={{ paddingLeft: indent.length * 12 }}>
               <span className="shrink-0 text-[#3daee9]">›</span>
-              <span>{renderInline(listMatch[2])}{cursor}</span>
+              <span>{renderInline(text)}{cursor}</span>
             </div>
           )
+        }
         if (line.trim() === '')
           return <div key={i} className="h-2" />
         return <div key={i}>{renderInline(line)}{cursor}</div>

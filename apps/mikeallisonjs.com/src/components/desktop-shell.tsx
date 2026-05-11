@@ -1,12 +1,15 @@
 'use client'
 
-import { useCallback, useEffect, useMemo, useState, type ReactNode } from 'react'
+import { useCallback, useEffect, useState, type ReactNode } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 
 import { KdePanel } from './kde-panel'
 
 export type Section = 'agent' | 'portfolio' | 'services' | 'contact'
 const ALL: Section[] = ['agent', 'portfolio', 'services', 'contact']
+
+const CAREER_START_YEAR = 2000
+const BUILD_YEAR = 2026
 
 export function DesktopShell({
   agent,
@@ -21,7 +24,10 @@ export function DesktopShell({
 }) {
   const [mode, setMode] = useState<'focused' | 'scroll'>('focused')
   const [active, setActive] = useState<Section>('agent')
-  const yearsExperience = useMemo(() => new Date().getFullYear() - 2000, [])
+  const [yearsExperience, setYearsExperience] = useState(BUILD_YEAR - CAREER_START_YEAR)
+  useEffect(() => {
+    setYearsExperience(new Date().getFullYear() - CAREER_START_YEAR)
+  }, [])
 
   // Restore from hash on mount
   useEffect(() => {
