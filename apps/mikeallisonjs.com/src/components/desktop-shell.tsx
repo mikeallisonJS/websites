@@ -62,14 +62,14 @@ export function DesktopShell({
         }`}
       >
         {mode === 'scroll' ? (
-          <div className="flex flex-1 flex-col gap-3 p-3">
+          <div className="flex flex-1 flex-col gap-3 px-5 py-3 md:px-10 lg:px-16">
             <div id="agent">{agent}</div>
             <div id="portfolio">{portfolio}</div>
             <div id="services">{services}</div>
             <div id="contact">{contact}</div>
           </div>
         ) : (
-          <div className="flex min-h-0 flex-1 flex-col p-3 pb-0">
+          <div className="flex min-h-0 flex-1 flex-col px-5 pt-3 md:px-10 lg:px-16">
             <AnimatePresence mode="wait">
               <motion.div
                 key={active}
@@ -85,7 +85,7 @@ export function DesktopShell({
           </div>
         )}
 
-        <p className="mx-auto max-w-3xl shrink-0 pb-4 pt-3 text-center text-2xl font-medium leading-snug text-[#eff0f1] sm:text-3xl md:text-4xl">
+        <p className="mx-auto max-w-3xl shrink-0 pb-4 pt-3 text-center text-2xl font-medium leading-snug text-[#eff0f1] sm:text-3xl md:text-4xl lg:max-w-none lg:whitespace-nowrap lg:text-2xl xl:text-3xl">
           Over{' '}
           <span className="text-[#3daee9]">{yearsExperience} years</span>{' '}
           designing cutting-edge software for global, industry-leading businesses.

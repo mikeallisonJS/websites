@@ -89,9 +89,12 @@ function summarizeArgs(args: Record<string, unknown>) {
     .join(' ')
 }
 
+const LINK_CLASSES =
+  'text-[color:var(--polar-blue)] underline-offset-2 hover:underline'
+
 function renderInline(text: string): React.ReactNode[] {
   const parts = text.split(
-    /(`[^`]+`|\*\*[^*]+\*\*|\*(?!\*)[^*]+\*(?!\*)|_[^_]+_|https?:\/\/[^\s)>\]]+)/g
+    /(`[^`]+`|\*\*[^*]+\*\*|\*(?!\*)[^*]+\*(?!\*)|_[^_]+_|\[[^\]]+\]\((?:https?:\/\/|mailto:|\/)[^)\s]+\)|https?:\/\/[^\s)>\]]+|[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})/g
   )
   return parts.map((part, i) => {
     const key = `${i}:${part.slice(0, 16)}`
@@ -105,10 +108,31 @@ function renderInline(text: string): React.ReactNode[] {
       return <strong key={key} className="font-bold text-[#eff0f1]">{part.slice(2, -2)}</strong>
     if (/^[*_]/.test(part) && part.length > 2)
       return <em key={key} className="italic text-[color:var(--faded-silver)]">{part.slice(1, -1)}</em>
+    const mdLink = part.match(/^\[([^\]]+)\]\(((?:https?:\/\/|mailto:|\/)[^)\s]+)\)$/)
+    if (mdLink) {
+      const label = mdLink[1] ?? ''
+      const href = mdLink[2] ?? '#'
+      const external = /^https?:\/\//.test(href)
+      return (
+        <a
+          key={key}
+          href={href}
+          {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+          className={LINK_CLASSES}
+        >
+          {label}
+        </a>
+      )
+    }
     if (/^https?:\/\//.test(part))
       return (
-        <a key={key} href={part} target="_blank" rel="noopener noreferrer"
-           className="text-[color:var(--polar-blue)] underline-offset-2 hover:underline">
+        <a key={key} href={part} target="_blank" rel="noopener noreferrer" className={LINK_CLASSES}>
+          {part}
+        </a>
+      )
+    if (/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(part))
+      return (
+        <a key={key} href={`mailto:${part}`} className={LINK_CLASSES}>
           {part}
         </a>
       )
@@ -155,10 +179,14 @@ function renderMarkdown(content: string, streaming: boolean): React.ReactNode {
 
 function useSpeech(onTranscript: (text: string) => void) {
   const [listening, setListening] = useState(false)
+  const [supported, setSupported] = useState(false)
   const recogRef = useRef<SpeechRecognition | null>(null)
 
-  const supported = typeof window !== 'undefined' &&
-    ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window)
+  useEffect(() => {
+    setSupported(
+      'SpeechRecognition' in window || 'webkitSpeechRecognition' in window
+    )
+  }, [])
 
   const toggle = useCallback(() => {
     if (!supported) return
@@ -202,7 +230,11 @@ export function AgentTerminal() {
   const inputRef = useRef<HTMLInputElement>(null)
   const abortRef = useRef<AbortController | null>(null)
 
-  const ttsSupported = typeof window !== 'undefined' && 'speechSynthesis' in window
+  const [ttsSupported, setTtsSupported] = useState(false)
+
+  useEffect(() => {
+    setTtsSupported('speechSynthesis' in window)
+  }, [])
 
   useEffect(() => {
     const el = scrollRef.current

@@ -55,38 +55,22 @@ function ContactSection() {
           Shoot me an email — I respond to every serious inquiry.
         </p>
 
-        <div className="mt-4 w-full max-w-2xl overflow-hidden rounded-[6px] border border-[#3d4248] shadow-lg">
-          <div
-            className="flex items-center gap-2 px-3 py-2 font-mono text-xs"
-            style={{
-              background: 'linear-gradient(to bottom, #3b4045 0%, #31363b 100%)',
-              borderBottom: '1px solid #2e3338',
-            }}
-          >
-            <div className="flex gap-1.5">
-              <span className="block h-3 w-3 rounded-full bg-[#3d4248]" />
-              <span className="block h-3 w-3 rounded-full bg-[#3d4248]" />
-              <span className="block h-3 w-3 rounded-full bg-[#3d4248]" />
-            </div>
-            <span className="ml-2 text-[#7f8c8d]">~/contact</span>
-          </div>
-          <Link
-            href="mailto:dj.mikeallison@gmail.com"
-            className="group flex items-center justify-between gap-4 bg-[#1b1e20] px-5 py-6 font-mono text-base transition-colors hover:bg-[#1e2326] sm:px-7 sm:py-8 sm:text-xl"
-          >
-            <span className="flex min-w-0 items-center gap-3">
-              <span className="text-[color:var(--neon-green)]">$</span>
-              <span className="text-[#7f8c8d]">mailto</span>
-              <span className="truncate text-[#3daee9] underline-offset-4 group-hover:underline">
-                dj.mikeallison@gmail.com
-              </span>
+        <Link
+          href="mailto:dj.mikeallison@gmail.com"
+          className="group mt-4 flex w-full max-w-2xl items-center justify-between gap-4 rounded-[6px] border border-[#3d4248] bg-[#1b1e20] px-5 py-6 font-mono text-base transition-colors hover:border-[#3daee9]/50 hover:bg-[#1e2326] sm:px-7 sm:py-8 sm:text-xl"
+        >
+          <span className="flex min-w-0 items-center gap-3">
+            <span className="text-[color:var(--neon-green)]">$</span>
+            <span className="text-[#7f8c8d]">mailto</span>
+            <span className="truncate text-[#3daee9] underline-offset-4 group-hover:underline">
+              dj.mikeallison@gmail.com
             </span>
-            <IconArrowRight
-              size={20}
-              className="shrink-0 text-[#3daee9] transition-transform group-hover:translate-x-1"
-            />
-          </Link>
-        </div>
+          </span>
+          <IconArrowRight
+            size={20}
+            className="shrink-0 text-[#3daee9] transition-transform group-hover:translate-x-1"
+          />
+        </Link>
 
         <div className="mt-2 flex items-center gap-3">
           <Link
