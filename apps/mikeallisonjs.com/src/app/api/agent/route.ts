@@ -150,21 +150,46 @@ export async function POST(req: NextRequest) {
     ...cleaned
   ]
 
+  const abortController = new AbortController()
+  const { signal } = abortController
+  if (req.signal.aborted) {
+    abortController.abort()
+  } else {
+    req.signal.addEventListener('abort', () => abortController.abort(), {
+      once: true
+    })
+  }
+
   const stream = new ReadableStream({
     async start(controller) {
       const encoder = new TextEncoder()
-      const send = (payload: unknown) =>
-        controller.enqueue(encoder.encode(sseLine(payload)))
+      const send = (payload: unknown) => {
+        if (signal.aborted) return
+        try {
+          controller.enqueue(encoder.encode(sseLine(payload)))
+        } catch {
+          // stream cancelled by consumer; drop further events
+        }
+      }
+      const close = () => {
+        try {
+          controller.close()
+        } catch {
+          // already closed by cancel()
+        }
+      }
 
       try {
         for (let round = 0; round < MAX_TOOL_ROUNDS; round++) {
+          if (signal.aborted) return
           const generator = streamOpenRouter({
             apiKey,
             models: MODELS,
             messages,
             tools: toolDefinitions,
             referer,
-            title: 'mikeallisonjs.com agent'
+            title: 'mikeallisonjs.com agent',
+            signal
           })
 
           let finishReason: string | null = null
@@ -208,7 +233,7 @@ export async function POST(req: NextRequest) {
 
           if (calls.length === 0 || finishReason !== 'tool_calls') {
             send({ type: 'done', finish: finishReason })
-            controller.close()
+            close()
             return
           }
 
@@ -223,6 +248,7 @@ export async function POST(req: NextRequest) {
           })
 
           for (const c of calls) {
+            if (signal.aborted) return
             let args: Record<string, unknown> = {}
             try {
               args = JSON.parse(c.arguments || '{}')
@@ -254,11 +280,14 @@ export async function POST(req: NextRequest) {
           finish: 'max_tool_rounds',
           warning: 'Reached max tool rounds without a final answer.'
         })
-        controller.close()
+        close()
       } catch (err) {
         send({ type: 'error', message: friendlyAgentError(err) })
-        controller.close()
+        close()
       }
+    },
+    cancel() {
+      abortController.abort()
     }
   })
 
