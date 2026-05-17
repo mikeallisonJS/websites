@@ -7,7 +7,6 @@ import { DesktopShell } from '@/components/desktop-shell'
 import { Hero } from '@/components/hero'
 import { KdeWindow } from '@/components/kde-window'
 import { Portfolio } from '@/components/portfolio'
-import { Services } from '@/components/services'
 
 export default function Page() {
   return (
@@ -24,13 +23,6 @@ export default function Page() {
               <Portfolio />
             </div>
           </BrowserWindow>
-        }
-        services={
-          <KdeWindow title="Services">
-            <div className="py-10 md:py-14">
-              <Services />
-            </div>
-          </KdeWindow>
         }
         contact={
           <KdeWindow title="Contact">
@@ -57,7 +49,7 @@ function ContactSection() {
 
         <Link
           href="mailto:dj.mikeallison@gmail.com"
-          className="group mt-4 flex w-full max-w-2xl items-center justify-between gap-4 rounded-[6px] border border-[#3d4248] bg-[#1b1e20] px-5 py-6 font-mono text-base transition-colors hover:border-[#3daee9]/50 hover:bg-[#1e2326] sm:px-7 sm:py-8 sm:text-xl"
+          className="group mt-4 flex w-full max-w-2xl items-center justify-between gap-4 rounded-[6px] border border-[#3d4248] bg-[#1b1e20] px-5 py-6 font-mono text-[clamp(0.75rem,2vw,1.5rem)] transition-colors hover:border-[#3daee9]/50 hover:bg-[#1e2326] sm:px-7 sm:py-8"
         >
           <span className="flex min-w-0 items-center gap-3">
             <span className="text-[color:var(--neon-green)]">$</span>

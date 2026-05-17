@@ -6,7 +6,7 @@ role: Supervisor (previously Web Developer II)
 start: 2004-02
 end: 2007-11
 location: On-site
-stack: [ASP.NET, ASP, C#, ColdFusion, SQL Server, Oracle, Siebel, Flash, Ruby on Rails]
+stack: [ASP.NET, ASP, C#, ColdFusion, JavaScript, CSS, SQL Server, Oracle, Siebel, Flash, Ruby on Rails]
 ---
 
 # Emdeon (formerly WebMD) — Supervisor / Web Developer II

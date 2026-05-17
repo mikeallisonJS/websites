@@ -711,11 +711,15 @@ function AssistantBlock({
 
 function ToolCallView({ call }: { call: ToolCallEntry }) {
   const [open, setOpen] = useState(false)
+  const resultId = `call-result-${call.id}`
   return (
     <div className="rounded-md border border-[color:var(--subtle-gray)] bg-white/[0.02]">
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
+        aria-expanded={open}
+        aria-controls={resultId}
+        aria-label={`Toggle ${call.name} details`}
         className="flex w-full items-center gap-2 px-2.5 py-1.5 text-left text-[12px] text-[color:var(--ui-gray)] hover:bg-white/[0.03]"
       >
         <span className="text-[color:var(--cosmic-violet)]">⏵</span>
@@ -727,8 +731,15 @@ function ToolCallView({ call }: { call: ToolCallEntry }) {
           {call.result ? 'done' : 'running'}
         </span>
       </button>
-      {open && call.result && (
-        <pre className="max-h-48 overflow-auto border-t border-[color:var(--subtle-gray)] bg-black/40 px-2.5 py-2 text-[11px] text-[color:var(--ui-gray)]">
+      {call.result && (
+        <pre
+          id={resultId}
+          role="region"
+          aria-label={`${call.name} result`}
+          aria-hidden={!open}
+          hidden={!open}
+          className="max-h-48 overflow-auto border-t border-[color:var(--subtle-gray)] bg-black/40 px-2.5 py-2 text-[11px] text-[color:var(--ui-gray)]"
+        >
           {call.result}
         </pre>
       )}

@@ -5,7 +5,7 @@ role: Sr. Software Engineer
 start: 2015-02
 end: 2016-08
 location: Remote
-stack: [Angular, JavaScript (ES2016), Node.js, C#, Sass]
+stack: [Angular, JavaScript (ES2016), CSS, Node.js, C#, Sass]
 ---
 
 # CompassLearning — Sr. Software Engineer

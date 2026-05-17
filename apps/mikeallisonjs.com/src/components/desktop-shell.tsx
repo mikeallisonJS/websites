@@ -5,8 +5,8 @@ import { AnimatePresence, motion } from 'framer-motion'
 
 import { KdePanel } from './kde-panel'
 
-export type Section = 'agent' | 'portfolio' | 'services' | 'contact'
-const ALL: Section[] = ['agent', 'portfolio', 'services', 'contact']
+export type Section = 'agent' | 'portfolio' | 'contact'
+const ALL: Section[] = ['agent', 'portfolio', 'contact']
 
 const CAREER_START_YEAR = 2000
 const BUILD_YEAR = 2026
@@ -14,12 +14,10 @@ const BUILD_YEAR = 2026
 export function DesktopShell({
   agent,
   portfolio,
-  services,
   contact,
 }: {
   agent: ReactNode
   portfolio: ReactNode
-  services: ReactNode
   contact: ReactNode
 }) {
   const [mode, setMode] = useState<'focused' | 'scroll'>('focused')
@@ -52,7 +50,7 @@ export function DesktopShell({
     [mode]
   )
 
-  const nodes: Record<Section, ReactNode> = { agent, portfolio, services, contact }
+  const overlayNodes: Partial<Record<Section, ReactNode>> = { portfolio, contact }
 
   return (
     <>
@@ -62,30 +60,37 @@ export function DesktopShell({
         }`}
       >
         {mode === 'scroll' ? (
-          <div className="flex flex-1 flex-col gap-3 px-5 py-3 md:px-10 lg:px-16">
+          <div className="flex flex-1 flex-col gap-3 px-5 pt-3 pb-5 md:px-10 md:pb-3 lg:px-16">
             <div id="agent">{agent}</div>
             <div id="portfolio">{portfolio}</div>
-            <div id="services">{services}</div>
             <div id="contact">{contact}</div>
           </div>
         ) : (
-          <div className="flex min-h-0 flex-1 flex-col px-5 pt-3 md:px-10 lg:px-16">
+          <div className="relative flex min-h-0 flex-1 flex-col px-5 pb-5 pt-3 md:px-10 md:pb-0 lg:px-16">
+            <div
+              className={`flex min-h-0 flex-1 flex-col ${active === 'agent' ? '' : 'invisible pointer-events-none'}`}
+              aria-hidden={active !== 'agent'}
+            >
+              {agent}
+            </div>
             <AnimatePresence mode="wait">
-              <motion.div
-                key={active}
-                className="flex min-h-0 flex-1 flex-col"
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -8 }}
-                transition={{ duration: 0.12, ease: 'easeOut' }}
-              >
-                {nodes[active]}
-              </motion.div>
+              {active !== 'agent' && (
+                <motion.div
+                  key={active}
+                  className="absolute inset-0 flex min-h-0 flex-1 flex-col px-5 pb-5 pt-3 md:px-10 md:pb-0 lg:px-16"
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.12, ease: 'easeOut' }}
+                >
+                  {overlayNodes[active]}
+                </motion.div>
+              )}
             </AnimatePresence>
           </div>
         )}
 
-        <p className="mx-auto max-w-3xl shrink-0 pb-4 pt-3 text-center text-2xl font-medium leading-snug text-[#eff0f1] sm:text-3xl md:text-4xl lg:max-w-none lg:whitespace-nowrap lg:text-2xl xl:text-3xl">
+        <p className="mx-auto hidden max-w-3xl shrink-0 pb-4 pt-3 text-center font-medium leading-snug text-[#eff0f1] md:block md:max-w-none md:whitespace-nowrap md:text-[clamp(1.125rem,2.34vw,1.875rem)]">
           Over{' '}
           <span className="text-[#3daee9]">{yearsExperience} years</span>{' '}
           designing cutting-edge software for global, industry-leading businesses.

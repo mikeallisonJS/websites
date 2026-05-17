@@ -5,7 +5,7 @@ role: Sr. Programmer
 start: 2007-11
 end: 2014-02
 location: On-site / Remote
-stack: [ASP.NET, C#, VB.NET, JavaScript, SQL Server, Oracle, Delphi]
+stack: [ASP.NET, C#, VB.NET, JavaScript, CSS, SQL Server, Oracle, Delphi]
 ---
 
 # Ecteon — Sr. Programmer

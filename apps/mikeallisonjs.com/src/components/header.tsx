@@ -14,7 +14,6 @@ export default function Header() {
         </Link>
         <nav className="flex items-center gap-1 text-sm md:gap-2">
           <NavLink href="#portfolio">portfolio</NavLink>
-          <NavLink href="#services">services</NavLink>
           <NavLink href="#contact">contact</NavLink>
           <Link
             href="https://github.com/mikeallisonJS"

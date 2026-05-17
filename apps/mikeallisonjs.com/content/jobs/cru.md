@@ -5,7 +5,7 @@ role: Lead Angular Developer
 start: 2016-01
 end: 2019-12
 location: Remote
-stack: [Angular, AngularJS, TypeScript, GraphQL, Ruby on Rails, Node.js]
+stack: [Angular, AngularJS, TypeScript, JavaScript, CSS, GraphQL, Ruby on Rails, Node.js]
 ---
 
 # Cru — Lead Angular Developer

@@ -5,7 +5,7 @@ role: Lead UI Developer
 start: 2014-02
 end: 2015-03
 location: Utah / Remote
-stack: [Angular, Node.js, CoffeeScript, MongoDB, Java, C#, Backbone]
+stack: [Angular, Node.js, CoffeeScript, JavaScript, CSS, MongoDB, Java, C#, Backbone]
 ---
 
 # Agilix — Lead UI Developer

@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react'
 import {
   IconBrandGithub,
-  IconCode,
   IconFolder,
   IconLayoutList,
   IconMail,
@@ -16,7 +15,6 @@ import type { Section } from './desktop-shell'
 const tasks: { id: Section; label: string; Icon: React.ComponentType<{ size?: number; className?: string }> }[] = [
   { id: 'agent',     label: 'Agent',     Icon: IconTerminal2 },
   { id: 'portfolio', label: 'Portfolio', Icon: IconFolder    },
-  { id: 'services',  label: 'Services',  Icon: IconCode      },
   { id: 'contact',   label: 'Contact',   Icon: IconMail      },
 ]
 
@@ -103,7 +101,6 @@ export function KdePanel({
         >
           <IconBrandGithub size={15} />
         </a>
-        <span className="font-mono text-[10px] text-[#3d4248]">v2.0.0</span>
         <Clock />
       </div>
     </div>
