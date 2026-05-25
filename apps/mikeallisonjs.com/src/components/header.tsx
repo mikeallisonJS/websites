@@ -3,37 +3,46 @@ import Link from 'next/link'
 
 export default function Header() {
   return (
-    <header className="border-border/40 bg-background/55 supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 w-full border-b backdrop-blur-sm">
-      <div className="container flex h-12 max-w-screen-2xl items-center py-4">
-        <div className="flex w-full">
-          <Link href="/" className="ml-8 mr-auto flex items-center text-3xl text-primary">
-            mikeallison<span className="text-secondary">JS</span>
+    <header className="sticky top-0 z-50 w-full border-b border-[color:var(--subtle-gray)] bg-[color:var(--deep-space)]/80 backdrop-blur-md supports-[backdrop-filter]:bg-[color:var(--deep-space)]/60">
+      <div className="mx-auto flex h-14 max-w-7xl items-center px-6">
+        <Link
+          href="/"
+          className="mr-auto flex items-center text-xl font-semibold tracking-tight"
+        >
+          <span className="text-[color:var(--polar-blue)]">mikeallison</span>
+          <span className="text-[color:var(--neon-green)]">JS</span>
+        </Link>
+        <nav className="flex items-center gap-1 text-sm md:gap-2">
+          <NavLink href="#portfolio">portfolio</NavLink>
+          <NavLink href="#contact">contact</NavLink>
+          <Link
+            href="https://github.com/mikeallisonJS"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+            className="ml-1 flex h-9 w-9 items-center justify-center rounded-md text-[color:var(--ui-gray)] transition-colors hover:bg-white/[0.04] hover:text-[color:var(--polar-blue)]"
+          >
+            <IconBrandGithub size={18} />
           </Link>
-          <nav className="mr-8 hidden items-center justify-end gap-4 text-sm font-medium md:flex lg:gap-6">
-            <Link
-              href="#portfolio"
-              className="underline-offset-4 hover:underline text-primary"
-            >
-              Portfolio
-            </Link>
-            <Link
-              href="#services"
-              className="underline-offset-4 hover:underline text-primary"
-            >
-              Services
-            </Link>
-            <Link
-              href="#contact"
-              className="underline-offset-4 hover:underline text-primary"
-            >
-              Contact
-            </Link>
-            <Link href="https://github.com/mikeallisonJS" target="_blank" className="text-primary">
-              <IconBrandGithub />
-            </Link>
-          </nav>
-        </div>
+        </nav>
       </div>
     </header>
+  )
+}
+
+function NavLink({
+  href,
+  children
+}: {
+  href: string
+  children: React.ReactNode
+}) {
+  return (
+    <Link
+      href={href}
+      className="hidden rounded-md px-3 py-1.5 font-mono text-xs text-[color:var(--ui-gray)] transition-colors hover:bg-white/[0.04] hover:text-[color:var(--polar-blue)] md:inline-block"
+    >
+      {children}
+    </Link>
   )
 }

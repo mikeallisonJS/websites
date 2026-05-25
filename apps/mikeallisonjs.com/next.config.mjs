@@ -7,6 +7,9 @@ const nextConfig = {
     ignoreBuildErrors: process.env.NODE_ENV === 'development'
   },
   reactCompiler: true,
+  outputFileTracingIncludes: {
+    '/api/agent': ['./content/**/*']
+  },
   async rewrites() {
     return [
       {

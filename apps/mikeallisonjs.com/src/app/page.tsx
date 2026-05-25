@@ -1,62 +1,81 @@
-import { AuroraBackground } from '@mikeallisonjs/shared-react-components'
+import { Suspense } from 'react'
+import { IconArrowRight, IconBrandGithub } from '@tabler/icons-react'
 import Link from 'next/link'
 
+import { BrowserWindow } from '@/components/browser-window'
+import { DesktopShell } from '@/components/desktop-shell'
 import { Hero } from '@/components/hero'
+import { KdeWindow } from '@/components/kde-window'
 import { Portfolio } from '@/components/portfolio'
-import { Services } from '@/components/services'
 
-export default function Component() {
+export default function Page() {
   return (
-    <div className="flex min-h-[100dvh] flex-col">
-      <section className="mt-[-48px] w-full pb-12 md:pb-12 lg:pb-16 xl:pb-24">
-        <AuroraBackground className="h-[50vh]">
-          <Hero />
-        </AuroraBackground>
-      </section>
-      <section
-        className="flex w-full justify-center pb-12 md:pb-24 lg:pb-32"
-        id="portfolio"
-      >
-        <Portfolio />
-      </section>
-      <section
-        className="flex w-full justify-center bg-gray-100 pb-6 pt-12 md:pb-12 lg:pb-16 dark:bg-gray-800"
-        id="services"
-      >
-        <Services />
-      </section>
-      <section
-        className="flex w-full justify-center pb-12 pt-12 md:pb-24 lg:pb-32"
-        id="contact"
-      >
-        <div className="container px-4 md:px-6 lg:px-16">
-          <div className="items-center gap-6 lg:grid-cols-[1fr_500px] lg:gap-12 xl:grid-cols-[1fr_550px]">
-            <div className="flex flex-col justify-center space-y-4">
-              <div className="space-y-2">
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                  Get in Touch
-                </h2>
-                <p className=" text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-                  Have a project in mind? Shoot me an email.
-                </p>
-                <p>
-                  <Link
-                    href="mailto:dj.mikeallison@gmail.com"
-                    className="text-3xl hover:underline"
-                  >
-                    dj.mikeallison@gmail.com
-                  </Link>
-                </p>
-              </div>
+    <Suspense fallback={null}>
+      <DesktopShell
+        agent={<Hero />}
+        portfolio={
+          <BrowserWindow
+            title="Portfolio"
+            url="mikeallisonjs.com/portfolio"
+            contentClassName="max-h-[70vh] overflow-y-auto"
+          >
+            <div className="pb-10 pt-5 md:pb-14 md:pt-7">
+              <Portfolio />
             </div>
-          </div>
-        </div>
-      </section>
-      <footer className="flex w-full shrink-0 flex-col items-center gap-2 border-t px-4 py-6 sm:flex-row md:px-6">
-        <p className="text-xs text-gray-500 dark:text-gray-400">
-          © 2024 Mike Allison. All rights reserved.
+          </BrowserWindow>
+        }
+        contact={
+          <KdeWindow title="Contact">
+            <div className="py-10 md:py-14">
+              <ContactSection />
+            </div>
+          </KdeWindow>
+        }
+      />
+    </Suspense>
+  )
+}
+
+function ContactSection() {
+  return (
+    <div className="container mx-auto max-w-4xl px-4 md:px-6">
+      <div className="flex flex-col items-start gap-6">
+        <h2 className="text-balance text-4xl font-semibold tracking-tight text-[#eff0f1] sm:text-5xl md:text-6xl">
+          Have a project in mind?
+        </h2>
+        <p className="max-w-2xl text-base leading-relaxed text-[#7f8c8d] md:text-lg">
+          Shoot me an email — I respond to every serious inquiry.
         </p>
-      </footer>
+
+        <Link
+          href="mailto:dj.mikeallison@gmail.com"
+          className="group mt-4 flex w-full max-w-2xl items-center justify-between gap-4 rounded-[6px] border border-[#3d4248] bg-[#1b1e20] px-5 py-6 font-mono text-[clamp(0.75rem,2vw,1.5rem)] transition-colors hover:border-[#3daee9]/50 hover:bg-[#1e2326] sm:px-7 sm:py-8"
+        >
+          <span className="flex min-w-0 items-center gap-3">
+            <span className="text-[color:var(--neon-green)]">$</span>
+            <span className="text-[#7f8c8d]">mailto</span>
+            <span className="truncate text-[#3daee9] underline-offset-4 group-hover:underline">
+              dj.mikeallison@gmail.com
+            </span>
+          </span>
+          <IconArrowRight
+            size={20}
+            className="shrink-0 text-[#3daee9] transition-transform group-hover:translate-x-1"
+          />
+        </Link>
+
+        <div className="mt-2 flex items-center gap-3">
+          <Link
+            href="https://github.com/mikeallisonJS"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-md border border-[#3d4248] bg-white/[0.03] px-4 py-2 font-mono text-xs text-[#3daee9] transition-colors hover:border-[#3daee9]/50"
+          >
+            <IconBrandGithub size={16} />
+            github
+          </Link>
+        </div>
+      </div>
     </div>
   )
 }
