@@ -1,40 +1,30 @@
+import { createOpenRouter } from '@openrouter/ai-sdk-provider'
+import { APICallError, stepCountIs, streamText, type ModelMessage } from 'ai'
 import { NextRequest } from 'next/server'
 
-import {
-  OpenRouterError,
-  streamOpenRouter,
-  type ChatMessage
-} from '@/lib/agent/openrouter'
 import { checkRateLimit } from '@/lib/agent/rate-limit'
-import { executeTool, toolDefinitions } from '@/lib/agent/tools'
+import { tools } from '@/lib/agent/tools'
 
-// Free tool-calling-capable models on OpenRouter, ordered by reliability.
-// OpenRouter cascades to the next entry if the current one is rate-limited
-// or unavailable, so the agent stays responsive without pinning to a single
-// (potentially saturated) free model.
-const DEFAULT_MODELS = [
-  'meta-llama/llama-3.3-70b-instruct:free',
-  'qwen/qwen-2.5-72b-instruct:free',
-  'mistralai/mistral-small-3.2-24b-instruct:free',
-  'google/gemini-2.0-flash-exp:free'
-]
-
-const MODELS = (process.env.OPENROUTER_MODEL ?? DEFAULT_MODELS.join(','))
-  .split(',')
-  .map((m) => m.trim())
-  .filter(Boolean)
+// `openrouter/free` is OpenRouter's free auto-router: it selects and falls back
+// across available free models server-side, so the agent stays responsive
+// without us pinning to (or fanning out across) specific free models. Override
+// with a single model id via OPENROUTER_MODEL if needed.
+const MODEL = process.env.OPENROUTER_MODEL?.trim() || 'openrouter/free'
 
 const MAX_USER_TURNS = 12
-const MAX_TOOL_ROUNDS = 6
+// One step == one model generation. The AI SDK runs tools and loops
+// automatically until the model answers without calling a tool or this cap is
+// hit, whichever comes first.
+const MAX_STEPS = 8
 const MAX_MESSAGE_CHARS = 2000
 
 function friendlyAgentError(err: unknown): string {
   if (err instanceof DOMException && err.name === 'AbortError') {
     return 'Cancelled. Ask again whenever.'
   }
-  if (err instanceof OpenRouterError) {
-    const upstream = err.upstreamMessage?.toLowerCase() ?? ''
-    switch (err.status) {
+  if (APICallError.isInstance(err)) {
+    const upstream = (err.responseBody ?? err.message ?? '').toLowerCase()
+    switch (err.statusCode) {
       case 401:
       case 403:
         return "The agent's keys aren't working — Mike will sort it. The portfolio's just below in the meantime."
@@ -145,10 +135,22 @@ export async function POST(req: NextRequest) {
     req.headers.get('referer') ??
     'https://mikeallisonjs.com'
 
-  const messages: ChatMessage[] = [
-    { role: 'system', content: SYSTEM_PROMPT },
-    ...cleaned
-  ]
+  // OpenRouter through the Vercel AI SDK. `openrouter/free` auto-routes across
+  // free models, so model selection and fallback happen server-side.
+  const openrouter = createOpenRouter({
+    apiKey,
+    headers: {
+      'HTTP-Referer': referer,
+      'X-Title': 'mikeallisonjs.com agent'
+    }
+  })
+  const model = openrouter(MODEL, { usage: { include: true } })
+
+  const messages: ModelMessage[] = cleaned.map((m) =>
+    m.role === 'user'
+      ? { role: 'user', content: m.content }
+      : { role: 'assistant', content: m.content }
+  )
 
   const abortController = new AbortController()
   const { signal } = abortController
@@ -180,108 +182,92 @@ export async function POST(req: NextRequest) {
       }
 
       try {
-        for (let round = 0; round < MAX_TOOL_ROUNDS; round++) {
+        const result = streamText({
+          model,
+          system: SYSTEM_PROMPT,
+          messages,
+          tools,
+          stopWhen: stepCountIs(MAX_STEPS),
+          temperature: 0.4,
+          abortSignal: signal
+        })
+
+        let finishReason: string | null = null
+
+        for await (const part of result.fullStream) {
           if (signal.aborted) return
-          const generator = streamOpenRouter({
-            apiKey,
-            models: MODELS,
-            messages,
-            tools: toolDefinitions,
-            referer,
-            title: 'mikeallisonjs.com agent',
-            signal
-          })
-
-          let finishReason: string | null = null
-          const calls: Array<{ id: string; name: string; arguments: string }> =
-            []
-          let assistantText = ''
-
-          while (true) {
-            const next = await generator.next()
-            if (next.done) {
-              finishReason = next.value.finishReason
-              for (const c of next.value.toolCalls) {
-                if (!calls.find((x) => x.id === c.id)) calls.push(c)
-              }
-              assistantText = next.value.text
+          switch (part.type) {
+            case 'text-delta':
+              send({ type: 'text', delta: part.text })
               break
-            }
-            const ev = next.value
-            if (ev.type === 'text') {
-              send({ type: 'text', delta: ev.delta })
-            } else if (ev.type === 'tool_call_complete') {
-              if (!calls.find((x) => x.id === ev.call.id)) calls.push(ev.call)
-              let parsed: unknown = {}
-              try {
-                parsed = JSON.parse(ev.call.arguments || '{}')
-              } catch {
-                parsed = { _raw: ev.call.arguments }
-              }
+            case 'tool-call':
               send({
                 type: 'tool_call',
-                id: ev.call.id,
-                name: ev.call.name,
-                arguments: parsed
+                id: part.toolCallId,
+                name: part.toolName,
+                arguments: part.input ?? {}
               })
-            } else if (ev.type === 'usage') {
-              send({ type: 'usage', usage: ev.usage })
-            } else if (ev.type === 'finish') {
-              finishReason = ev.reason
-            }
-          }
-
-          if (calls.length === 0 || finishReason !== 'tool_calls') {
-            send({ type: 'done', finish: finishReason })
-            close()
-            return
-          }
-
-          messages.push({
-            role: 'assistant',
-            content: assistantText || null,
-            tool_calls: calls.map((c) => ({
-              id: c.id,
-              type: 'function',
-              function: { name: c.name, arguments: c.arguments }
-            }))
-          })
-
-          for (const c of calls) {
-            if (signal.aborted) return
-            let args: Record<string, unknown> = {}
-            try {
-              args = JSON.parse(c.arguments || '{}')
-            } catch {
-              args = {}
-            }
-            const result = await executeTool({
-              id: c.id,
-              name: c.name,
-              arguments: args
-            })
-            send({
-              type: 'tool_result',
-              id: c.id,
-              name: c.name,
-              content: result.content
-            })
-            messages.push({
-              role: 'tool',
-              tool_call_id: c.id,
-              name: c.name,
-              content: result.content
-            })
+              break
+            case 'tool-result':
+              send({
+                type: 'tool_result',
+                id: part.toolCallId,
+                name: part.toolName,
+                content:
+                  typeof part.output === 'string'
+                    ? part.output
+                    : JSON.stringify(part.output)
+              })
+              break
+            case 'tool-error':
+              send({
+                type: 'tool_result',
+                id: part.toolCallId,
+                name: part.toolName,
+                content: JSON.stringify({
+                  error:
+                    part.error instanceof Error
+                      ? part.error.message
+                      : String(part.error)
+                })
+              })
+              break
+            case 'finish':
+              finishReason = part.finishReason
+              send({
+                type: 'usage',
+                usage: {
+                  prompt_tokens: part.totalUsage.inputTokens ?? 0,
+                  completion_tokens: part.totalUsage.outputTokens ?? 0,
+                  total_tokens:
+                    part.totalUsage.totalTokens ??
+                    (part.totalUsage.inputTokens ?? 0) +
+                      (part.totalUsage.outputTokens ?? 0)
+                }
+              })
+              break
+            case 'error':
+              throw part.error
           }
         }
 
-        send({
-          type: 'done',
-          finish: 'max_tool_rounds',
-          warning: 'Reached max tool rounds without a final answer.'
-        })
+        // `tool-calls` as the terminal reason means the step cap stopped us
+        // mid-loop before the model produced a final answer.
+        if (finishReason === 'tool-calls') {
+          send({
+            type: 'done',
+            finish: 'max_tool_rounds',
+            warning: 'Reached max tool rounds without a final answer.'
+          })
+        } else {
+          send({ type: 'done', finish: finishReason })
+        }
         close()
       } catch (err) {
+        if (err instanceof DOMException && err.name === 'AbortError') {
+          close()
+          return
+        }
         send({ type: 'error', message: friendlyAgentError(err) })
         close()
       }
