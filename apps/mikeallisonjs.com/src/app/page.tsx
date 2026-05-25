@@ -1,38 +1,58 @@
-import { Suspense } from 'react'
 import { IconArrowRight, IconBrandGithub } from '@tabler/icons-react'
 import Link from 'next/link'
+import { Suspense } from 'react'
 
 import { BrowserWindow } from '@/components/browser-window'
 import { DesktopShell } from '@/components/desktop-shell'
 import { Hero } from '@/components/hero'
 import { KdeWindow } from '@/components/kde-window'
 import { Portfolio } from '@/components/portfolio'
+import { SiteFooter } from '@/components/site-footer'
+import { JsonLd } from '@/components/structured-data'
+import { personSchema, profilePageSchema, websiteSchema } from '@/lib/schema'
+import { site } from '@/lib/site'
 
 export default function Page() {
   return (
-    <Suspense fallback={null}>
-      <DesktopShell
-        agent={<Hero />}
-        portfolio={
-          <BrowserWindow
-            title="Portfolio"
-            url="mikeallisonjs.com/portfolio"
-            contentClassName="max-h-[70vh] overflow-y-auto"
-          >
-            <div className="pb-10 pt-5 md:pb-14 md:pt-7">
-              <Portfolio />
-            </div>
-          </BrowserWindow>
-        }
-        contact={
-          <KdeWindow title="Contact">
-            <div className="py-10 md:py-14">
-              <ContactSection />
-            </div>
-          </KdeWindow>
-        }
-      />
-    </Suspense>
+    <>
+      <JsonLd data={[personSchema(), websiteSchema(), profilePageSchema()]} />
+
+      {/* The interactive desktop above carries the visual brand but exposes no
+          crawlable headline; this gives search and AI crawlers a real document
+          title and summary in the initial HTML. */}
+      <section className="sr-only">
+        <h1>
+          {site.author} — {site.jobTitle}
+        </h1>
+        <p>{site.description}</p>
+      </section>
+
+      <Suspense fallback={null}>
+        <DesktopShell
+          agent={<Hero />}
+          portfolio={
+            <BrowserWindow
+              title="Portfolio"
+              url="mikeallisonjs.com/portfolio"
+              contentClassName="max-h-[70vh] overflow-y-auto"
+            >
+              <div className="pb-10 pt-5 md:pb-14 md:pt-7">
+                <Portfolio />
+              </div>
+            </BrowserWindow>
+          }
+          contact={
+            <KdeWindow title="Contact">
+              <div className="py-10 md:py-14">
+                <ContactSection />
+              </div>
+            </KdeWindow>
+          }
+        />
+      </Suspense>
+
+      <SiteFooter />
+    </>
   )
 }
 
