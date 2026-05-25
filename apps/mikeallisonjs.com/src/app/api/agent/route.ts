@@ -5,11 +5,24 @@ import { NextRequest } from 'next/server'
 import { checkRateLimit } from '@/lib/agent/rate-limit'
 import { tools } from '@/lib/agent/tools'
 
-// `openrouter/free` is OpenRouter's free auto-router: it selects and falls back
-// across available free models server-side, so the agent stays responsive
-// without us pinning to (or fanning out across) specific free models. Override
-// with a single model id via OPENROUTER_MODEL if needed.
-const MODEL = process.env.OPENROUTER_MODEL?.trim() || 'openrouter/free'
+// The agent streams a multi-step tool loop, and the `openrouter/free`
+// auto-router can land on slow free models, so a single request can easily run
+// past Vercel's default function timeout (15s). Give the stream room to finish.
+// 60 is the max on the Hobby plan; raise toward 300 on Pro if needed.
+export const maxDuration = 60
+
+// Primary model: a fast, dependable, free model with solid tool-calling.
+// Override with a single model id via OPENROUTER_MODEL if needed.
+const PRIMARY_MODEL =
+  process.env.OPENROUTER_MODEL?.trim() || 'openai/gpt-oss-20b:free'
+// Fallback: OpenRouter's free auto-router, which selects across available free
+// models server-side. OpenRouter tries the primary first and cascades here if
+// it's down, rate-limited, or refuses — see
+// https://openrouter.ai/docs/features/model-routing
+const FALLBACK_MODEL = 'openrouter/free'
+// Ordered routing list (primary first). Deduped so an OPENROUTER_MODEL override
+// of `openrouter/free` doesn't list it twice.
+const MODEL_ROUTE = [...new Set([PRIMARY_MODEL, FALLBACK_MODEL])]
 
 const MAX_USER_TURNS = 12
 // One step == one model generation. The AI SDK runs tools and loops
@@ -135,8 +148,8 @@ export async function POST(req: NextRequest) {
     req.headers.get('referer') ??
     'https://mikeallisonjs.com'
 
-  // OpenRouter through the Vercel AI SDK. `openrouter/free` auto-routes across
-  // free models, so model selection and fallback happen server-side.
+  // OpenRouter through the Vercel AI SDK. `model` is the primary; `models` is
+  // the ordered fallback list OpenRouter cascades through server-side.
   const openrouter = createOpenRouter({
     apiKey,
     headers: {
@@ -144,7 +157,10 @@ export async function POST(req: NextRequest) {
       'X-Title': 'mikeallisonjs.com agent'
     }
   })
-  const model = openrouter(MODEL, { usage: { include: true } })
+  const model = openrouter(PRIMARY_MODEL, {
+    models: MODEL_ROUTE,
+    usage: { include: true }
+  })
 
   const messages: ModelMessage[] = cleaned.map((m) =>
     m.role === 'user'
