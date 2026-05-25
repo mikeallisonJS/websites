@@ -7,7 +7,6 @@ import './global.css'
 
 import { site } from '@/lib/site'
 
-
 const monaSans = Mona_Sans({
   subsets: ['latin'],
   display: 'swap',
