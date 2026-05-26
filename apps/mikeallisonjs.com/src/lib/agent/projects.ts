@@ -77,7 +77,7 @@ export const projects: ProjectData[] = [
   },
   {
     slug: 'core',
-    title: 'Jesusfilm Core',
+    title: 'Core',
     description:
       'The federated GraphQL platform powering the entire Jesusfilm ecosystem.',
     image: '/images/core.png',
