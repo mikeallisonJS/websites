@@ -12,6 +12,18 @@ export type ProjectData = {
 
 export const projects: ProjectData[] = [
   {
+    slug: 'nexus',
+    title: 'Nexus',
+    description: "The admin platform for Jesusfilm's global video catalog.",
+    image: '/images/nexus.png',
+    websiteUrl: 'https://nexus.jesusfilm.org',
+    githubUrl: 'https://github.com/JesusFilm/core',
+    stack: ['BrandNextjs', 'BrandNodejs', 'BrandGraphql', 'BrandTypescript', 'BrandVercel'],
+    tags: ['next', 'graphql', 'cms'],
+    details:
+      "Nexus is Jesusfilm's internal content-administration platform for its global film catalog — the tool content managers use to curate everything that flows out to jesusfilm.org/watch and the Arclight media APIs. Built with Next.js (app router) and Material UI on a federated GraphQL backend (Apollo Client), it manages video metadata, descriptions, images, Bible citations, study questions, audio tracks, editions, and child collections, with granular publishing and view/download access controls. Localized into multiple languages and deployed on Vercel."
+  },
+  {
     slug: 'freevstvault',
     title: 'Free VST Vault',
     description: 'An AI-powered audio plugin directory.',
@@ -60,18 +72,6 @@ export const projects: ProjectData[] = [
     tags: ['next', 'algolia', 'video'],
     details:
       'Public-facing video library for the Jesusfilm catalog. Algolia powers the AI/typeahead search; Next.js app router on Vercel serves the experience; metadata flows in over GraphQL.'
-  },
-  {
-    slug: 'nexus',
-    title: 'Nexus',
-    description: "The admin platform for Jesusfilm's global video catalog.",
-    image: '/images/nexus.png',
-    websiteUrl: 'https://nexus.jesusfilm.org',
-    githubUrl: 'https://github.com/JesusFilm/core',
-    stack: ['BrandNextjs', 'BrandNodejs', 'BrandGraphql', 'BrandTypescript', 'BrandVercel'],
-    tags: ['next', 'graphql', 'cms'],
-    details:
-      "Nexus is Jesusfilm's internal content-administration platform for its global film catalog — the tool content managers use to curate everything that flows out to jesusfilm.org/watch and the Arclight media APIs. Built with Next.js (app router) and Material UI on a federated GraphQL backend (Apollo Client), it manages video metadata, descriptions, images, Bible citations, study questions, audio tracks, editions, and child collections, with granular publishing and view/download access controls. Localized into multiple languages and deployed on Vercel."
   },
   {
     slug: 'captainssounds',
