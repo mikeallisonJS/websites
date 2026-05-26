@@ -178,12 +178,32 @@ export function Markdown({
       continue
     }
 
-    // Unordered list
+    // Unordered list. Lazy continuation lines (a hard-wrapped item's
+    // following indented text) are folded into the current item, the same way
+    // paragraphs join soft wraps.
     if (/^\s*[-*+]\s+/.test(line)) {
       const items: string[] = []
-      while (i < lines.length && /^\s*[-*+]\s+/.test(lines[i] ?? '')) {
-        items.push((lines[i] ?? '').replace(/^\s*[-*+]\s+/, ''))
-        i++
+      while (i < lines.length) {
+        const l = lines[i] ?? ''
+        const bullet = l.match(/^\s*[-*+]\s+(.*)$/)
+        if (bullet) {
+          items.push(bullet[1] ?? '')
+          i++
+          continue
+        }
+        // Non-blank, non-structural line: continuation of the previous item.
+        if (
+          l.trim() !== '' &&
+          items.length > 0 &&
+          !/^(#{1,6})\s+/.test(l) &&
+          !/^\s*>\s?/.test(l) &&
+          !/^\s*([-*_])\1{2,}\s*$/.test(l)
+        ) {
+          items[items.length - 1] = `${items[items.length - 1]} ${l.trim()}`
+          i++
+          continue
+        }
+        break
       }
       out.push(
         <ul
