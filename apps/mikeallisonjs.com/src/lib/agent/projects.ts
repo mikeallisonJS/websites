@@ -194,6 +194,18 @@ export const projects: ProjectData[] = [
     tags: ['angular', 'java', 'edtech'],
     details:
       'White-label LMS / assessment platform. Angular frontend, Node + Java backend services. Powers learning and test-taking experiences for downstream education customers.'
+  },
+  {
+    slug: 'contraxx',
+    title: 'Contraxx',
+    description:
+      "Enterprise contract lifecycle management (CLM) — Ecteon's flagship platform.",
+    image: '/images/contraxx.png',
+    websiteUrl: 'https://ecteon.com',
+    stack: ['BrandCsharp', 'BrandWindows', 'Database'],
+    tags: ['dotnet', 'clm', 'enterprise'],
+    details:
+      "Ecteon's flagship product — a contract lifecycle management (CLM) platform for enterprises with complex contracting requirements. Mike ported the original Delphi / Win32 client to a layered .NET architecture (C# and VB.NET) and built the web application that mirrored and then expanded on it: ASP.NET (WebForms, later MVC / Web API) over SQL Server and Oracle, with a custom serializable data layer, DocuSign e-signatures, SAML single sign-on, and a security model meeting OWASP / HIPAA / HITECH requirements."
   }
 ]
 

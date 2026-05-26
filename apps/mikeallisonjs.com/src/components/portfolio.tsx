@@ -2,6 +2,7 @@ import {
   IconBrandAlgolia,
   IconBrandAngular,
   IconBrandAws,
+  IconBrandCSharp,
   IconBrandGithub,
   IconBrandGoogle,
   IconBrandGraphql,
@@ -13,8 +14,10 @@ import {
   IconBrandTerraform,
   IconBrandTypescript,
   IconBrandVercel,
+  IconBrandWindows,
   IconBrandWordpress,
   IconCoffee,
+  IconDatabase,
   IconDiamond,
   IconExternalLink,
   IconFlame
@@ -30,6 +33,7 @@ const iconMap: Record<string, ComponentType<{ size?: number }>> = {
   BrandAlgolia: IconBrandAlgolia,
   BrandAngular: IconBrandAngular,
   BrandAws: IconBrandAws,
+  BrandCsharp: IconBrandCSharp,
   BrandGoogle: IconBrandGoogle,
   BrandGraphql: IconBrandGraphql,
   BrandGumroad: IconBrandGumroad,
@@ -40,8 +44,10 @@ const iconMap: Record<string, ComponentType<{ size?: number }>> = {
   BrandTerraform: IconBrandTerraform,
   BrandTypescript: IconBrandTypescript,
   BrandVercel: IconBrandVercel,
+  BrandWindows: IconBrandWindows,
   BrandWordpress: IconBrandWordpress,
   Coffee: IconCoffee,
+  Database: IconDatabase,
   Diamond: IconDiamond,
   Hono: IconFlame
 }
