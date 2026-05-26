@@ -113,6 +113,18 @@ export const projects: ProjectData[] = [
       'A solo project. Indexes free audio plugins (VSTs, AUs, instruments, effects) and surfaces them through AI-assisted search and recommendations. Built on Next.js + Vercel with a Postgres-backed catalog and a crawler that ingests plugin metadata. Uses Google for SSO.'
   },
   {
+    slug: 'archimedius',
+    title: 'Archimedius',
+    description:
+      'A cross-platform desktop app that organizes media files by their metadata.',
+    image: '/images/archimedius.png',
+    githubUrl: 'https://github.com/mikeallisonJS/archimedius',
+    stack: ['BrandPython'],
+    tags: ['python', 'desktop', 'media'],
+    details:
+      'A solo project. Point Archimedius at a folder and it recursively scans audio, video, image, and eBook files, extracts their metadata (via TinyTag, with MediaInfo for richer video data), and sorts everything into a clean structure using customizable naming templates. Built in Python with a Tkinter GUI and shipped as native installers for macOS and Windows.'
+  },
+  {
     slug: 'captainssounds',
     title: "Captain's Sounds",
     description: 'A Next.js eCommerce site for music production.',
