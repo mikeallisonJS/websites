@@ -15,7 +15,8 @@ import {
   IconBrandWordpress,
   IconCoffee,
   IconDiamond,
-  IconExternalLink
+  IconExternalLink,
+  IconFlame
 } from '@tabler/icons-react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -39,7 +40,8 @@ const iconMap: Record<string, ComponentType<{ size?: number }>> = {
   BrandVercel: IconBrandVercel,
   BrandWordpress: IconBrandWordpress,
   Coffee: IconCoffee,
-  Diamond: IconDiamond
+  Diamond: IconDiamond,
+  Hono: IconFlame
 }
 
 function StackIcons({ stack }: { stack: string[] }) {
