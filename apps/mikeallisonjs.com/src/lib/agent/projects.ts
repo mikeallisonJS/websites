@@ -155,7 +155,7 @@ export const projects: ProjectData[] = [
     image: '/images/pbmtv.png',
     websiteUrl: 'https://pbmtv.org',
     stack: ['BrandReact', 'BrandNodejs', 'BrandWordpress'],
-    tags: ['react', 'wordpress'],
+    tags: ['react', 'wordpress', 'streaming'],
     details:
       'Non-profit broadcast network site. React frontend backed by WordPress as a headless CMS, served from a Node.js layer.'
   },
