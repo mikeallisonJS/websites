@@ -154,6 +154,7 @@ export const projects: ProjectData[] = [
       'Public Broadcasting Music Television — a non-profit broadcast network.',
     image: '/images/pbmtv.png',
     websiteUrl: 'https://pbmtv.org',
+    githubUrl: 'https://github.com/pbmtv',
     stack: ['BrandReact', 'BrandNodejs', 'BrandWordpress'],
     tags: ['react', 'wordpress', 'video'],
     details:
