@@ -31,10 +31,10 @@ export const projects: ProjectData[] = [
     image: '/images/arclight.png',
     websiteUrl: 'https://arclight.org',
     githubUrl: 'https://github.com/JesusFilm/core',
-    stack: ['BrandNextjs', 'BrandNodejs', 'BrandGraphql', 'BrandTypescript', 'BrandAws', 'BrandTerraform'],
-    tags: ['next', 'api', 'aws'],
+    stack: ['BrandNodejs', 'BrandGraphql', 'BrandTypescript', 'BrandAws', 'BrandTerraform'],
+    tags: ['hono', 'api', 'aws'],
     details:
-      "Arclight is Jesusfilm's media-distribution API — the public interface that serves its global film and video catalog, plus embeddable players, to third-party partners, apps, and websites. It exposes the same catalog Nexus administers and Jesusfilm Watch consumes. Built as a versioned (v2) Next.js route-handler API over the federated GraphQL media backend, containerized with Docker and deployed to AWS (ECS) via Terraform."
+      "Arclight is Jesusfilm's media-distribution API — the public interface that serves its global film and video catalog, plus embeddable players, to third-party partners, apps, and websites. It exposes the same catalog Nexus administers and Jesusfilm Watch consumes. Built as a versioned (v2) Hono API over the federated GraphQL media backend, containerized with Docker and deployed to AWS (ECS) via Terraform."
   },
   {
     slug: 'nextsteps',
