@@ -254,42 +254,42 @@ export const projects: ProjectData[] = [
     slug: 'client-support',
     title: '24/7 Client Support Tool',
     description:
-      "Emdeon's self-service support portal for healthcare clients.",
+      "WebMD's self-service support portal for healthcare clients.",
     image: '/images/client-support.png',
     stack: ['BrandCsharp', 'Database'],
     tags: ['dotnet', 'healthcare', 'support'],
     details:
-      "The flagship customer-facing product at Emdeon (the healthcare-transaction company formerly known as WebMD) — a 24/7 self-service portal where clients could open support requests, search claim and remittance error codes, retrieve electronic remittance advice (ERA), manage account options, and browse FAQs and documents. Built in ASP.NET / C# on SQL Server. Mike led the development effort that scaled it from 5,000 to 50,000 users."
+      "The flagship customer-facing product at WebMD's healthcare-transaction business — a 24/7 self-service portal where clients could open support requests, search claim and remittance error codes, retrieve electronic remittance advice (ERA), manage account options, and browse FAQs and documents. Built in ASP.NET / C# on SQL Server. Mike led the development effort that scaled it from 5,000 to 50,000 users."
   },
   {
     slug: 'noah',
     title: 'NOAH',
-    description: "Emdeon's internal CRM for sales and account management.",
+    description: "WebMD's internal CRM for sales and account management.",
     image: '/images/noah.png',
     stack: ['BrandCsharp', 'Database'],
     tags: ['dotnet', 'crm', 'healthcare'],
     details:
-      "Emdeon's internal CRM — a sales and account-management application with tree-based navigation, filtering, Excel export, and a charting reports module, backed by Windows services that processed client enrollment files. Built in ASP.NET / C# on SQL Server."
+      "WebMD's internal CRM — a sales and account-management application with tree-based navigation, filtering, Excel export, and a charting reports module, backed by Windows services that processed client enrollment files. Built in ASP.NET / C# on SQL Server."
   },
   {
     slug: 'wire',
     title: 'WIRE',
-    description: 'An internal staff portal at Emdeon.',
+    description: 'An internal staff portal at WebMD.',
     image: '/images/wire.png',
     stack: ['BrandCsharp', 'Database'],
     tags: ['dotnet', 'healthcare', 'portal'],
     details:
-      "An internal ASP.NET / C# portal at Emdeon that pulled together reports, shared resources, and scheduled (timed) events for staff behind a single front door."
+      "An internal ASP.NET / C# portal at WebMD that pulled together reports, shared resources, and scheduled (timed) events for staff behind a single front door."
   },
   {
     slug: 'online-enrollment',
     title: 'Online Enrollment',
-    description: "Emdeon's online provider-enrollment application.",
+    description: "WebMD's online provider-enrollment application.",
     image: '/images/online-enrollment.png',
     stack: ['Diamond', 'Database'],
     tags: ['ruby', 'rails', 'healthcare'],
     details:
-      "Emdeon's online enrollment application — moving healthcare provider and client enrollment off paper and into a self-service web flow. One of the company's early Ruby on Rails applications."
+      "WebMD's online enrollment application — moving healthcare provider and client enrollment off paper and into a self-service web flow. One of the company's early Ruby on Rails applications."
   }
 ]
 
