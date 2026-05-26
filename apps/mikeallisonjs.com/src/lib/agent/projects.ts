@@ -249,6 +249,47 @@ export const projects: ProjectData[] = [
     tags: ['dotnet', 'clm', 'enterprise'],
     details:
       "Ecteon's flagship product — a contract lifecycle management (CLM) platform for enterprises with complex contracting requirements. Mike ported the original Delphi / Win32 client to a layered .NET architecture (C# and VB.NET) and built the web application that mirrored and then expanded on it: ASP.NET (WebForms, later MVC / Web API) over SQL Server and Oracle, with a custom serializable data layer, DocuSign e-signatures, SAML single sign-on, and a security model meeting OWASP / HIPAA / HITECH requirements."
+  },
+  {
+    slug: 'client-support',
+    title: '24/7 Client Support Tool',
+    description:
+      "Emdeon's self-service support portal for healthcare clients.",
+    image: '/images/client-support.png',
+    stack: ['BrandCsharp', 'Database'],
+    tags: ['dotnet', 'healthcare', 'support'],
+    details:
+      "The flagship customer-facing product at Emdeon (the healthcare-transaction company formerly known as WebMD) — a 24/7 self-service portal where clients could open support requests, search claim and remittance error codes, retrieve electronic remittance advice (ERA), manage account options, and browse FAQs and documents. Built in ASP.NET / C# on SQL Server. Mike led the development effort that scaled it from 5,000 to 50,000 users."
+  },
+  {
+    slug: 'noah',
+    title: 'NOAH',
+    description: "Emdeon's internal CRM for sales and account management.",
+    image: '/images/noah.png',
+    stack: ['BrandCsharp', 'Database'],
+    tags: ['dotnet', 'crm', 'healthcare'],
+    details:
+      "Emdeon's internal CRM — a sales and account-management application with tree-based navigation, filtering, Excel export, and a charting reports module, backed by Windows services that processed client enrollment files. Built in ASP.NET / C# on SQL Server."
+  },
+  {
+    slug: 'wire',
+    title: 'WIRE',
+    description: 'An internal staff portal at Emdeon.',
+    image: '/images/wire.png',
+    stack: ['BrandCsharp', 'Database'],
+    tags: ['dotnet', 'healthcare', 'portal'],
+    details:
+      "An internal ASP.NET / C# portal at Emdeon that pulled together reports, shared resources, and scheduled (timed) events for staff behind a single front door."
+  },
+  {
+    slug: 'online-enrollment',
+    title: 'Online Enrollment',
+    description: "Emdeon's online provider-enrollment application.",
+    image: '/images/online-enrollment.png',
+    stack: ['Diamond', 'Database'],
+    tags: ['ruby', 'rails', 'healthcare'],
+    details:
+      "Emdeon's online enrollment application — moving healthcare provider and client enrollment off paper and into a self-service web flow. One of the company's early Ruby on Rails applications."
   }
 ]
 
