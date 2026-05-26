@@ -98,4 +98,3 @@ developer tooling.
 
 - Email: dj.mikeallison@gmail.com
 - GitHub: https://github.com/mikeallisonJS
-- Website: https://mikeallisonjs.com
