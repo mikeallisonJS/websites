@@ -207,16 +207,47 @@ export const projects: ProjectData[] = [
       "The shared ASP.NET Web API platform behind CompassLearning's K-12 products — the services layer that PathBlazer, GoQuest, and the intervention screener all run on. It sits on top of Agilix's XLI / DLAP LMS for multi-tenant accounts, courses, and enrollments, and ties together a data warehouse for student performance and persistence analytics, Salesforce for district provisioning, a batch-job queue for long-running processes, external-assessment services, and SignalR for real-time updates."
   },
   {
-    slug: 'agilix',
-    title: 'Agilix',
-    description:
-      'Online learning platform powering countless learning and test-taking solutions.',
-    image: '/images/agilix.png',
-    websiteUrl: 'https://agilix.com',
+    slug: 'buzz',
+    title: 'Buzz',
+    description: "Agilix's flagship K-12 learning management system.",
+    image: '/images/buzz.png',
+    websiteUrl: 'https://www.agilix.com/products/buzz',
     stack: ['BrandAngular', 'BrandNodejs', 'Coffee'],
-    tags: ['angular', 'java', 'edtech'],
+    tags: ['angular', 'lms', 'edtech'],
     details:
-      'White-label LMS / assessment platform. Angular frontend, Node + Java backend services. Powers learning and test-taking experiences for downstream education customers.'
+      "Agilix's flagship learning management system — a configurable, white-label LMS for blended, virtual, and mastery-based K-12 programs, with personalized learning paths, analytics, and standards-based integrations (LTI, OneRoster). An AngularJS application (CoffeeScript, Node tooling) built on the xli-ng framework over Agilix's DLAP API."
+  },
+  {
+    slug: 'hive',
+    title: 'Hive',
+    description:
+      'A distributed online/offline high-stakes assessment platform.',
+    image: '/images/hive.png',
+    stack: ['BrandAngular', 'BrandNodejs', 'Database'],
+    tags: ['angular', 'assessment', 'edtech'],
+    details:
+      "A platform for delivering high-stakes assessments across browser, tablet, and locked-down desktop (Node-Webkit + Safe Exam Browser). Separate student, proctor, and admin apps on a MEAN-style stack (MongoDB, Express, AngularJS, Node) backed by a Java assessment server — students can keep testing offline and sync when they reconnect. Mike led the front-end across all three apps."
+  },
+  {
+    slug: 'xli-ng',
+    title: 'xli-ng',
+    description: 'The AngularJS framework Agilix applications are built on.',
+    image: '/images/xli-ng.png',
+    stack: ['BrandAngular', 'Coffee'],
+    tags: ['angular', 'framework', 'library'],
+    details:
+      "Agilix's core AngularJS library for building xLi / DLAP applications — the shared framework underpinning Buzz, Hive, and partner apps. Mike contributed core framework features and built out its accessibility support."
+  },
+  {
+    slug: 'integration-service',
+    title: 'Integration Service',
+    description:
+      'C# middleware letting an enterprise partner embed Agilix learning apps.',
+    image: '/images/integration-service.png',
+    stack: ['BrandCsharp'],
+    tags: ['dotnet', 'api', 'integration'],
+    details:
+      "A C# / ASP.NET interface service Mike designed so a large enterprise partner could consume and embed Agilix learning applications as partial, white-labeled experiences through the DLAP API."
   },
   {
     slug: 'contraxx',
