@@ -290,6 +290,37 @@ export const projects: ProjectData[] = [
     tags: ['ruby', 'rails', 'healthcare'],
     details:
       "WebMD's online enrollment application — moving healthcare provider and client enrollment off paper and into a self-service web flow. One of the company's early Ruby on Rails applications."
+  },
+  {
+    slug: 'nashville-post',
+    title: 'NashvillePost',
+    description: 'A Nashville business-news publication.',
+    image: '/images/nashville-post.png',
+    stack: ['Perl', 'Database'],
+    tags: ['perl', 'news', 'cms'],
+    details:
+      "An online business-news publication for Nashville, built at Duthie (DAI) — one of Mike's first professional builds. Article publishing and content delivery on a Perl codebase, with commerce (subscriptions and listings) running on the InterShop platform."
+  },
+  {
+    slug: 'ame-church',
+    title: 'AME Church',
+    description:
+      'Official website and Pastors Reporting System for the AME Church.',
+    image: '/images/ame-church.png',
+    stack: ['BrandPhp', 'Database'],
+    tags: ['php', 'database', 'nonprofit'],
+    details:
+      'The official website for the African Methodist Episcopal Church, plus a database-backed Pastors Reporting System that let pastors submit congregation reports online. Built in PHP against a relational database — a content site fronting a real reporting application.'
+  },
+  {
+    slug: 'stinger-configurator',
+    title: 'Stinger Online Configurator',
+    description: 'A browser-based product configurator.',
+    image: '/images/stinger-configurator.png',
+    stack: ['ASP', 'BrandWindows'],
+    tags: ['asp', 'configurator', 'ecommerce'],
+    details:
+      "An online configurator that let customers build a product from interchangeable parts — choosing bases and heads and seeing each combination rendered from a photo library in real time. Built in classic ASP."
   }
 ]
 
