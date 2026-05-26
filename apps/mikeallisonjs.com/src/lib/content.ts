@@ -63,7 +63,7 @@ async function listMarkdownSlugs(dir: string): Promise<string[]> {
 
 /** Format a frontmatter date like "2016-01" as "Jan 2016". */
 export function formatMonth(value?: string): string {
-  if (!value) return 'Present'
+  if (!value || value.toLowerCase() === 'present') return 'Present'
   const [year, month] = value.split('-')
   if (!month) return year ?? value
   const names = [

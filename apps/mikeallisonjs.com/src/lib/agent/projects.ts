@@ -110,7 +110,7 @@ export const projects: ProjectData[] = [
   },
   {
     slug: 'compass',
-    title: 'Compass Learning',
+    title: 'CompassLearning',
     description: 'Nationwide online learning platforms for K-12 students.',
     image: '/images/compass.png',
     websiteUrl: 'https://edgenuity.com',

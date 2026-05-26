@@ -75,12 +75,15 @@ export function projectSchema(project: ProjectData): Schema {
 }
 
 export function jobSchema(job: JobDoc): Schema {
+  // An ongoing role uses `present` (or no end) in frontmatter; only emit
+  // `endDate` for a real date so the JSON-LD stays valid.
+  const isOngoing = !job.end || job.end.toLowerCase() === 'present'
   return {
     '@context': 'https://schema.org',
     '@type': 'Role',
     roleName: job.role,
     startDate: job.start,
-    ...(job.end ? { endDate: job.end } : {}),
+    ...(isOngoing ? {} : { endDate: job.end }),
     description: job.body.split('\n').find((l) => l.trim() && !l.startsWith('#')),
     member: { '@id': PERSON_ID },
     worksFor: {

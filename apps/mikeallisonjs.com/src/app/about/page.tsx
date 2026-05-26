@@ -64,8 +64,8 @@ export default function AboutPage() {
             dynamic content rendering, and performance optimization.
           </p>
           <p className="my-4">
-            My career spans EdTech, healthcare, contract management, a global
-            non-profit, and music software, with deep operational experience on
+            My career spans EdTech, healthcare, contract management, global
+            non-profits, and music software, with deep operational experience on
             AWS, Vercel, and Terraform. Most recently I&apos;ve focused on
             AI-augmented product surfaces and developer tooling — including the
             agent that powers the homepage of this site.
