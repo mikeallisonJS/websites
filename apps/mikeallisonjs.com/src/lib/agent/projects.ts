@@ -76,6 +76,19 @@ export const projects: ProjectData[] = [
       'Public-facing video library for the Jesusfilm catalog. Algolia powers the AI/typeahead search; Next.js app router on Vercel serves the experience; metadata flows in over GraphQL.'
   },
   {
+    slug: 'core',
+    title: 'Jesusfilm Core',
+    description:
+      'The federated GraphQL platform powering the entire Jesusfilm ecosystem.',
+    image: '/images/core.png',
+    websiteUrl: 'https://docs.core.jesusfilm.org/',
+    githubUrl: 'https://github.com/JesusFilm/core',
+    stack: ['BrandGraphql', 'BrandNodejs', 'BrandTypescript', 'BrandAws', 'BrandTerraform'],
+    tags: ['graphql', 'federation', 'api'],
+    details:
+      "Jesusfilm Core is the federated GraphQL platform behind the entire Jesusfilm ecosystem — NextSteps, Jesusfilm Watch, Nexus, and Arclight all read from it. A set of NestJS subgraphs (journeys, media, languages, users, analytics) composed behind a GraphQL Hive / Yoga gateway, backed by Prisma and Postgres. Containerized with Docker and deployed to AWS (ECS) via Terraform."
+  },
+  {
     slug: 'mikeallisonjs',
     title: 'mikeallisonJS.com',
     description:
