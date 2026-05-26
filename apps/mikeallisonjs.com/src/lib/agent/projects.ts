@@ -24,6 +24,19 @@ export const projects: ProjectData[] = [
       "Nexus is Jesusfilm's internal content-administration platform for its global film catalog — the tool content managers use to curate everything that flows out to jesusfilm.org/watch and the Arclight media APIs. Built with Next.js (app router) and Material UI on a federated GraphQL backend (Apollo Client), it manages video metadata, descriptions, images, Bible citations, study questions, audio tracks, editions, and child collections, with granular publishing and view/download access controls. Localized into multiple languages and deployed on Vercel."
   },
   {
+    slug: 'arclight',
+    title: 'Arclight',
+    description:
+      "Jesusfilm's media-distribution API — its global film catalog served to partners and apps.",
+    image: '/images/arclight.png',
+    websiteUrl: 'https://arclight.org',
+    githubUrl: 'https://github.com/JesusFilm/core',
+    stack: ['BrandNextjs', 'BrandNodejs', 'BrandGraphql', 'BrandTypescript', 'BrandAws', 'BrandTerraform'],
+    tags: ['next', 'api', 'aws'],
+    details:
+      "Arclight is Jesusfilm's media-distribution API — the public interface that serves its global film and video catalog, plus embeddable players, to third-party partners, apps, and websites. It exposes the same catalog Nexus administers and Jesusfilm Watch consumes. Built as a versioned (v2) Next.js route-handler API over the federated GraphQL media backend, containerized with Docker and deployed to AWS (ECS) via Terraform."
+  },
+  {
     slug: 'nextsteps',
     title: 'NextSteps',
     description:
