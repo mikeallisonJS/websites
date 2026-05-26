@@ -24,17 +24,6 @@ export const projects: ProjectData[] = [
       "Nexus is Jesusfilm's internal content-administration platform for its global film catalog — the tool content managers use to curate everything that flows out to jesusfilm.org/watch and the Arclight media APIs. Built with Next.js (app router) and Material UI on a federated GraphQL backend (Apollo Client), it manages video metadata, descriptions, images, Bible citations, study questions, audio tracks, editions, and child collections, with granular publishing and view/download access controls. Localized into multiple languages and deployed on Vercel."
   },
   {
-    slug: 'freevstvault',
-    title: 'Free VST Vault',
-    description: 'An AI-powered audio plugin directory.',
-    image: '/images/freevstvault.png',
-    websiteUrl: 'https://freevstvault.com/',
-    stack: ['BrandNextjs', 'BrandNodejs', 'BrandTypescript', 'BrandVercel', 'BrandGoogle'],
-    tags: ['next', 'ai', 'vercel'],
-    details:
-      'A solo project. Indexes free audio plugins (VSTs, AUs, instruments, effects) and surfaces them through AI-assisted search and recommendations. Built on Next.js + Vercel with a Postgres-backed catalog and a crawler that ingests plugin metadata. Uses Google for SSO.'
-  },
-  {
     slug: 'nextsteps',
     title: 'NextSteps',
     description:
@@ -72,6 +61,17 @@ export const projects: ProjectData[] = [
     tags: ['next', 'algolia', 'video'],
     details:
       'Public-facing video library for the Jesusfilm catalog. Algolia powers the AI/typeahead search; Next.js app router on Vercel serves the experience; metadata flows in over GraphQL.'
+  },
+  {
+    slug: 'freevstvault',
+    title: 'Free VST Vault',
+    description: 'An AI-powered audio plugin directory.',
+    image: '/images/freevstvault.png',
+    websiteUrl: 'https://freevstvault.com/',
+    stack: ['BrandNextjs', 'BrandNodejs', 'BrandTypescript', 'BrandVercel', 'BrandGoogle'],
+    tags: ['next', 'ai', 'vercel'],
+    details:
+      'A solo project. Indexes free audio plugins (VSTs, AUs, instruments, effects) and surfaces them through AI-assisted search and recommendations. Built on Next.js + Vercel with a Postgres-backed catalog and a crawler that ingests plugin metadata. Uses Google for SSO.'
   },
   {
     slug: 'captainssounds',
