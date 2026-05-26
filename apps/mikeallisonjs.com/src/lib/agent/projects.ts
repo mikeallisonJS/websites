@@ -3,7 +3,8 @@ export type ProjectData = {
   title: string
   description: string
   image: string
-  websiteUrl: string
+  /** Public site. Omitted for private / access-controlled projects. */
+  websiteUrl?: string
   githubUrl?: string
   stack: string[]
   tags: string[]
@@ -16,7 +17,6 @@ export const projects: ProjectData[] = [
     title: 'Nexus',
     description: "The admin platform for Jesusfilm's global video catalog.",
     image: '/images/nexus.png',
-    websiteUrl: 'https://nexus.jesusfilm.org',
     githubUrl: 'https://github.com/JesusFilm/core',
     stack: ['BrandNextjs', 'BrandNodejs', 'BrandGraphql', 'BrandTypescript', 'BrandVercel'],
     tags: ['next', 'graphql', 'cms'],

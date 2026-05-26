@@ -28,7 +28,7 @@ async function render(): Promise<string> {
       '',
       p.details ?? p.description,
       '',
-      `- Website: ${p.websiteUrl}`,
+      ...(p.websiteUrl ? [`- Website: ${p.websiteUrl}`] : []),
       ...(p.githubUrl ? [`- Source: ${p.githubUrl}`] : []),
       `- Stack: ${p.stack.map((s) => s.replace(/^Brand/, '')).join(', ')}`,
       ''

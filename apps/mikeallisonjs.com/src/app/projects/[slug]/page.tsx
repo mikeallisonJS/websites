@@ -90,14 +90,16 @@ export default async function ProjectPage({
         </ul>
 
         <div className="mt-8 flex flex-wrap gap-3 font-mono text-sm">
-          <Link
-            href={project.websiteUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-md bg-[color:var(--spring-green)] px-4 py-2 font-medium text-white transition-transform hover:scale-105"
-          >
-            <IconExternalLink size={16} /> Visit site
-          </Link>
+          {project.websiteUrl && (
+            <Link
+              href={project.websiteUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-md bg-[color:var(--spring-green)] px-4 py-2 font-medium text-white transition-transform hover:scale-105"
+            >
+              <IconExternalLink size={16} /> Visit site
+            </Link>
+          )}
           {project.githubUrl && (
             <Link
               href={project.githubUrl}

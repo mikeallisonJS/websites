@@ -66,7 +66,7 @@ export function projectSchema(project: ProjectData): Schema {
     '@type': 'CreativeWork',
     name: project.title,
     description: project.details ?? project.description,
-    url: project.websiteUrl,
+    ...(project.websiteUrl ? { url: project.websiteUrl } : {}),
     ...(project.githubUrl ? { codeRepository: project.githubUrl } : {}),
     keywords: [...project.tags, ...project.stack].join(', '),
     creator: { '@id': PERSON_ID },
