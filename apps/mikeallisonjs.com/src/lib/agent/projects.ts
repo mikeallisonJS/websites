@@ -97,6 +97,19 @@ export const projects: ProjectData[] = [
       'Personal artist site for Mike\'s music project, "Captain". Lives in the same monorepo as mikeallisonJS.com.'
   },
   {
+    slug: 'mikeallisonjs',
+    title: 'mikeallisonJS.com',
+    description:
+      'This site — a portfolio fronted by an AI agent that answers questions about my work.',
+    image: '/images/mikeallisonjs.png',
+    websiteUrl: 'https://mikeallisonjs.com',
+    githubUrl: 'https://github.com/mikeallisonJS/websites',
+    stack: ['BrandNextjs', 'BrandNodejs', 'BrandTypescript', 'BrandVercel'],
+    tags: ['next', 'ai', 'agents'],
+    details:
+      "The site you're looking at. A Next.js (app router) portfolio whose hero is a streaming AI agent — ask it about Mike's work and it answers from a grounded content corpus through tool calls (Vercel AI SDK + OpenRouter) instead of hallucinating. Tailwind and Framer Motion for the UI, deployed on Vercel, and built for AI discoverability with Schema.org structured data, an llms.txt corpus, and crawlable resume / experience / project pages. Shares a monorepo with captainofbass.com."
+  },
+  {
     slug: 'pbmtv',
     title: 'PBMTV',
     description:
