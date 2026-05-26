@@ -173,6 +173,40 @@ export const projects: ProjectData[] = [
       'Open-source donor-management platform built at Cru Global. Angular frontend on a Ruby on Rails backend. Mike contributed to the React rewrite (mpdx-react) as well.'
   },
   {
+    slug: 'pathblazer',
+    title: 'PathBlazer',
+    description:
+      "CompassLearning's adaptive K-8 reading & math intervention program.",
+    image: '/images/pathblazer.png',
+    websiteUrl: 'https://www.imaginelearning.com/products/pathblazer/',
+    stack: ['BrandAngular', 'BrandNodejs'],
+    tags: ['angular', 'edtech', 'intervention'],
+    details:
+      "CompassLearning's flagship K-8 reading and math intervention program (now part of Imagine Learning). An adaptive screener and proficiency diagnostic pinpoint each student's gaps, then prescribe an individualized, standards-based path of interactive lessons, with progress-monitoring reports for teachers. Mike owned the complete front-end of the 2.0 rewrite — an AngularJS single-page app — architected its Webpack build pipeline, and migrated the codebase from Angular 1.2 MVC to 1.5 component conventions. The program was an EDDIE Award–winning intervention solution."
+  },
+  {
+    slug: 'goquest',
+    title: 'GoQuest',
+    description:
+      "CompassLearning's project-based, inquiry-driven learning tool.",
+    image: '/images/goquest.png',
+    stack: ['BrandCsharp', 'Database'],
+    tags: ['dotnet', 'edtech', 'project-based'],
+    details:
+      'CompassLearning\'s differentiation and project-based learning tool. GoQuest profiles each student\'s interests and learning preferences with the embedded Renzulli Profiler®, then matches them against a library of 40,000+ vetted, standards-aligned resources so teachers can assign individualized inquiry projects. Built as an ASP.NET MVC / C# application (codename "Renzulli") on the shared CompassLearning core platform.'
+  },
+  {
+    slug: 'compass-core',
+    title: 'CompassLearning Core',
+    description:
+      "The shared Web API platform powering CompassLearning's K-12 products.",
+    image: '/images/compass.png',
+    stack: ['BrandCsharp', 'Database'],
+    tags: ['dotnet', 'api', 'edtech'],
+    details:
+      "The shared ASP.NET Web API platform behind CompassLearning's K-12 products — the services layer that PathBlazer, GoQuest, and the intervention screener all run on. It sits on top of Agilix's XLI / DLAP LMS for multi-tenant accounts, courses, and enrollments, and ties together a data warehouse for student performance and persistence analytics, Salesforce for district provisioning, a batch-job queue for long-running processes, external-assessment services, and SignalR for real-time updates."
+  },
+  {
     slug: 'agilix',
     title: 'Agilix',
     description:
@@ -195,29 +229,6 @@ export const projects: ProjectData[] = [
     tags: ['dotnet', 'clm', 'enterprise'],
     details:
       "Ecteon's flagship product — a contract lifecycle management (CLM) platform for enterprises with complex contracting requirements. Mike ported the original Delphi / Win32 client to a layered .NET architecture (C# and VB.NET) and built the web application that mirrored and then expanded on it: ASP.NET (WebForms, later MVC / Web API) over SQL Server and Oracle, with a custom serializable data layer, DocuSign e-signatures, SAML single sign-on, and a security model meeting OWASP / HIPAA / HITECH requirements."
-  },
-  {
-    slug: 'pathblazer',
-    title: 'PathBlazer',
-    description:
-      "CompassLearning's adaptive K-8 reading & math intervention program.",
-    image: '/images/pathblazer.png',
-    websiteUrl: 'https://www.imaginelearning.com/products/pathblazer/',
-    stack: ['BrandAngular', 'BrandNodejs'],
-    tags: ['angular', 'edtech', 'intervention'],
-    details:
-      "CompassLearning's flagship K-8 reading and math intervention program (now part of Imagine Learning). An adaptive screener and proficiency diagnostic pinpoint each student's gaps, then prescribe an individualized, standards-based path of interactive lessons, with progress-monitoring reports for teachers. Mike owned the complete front-end of the 2.0 rewrite — an AngularJS single-page app — architected its Webpack build pipeline, and migrated the codebase from Angular 1.2 MVC to 1.5 component conventions. The program was an EDDIE Award–winning intervention solution."
-  },
-  {
-    slug: 'goquest',
-    title: 'GoQuest',
-    description:
-      "CompassLearning's project-based, inquiry-driven learning tool.",
-    image: '/images/goquest.png',
-    stack: ['BrandCsharp', 'Database'],
-    tags: ['dotnet', 'edtech', 'project-based'],
-    details:
-      'CompassLearning\'s differentiation and project-based learning tool. GoQuest profiles each student\'s interests and learning preferences with the embedded Renzulli Profiler®, then matches them against a library of 40,000+ vetted, standards-aligned resources so teachers can assign individualized inquiry projects. Built as an ASP.NET MVC / C# application (codename "Renzulli") on the shared CompassLearning core platform.'
   }
 ]
 
