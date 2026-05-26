@@ -239,17 +239,6 @@ export const projects: ProjectData[] = [
       "Agilix's core AngularJS library for building xLi / DLAP applications — the shared framework underpinning Buzz, Hive, and partner apps. Mike contributed core framework features and built out its accessibility support."
   },
   {
-    slug: 'integration-service',
-    title: 'Integration Service',
-    description:
-      'C# middleware letting an enterprise partner embed Agilix learning apps.',
-    image: '/images/integration-service.png',
-    stack: ['BrandCsharp'],
-    tags: ['dotnet', 'api', 'integration'],
-    details:
-      "A C# / ASP.NET interface service Mike designed so a large enterprise partner could consume and embed Agilix learning applications as partial, white-labeled experiences through the DLAP API."
-  },
-  {
     slug: 'contraxx',
     title: 'Contraxx',
     description:
