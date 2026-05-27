@@ -12,12 +12,42 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ])
 
   const staticPages: MetadataRoute.Sitemap = [
-    { url: absoluteUrl('/'), lastModified: now, changeFrequency: 'monthly', priority: 1 },
-    { url: absoluteUrl('/about'), lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
-    { url: absoluteUrl('/resume'), lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
-    { url: absoluteUrl('/projects'), lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
-    { url: absoluteUrl('/experience'), lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
-    { url: absoluteUrl('/blog'), lastModified: now, changeFrequency: 'weekly', priority: 0.7 }
+    {
+      url: absoluteUrl('/'),
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 1
+    },
+    {
+      url: absoluteUrl('/about'),
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.9
+    },
+    {
+      url: absoluteUrl('/resume'),
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.9
+    },
+    {
+      url: absoluteUrl('/projects'),
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.8
+    },
+    {
+      url: absoluteUrl('/experience'),
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.8
+    },
+    {
+      url: absoluteUrl('/blog'),
+      lastModified: now,
+      changeFrequency: 'weekly',
+      priority: 0.7
+    }
   ]
 
   const projectPages: MetadataRoute.Sitemap = projects.map((p) => ({
@@ -34,12 +64,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.5
   }))
 
-  const blogPages: MetadataRoute.Sitemap = posts.map((p) => ({
-    url: absoluteUrl(`/blog/${p.slug}`),
-    lastModified: p.date ? new Date(`${p.date}T00:00:00Z`) : now,
-    changeFrequency: 'monthly',
-    priority: 0.7
-  }))
+  const blogPages: MetadataRoute.Sitemap = posts.map((p) => {
+    const parsed = p.date ? new Date(`${p.date}T00:00:00Z`) : null
+    return {
+      url: absoluteUrl(`/blog/${p.slug}`),
+      // Fall back to the build time if the frontmatter date is missing or
+      // malformed, so a bad date can't poison the sitemap.
+      lastModified: parsed && !Number.isNaN(parsed.getTime()) ? parsed : now,
+      changeFrequency: 'monthly',
+      priority: 0.7
+    }
+  })
 
   return [...staticPages, ...projectPages, ...experiencePages, ...blogPages]
 }

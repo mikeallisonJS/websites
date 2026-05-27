@@ -39,6 +39,7 @@ export default function ProjectsPage() {
             <li key={project.slug}>
               <Link
                 href={`/projects/${project.slug}`}
+                aria-label={`${project.title} — ${project.description}`}
                 className="group flex h-full flex-col gap-3 rounded-xl border border-[color:var(--subtle-gray)] bg-[color:var(--code-canvas)] p-5 transition-colors hover:border-[color:var(--polar-blue)]/40"
               >
                 <h2 className="text-lg font-semibold text-[color:var(--ghost-white)] group-hover:text-[color:var(--polar-blue)]">

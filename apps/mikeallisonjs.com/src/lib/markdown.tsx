@@ -16,8 +16,11 @@ import type { ReactNode } from 'react'
 
 const LINK = 'text-[color:var(--polar-blue)] underline-offset-2 hover:underline'
 
+// One outer capturing group so String.split keeps the matched tokens in the
+// result — without it, split drops the delimiters and all inline markdown
+// (code/bold/italic/links/urls/emails) is silently stripped from the output.
 const INLINE_PATTERN = new RegExp(
-  [
+  `(${[
     '`[^`]+`', // inline code
     '\\*\\*[^*]+\\*\\*', // bold
     '\\*(?!\\*)[^*]+\\*(?!\\*)', // italic *
@@ -25,7 +28,7 @@ const INLINE_PATTERN = new RegExp(
     '\\[[^\\]]+\\]\\((?:https?:\\/\\/|mailto:|\\/)[^)\\s]+\\)', // [label](url)
     'https?:\\/\\/[^\\s)>\\]]+', // bare url
     '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}' // email
-  ].join('|'),
+  ].join('|')})`,
   'g'
 )
 
@@ -46,7 +49,10 @@ function renderInline(text: string, keyPrefix: string): ReactNode[] {
 
     if (part.startsWith('**') && part.endsWith('**') && part.length > 4)
       return (
-        <strong key={key} className="font-semibold text-[color:var(--faded-silver)]">
+        <strong
+          key={key}
+          className="font-semibold text-[color:var(--faded-silver)]"
+        >
           {part.slice(2, -2)}
         </strong>
       )
@@ -206,10 +212,7 @@ export function Markdown({
         break
       }
       out.push(
-        <ul
-          key={key++}
-          className="my-4 space-y-2 text-[color:var(--ui-gray)]"
-        >
+        <ul key={key++} className="my-4 space-y-2 text-[color:var(--ui-gray)]">
           {items.map((item, idx) => (
             <li key={idx} className="flex gap-2.5 leading-relaxed">
               <span className="mt-[0.55em] h-1 w-1 shrink-0 rounded-full bg-[color:var(--polar-blue)]" />

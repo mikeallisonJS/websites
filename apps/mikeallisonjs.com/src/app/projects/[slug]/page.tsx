@@ -95,6 +95,7 @@ export default async function ProjectPage({
               href={project.websiteUrl}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label={`Visit the ${project.title} site (opens in a new tab)`}
               className="inline-flex items-center gap-2 rounded-md bg-[color:var(--spring-green)] px-4 py-2 font-medium text-white transition-transform hover:scale-105"
             >
               <IconExternalLink size={16} /> Visit site
@@ -105,6 +106,7 @@ export default async function ProjectPage({
               href={project.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label={`${project.title} source code on GitHub (opens in a new tab)`}
               className="inline-flex items-center gap-2 rounded-md border border-[color:var(--subtle-gray)] px-4 py-2 text-[color:var(--polar-blue)] transition-colors hover:border-[color:var(--polar-blue)]/50"
             >
               <IconBrandGithub size={16} /> Source

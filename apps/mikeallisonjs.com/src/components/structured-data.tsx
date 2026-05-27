@@ -12,8 +12,15 @@ export function JsonLd({
   return (
     <script
       type="application/ld+json"
-      // Content is built from our own typed data, not user input.
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+      // Content is built from our own typed data, but still escape `<` (so a
+      // stray `</script>` can't break out of the tag) and the U+2028/U+2029
+      // line separators.
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify(data)
+          .replace(/</g, '\\u003c')
+          .replace(new RegExp(String.fromCharCode(0x2028), 'g'), '\\u2028')
+          .replace(new RegExp(String.fromCharCode(0x2029), 'g'), '\\u2029')
+      }}
     />
   )
 }
