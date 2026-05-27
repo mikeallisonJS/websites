@@ -342,6 +342,17 @@ export const projects: ProjectData[] = [
     tags: ['authorware', 'elearning', 'cbt'],
     details:
       "An interactive computer-based training (CBT) module built for Caterpillar at Duthie — authored in Macromedia Authorware with recorded audio narration, delivering course content and interactions as a self-contained multimedia lesson. One of Mike's earliest e-learning builds."
+  },
+  {
+    slug: 'ticua',
+    title: 'TICUA',
+    description:
+      'An interactive multimedia application for a Tennessee higher-ed association.',
+    image: '/images/ticua.png',
+    stack: ['Authorware', 'Flash'],
+    tags: ['authorware', 'multimedia', 'flash'],
+    details:
+      "An interactive multimedia application built for the Tennessee Independent Colleges and Universities Association (TICUA) at Duthie — authored in Macromedia Authorware with audio narration, graphics, and embedded Flash, packaged as a standalone executable for CD-ROM / kiosk delivery."
   }
 ]
 
