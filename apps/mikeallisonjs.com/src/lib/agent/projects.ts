@@ -332,6 +332,16 @@ export const projects: ProjectData[] = [
     tags: ['ecommerce', 'intershop', 'flash'],
     details:
       "An online storefront for Tuff Torq, a maker of hydrostatic transaxles and drivetrains for outdoor power equipment. Mike built the InterShop e-commerce store — product catalog, parts ordering, list and print templates, and UPS WorldShip shipping integration — plus Flash product viewers with zoomable, exploded part views and a barcode system. An early Duthie (DAI) build."
+  },
+  {
+    slug: 'caterpillar',
+    title: 'Caterpillar',
+    description: 'Interactive e-learning / training module for Caterpillar.',
+    image: '/images/caterpillar.png',
+    stack: ['Authorware', 'Flash'],
+    tags: ['authorware', 'elearning', 'cbt'],
+    details:
+      "An interactive computer-based training (CBT) module built for Caterpillar at Duthie — authored in Macromedia Authorware with recorded audio narration, delivering course content and interactions as a self-contained multimedia lesson. One of Mike's earliest e-learning builds."
   }
 ]
 
