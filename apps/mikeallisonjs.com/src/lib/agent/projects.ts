@@ -321,6 +321,17 @@ export const projects: ProjectData[] = [
     tags: ['asp', 'configurator', 'ecommerce'],
     details:
       "An online configurator that let customers build a product from interchangeable parts — choosing bases and heads and seeing each combination rendered from a photo library in real time. Built in classic ASP."
+  },
+  {
+    slug: 'tuff-torq',
+    title: 'Tuff Torq',
+    description:
+      'Online parts store and product viewers for a transaxle manufacturer.',
+    image: '/images/tuff-torq.png',
+    stack: ['InterShop', 'Flash', 'Database'],
+    tags: ['ecommerce', 'intershop', 'flash'],
+    details:
+      "An online storefront for Tuff Torq, a maker of hydrostatic transaxles and drivetrains for outdoor power equipment. Mike built the InterShop e-commerce store — product catalog, parts ordering, list and print templates, and UPS WorldShip shipping integration — plus Flash product viewers with zoomable, exploded part views and a barcode system. An early Duthie (DAI) build."
   }
 ]
 
