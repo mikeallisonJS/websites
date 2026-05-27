@@ -353,6 +353,17 @@ export const projects: ProjectData[] = [
     tags: ['authorware', 'multimedia', 'flash'],
     details:
       "An interactive multimedia application built for the Tennessee Independent Colleges and Universities Association (TICUA) at Duthie — authored in Macromedia Authorware with audio narration, graphics, and embedded Flash, packaged as a standalone executable for CD-ROM / kiosk delivery."
+  },
+  {
+    slug: 'signature-health',
+    title: 'Signature Health Alliance',
+    description:
+      'A healthcare provider network — directory, member portal, and site.',
+    image: '/images/signature-health.png',
+    stack: ['BrandPhp', 'Database', 'Flash'],
+    tags: ['php', 'healthcare', 'directory'],
+    details:
+      "The website and member application for Signature Health Alliance, a healthcare provider network. Built in PHP against a database (via ODBC), with a searchable provider directory, member login and registration, an admin area, online forms and surveys, and a Flash splash. A Duthie (DAI) build."
   }
 ]
 
