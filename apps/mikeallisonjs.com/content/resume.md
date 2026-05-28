@@ -18,7 +18,7 @@ Web Application Architect and Lead Developer with 25+ years of professional
 software experience. End-to-end full-stack — architecture, framework / API
 design, single-page applications, dynamic content rendering, and application
 optimization. Career spans EdTech, healthcare, contract management, global
-non-profit, and music software, with deep operational experience in AWS,
+non-profits, and music software, with deep operational experience in AWS,
 Vercel, and Terraform. Lately focused on AI-augmented product surfaces and
 developer tooling.
 
@@ -98,4 +98,3 @@ developer tooling.
 
 - Email: dj.mikeallison@gmail.com
 - GitHub: https://github.com/mikeallisonJS
-- Website: https://mikeallisonjs.com

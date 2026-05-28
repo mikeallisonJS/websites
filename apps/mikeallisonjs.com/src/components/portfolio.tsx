@@ -2,20 +2,26 @@ import {
   IconBrandAlgolia,
   IconBrandAngular,
   IconBrandAws,
+  IconBrandCSharp,
   IconBrandGithub,
   IconBrandGoogle,
   IconBrandGraphql,
   IconBrandGumroad,
   IconBrandNextjs,
   IconBrandNodejs,
+  IconBrandPhp,
+  IconBrandPython,
   IconBrandReact,
   IconBrandTerraform,
   IconBrandTypescript,
   IconBrandVercel,
+  IconBrandWindows,
   IconBrandWordpress,
   IconCoffee,
+  IconDatabase,
   IconDiamond,
-  IconExternalLink
+  IconExternalLink,
+  IconFlame
 } from '@tabler/icons-react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -28,18 +34,24 @@ const iconMap: Record<string, ComponentType<{ size?: number }>> = {
   BrandAlgolia: IconBrandAlgolia,
   BrandAngular: IconBrandAngular,
   BrandAws: IconBrandAws,
+  BrandCsharp: IconBrandCSharp,
   BrandGoogle: IconBrandGoogle,
   BrandGraphql: IconBrandGraphql,
   BrandGumroad: IconBrandGumroad,
   BrandNextjs: IconBrandNextjs,
   BrandNodejs: IconBrandNodejs,
+  BrandPhp: IconBrandPhp,
+  BrandPython: IconBrandPython,
   BrandReact: IconBrandReact,
   BrandTerraform: IconBrandTerraform,
   BrandTypescript: IconBrandTypescript,
   BrandVercel: IconBrandVercel,
+  BrandWindows: IconBrandWindows,
   BrandWordpress: IconBrandWordpress,
   Coffee: IconCoffee,
-  Diamond: IconDiamond
+  Database: IconDatabase,
+  Diamond: IconDiamond,
+  Hono: IconFlame
 }
 
 function StackIcons({ stack }: { stack: string[] }) {
@@ -70,15 +82,17 @@ function ProjectCard({ project }: { project: ProjectData }) {
 
         {/* Hover action buttons */}
         <div className="absolute inset-0 flex items-center justify-center gap-3 bg-[color:var(--deep-space)]/70 opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100">
-          <Link
-            href={project.websiteUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 rounded-md bg-[color:var(--spring-green)] px-4 py-2 font-mono text-xs font-medium text-white shadow-[0_0_20px_-4px_rgba(8,135,43,0.6)] transition-transform hover:scale-105"
-          >
-            <IconExternalLink size={14} />
-            visit
-          </Link>
+          {project.websiteUrl && (
+            <Link
+              href={project.websiteUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-md bg-[color:var(--spring-green)] px-4 py-2 font-mono text-xs font-medium text-white shadow-[0_0_20px_-4px_rgba(8,135,43,0.6)] transition-transform hover:scale-105"
+            >
+              <IconExternalLink size={14} />
+              visit
+            </Link>
+          )}
           {project.githubUrl && (
             <Link
               href={project.githubUrl}
