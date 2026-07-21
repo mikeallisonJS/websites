@@ -12,7 +12,7 @@
     "fetch-secrets": "VERCEL_ORG_ID=team_QQB0m2nnVhvxOyCiJtHju9zQ VERCEL_PROJECT_ID=prj_yrPbgelWZ5lC3gIn7qL7CmjoiTSC vercel env pull"
   },
   "dependencies": {
-    "@openrouter/ai-sdk-provider": "^2",
+    "@openrouter/ai-sdk-provider": "^3.0.0",
     "@tabler/icons-react": "^3.26.0",
     "ai": "^7.0.0",
     "babel-plugin-react-compiler": "^19.1.0-rc.1",
