@@ -31,7 +31,7 @@
     "tailwindcss": "^4.0.0",
     "tw-animate-css": "^1.0.0",
     "ts-node": "10.9.2",
-    "typescript": "^6.0.0",
+    "typescript": "^7.0.0",
     "vercel": "^54.0.0"
   },
   "dependencies": {
