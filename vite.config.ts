@@ -25,7 +25,18 @@ const REACT_RULES = {
   'jsx_a11y/no-static-element-interactions': 'warn'
 } as const
 
-const IGNORE_PATTERNS = ['.next/', '.vercel/', 'dist/', 'out/', 'next-env.d.ts']
+const IGNORE_PATTERNS = [
+  '.next/',
+  '.vercel/',
+  'dist/',
+  'out/',
+  'next-env.d.ts',
+  // Vendored agent skills from mattpocock/skills, plus the `.claude/skills`
+  // symlinks into them. Reformatting them would fight `npx skills@latest add`
+  // on every update.
+  '.agents/',
+  '.claude/'
+]
 
 export default defineConfig({
   lint: {
