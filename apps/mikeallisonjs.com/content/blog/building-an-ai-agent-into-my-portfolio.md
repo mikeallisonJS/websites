@@ -9,8 +9,8 @@ tags: [ai, nextjs, vercel-ai-sdk, typescript]
 # Building an AI agent into my portfolio site
 
 Most portfolio sites bury the interesting parts under a wall of text. I wanted
-mine to answer the question a visitor actually has — *"can this person build the
-thing I need?"* — so I put a small AI agent on the homepage and let people ask.
+mine to answer the question a visitor actually has — _"can this person build the
+thing I need?"_ — so I put a small AI agent on the homepage and let people ask.
 
 ## The shape of it
 

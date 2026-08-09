@@ -1,12 +1,12 @@
 import { notFound } from 'next/navigation'
 
-import type { Metadata } from 'next'
-
 import { ContentPage } from '@/components/content-page'
 import { JsonLd } from '@/components/structured-data'
 import { getAllPosts, getPost } from '@/lib/content'
 import { Markdown } from '@/lib/markdown'
 import { blogPostingSchema, breadcrumbSchema } from '@/lib/schema'
+
+import type { Metadata } from 'next'
 
 export async function generateStaticParams() {
   const posts = await getAllPosts()

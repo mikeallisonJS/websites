@@ -1,12 +1,12 @@
 import Link from 'next/link'
 
-import type { Metadata } from 'next'
-
 import { ContentPage } from '@/components/content-page'
 import { JsonLd } from '@/components/structured-data'
 import { getAllPosts } from '@/lib/content'
 import { breadcrumbSchema, itemListSchema } from '@/lib/schema'
 import { site } from '@/lib/site'
+
+import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Blog',

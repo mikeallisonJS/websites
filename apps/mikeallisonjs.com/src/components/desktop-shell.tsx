@@ -1,7 +1,7 @@
 'use client'
 
-import { useCallback, useEffect, useState, type ReactNode } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
+import { useCallback, useEffect, useState, type ReactNode } from 'react'
 
 import { KdePanel } from './kde-panel'
 
@@ -14,7 +14,7 @@ const BUILD_YEAR = 2026
 export function DesktopShell({
   agent,
   portfolio,
-  contact,
+  contact
 }: {
   agent: ReactNode
   portfolio: ReactNode
@@ -22,7 +22,9 @@ export function DesktopShell({
 }) {
   const [mode, setMode] = useState<'focused' | 'scroll'>('focused')
   const [active, setActive] = useState<Section>('agent')
-  const [yearsExperience, setYearsExperience] = useState(BUILD_YEAR - CAREER_START_YEAR)
+  const [yearsExperience, setYearsExperience] = useState(
+    BUILD_YEAR - CAREER_START_YEAR
+  )
   useEffect(() => {
     setYearsExperience(new Date().getFullYear() - CAREER_START_YEAR)
   }, [])
@@ -50,7 +52,10 @@ export function DesktopShell({
     [mode]
   )
 
-  const overlayNodes: Partial<Record<Section, ReactNode>> = { portfolio, contact }
+  const overlayNodes: Partial<Record<Section, ReactNode>> = {
+    portfolio,
+    contact
+  }
 
   return (
     <>
@@ -91,9 +96,9 @@ export function DesktopShell({
         )}
 
         <p className="mx-auto hidden max-w-3xl shrink-0 pb-4 pt-3 text-center font-medium leading-snug text-[#eff0f1] md:block md:max-w-none md:whitespace-nowrap md:text-[clamp(1.125rem,2.34vw,1.875rem)]">
-          Over{' '}
-          <span className="text-[#3daee9]">{yearsExperience} years</span>{' '}
-          designing cutting-edge software for global, industry-leading businesses.
+          Over <span className="text-[#3daee9]">{yearsExperience} years</span>{' '}
+          designing cutting-edge software for global, industry-leading
+          businesses.
         </p>
       </div>
 

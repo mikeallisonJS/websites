@@ -3,7 +3,7 @@ import type { ReactNode } from 'react'
 export function KdeWindow({
   id,
   title,
-  children,
+  children
 }: {
   id?: string
   title: string
@@ -19,7 +19,7 @@ export function KdeWindow({
         className="relative flex h-[30px] shrink-0 items-center px-2.5 font-mono text-[11px]"
         style={{
           background: 'linear-gradient(to bottom, #3b4045 0%, #31363b 100%)',
-          borderBottom: '1px solid #2e3338',
+          borderBottom: '1px solid #2e3338'
         }}
       >
         <div className="flex gap-1.5">

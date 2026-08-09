@@ -154,8 +154,16 @@ pre,
 /* KDE Breeze Dark desktop wallpaper */
 .breeze-wallpaper {
   background:
-    radial-gradient(ellipse 70% 55% at 12% 88%, rgba(61, 174, 233, 0.055) 0%, transparent 100%),
-    radial-gradient(ellipse 55% 45% at 88% 12%, rgba(61, 174, 233, 0.04) 0%, transparent 100%),
+    radial-gradient(
+      ellipse 70% 55% at 12% 88%,
+      rgba(61, 174, 233, 0.055) 0%,
+      transparent 100%
+    ),
+    radial-gradient(
+      ellipse 55% 45% at 88% 12%,
+      rgba(61, 174, 233, 0.04) 0%,
+      transparent 100%
+    ),
     #1b1e20;
 }
 

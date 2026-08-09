@@ -1,2 +1,2 @@
 cd /workspaces/websites
-bun --filter="*" fetch-secrets
+vp run -r fetch-secrets

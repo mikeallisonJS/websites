@@ -1,5 +1,11 @@
 import { projects } from '@/lib/agent/projects'
-import { formatMonth, getAllJobs, getAllPosts, getPost, getResume } from '@/lib/content'
+import {
+  formatMonth,
+  getAllJobs,
+  getAllPosts,
+  getPost,
+  getResume
+} from '@/lib/content'
 import { site } from '@/lib/site'
 
 /**
@@ -55,7 +61,15 @@ async function render(): Promise<string> {
     }
   }
 
-  parts.push('---', '', '# Contact', '', `- Email: ${site.email}`, `- GitHub: ${site.github}`, '')
+  parts.push(
+    '---',
+    '',
+    '# Contact',
+    '',
+    `- Email: ${site.email}`,
+    `- GitHub: ${site.github}`,
+    ''
+  )
 
   return parts.join('\n')
 }

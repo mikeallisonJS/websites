@@ -1,8 +1,8 @@
-import type { MetadataRoute } from 'next'
-
 import { projects } from '@/lib/agent/projects'
 import { getAllJobs, getAllPosts } from '@/lib/content'
 import { absoluteUrl, buildTimestamp } from '@/lib/site'
+
+import type { MetadataRoute } from 'next'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [jobs, posts, now] = await Promise.all([

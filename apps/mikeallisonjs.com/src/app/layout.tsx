@@ -2,10 +2,11 @@ import { CSPostHogProvider } from '@mikeallisonjs/shared-react-components'
 import { cn } from '@mikeallisonjs/ui/lib/utils'
 import { Mona_Sans, JetBrains_Mono } from 'next/font/google'
 
-import type { Metadata } from 'next'
+import { site } from '@/lib/site'
+
 import './global.css'
 
-import { site } from '@/lib/site'
+import type { Metadata } from 'next'
 
 const monaSans = Mona_Sans({
   subsets: ['latin'],
@@ -82,9 +83,7 @@ export default function RootLayout({
           jetBrainsMono.variable
         )}
       >
-        <body>
-          {children}
-        </body>
+        <body>{children}</body>
       </html>
     </CSPostHogProvider>
   )

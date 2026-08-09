@@ -3,12 +3,12 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
-import type { Metadata } from 'next'
-
 import { ContentPage } from '@/components/content-page'
 import { JsonLd } from '@/components/structured-data'
 import { getProject, projects } from '@/lib/agent/projects'
 import { breadcrumbSchema, projectSchema } from '@/lib/schema'
+
+import type { Metadata } from 'next'
 
 export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }))

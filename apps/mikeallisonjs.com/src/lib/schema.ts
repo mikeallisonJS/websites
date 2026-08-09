@@ -1,7 +1,7 @@
+import { absoluteUrl, site } from '@/lib/site'
+
 import type { ProjectData } from '@/lib/agent/projects'
 import type { BlogMeta, JobDoc } from '@/lib/content'
-
-import { absoluteUrl, site } from '@/lib/site'
 
 /**
  * Schema.org JSON-LD builders. A stable `@id` per entity lets the graph cross
@@ -84,7 +84,9 @@ export function jobSchema(job: JobDoc): Schema {
     roleName: job.role,
     startDate: job.start,
     ...(isOngoing ? {} : { endDate: job.end }),
-    description: job.body.split('\n').find((l) => l.trim() && !l.startsWith('#')),
+    description: job.body
+      .split('\n')
+      .find((l) => l.trim() && !l.startsWith('#')),
     member: { '@id': PERSON_ID },
     worksFor: {
       '@type': 'Organization',
@@ -110,7 +112,9 @@ export function blogPostingSchema(post: BlogMeta): Schema {
   }
 }
 
-export function breadcrumbSchema(items: { name: string; path: string }[]): Schema {
+export function breadcrumbSchema(
+  items: { name: string; path: string }[]
+): Schema {
   return {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',

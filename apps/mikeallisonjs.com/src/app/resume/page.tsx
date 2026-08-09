@@ -1,13 +1,13 @@
 import { notFound } from 'next/navigation'
 
-import type { Metadata } from 'next'
-
 import { ContentPage } from '@/components/content-page'
 import { JsonLd } from '@/components/structured-data'
 import { getResume } from '@/lib/content'
 import { Markdown } from '@/lib/markdown'
 import { breadcrumbSchema, personSchema } from '@/lib/schema'
 import { site } from '@/lib/site'
+
+import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Resume',

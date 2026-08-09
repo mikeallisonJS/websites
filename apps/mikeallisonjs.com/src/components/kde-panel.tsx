@@ -1,28 +1,37 @@
 'use client'
 
-import { useEffect, useState } from 'react'
 import {
   IconBrandGithub,
   IconFolder,
   IconLayoutList,
   IconMail,
   IconMaximize,
-  IconTerminal2,
+  IconTerminal2
 } from '@tabler/icons-react'
+import { useEffect, useState } from 'react'
 
 import type { Section } from './desktop-shell'
 
-const tasks: { id: Section; label: string; Icon: React.ComponentType<{ size?: number; className?: string }> }[] = [
-  { id: 'agent',     label: 'Agent',     Icon: IconTerminal2 },
-  { id: 'portfolio', label: 'Portfolio', Icon: IconFolder    },
-  { id: 'contact',   label: 'Contact',   Icon: IconMail      },
+const tasks: {
+  id: Section
+  label: string
+  Icon: React.ComponentType<{ size?: number; className?: string }>
+}[] = [
+  { id: 'agent', label: 'Agent', Icon: IconTerminal2 },
+  { id: 'portfolio', label: 'Portfolio', Icon: IconFolder },
+  { id: 'contact', label: 'Contact', Icon: IconMail }
 ]
 
 function Clock() {
   const [time, setTime] = useState('')
   useEffect(() => {
     const tick = () =>
-      setTime(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }))
+      setTime(
+        new Date().toLocaleTimeString([], {
+          hour: '2-digit',
+          minute: '2-digit'
+        })
+      )
     tick()
     const id = setInterval(tick, 1000)
     return () => clearInterval(id)
@@ -34,7 +43,7 @@ export function KdePanel({
   mode,
   active,
   onModeChange,
-  onNavigate,
+  onNavigate
 }: {
   mode: 'focused' | 'scroll'
   active: Section
@@ -83,11 +92,21 @@ export function KdePanel({
       <div className="ml-auto flex items-center gap-2 pr-1">
         {/* Scroll / focused toggle */}
         <button
-          onClick={() => onModeChange(mode === 'focused' ? 'scroll' : 'focused')}
-          title={mode === 'focused' ? 'Switch to scroll view' : 'Switch to focused view'}
+          onClick={() =>
+            onModeChange(mode === 'focused' ? 'scroll' : 'focused')
+          }
+          title={
+            mode === 'focused'
+              ? 'Switch to scroll view'
+              : 'Switch to focused view'
+          }
           className="flex h-7 w-7 items-center justify-center rounded text-[#7f8c8d] transition-colors hover:bg-white/[0.06] hover:text-[#eff0f1]"
         >
-          {mode === 'focused' ? <IconLayoutList size={15} /> : <IconMaximize size={15} />}
+          {mode === 'focused' ? (
+            <IconLayoutList size={15} />
+          ) : (
+            <IconMaximize size={15} />
+          )}
         </button>
 
         <div className="h-5 w-px bg-[#3d4248]" />

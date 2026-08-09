@@ -1,10 +1,10 @@
 import { IconArrowLeft } from '@tabler/icons-react'
 import Link from 'next/link'
 
-import type { ReactNode } from 'react'
-
 import { SiteFooter } from '@/components/site-footer'
 import { nav } from '@/lib/site'
+
+import type { ReactNode } from 'react'
 
 /**
  * Shared chrome for the statically-rendered content pages. Provides a real
