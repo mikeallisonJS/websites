@@ -2,11 +2,6 @@ packages:
   - 'apps/*'
   - 'packages/*'
 
-# The root package holds the framework dependencies (next, react, sentry, ...)
-# that every app shares, so apps resolve them from the hoisted root store the
-# same way they did under bun's flat node_modules.
-nodeLinker: hoisted
-
 # Ported from the bun `trustedDependencies` field: packages allowed to run
 # install lifecycle scripts.
 allowBuilds:

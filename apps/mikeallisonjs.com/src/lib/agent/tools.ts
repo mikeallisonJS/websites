@@ -14,7 +14,10 @@ function jsonError(err: unknown): string {
   })
 }
 
-export const tools = {
+// Annotated rather than only `satisfies ToolSet`: the inferred literal type
+// references `@ai-sdk/provider`, a transitive dependency TypeScript cannot name
+// under pnpm's isolated node_modules, which fails the production type check.
+export const tools: ToolSet = {
   list_projects: tool({
     description:
       "List every project in Mike Allison's portfolio. Returns slug, title, one-line description, and tags. Call this first when the visitor asks about Mike's work, projects, or anything you don't already know a slug for.",
@@ -110,4 +113,4 @@ export const tools = {
       }
     }
   })
-} satisfies ToolSet
+}

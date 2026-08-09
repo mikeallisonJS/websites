@@ -1,6 +1,6 @@
 'use client'
 
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'motion/react'
 import { useCallback, useEffect, useState, type ReactNode } from 'react'
 
 import { KdePanel } from './kde-panel'
