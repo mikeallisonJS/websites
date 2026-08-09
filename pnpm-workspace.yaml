@@ -1,0 +1,17 @@
+packages:
+  - 'apps/*'
+  - 'packages/*'
+
+# Ported from the bun `trustedDependencies` field: packages allowed to run
+# install lifecycle scripts.
+allowBuilds:
+  '@parcel/watcher': true
+  '@sentry/cli': true
+  '@swc/core': true
+  '@vercel/git-hooks': true
+  bufferutil: true
+  core-js: true
+  es5-ext: true
+  esbuild: true
+  sharp: true
+  utf-8-validate: true

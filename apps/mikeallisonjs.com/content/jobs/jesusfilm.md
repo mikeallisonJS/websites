@@ -5,7 +5,19 @@ role: Senior Software Engineer
 start: 2021-10
 end: present
 location: Remote
-stack: [Next.js, TypeScript, GraphQL, Node.js, Postgres, Prisma, AWS, Terraform, Vercel, Algolia]
+stack:
+  [
+    Next.js,
+    TypeScript,
+    GraphQL,
+    Node.js,
+    Postgres,
+    Prisma,
+    AWS,
+    Terraform,
+    Vercel,
+    Algolia
+  ]
 ---
 
 # JesusFilm — Senior Software Engineer

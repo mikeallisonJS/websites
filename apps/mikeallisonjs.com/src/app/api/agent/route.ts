@@ -123,7 +123,10 @@ export async function POST(req: NextRequest) {
         typeof m.content === 'string'
     )
     .slice(-MAX_USER_TURNS)
-    .map((m) => ({ role: m.role, content: m.content.slice(0, MAX_MESSAGE_CHARS) }))
+    .map((m) => ({
+      role: m.role,
+      content: m.content.slice(0, MAX_MESSAGE_CHARS)
+    }))
 
   const last = cleaned[cleaned.length - 1]
   if (!last || last.role !== 'user') {

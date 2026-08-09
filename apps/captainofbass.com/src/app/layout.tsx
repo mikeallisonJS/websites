@@ -1,4 +1,3 @@
-
 import { CSPostHogProvider } from '@mikeallisonjs/shared-react-components'
 
 import Footer from './_footer/footer'

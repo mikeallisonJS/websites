@@ -1,6 +1,6 @@
-import type { MetadataRoute } from 'next'
-
 import { site } from '@/lib/site'
+
+import type { MetadataRoute } from 'next'
 
 /**
  * Explicitly welcomes the major AI/search crawlers. Default behaviour is

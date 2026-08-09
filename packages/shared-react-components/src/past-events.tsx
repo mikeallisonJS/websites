@@ -3,7 +3,11 @@
 import Image from 'next/image'
 import { useState } from 'react'
 
-import { Dialog, DialogContent, DialogTitle } from '@mikeallisonjs/ui/components/dialog'
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle
+} from '@mikeallisonjs/ui/components/dialog'
 
 type PastEventsProps = {
   images: string[]

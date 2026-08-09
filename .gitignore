@@ -49,3 +49,6 @@ out
 
 # NX
 .nx
+
+# Vite+ generated git hook dispatcher (recreated by `vp config`)
+.vite-hooks/_

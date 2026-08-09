@@ -2,11 +2,6 @@
   "name": "@mikeallisonjs/shared-react-components",
   "version": "2.0.0",
   "license": "MIT",
-  "scripts": {
-    "check": "eslint .",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\" && eslint --fix .",
-    "lint": "eslint ."
-  },
   "dependencies": {
     "posthog-js": "^1.203.1"
   }

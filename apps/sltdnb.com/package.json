@@ -5,9 +5,6 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "check": "eslint .",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\" && eslint --fix .",
-    "lint": "eslint .",
     "start": "next start",
     "fetch-secrets": "VERCEL_ORG_ID=team_QQB0m2nnVhvxOyCiJtHju9zQ VERCEL_PROJECT_ID=prj_Pyy5aEbpZLRa3w4BDoI4iYFLfh1n vercel env pull"
   },

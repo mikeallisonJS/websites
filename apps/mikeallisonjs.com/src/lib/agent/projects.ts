@@ -18,7 +18,13 @@ export const projects: ProjectData[] = [
     description: "The admin platform for Jesusfilm's global video catalog.",
     image: '/images/nexus.png',
     githubUrl: 'https://github.com/JesusFilm/core',
-    stack: ['BrandNextjs', 'BrandNodejs', 'BrandGraphql', 'BrandTypescript', 'BrandVercel'],
+    stack: [
+      'BrandNextjs',
+      'BrandNodejs',
+      'BrandGraphql',
+      'BrandTypescript',
+      'BrandVercel'
+    ],
     tags: ['next', 'graphql', 'cms'],
     details:
       "Nexus is Jesusfilm's internal content-administration platform for its global film catalog — the tool content managers use to curate everything that flows out to jesusfilm.org/watch and the Arclight media APIs. Built with Next.js (app router) and Material UI on a federated GraphQL backend (Apollo Client), it manages video metadata, descriptions, images, Bible citations, study questions, audio tracks, editions, and child collections, with granular publishing and view/download access controls. Localized into multiple languages and deployed on Vercel."
@@ -31,7 +37,14 @@ export const projects: ProjectData[] = [
     image: '/images/arclight.png',
     websiteUrl: 'https://arclight.org',
     githubUrl: 'https://github.com/JesusFilm/core',
-    stack: ['Hono', 'BrandNodejs', 'BrandGraphql', 'BrandTypescript', 'BrandAws', 'BrandTerraform'],
+    stack: [
+      'Hono',
+      'BrandNodejs',
+      'BrandGraphql',
+      'BrandTypescript',
+      'BrandAws',
+      'BrandTerraform'
+    ],
     tags: ['hono', 'api', 'aws'],
     details:
       "Arclight is Jesusfilm's media-distribution API — the public interface that serves its global film and video catalog, plus embeddable players, to third-party partners, apps, and websites. It exposes the same catalog Nexus administers and Jesusfilm Watch consumes. Built as a versioned (v2) Hono API over the federated GraphQL media backend, containerized with Docker and deployed to AWS (ECS) via Terraform."
@@ -44,7 +57,14 @@ export const projects: ProjectData[] = [
     image: '/images/nextsteps.jpeg',
     websiteUrl: 'https://nextstep.is/',
     githubUrl: 'https://github.com/JesusFilm/core',
-    stack: ['BrandNextjs', 'BrandNodejs', 'BrandGraphql', 'BrandTypescript', 'BrandVercel', 'BrandTerraform'],
+    stack: [
+      'BrandNextjs',
+      'BrandNodejs',
+      'BrandGraphql',
+      'BrandTypescript',
+      'BrandVercel',
+      'BrandTerraform'
+    ],
     tags: ['next', 'graphql', 'terraform'],
     details:
       'Built with the JesusFilm engineering team inside the Cru / JesusFilm "core" monorepo. Frontend Next.js app delivering interactive visual journeys served from a federated GraphQL backend. Infra defined in Terraform, deployed to Vercel.'
@@ -57,7 +77,14 @@ export const projects: ProjectData[] = [
     image: '/images/nextsteps-admin.jpeg',
     websiteUrl: 'https://admin.nextstep.is/',
     githubUrl: 'https://github.com/JesusFilm/core',
-    stack: ['BrandNextjs', 'BrandNodejs', 'BrandGraphql', 'BrandTypescript', 'BrandAws', 'BrandTerraform'],
+    stack: [
+      'BrandNextjs',
+      'BrandNodejs',
+      'BrandGraphql',
+      'BrandTypescript',
+      'BrandAws',
+      'BrandTerraform'
+    ],
     tags: ['next', 'aws', 'graphql'],
     details:
       'Companion CMS to NextSteps. Drag-and-drop journey editor that lets non-technical content managers author the visual journeys that ship to nextstep.is. Backed by GraphQL APIs, deployed to AWS via Terraform.'
@@ -70,7 +97,14 @@ export const projects: ProjectData[] = [
     image: '/images/jfm-watch.png',
     websiteUrl: 'https://jesusfilm.org/watch',
     githubUrl: 'https://github.com/JesusFilm/core',
-    stack: ['BrandNextjs', 'BrandNodejs', 'BrandGraphql', 'BrandTypescript', 'BrandVercel', 'BrandAlgolia'],
+    stack: [
+      'BrandNextjs',
+      'BrandNodejs',
+      'BrandGraphql',
+      'BrandTypescript',
+      'BrandVercel',
+      'BrandAlgolia'
+    ],
     tags: ['next', 'algolia', 'video'],
     details:
       'Public-facing video library for the Jesusfilm catalog. Algolia powers the AI/typeahead search; Next.js app router on Vercel serves the experience; metadata flows in over GraphQL.'
@@ -83,10 +117,16 @@ export const projects: ProjectData[] = [
     image: '/images/core.png',
     websiteUrl: 'https://docs.core.jesusfilm.org/',
     githubUrl: 'https://github.com/JesusFilm/core',
-    stack: ['BrandGraphql', 'BrandNodejs', 'BrandTypescript', 'BrandAws', 'BrandTerraform'],
+    stack: [
+      'BrandGraphql',
+      'BrandNodejs',
+      'BrandTypescript',
+      'BrandAws',
+      'BrandTerraform'
+    ],
     tags: ['graphql', 'federation', 'api'],
     details:
-      "Jesusfilm Core is the federated GraphQL platform behind the entire Jesusfilm ecosystem — NextSteps, Jesusfilm Watch, Nexus, and Arclight all read from it. A set of NestJS subgraphs (journeys, media, languages, users, analytics) composed behind a GraphQL Hive / Yoga gateway, backed by Prisma and Postgres. Containerized with Docker and deployed to AWS (ECS) via Terraform."
+      'Jesusfilm Core is the federated GraphQL platform behind the entire Jesusfilm ecosystem — NextSteps, Jesusfilm Watch, Nexus, and Arclight all read from it. A set of NestJS subgraphs (journeys, media, languages, users, analytics) composed behind a GraphQL Hive / Yoga gateway, backed by Prisma and Postgres. Containerized with Docker and deployed to AWS (ECS) via Terraform.'
   },
   {
     slug: 'mikeallisonjs',
@@ -107,7 +147,13 @@ export const projects: ProjectData[] = [
     description: 'An AI-powered audio plugin directory.',
     image: '/images/freevstvault.png',
     websiteUrl: 'https://freevstvault.com/',
-    stack: ['BrandNextjs', 'BrandNodejs', 'BrandTypescript', 'BrandVercel', 'BrandGoogle'],
+    stack: [
+      'BrandNextjs',
+      'BrandNodejs',
+      'BrandTypescript',
+      'BrandVercel',
+      'BrandGoogle'
+    ],
     tags: ['next', 'ai', 'vercel'],
     details:
       'A solo project. Indexes free audio plugins (VSTs, AUs, instruments, effects) and surfaces them through AI-assisted search and recommendations. Built on Next.js + Vercel with a Postgres-backed catalog and a crawler that ingests plugin metadata. Uses Google for SSO.'
@@ -130,7 +176,14 @@ export const projects: ProjectData[] = [
     description: 'A Next.js eCommerce site for music production.',
     image: '/images/captainssounds.jpeg',
     websiteUrl: 'https://captainssounds.com',
-    stack: ['BrandNextjs', 'BrandGraphql', 'BrandTypescript', 'BrandVercel', 'BrandGumroad', 'BrandGoogle'],
+    stack: [
+      'BrandNextjs',
+      'BrandGraphql',
+      'BrandTypescript',
+      'BrandVercel',
+      'BrandGumroad',
+      'BrandGoogle'
+    ],
     tags: ['next', 'ecommerce', 'audio'],
     details:
       'Solo project. eCommerce for sample packs and music production assets — Gumroad handles fulfillment, Next.js + GraphQL handles browsing and discovery, Google for auth.'
@@ -163,7 +216,8 @@ export const projects: ProjectData[] = [
   {
     slug: 'mpdx',
     title: 'MPDX',
-    description: 'An open-source solution for fundraising and donor management.',
+    description:
+      'An open-source solution for fundraising and donor management.',
     image: '/images/mpdx.png',
     websiteUrl: 'https://mpdx.org',
     githubUrl: 'https://github.com/CruGlobal/mpdx-react',
@@ -226,7 +280,7 @@ export const projects: ProjectData[] = [
     stack: ['BrandAngular', 'BrandNodejs', 'Database'],
     tags: ['angular', 'assessment', 'edtech'],
     details:
-      "A platform for delivering high-stakes assessments across browser, tablet, and locked-down desktop (Node-Webkit + Safe Exam Browser). Separate student, proctor, and admin apps on a MEAN-style stack (MongoDB, Express, AngularJS, Node) backed by a Java assessment server — students can keep testing offline and sync when they reconnect. Mike led the front-end across all three apps."
+      'A platform for delivering high-stakes assessments across browser, tablet, and locked-down desktop (Node-Webkit + Safe Exam Browser). Separate student, proctor, and admin apps on a MEAN-style stack (MongoDB, Express, AngularJS, Node) backed by a Java assessment server — students can keep testing offline and sync when they reconnect. Mike led the front-end across all three apps.'
   },
   {
     slug: 'xli-ng',
@@ -253,8 +307,7 @@ export const projects: ProjectData[] = [
   {
     slug: 'client-support',
     title: '24/7 Client Support Tool',
-    description:
-      "WebMD's self-service support portal for healthcare clients.",
+    description: "WebMD's self-service support portal for healthcare clients.",
     image: '/images/client-support.png',
     stack: ['BrandCsharp', 'Database'],
     tags: ['dotnet', 'healthcare', 'support'],
@@ -279,7 +332,7 @@ export const projects: ProjectData[] = [
     stack: ['BrandCsharp', 'Database'],
     tags: ['dotnet', 'healthcare', 'portal'],
     details:
-      "An internal ASP.NET / C# portal at WebMD that pulled together reports, shared resources, and scheduled (timed) events for staff behind a single front door."
+      'An internal ASP.NET / C# portal at WebMD that pulled together reports, shared resources, and scheduled (timed) events for staff behind a single front door.'
   },
   {
     slug: 'online-enrollment',
@@ -320,7 +373,7 @@ export const projects: ProjectData[] = [
     stack: ['ASP', 'BrandWindows'],
     tags: ['asp', 'configurator', 'ecommerce'],
     details:
-      "An online configurator that let customers build a product from interchangeable parts — choosing bases and heads and seeing each combination rendered from a photo library in real time. Built in classic ASP."
+      'An online configurator that let customers build a product from interchangeable parts — choosing bases and heads and seeing each combination rendered from a photo library in real time. Built in classic ASP.'
   },
   {
     slug: 'tuff-torq',
@@ -331,7 +384,7 @@ export const projects: ProjectData[] = [
     stack: ['InterShop', 'Flash', 'Database'],
     tags: ['ecommerce', 'intershop', 'flash'],
     details:
-      "An online storefront for Tuff Torq, a maker of hydrostatic transaxles and drivetrains for outdoor power equipment. Mike built the InterShop e-commerce store — product catalog, parts ordering, list and print templates, and UPS WorldShip shipping integration — plus Flash product viewers with zoomable, exploded part views and a barcode system. An early Duthie (DAI) build."
+      'An online storefront for Tuff Torq, a maker of hydrostatic transaxles and drivetrains for outdoor power equipment. Mike built the InterShop e-commerce store — product catalog, parts ordering, list and print templates, and UPS WorldShip shipping integration — plus Flash product viewers with zoomable, exploded part views and a barcode system. An early Duthie (DAI) build.'
   },
   {
     slug: 'caterpillar',
@@ -352,7 +405,7 @@ export const projects: ProjectData[] = [
     stack: ['Authorware', 'Flash'],
     tags: ['authorware', 'multimedia', 'flash'],
     details:
-      "An interactive multimedia application built for the Tennessee Independent Colleges and Universities Association (TICUA) at Duthie — authored in Macromedia Authorware with audio narration, graphics, and embedded Flash, packaged as a standalone executable for CD-ROM / kiosk delivery."
+      'An interactive multimedia application built for the Tennessee Independent Colleges and Universities Association (TICUA) at Duthie — authored in Macromedia Authorware with audio narration, graphics, and embedded Flash, packaged as a standalone executable for CD-ROM / kiosk delivery.'
   },
   {
     slug: 'signature-health',
@@ -363,7 +416,7 @@ export const projects: ProjectData[] = [
     stack: ['BrandPhp', 'Database', 'Flash'],
     tags: ['php', 'healthcare', 'directory'],
     details:
-      "The website and member application for Signature Health Alliance, a healthcare provider network. Built in PHP against a database (via ODBC), with a searchable provider directory, member login and registration, an admin area, online forms and surveys, and a Flash splash. A Duthie (DAI) build."
+      'The website and member application for Signature Health Alliance, a healthcare provider network. Built in PHP against a database (via ODBC), with a searchable provider directory, member login and registration, an admin area, online forms and surveys, and a Flash splash. A Duthie (DAI) build.'
   }
 ]
 

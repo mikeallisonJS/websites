@@ -26,9 +26,9 @@ import {
 import Image from 'next/image'
 import Link from 'next/link'
 
-import type { ComponentType } from 'react'
-
 import { projects, type ProjectData } from '@/lib/agent/projects'
+
+import type { ComponentType } from 'react'
 
 const iconMap: Record<string, ComponentType<{ size?: number }>> = {
   BrandAlgolia: IconBrandAlgolia,

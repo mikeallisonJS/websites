@@ -58,7 +58,12 @@ type Usage = {
 
 type SseEvent =
   | { type: 'text'; delta: string }
-  | { type: 'tool_call'; id: string; name: string; arguments: Record<string, unknown> }
+  | {
+      type: 'tool_call'
+      id: string
+      name: string
+      arguments: Record<string, unknown>
+    }
   | { type: 'tool_result'; id: string; name: string; content: string }
   | { type: 'usage'; usage: Usage }
   | { type: 'done'; finish?: string | null; warning?: string }
@@ -85,7 +90,9 @@ function summarizeArgs(args: Record<string, unknown>) {
   const entries = Object.entries(args)
   if (entries.length === 0) return ''
   return entries
-    .map(([k, v]) => `${k}=${typeof v === 'string' ? `"${v}"` : JSON.stringify(v)}`)
+    .map(
+      ([k, v]) => `${k}=${typeof v === 'string' ? `"${v}"` : JSON.stringify(v)}`
+    )
     .join(' ')
 }
 
@@ -100,15 +107,28 @@ function renderInline(text: string): React.ReactNode[] {
     const key = `${i}:${part.slice(0, 16)}`
     if (part.startsWith('`') && part.endsWith('`') && part.length > 2)
       return (
-        <code key={key} className="rounded bg-[#1b1e20] px-[3px] py-px font-mono text-[12px] text-[color:var(--neon-green)]">
+        <code
+          key={key}
+          className="rounded bg-[#1b1e20] px-[3px] py-px font-mono text-[12px] text-[color:var(--neon-green)]"
+        >
           {part.slice(1, -1)}
         </code>
       )
     if (part.startsWith('**') && part.endsWith('**') && part.length > 4)
-      return <strong key={key} className="font-bold text-[#eff0f1]">{part.slice(2, -2)}</strong>
+      return (
+        <strong key={key} className="font-bold text-[#eff0f1]">
+          {part.slice(2, -2)}
+        </strong>
+      )
     if (/^[*_]/.test(part) && part.length > 2)
-      return <em key={key} className="italic text-[color:var(--faded-silver)]">{part.slice(1, -1)}</em>
-    const mdLink = part.match(/^\[([^\]]+)\]\(((?:https?:\/\/|mailto:|\/)[^)\s]+)\)$/)
+      return (
+        <em key={key} className="italic text-[color:var(--faded-silver)]">
+          {part.slice(1, -1)}
+        </em>
+      )
+    const mdLink = part.match(
+      /^\[([^\]]+)\]\(((?:https?:\/\/|mailto:|\/)[^)\s]+)\)$/
+    )
     if (mdLink) {
       const label = mdLink[1] ?? ''
       const href = mdLink[2] ?? '#'
@@ -117,7 +137,9 @@ function renderInline(text: string): React.ReactNode[] {
         <a
           key={key}
           href={href}
-          {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+          {...(external
+            ? { target: '_blank', rel: 'noopener noreferrer' }
+            : {})}
           className={LINK_CLASSES}
         >
           {label}
@@ -126,7 +148,13 @@ function renderInline(text: string): React.ReactNode[] {
     }
     if (/^https?:\/\//.test(part))
       return (
-        <a key={key} href={part} target="_blank" rel="noopener noreferrer" className={LINK_CLASSES}>
+        <a
+          key={key}
+          href={part}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={LINK_CLASSES}
+        >
           {part}
         </a>
       )
@@ -146,16 +174,41 @@ function renderMarkdown(content: string, streaming: boolean): React.ReactNode {
     <div className="break-words">
       {lines.map((line, i) => {
         const isLast = i === lines.length - 1
-        const cursor = isLast && streaming
-          ? <span className="cursor-blink ml-0.5 inline-block h-3 w-[0.4em] translate-y-[2px] bg-[color:var(--neon-green)] align-baseline" aria-hidden />
-          : null
+        const cursor =
+          isLast && streaming ? (
+            <span
+              className="cursor-blink ml-0.5 inline-block h-3 w-[0.4em] translate-y-[2px] bg-[color:var(--neon-green)] align-baseline"
+              aria-hidden
+            />
+          ) : null
 
         if (line.startsWith('### '))
-          return <div key={i} className="mt-1 font-semibold text-[color:var(--faded-silver)] first:mt-0">{renderInline(line.slice(4))}{cursor}</div>
+          return (
+            <div
+              key={i}
+              className="mt-1 font-semibold text-[color:var(--faded-silver)] first:mt-0"
+            >
+              {renderInline(line.slice(4))}
+              {cursor}
+            </div>
+          )
         if (line.startsWith('## '))
-          return <div key={i} className="mt-1.5 font-semibold text-[#eff0f1] first:mt-0">{renderInline(line.slice(3))}{cursor}</div>
+          return (
+            <div
+              key={i}
+              className="mt-1.5 font-semibold text-[#eff0f1] first:mt-0"
+            >
+              {renderInline(line.slice(3))}
+              {cursor}
+            </div>
+          )
         if (line.startsWith('# '))
-          return <div key={i} className="mt-2 font-bold text-[#3daee9] first:mt-0">{renderInline(line.slice(2))}{cursor}</div>
+          return (
+            <div key={i} className="mt-2 font-bold text-[#3daee9] first:mt-0">
+              {renderInline(line.slice(2))}
+              {cursor}
+            </div>
+          )
         if (/^-{3,}$/.test(line.trim()))
           return <hr key={i} className="my-2 border-[#3d4248]" />
         const listMatch = line.match(/^(\s*)[-*] (.*)$/)
@@ -163,15 +216,26 @@ function renderMarkdown(content: string, streaming: boolean): React.ReactNode {
           const indent = listMatch[1] ?? ''
           const text = listMatch[2] ?? ''
           return (
-            <div key={i} className="flex gap-2" style={{ paddingLeft: indent.length * 12 }}>
+            <div
+              key={i}
+              className="flex gap-2"
+              style={{ paddingLeft: indent.length * 12 }}
+            >
               <span className="shrink-0 text-[#3daee9]">›</span>
-              <span>{renderInline(text)}{cursor}</span>
+              <span>
+                {renderInline(text)}
+                {cursor}
+              </span>
             </div>
           )
         }
-        if (line.trim() === '')
-          return <div key={i} className="h-2" />
-        return <div key={i}>{renderInline(line)}{cursor}</div>
+        if (line.trim() === '') return <div key={i} className="h-2" />
+        return (
+          <div key={i}>
+            {renderInline(line)}
+            {cursor}
+          </div>
+        )
       })}
     </div>
   )
@@ -194,7 +258,13 @@ function useSpeech(onTranscript: (text: string) => void) {
       recogRef.current?.stop()
       return
     }
-    const SR = (window.SpeechRecognition ?? (window as unknown as { webkitSpeechRecognition: typeof SpeechRecognition }).webkitSpeechRecognition)
+    const SR =
+      window.SpeechRecognition ??
+      (
+        window as unknown as {
+          webkitSpeechRecognition: typeof SpeechRecognition
+        }
+      ).webkitSpeechRecognition
     const r = new SR()
     r.lang = 'en-US'
     r.interimResults = false
@@ -259,7 +329,8 @@ export function AgentTerminal() {
   useEffect(() => {
     if (!ttsEnabled || !ttsSupported) return
     const last = turns.at(-1)
-    if (!last || last.kind !== 'assistant' || last.streaming || !last.content) return
+    if (!last || last.kind !== 'assistant' || last.streaming || !last.content)
+      return
     window.speechSynthesis.cancel()
     const utt = new SpeechSynthesisUtterance(last.content)
     window.speechSynthesis.speak(utt)
@@ -353,7 +424,10 @@ export function AgentTerminal() {
               continue
             }
             if (event.type === 'text') {
-              updateAssistant((t) => ({ ...t, content: t.content + event.delta }))
+              updateAssistant((t) => ({
+                ...t,
+                content: t.content + event.delta
+              }))
             } else if (event.type === 'tool_call') {
               updateAssistant((t) => ({
                 ...t,
@@ -420,11 +494,18 @@ export function AgentTerminal() {
     [busy, transcript]
   )
 
-  const { listening, supported: speechSupported, toggle: toggleSpeech } = useSpeech(
-    useCallback((text: string) => {
-      const combined = (input ? `${input} ${text}` : text).trim()
-      void send(combined)
-    }, [input, send])
+  const {
+    listening,
+    supported: speechSupported,
+    toggle: toggleSpeech
+  } = useSpeech(
+    useCallback(
+      (text: string) => {
+        const combined = (input ? `${input} ${text}` : text).trim()
+        void send(combined)
+      },
+      [input, send]
+    )
   )
 
   const onSubmit = (e: FormEvent) => {
@@ -455,7 +536,7 @@ export function AgentTerminal() {
         className="relative flex h-[30px] shrink-0 items-center px-2.5 font-mono text-[11px]"
         style={{
           background: 'linear-gradient(to bottom, #3b4045 0%, #31363b 100%)',
-          borderBottom: '1px solid #2e3338',
+          borderBottom: '1px solid #2e3338'
         }}
       >
         <div className="flex gap-1.5">
@@ -480,7 +561,9 @@ export function AgentTerminal() {
             <span className="text-[color:var(--neon-green)]">↓</span>
             {formatTokens(usage.completion_tokens)}
           </span>
-          <span className="sm:hidden">{formatTokens(usage.total_tokens)} tok</span>
+          <span className="sm:hidden">
+            {formatTokens(usage.total_tokens)} tok
+          </span>
         </span>
       </div>
 
@@ -492,11 +575,15 @@ export function AgentTerminal() {
         {turns.length === 0 && (
           <div className="space-y-1.5 text-[color:var(--ui-gray)]">
             <Line type="info">
-              welcome to <span className="text-[color:var(--polar-blue)]">mikeallison</span>
+              welcome to{' '}
+              <span className="text-[color:var(--polar-blue)]">
+                mikeallison
+              </span>
               <span className="text-[color:var(--neon-green)]">JS</span>
             </Line>
             <Line type="info">
-              ask the agent anything about Mike — projects, jobs, skills, contact
+              ask the agent anything about Mike — projects, jobs, skills,
+              contact
             </Line>
             <Line type="hint">try one of the suggestions below ↓</Line>
           </div>
@@ -551,58 +638,66 @@ export function AgentTerminal() {
           onSubmit={onSubmit}
           className="flex items-center gap-2 border-t border-[#2e3338] bg-[#1e2226] px-4 py-3 font-mono text-sm"
         >
-        <span className="text-[color:var(--cosmic-violet)]">~</span>
-        <span className="text-[color:var(--neon-green)]">$</span>
-        <input
-          ref={inputRef}
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onKeyDown={onKeyDown}
-          placeholder={
-            listening ? 'listening…' : busy ? '' : 'ask about Mike — projects, jobs, skills'
-          }
-          disabled={busy}
-          className="flex-1 bg-transparent text-[color:var(--ghost-white)] placeholder:text-[color:var(--muted-text)] focus:outline-none disabled:opacity-60"
-          autoComplete="off"
-          spellCheck={false}
-        />
-        {speechSupported && (
-          <button
-            type="button"
-            onClick={toggleSpeech}
+          <span className="text-[color:var(--cosmic-violet)]">~</span>
+          <span className="text-[color:var(--neon-green)]">$</span>
+          <input
+            ref={inputRef}
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyDown={onKeyDown}
+            placeholder={
+              listening
+                ? 'listening…'
+                : busy
+                  ? ''
+                  : 'ask about Mike — projects, jobs, skills'
+            }
             disabled={busy}
-            aria-label={listening ? 'Stop listening' : 'Speak'}
-            className="shrink-0 text-[color:var(--muted-text)] transition-colors hover:text-[color:var(--ghost-white)] disabled:opacity-40"
-          >
-            <svg
-              className={`h-4 w-4 transition-colors ${listening ? 'animate-pulse text-[color:var(--neon-green)]' : ''}`}
-              viewBox="0 0 24 24"
-              fill="currentColor"
+            className="flex-1 bg-transparent text-[color:var(--ghost-white)] placeholder:text-[color:var(--muted-text)] focus:outline-none disabled:opacity-60"
+            autoComplete="off"
+            spellCheck={false}
+          />
+          {speechSupported && (
+            <button
+              type="button"
+              onClick={toggleSpeech}
+              disabled={busy}
+              aria-label={listening ? 'Stop listening' : 'Speak'}
+              className="shrink-0 text-[color:var(--muted-text)] transition-colors hover:text-[color:var(--ghost-white)] disabled:opacity-40"
             >
-              <path d="M12 1a4 4 0 0 1 4 4v7a4 4 0 0 1-8 0V5a4 4 0 0 1 4-4zm-1 18.93V22h2v-2.07A8.001 8.001 0 0 0 20 12h-2a6 6 0 0 1-12 0H4a8.001 8.001 0 0 0 7 7.93z" />
-            </svg>
-          </button>
-        )}
-        {ttsSupported && (
-          <button
-            type="button"
-            onClick={() => {
-              if (ttsEnabled) window.speechSynthesis.cancel()
-              setTtsEnabled((v) => !v)
-            }}
-            aria-label={ttsEnabled ? 'Disable voice responses' : 'Enable voice responses'}
-            className={`shrink-0 transition-colors hover:text-[color:var(--ghost-white)] ${ttsEnabled ? 'text-[#3daee9]' : 'text-[color:var(--muted-text)]'}`}
-          >
-            <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
-              {ttsEnabled ? (
-                <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 7.97v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77 0-4.28-2.99-7.86-7-8.77z" />
-              ) : (
-                <path d="M16.5 12A4.5 4.5 0 0 0 14 7.97v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06a8.99 8.99 0 0 0 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z" />
-              )}
-            </svg>
-          </button>
-        )}
-      </form>
+              <svg
+                className={`h-4 w-4 transition-colors ${listening ? 'animate-pulse text-[color:var(--neon-green)]' : ''}`}
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path d="M12 1a4 4 0 0 1 4 4v7a4 4 0 0 1-8 0V5a4 4 0 0 1 4-4zm-1 18.93V22h2v-2.07A8.001 8.001 0 0 0 20 12h-2a6 6 0 0 1-12 0H4a8.001 8.001 0 0 0 7 7.93z" />
+              </svg>
+            </button>
+          )}
+          {ttsSupported && (
+            <button
+              type="button"
+              onClick={() => {
+                if (ttsEnabled) window.speechSynthesis.cancel()
+                setTtsEnabled((v) => !v)
+              }}
+              aria-label={
+                ttsEnabled
+                  ? 'Disable voice responses'
+                  : 'Enable voice responses'
+              }
+              className={`shrink-0 transition-colors hover:text-[color:var(--ghost-white)] ${ttsEnabled ? 'text-[#3daee9]' : 'text-[color:var(--muted-text)]'}`}
+            >
+              <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+                {ttsEnabled ? (
+                  <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 7.97v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77 0-4.28-2.99-7.86-7-8.77z" />
+                ) : (
+                  <path d="M16.5 12A4.5 4.5 0 0 0 14 7.97v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06a8.99 8.99 0 0 0 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z" />
+                )}
+              </svg>
+            </button>
+          )}
+        </form>
       </div>
     </div>
   )
@@ -616,7 +711,9 @@ function Line({
   children: React.ReactNode
 }) {
   const color =
-    type === 'info' ? 'text-[color:var(--ui-gray)]' : 'text-[color:var(--muted-text)]'
+    type === 'info'
+      ? 'text-[color:var(--ui-gray)]'
+      : 'text-[color:var(--muted-text)]'
   return (
     <div className={`flex gap-2 ${color}`}>
       <span className="text-[color:var(--neon-green)]">$</span>

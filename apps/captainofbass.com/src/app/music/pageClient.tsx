@@ -1,9 +1,9 @@
 'use client'
 
-import MusicList, { MusicType } from './_musicList/musicList'
-
 import { songs } from '@/app/_footer/footer'
 import { MusicPlayerProvider } from '@/app/_footer/music-player'
+
+import MusicList, { MusicType } from './_musicList/musicList'
 
 export default function MusicClient() {
   return (

@@ -4,7 +4,7 @@ import {
   Table,
   TableBody,
   TableCell,
-  TableRow,
+  TableRow
 } from '@mikeallisonjs/ui/components/table'
 import Image from 'next/image'
 
@@ -36,22 +36,22 @@ export default function MusicList({ type }: MusicListProps) {
       <div className="text-3xl">{type} </div>
       <Table>
         <TableBody>
-        {songDisplay.map((song) => (
-          <TableRow
-            key={song.ID}
-            onClick={() => onSelect(song.ID)}
-            className="cursor-pointer text-left"
-          >
-            <TableCell className="w-24">
-              <Image
-                src={song.coverArt}
-                alt={song.title}
-                width={50}
-                height={50}
-              />
-            </TableCell>
-            <TableCell className="w-80">{song.artist}</TableCell>
-            <TableCell>{song.title}</TableCell>
+          {songDisplay.map((song) => (
+            <TableRow
+              key={song.ID}
+              onClick={() => onSelect(song.ID)}
+              className="cursor-pointer text-left"
+            >
+              <TableCell className="w-24">
+                <Image
+                  src={song.coverArt}
+                  alt={song.title}
+                  width={50}
+                  height={50}
+                />
+              </TableCell>
+              <TableCell className="w-80">{song.artist}</TableCell>
+              <TableCell>{song.title}</TableCell>
             </TableRow>
           ))}
         </TableBody>
