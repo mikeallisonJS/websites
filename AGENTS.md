@@ -31,3 +31,20 @@ used — each app has its own `dev`/`build`/`start` scripts that call `next`:
 Lint (Oxlint) and format (Oxfmt) settings live in the `lint` and `fmt` blocks of
 the root `vite.config.ts`; there is no ESLint or Prettier config in this repo.
 `vp install` delegates to pnpm, pinned by `packageManager` in `package.json`.
+
+## Agent skills
+
+Skills live in `.agents/skills/` (from `mattpocock/skills`), symlinked into
+`.claude/skills/`. Update with `npx skills@latest add mattpocock/skills`.
+
+### Issue tracker
+
+GitHub Issues on `mikeallisonJS/websites`, via the `gh` CLI. See `docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+The five canonical roles, using their default names (`needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `wontfix`). See `docs/agents/triage-labels.md`.
+
+### Domain docs
+
+Multi-context — root `CONTEXT-MAP.md` pointing at a `CONTEXT.md` per workspace package. See `docs/agents/domain.md`.

@@ -52,3 +52,6 @@ out
 
 # Vite+ generated git hook dispatcher (recreated by `vp config`)
 .vite-hooks/_
+
+# Claude Code local settings (skills in .claude/skills are symlinks to .agents/skills)
+.claude/settings.local.json
