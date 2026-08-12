@@ -63,6 +63,6 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "tailwindcss": "^4.0.8",
-    "typescript": "^6.0.0"
+    "typescript": "^7.0.0"
   }
 }
