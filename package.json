@@ -38,5 +38,5 @@
     "vercel": "^59.0.0",
     "vite-plus": "0.2.9"
   },
-  "packageManager": "pnpm@11.21.0"
+  "packageManager": "pnpm@11.22.0"
 }
