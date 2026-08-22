@@ -116,13 +116,13 @@ importers:
     dependencies:
       '@openrouter/ai-sdk-provider':
         specifier: ^3.0.0
-        version: 3.0.0(ai@7.0.66(zod@4.4.3))(zod@4.4.3)
+        version: 3.0.0(ai@7.0.69(zod@4.4.3))(zod@4.4.3)
       '@tabler/icons-react':
         specifier: ^3.26.0
         version: 3.46.0(react@19.2.8)
       ai:
         specifier: ^7.0.0
-        version: 7.0.66(zod@4.4.3)
+        version: 7.0.69(zod@4.4.3)
       babel-plugin-react-compiler:
         specifier: ^19.1.0-rc.1
         version: 19.1.0-rc.1-rc-af1b7da-20250421
@@ -309,8 +309,8 @@ importers:
 
 packages:
 
-  '@ai-sdk/gateway@4.0.52':
-    resolution: {integrity: sha512-SXUM8jzzuTUJRq+EOgPd5to6DSx0EKslVn+IVZHbUEX6k/3vCPNrvjckbK26HnNxHU/STxm+zTSJteqrO+7Z0w==}
+  '@ai-sdk/gateway@4.0.55':
+    resolution: {integrity: sha512-7WP/nlDz2BkXFlZzwF3w5JgCvktyHC++LP4PZ4mQpbvxrq+M7OdNslevlkuddHhJ+62BZu4oiL/afXlsWOSJZQ==}
     engines: {node: '>=22'}
     peerDependencies:
       zod: ^3.25.76 || ^4.1.8
@@ -3875,8 +3875,8 @@ packages:
     resolution: {integrity: sha512-MnA+YT8fwfJPgBx3m60MNqakm30XOkyIoH1y6huTQvC0PwZG7ki8NacLBcrPbNoo8vEZy7Jpuk7+jMO+CUovTQ==}
     engines: {node: '>= 14'}
 
-  ai@7.0.66:
-    resolution: {integrity: sha512-wBUyoCYF3GVr+62nelBgR8YbpTSsMZrzFyOOjiwijylNSM2TFCW35C+Pml2vc59/WLMpyhS/LWZ55M+B9DAcSg==}
+  ai@7.0.69:
+    resolution: {integrity: sha512-gudEqQYt/FuRpQkckLHPYKOh5M5v5ayPmzQAk5xyZOaWkUM0ArNGdXQiBGEuZA7GCwYOjzmWxB44ZW0CyRhHfQ==}
     engines: {node: '>=22'}
     peerDependencies:
       zod: ^3.25.76 || ^4.1.8
@@ -5907,7 +5907,7 @@ packages:
 
 snapshots:
 
-  '@ai-sdk/gateway@4.0.52(zod@4.4.3)':
+  '@ai-sdk/gateway@4.0.55(zod@4.4.3)':
     dependencies:
       '@ai-sdk/provider': 4.0.7
       '@ai-sdk/provider-utils': 5.0.27(zod@4.4.3)
@@ -6691,9 +6691,9 @@ snapshots:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.20.1
 
-  '@openrouter/ai-sdk-provider@3.0.0(ai@7.0.66(zod@4.4.3))(zod@4.4.3)':
+  '@openrouter/ai-sdk-provider@3.0.0(ai@7.0.69(zod@4.4.3))(zod@4.4.3)':
     dependencies:
-      ai: 7.0.66(zod@4.4.3)
+      ai: 7.0.69(zod@4.4.3)
       zod: 4.4.3
 
   '@opentelemetry/api-logs@0.220.0':
@@ -8964,9 +8964,9 @@ snapshots:
 
   agent-base@7.1.4: {}
 
-  ai@7.0.66(zod@4.4.3):
+  ai@7.0.69(zod@4.4.3):
     dependencies:
-      '@ai-sdk/gateway': 4.0.52(zod@4.4.3)
+      '@ai-sdk/gateway': 4.0.55(zod@4.4.3)
       '@ai-sdk/provider': 4.0.7
       '@ai-sdk/provider-utils': 5.0.27(zod@4.4.3)
       zod: 4.4.3
