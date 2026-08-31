@@ -16,7 +16,8 @@ stack:
     AWS,
     Terraform,
     Vercel,
-    Algolia
+    Algolia,
+    Docker
   ]
 ---
 
@@ -49,6 +50,12 @@ Vercel and AWS via Terraform.
   Google Sheets event sync/export for non-technical teams.
 - Contributed to the JesusFilm Watch video library, including Algolia search
   over the Arclight catalog.
+- Built Phoebe, an AFK coding agent published to npm as `phoebe-agent` — it
+  works ready-labelled GitHub issues one at a time in isolated git worktrees,
+  runs the repo's gates, opens pull requests, and sweeps open PRs for merge
+  conflicts, failing CI, and unresolved review feedback. Ships as a single
+  Docker container driven by one config file, so the same engine runs against
+  repositories inside and outside JesusFilm.
 - Modernized the platform's tooling — Terraform→OpenTofu (with Atlantis PR
   automation), Jest→Vitest test migrations, and Node upgrades across the
   monorepo.
@@ -57,4 +64,4 @@ Vercel and AWS via Terraform.
 
 Next.js, TypeScript, GraphQL (federated — Hive / Yoga), Node.js,
 Postgres, Prisma, ArangoDB, BigQuery, Algolia, Firebase Auth, AWS, Terraform /
-OpenTofu, Vercel, Vitest.
+OpenTofu, Vercel, Vitest, Docker.

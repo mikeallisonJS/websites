@@ -13,6 +13,37 @@ export type ProjectData = {
 
 export const projects: ProjectData[] = [
   {
+    slug: 'cadent',
+    title: 'Cadent',
+    description:
+      'Fully-local push-to-talk AI dictation for Windows and macOS \u2014 no cloud.',
+    image: '/images/cadent.png',
+    githubUrl: 'https://github.com/mikeallisonJS/cadent',
+    stack: ['BrandPython', 'BrandWindows', 'BrandApple', 'Database'],
+    tags: ['python', 'ai', 'desktop'],
+    details:
+      'A solo project. Hold a hotkey, speak, release \u2014 clean text appears at the cursor in whatever app has focus. Cadent captures the mic, transcribes on-device with faster-whisper (biased toward a custom vocabulary, with sounds-like correction and snippet expansion), optionally runs the transcript through a local llama.cpp model to clean it up behind a hallucination guard, then injects the result via SendInput or a clipboard paste and logs it to a searchable SQLite history. Everything runs on the machine \u2014 the only network traffic is the explicit first-run model download. Built in Python with a per-OS platform seam behind a single factory, GPU acceleration that proves itself with real work before committing (CUDA and Vulkan on Windows, Metal on Apple silicon) and falls back to the CPU when it cannot, and shipped as a Windows installer and an Apple-silicon disk image.'
+  },
+  {
+    slug: 'phoebe',
+    title: 'Phoebe',
+    description:
+      'An AFK coding agent that works a repo\u2019s issue tracker one ticket at a time.',
+    image: '/images/phoebe.png',
+    websiteUrl: 'https://www.npmjs.com/package/phoebe-agent',
+    githubUrl: 'https://github.com/JesusFilm/phoebe',
+    stack: [
+      'BrandTypescript',
+      'BrandNodejs',
+      'BrandDocker',
+      'BrandGithub',
+      'BrandNpm'
+    ],
+    tags: ['ai', 'agents', 'devtools'],
+    details:
+      "Phoebe is an AFK coding agent built at Jesusfilm and published to npm as phoebe-agent. It polls a GitHub repository for issues labelled ready, works each one on its own branch in an isolated git worktree, runs the project's install/check/test gates, and opens a pull request \u2014 then sweeps open PRs for merge conflicts, failing CI, and unresolved review feedback so work keeps moving without a human babysitting every branch. It ships as a single Docker container that is both orchestrator and execution environment: the host checkout is never touched, since the container owns a private clone and pushes branches straight to origin. Every repo-specific value sits behind one config file (five required fields), so the same pinned engine drives any repository \u2014 including several at once from a workspace root \u2014 and the agent CLI behind it is swappable. Phoebe works its own repository too: most of the pull requests merged there were opened by Phoebe."
+  },
+  {
     slug: 'nexus',
     title: 'Nexus',
     description: "The admin platform for Jesusfilm's global video catalog.",
