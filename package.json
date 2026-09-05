@@ -14,7 +14,7 @@
     "@mikeallisonjs/ui": "workspace:*",
     "@sentry/nextjs": "^10.0.0",
     "@sentry/utils": "^8.47.0",
-    "next": "16.3.2",
+    "next": "16.3.4",
     "react": "19.2.8",
     "react-dom": "19.2.8",
     "tslib": "^2.8.1"
