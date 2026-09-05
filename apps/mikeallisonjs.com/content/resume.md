@@ -42,7 +42,8 @@ developer tooling.
 - **Infra / DevOps**: AWS, Vercel, Terraform, Docker, Webpack, Gulp, Grunt
 - **Data**: Postgres, MongoDB, SQL Server, Oracle, MySQL, Sybase, Firebase
 - **Testing**: Jasmine, Karma, Protractor, NUnit
-- **AI / Data**: Algolia, OpenAI / OpenRouter, RAG patterns
+- **AI / Data**: Algolia, OpenAI / OpenRouter, RAG patterns, coding agents,
+  local inference (faster-whisper, llama.cpp)
 - **Other**: Max4Live, VCV Rack / DSP (C++), Ableton Live
 
 ## Certifications
@@ -68,6 +69,13 @@ developer tooling.
 - Shipped JesusFilm `nextstep.is` and its admin authoring tool from
   green-field to production inside the JesusFilm `core` monorepo.
 - Built `freevstvault.com` — an AI-assisted directory for free audio plugins.
+- At JesusFilm, built Phoebe (`phoebe-agent` on npm) — an AFK coding agent
+  that works a repository's issue tracker ticket by ticket, opening pull
+  requests and sweeping open ones for conflicts, failing CI, and review
+  feedback. Most of its own repository's merged PRs were opened by Phoebe.
+- Built Cadent — fully-local push-to-talk AI dictation for Windows and macOS,
+  with on-device speech recognition and local-LLM transcript cleanup, shipped
+  as a Windows installer and an Apple-silicon disk image.
 - At Cru, turned a year-behind-schedule application into a wild success
   story; ported a legacy monolithic Rails app into an n-tier Angular/Ruby
   architecture and stood up the testing platform.
