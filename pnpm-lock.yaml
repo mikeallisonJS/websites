@@ -174,7 +174,7 @@ importers:
         version: link:packages/ui
       '@sentry/nextjs':
         specifier: ^10.0.0
-        version: 10.74.0(@opentelemetry/core@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.11.0(@opentelemetry/api@1.9.1))(next@16.3.4(@babel/core@8.0.1)(@opentelemetry/api@1.9.1)(@types/node@26.4.1)(babel-plugin-react-compiler@19.1.0-rc.1-rc-af1b7da-20250421)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)(webpack@5.110.3(esbuild@0.27.0)(lightningcss@1.33.0)(postcss@8.5.28)(sharp@0.35.4(@types/node@26.4.1)))
+        version: 10.74.0(@opentelemetry/core@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.11.0(@opentelemetry/api@1.9.1))(next@16.3.4(@babel/core@8.0.1)(@opentelemetry/api@1.9.1)(@types/node@26.4.1)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)(webpack@5.110.3(esbuild@0.27.0)(lightningcss@1.33.0)(postcss@8.5.28)(sharp@0.35.4(@types/node@26.4.1)))
       '@sentry/utils':
         specifier: ^8.47.0
         version: 8.55.2
@@ -274,13 +274,13 @@ importers:
     dependencies:
       '@openrouter/ai-sdk-provider':
         specifier: ^3.0.0
-        version: 3.0.0(ai@7.0.92(zod@4.6.2))(zod@4.6.2)
+        version: 3.0.0(ai@7.0.97(zod@4.6.2))(zod@4.6.2)
       '@tabler/icons-react':
         specifier: ^3.26.0
         version: 3.46.0(react@19.2.8)
       ai:
         specifier: ^7.0.0
-        version: 7.0.92(zod@4.6.2)
+        version: 7.0.97(zod@4.6.2)
       babel-plugin-react-compiler:
         specifier: ^19.1.0-rc.1
         version: 19.1.0-rc.1-rc-af1b7da-20250421
@@ -467,20 +467,20 @@ importers:
 
 packages:
 
-  '@ai-sdk/gateway@4.0.74':
-    resolution: {integrity: sha512-6hpLUtAD162KLyyj9LN2OuEyze7lzq4wwj7PyQPYdMmA8PBYwyMbmvmu1C7OzfexLSPltZK29pX8R6hrJsqBqA==}
+  '@ai-sdk/gateway@4.0.78':
+    resolution: {integrity: sha512-fcamzmFlcy+c/tIc7QcATLe/kArgSVGQ1QxaddMjhOSX8zypc2hmD5sHB2bp1DSFcSxDD32d6usF9a7xLCTULg==}
     engines: {node: '>=22'}
     peerDependencies:
       zod: ^3.25.76 || ^4.1.8
 
-  '@ai-sdk/provider-utils@5.0.36':
-    resolution: {integrity: sha512-MFXBn6XDyf37PNQAge/HTatPJE8Vmg/g/w4WPtjSV53jq8FKAzoaN5+43hsdQa9bqgN+/13jxug9ChvsG+godQ==}
+  '@ai-sdk/provider-utils@5.0.39':
+    resolution: {integrity: sha512-VIFp4Qv3j+V941crFB1y2VG5yeGbeLOFRxiPaZJETkkpo1H5WviLx6H5yRkFkrXIGxnTGygKsPgCAJG0X61Auw==}
     engines: {node: '>=22'}
     peerDependencies:
       zod: ^3.25.76 || ^4.1.8
 
-  '@ai-sdk/provider@4.0.10':
-    resolution: {integrity: sha512-fX2ENAc7iDpZ+Wp4+Rk06Usn/Ys7dI9uAkGv0jlF6XVrW13NkRWx5Ou+U6lIM2E1fTLkCs16GGrUAaVvroag7A==}
+  '@ai-sdk/provider@4.0.13':
+    resolution: {integrity: sha512-sJvnbFIFLzmKFXIjfwS8XCOAj6puHCawItwvA9PBZgk2f/l/TiC4OSfK3ueDbUVXfRCOn5eJN97EIF10toIOmQ==}
     engines: {node: '>=22'}
 
   '@alloc/quick-lru@5.3.0':
@@ -3958,8 +3958,8 @@ packages:
     resolution: {integrity: sha512-MnA+YT8fwfJPgBx3m60MNqakm30XOkyIoH1y6huTQvC0PwZG7ki8NacLBcrPbNoo8vEZy7Jpuk7+jMO+CUovTQ==}
     engines: {node: '>= 14'}
 
-  ai@7.0.92:
-    resolution: {integrity: sha512-9xb8Xo6aw7YMxuROznR02q4Hpne1DJ7JbKurpcOsabSSY3sd3xGoTANSqEs4gYLRpIz27MmT3IMfH8X3+oK1CQ==}
+  ai@7.0.97:
+    resolution: {integrity: sha512-tQGZ234p/bk5X/LNQdB43a5/z1Bve7wK0EOR1AwN6xrosZih4MIC/3pXhcnytcpBJHMbhLISW6J1dFTd/tnwPA==}
     engines: {node: '>=22'}
     peerDependencies:
       zod: ^3.25.76 || ^4.1.8
@@ -5919,23 +5919,23 @@ packages:
 
 snapshots:
 
-  '@ai-sdk/gateway@4.0.74(zod@4.6.2)':
+  '@ai-sdk/gateway@4.0.78(zod@4.6.2)':
     dependencies:
-      '@ai-sdk/provider': 4.0.10
-      '@ai-sdk/provider-utils': 5.0.36(zod@4.6.2)
+      '@ai-sdk/provider': 4.0.13
+      '@ai-sdk/provider-utils': 5.0.39(zod@4.6.2)
       '@vercel/oidc': 3.2.0
       zod: 4.6.2
 
-  '@ai-sdk/provider-utils@5.0.36(zod@4.6.2)':
+  '@ai-sdk/provider-utils@5.0.39(zod@4.6.2)':
     dependencies:
-      '@ai-sdk/provider': 4.0.10
+      '@ai-sdk/provider': 4.0.13
       '@standard-schema/spec': 1.1.0
       '@workflow/serde': 4.1.0
       eventsource-parser: 3.1.1
       undici: 7.29.1
       zod: 4.6.2
 
-  '@ai-sdk/provider@4.0.10':
+  '@ai-sdk/provider@4.0.13':
     dependencies:
       json-schema: 0.4.0
 
@@ -6601,9 +6601,9 @@ snapshots:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.20.3
 
-  '@openrouter/ai-sdk-provider@3.0.0(ai@7.0.92(zod@4.6.2))(zod@4.6.2)':
+  '@openrouter/ai-sdk-provider@3.0.0(ai@7.0.97(zod@4.6.2))(zod@4.6.2)':
     dependencies:
-      ai: 7.0.92(zod@4.6.2)
+      ai: 7.0.97(zod@4.6.2)
       zod: 4.6.2
 
   '@opentelemetry/api-logs@0.220.0':
@@ -7904,7 +7904,7 @@ snapshots:
     dependencies:
       '@sentry/core': 10.74.0
 
-  '@sentry/nextjs@10.74.0(@opentelemetry/core@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.11.0(@opentelemetry/api@1.9.1))(next@16.3.4(@babel/core@8.0.1)(@opentelemetry/api@1.9.1)(@types/node@26.4.1)(babel-plugin-react-compiler@19.1.0-rc.1-rc-af1b7da-20250421)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)(webpack@5.110.3(esbuild@0.27.0)(lightningcss@1.33.0)(postcss@8.5.28)(sharp@0.35.4(@types/node@26.4.1)))':
+  '@sentry/nextjs@10.74.0(@opentelemetry/core@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.11.0(@opentelemetry/api@1.9.1))(next@16.3.4(@babel/core@8.0.1)(@opentelemetry/api@1.9.1)(@types/node@26.4.1)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)(webpack@5.110.3(esbuild@0.27.0)(lightningcss@1.33.0)(postcss@8.5.28)(sharp@0.35.4(@types/node@26.4.1)))':
     dependencies:
       '@opentelemetry/api': 1.9.1
       '@rollup/plugin-commonjs': 28.0.1(rollup@4.63.1)
@@ -8956,11 +8956,11 @@ snapshots:
 
   agent-base@7.1.4: {}
 
-  ai@7.0.92(zod@4.6.2):
+  ai@7.0.97(zod@4.6.2):
     dependencies:
-      '@ai-sdk/gateway': 4.0.74(zod@4.6.2)
-      '@ai-sdk/provider': 4.0.10
-      '@ai-sdk/provider-utils': 5.0.36(zod@4.6.2)
+      '@ai-sdk/gateway': 4.0.78(zod@4.6.2)
+      '@ai-sdk/provider': 4.0.13
+      '@ai-sdk/provider-utils': 5.0.39(zod@4.6.2)
       zod: 4.6.2
 
   ajv-formats@2.1.1(ajv@8.20.0):
