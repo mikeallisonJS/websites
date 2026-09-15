@@ -312,7 +312,7 @@ importers:
     dependencies:
       '@hookform/resolvers':
         specifier: ^5.0.1
-        version: 5.9.1(@sinclair/typebox@0.25.24)(@standard-schema/spec@1.1.0)(ajv-formats@2.1.1(ajv@8.20.0))(ajv@8.20.0)(react-hook-form@7.87.0(react@19.2.8))(zod@4.6.3)
+        version: 5.9.1(@sinclair/typebox@0.25.24)(@standard-schema/spec@1.1.0)(ajv-formats@2.1.1(ajv@8.20.0))(ajv@8.20.0)(react-hook-form@7.88.0(react@19.2.8))(zod@4.6.3)
       '@radix-ui/react-accordion':
         specifier: ^1.2.7
         version: 1.2.20(@types/react-dom@19.2.5(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
@@ -423,7 +423,7 @@ importers:
         version: 19.2.8(react@19.2.8)
       react-hook-form:
         specifier: ^7.56.0
-        version: 7.87.0(react@19.2.8)
+        version: 7.88.0(react@19.2.8)
       react-resizable-panels:
         specifier: ^4.0.0
         version: 4.12.3(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
@@ -5249,8 +5249,8 @@ packages:
     peerDependencies:
       react: ^19.2.8
 
-  react-hook-form@7.87.0:
-    resolution: {integrity: sha512-zhFzWvLxNHH+8839OnZcUxgMZw88ah2jZWDWvKWgF3Tpbnd0vKL+dlcuU3nZVWESZQjd81EW8K+wU+cYfYAc0w==}
+  react-hook-form@7.88.0:
+    resolution: {integrity: sha512-QRaLOWhX93YCnMiRfnOFRSwWXZNt8qhm2JTZwypoDvKpSffTJHmpzMXt8U6PV5UThvL3IiiLDUWe2nHMtz6Mmw==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       react: ^16.8.0 || ^17 || ^18 || ^19
@@ -6333,10 +6333,10 @@ snapshots:
       '@fortawesome/fontawesome-svg-core': 7.3.1
       react: 19.2.8
 
-  '@hookform/resolvers@5.9.1(@sinclair/typebox@0.25.24)(@standard-schema/spec@1.1.0)(ajv-formats@2.1.1(ajv@8.20.0))(ajv@8.20.0)(react-hook-form@7.87.0(react@19.2.8))(zod@4.6.3)':
+  '@hookform/resolvers@5.9.1(@sinclair/typebox@0.25.24)(@standard-schema/spec@1.1.0)(ajv-formats@2.1.1(ajv@8.20.0))(ajv@8.20.0)(react-hook-form@7.88.0(react@19.2.8))(zod@4.6.3)':
     dependencies:
       '@standard-schema/utils': 0.3.0
-      react-hook-form: 7.87.0(react@19.2.8)
+      react-hook-form: 7.88.0(react@19.2.8)
     optionalDependencies:
       '@sinclair/typebox': 0.25.24
       '@standard-schema/spec': 1.1.0
@@ -10090,7 +10090,7 @@ snapshots:
       react: 19.2.8
       scheduler: 0.27.0
 
-  react-hook-form@7.87.0(react@19.2.8):
+  react-hook-form@7.88.0(react@19.2.8):
     dependencies:
       react: 19.2.8
 
