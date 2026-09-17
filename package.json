@@ -36,7 +36,7 @@
     "tw-animate-css": "^1.0.0",
     "typescript": "^7.0.0",
     "vercel": "^59.0.0",
-    "vite-plus": "0.3.1"
+    "vite-plus": "0.3.2"
   },
   "packageManager": "pnpm@12.4.1"
 }
