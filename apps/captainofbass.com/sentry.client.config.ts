@@ -4,8 +4,12 @@
 
 import { init, replayIntegration } from '@sentry/nextjs'
 
+import { dataCollection } from './sentry.data-collection'
+
 init({
   dsn: 'https://a0dc6d8f0544a8b4703ef87b50987276@o4507117455015936.ingest.us.sentry.io/4507117555875840',
+
+  dataCollection,
 
   // Adjust this value in production, or use tracesSampler for greater control
   tracesSampleRate: 1,
