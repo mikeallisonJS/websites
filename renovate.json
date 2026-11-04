@@ -5,7 +5,7 @@
   "schedule": ["before 6am on monday"],
   "timezone": "America/Los_Angeles",
   "rebaseWhen": "conflicted",
-  "prConcurrentLimit": 2,
+  "prConcurrentLimit": 3,
   "lockFileMaintenance": {
     "enabled": true,
     "schedule": ["before 6am on the first day of the month"]
