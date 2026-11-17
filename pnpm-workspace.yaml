@@ -19,3 +19,4 @@ allowBuilds:
 # GHSA-x8mw-p69m-v3mx: no vercel release pulls a fixed @fastify/busboy.
 overrides:
   '@fastify/busboy': 3.2.1
+  'minimatch@10.1.1': 10.2.3
