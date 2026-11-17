@@ -15,3 +15,6 @@ allowBuilds:
   esbuild: true
   sharp: true
   utf-8-validate: true
+
+overrides:
+  '@vercel/container>tar': 7.5.21
