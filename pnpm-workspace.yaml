@@ -15,3 +15,6 @@ allowBuilds:
   esbuild: true
   sharp: true
   utf-8-validate: true
+
+overrides:
+  smol-toml: 1.7.1

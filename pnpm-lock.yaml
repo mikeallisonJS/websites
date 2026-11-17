@@ -162,6 +162,9 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  smol-toml: 1.7.1
+
 importers:
 
   .:
@@ -5343,8 +5346,8 @@ packages:
     resolution: {integrity: sha512-2wcC/oGxHis/BoHkkPwldgiPSYcpZK3JU28WoMVv55yHJgcZ8rlXvuG9iZggz+sU1d4bRgIGASwyWqjxu3FM0g==}
     engines: {node: '>=18'}
 
-  smol-toml@1.5.2:
-    resolution: {integrity: sha512-QlaZEqcAH3/RtNyet1IPIYPsEWAaYyXXv1Krsi+1L/QHppjX4Ifm8MQsBISz9vE8cHicIq3clogsheili5vhaQ==}
+  smol-toml@1.7.1:
+    resolution: {integrity: sha512-PPlsspAZ4jbMBu5DMFhfUGDQLu/vrL4SyBROVS37x8ynnVmFIs1VPBz1Co8Xks3TvpIaZXmU85y4DrQ+UyVFoQ==}
     engines: {node: '>= 18'}
 
   sonner@2.0.8:
@@ -8103,7 +8106,7 @@ snapshots:
   '@vercel/container@20.0.0(@vercel/build-utils@14.22.0)':
     dependencies:
       '@vercel/build-utils': 14.22.0
-      smol-toml: 1.5.2
+      smol-toml: 1.7.1
       tar: 7.5.11
 
   '@vercel/detect-agent@1.2.7': {}
@@ -8327,7 +8330,7 @@ snapshots:
       fs-extra: 11.1.1
       js-yaml: 4.1.1
       minimatch: 10.1.1
-      smol-toml: 1.5.2
+      smol-toml: 1.7.1
       zod: 3.22.4
 
   '@vercel/python@26.0.1(@vercel/build-utils@14.22.0)':
@@ -8374,7 +8377,7 @@ snapshots:
       '@vercel/build-utils': 14.22.0
       execa: 5.1.1
       get-port: 5.1.1
-      smol-toml: 1.5.2
+      smol-toml: 1.7.1
 
   '@vercel/sandbox@3.3.0':
     dependencies:
@@ -10072,7 +10075,7 @@ snapshots:
       mrmime: 2.0.1
       totalist: 3.0.1
 
-  smol-toml@1.5.2: {}
+  smol-toml@1.7.1: {}
 
   sonner@2.0.8(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1):
     dependencies:
@@ -10368,7 +10371,7 @@ snapshots:
       jsonc-parser: 3.3.1
       luxon: 3.7.2
       sandbox: 4.4.0(supports-color@8.1.1)
-      smol-toml: 1.5.2
+      smol-toml: 1.7.1
       undici: 5.29.0
       uuid: 14.0.1
       zod: 4.1.11
