@@ -213,13 +213,13 @@ importers:
         specifier: workspace:*
         version: link:packages/typescript-config
       '@tailwindcss/cli':
-        specifier: ^4.0.0
+        specifier: ^4.3.5
         version: 4.3.5
       '@tailwindcss/postcss':
-        specifier: ^4.0.0
+        specifier: ^4.3.5
         version: 4.3.5
       '@types/node':
-        specifier: ^26.0.0
+        specifier: ^26.6.6
         version: 26.6.6
       '@types/react':
         specifier: 19.3.0
@@ -228,16 +228,16 @@ importers:
         specifier: 19.3.0
         version: 19.3.0(@types/react@19.3.0)
       dotenv-cli:
-        specifier: ^11.0.0
+        specifier: ^11.1.0
         version: 11.1.0
       postcss:
-        specifier: ^8.4.49
+        specifier: ^8.5.33
         version: 8.5.33
       sharp:
         specifier: ^0.35.0
         version: 0.35.5(@types/node@26.6.6)
       tailwindcss:
-        specifier: ^4.0.0
+        specifier: ^4.3.5
         version: 4.3.5
       ts-node:
         specifier: 10.9.2
@@ -459,10 +459,10 @@ importers:
         specifier: workspace:*
         version: link:../typescript-config
       '@tailwindcss/postcss':
-        specifier: ^4.0.8
+        specifier: ^4.3.5
         version: 4.3.5
       '@types/node':
-        specifier: ^26.0.0
+        specifier: ^26.6.6
         version: 26.6.6
       '@types/react':
         specifier: ^19
@@ -471,7 +471,7 @@ importers:
         specifier: ^19
         version: 19.3.0(@types/react@19.3.0)
       tailwindcss:
-        specifier: ^4.0.8
+        specifier: ^4.3.5
         version: 4.3.5
       typescript:
         specifier: ^7.0.0
