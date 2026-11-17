@@ -17,5 +17,8 @@ allowBuilds:
   utf-8-validate: true
 
 # GHSA-x8mw-p69m-v3mx: no vercel release pulls a fixed @fastify/busboy.
+# GHSA-9wv6-86v2-598j, GHSA-j3q9-mxjg-w52f: path-to-regexp via vercel.
 overrides:
   '@fastify/busboy': 3.2.1
+  path-to-regexp@6.1.0: 6.3.0
+  path-to-regexp@8.3.0: 8.4.0
