@@ -16,5 +16,8 @@ allowBuilds:
   sharp: true
   utf-8-validate: true
 
+# GHSA-x8mw-p69m-v3mx: no vercel release pulls a fixed @fastify/busboy.
+# @vercel/container pins tar exactly at 7.5.11, which has known advisories.
 overrides:
+  '@fastify/busboy': 3.2.1
   '@vercel/container>tar': 7.5.21
