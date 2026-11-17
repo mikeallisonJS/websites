@@ -172,6 +172,7 @@ settings:
   excludeLinksFromLockfile: false
 
 overrides:
+  '@fastify/busboy': 3.2.1
   brace-expansion@1: 1.1.20
 
 importers:
@@ -846,9 +847,8 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@fastify/busboy@2.1.1':
-    resolution: {integrity: sha512-vBZP4NlzfOlerQTnba4aqZoMhE/a9HY7HRqoOPaETQcSQuWEIyZMHGfVu6w9wGtGK5fED5qRs2DteVCjOH60sA==}
-    engines: {node: '>=14'}
+  '@fastify/busboy@3.2.1':
+    resolution: {integrity: sha512-tgK4O+57iz5ycYNGXE5ZWj1ES03lD2XnnBYWSbU/3wYZRMQzCUq7Ycds/RdyBZQeL5MU4fxBt6lzbIWf/Bickw==}
 
   '@floating-ui/core@1.8.0':
     resolution: {integrity: sha512-0CIZ5itps/8x7BG8dEIhs53BvCUH2PCoogtakwRTut+Arm58sJooJ0AuZhLw2HJYIR5cMLNPBSS728sPho2khQ==}
@@ -6122,7 +6122,7 @@ snapshots:
   '@esbuild/win32-x64@0.27.0':
     optional: true
 
-  '@fastify/busboy@2.1.1': {}
+  '@fastify/busboy@3.2.1': {}
 
   '@floating-ui/core@1.8.0':
     dependencies:
@@ -10327,11 +10327,11 @@ snapshots:
 
   undici@5.28.4:
     dependencies:
-      '@fastify/busboy': 2.1.1
+      '@fastify/busboy': 3.2.1
 
   undici@5.29.0:
     dependencies:
-      '@fastify/busboy': 2.1.1
+      '@fastify/busboy': 3.2.1
 
   undici@6.28.1: {}
 
