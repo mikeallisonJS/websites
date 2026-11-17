@@ -291,7 +291,7 @@ importers:
         specifier: ^3.26.0
         version: 3.51.0(react@19.3.1)
       ai:
-        specifier: ^7.0.0
+        specifier: ^7.0.173
         version: 7.0.173(zod@4.6.7)
       babel-plugin-react-compiler:
         specifier: ^19.1.0-rc.1
