@@ -16,6 +16,9 @@ allowBuilds:
   sharp: true
   utf-8-validate: true
 
+# GHSA-mrhx-c7xc-m3w5: zod reached through vercel, fixed in 4.6.6.
 # GHSA-x8mw-p69m-v3mx: no vercel release pulls a fixed @fastify/busboy.
 overrides:
   '@fastify/busboy': 3.2.1
+  'zod@3.22.4': 4.6.7
+  'zod@4.1.11': 4.6.7
