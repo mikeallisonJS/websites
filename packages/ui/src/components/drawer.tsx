@@ -1,74 +1,173 @@
 'use client'
 
+import type { DrawerContentProps, SnapPoint } from '@ui-sdk/react/drawer'
 import * as React from 'react'
-import { Drawer as DrawerPrimitive } from 'vaul'
 
+import {
+  createLazyPopup,
+  LazyRootProvider,
+  LoadedPart,
+  LoadedPartsContext,
+  renderLazyClose,
+  renderLazyTrigger,
+  useLazyRoot,
+  useLazyRootContext,
+  type LazyRootOptions,
+  type LightButtonProps
+} from '@mikeallisonjs/ui/lib/lazy-popup'
 import { cn } from '@mikeallisonjs/ui/lib/utils'
 
+// The ui-sdk drawer loads with the content, not with the page. See
+// lib/lazy-popup.ts.
+const { preload: loadDrawerPopup, Popup: DrawerPopup } = createLazyPopup(
+  () => import('@mikeallisonjs/ui/components/drawer-popup')
+)
+
+type DrawerOptions = {
+  side: 'top' | 'right' | 'bottom' | 'left'
+  dismissible: boolean
+  autoFocus: boolean
+  onClose?: () => void
+  snapPoints?: SnapPoint[]
+  activeSnapPoint?: SnapPoint
+  setActiveSnapPoint?: (snapPoint: SnapPoint) => void
+}
+
+const DrawerOptionsContext = React.createContext<DrawerOptions>({
+  side: 'bottom',
+  dismissible: true,
+  autoFocus: false
+})
+
+// The vaul props callers used. `onClose` runs when the drawer closes itself:
+// Escape, a swipe, an outside press or a Close part. Snap points are
+// fractions of the screen or pixels, as in vaul, and also rem, % or 'content'.
 function Drawer({
-  ...props
-}: React.ComponentProps<typeof DrawerPrimitive.Root>) {
-  return <DrawerPrimitive.Root data-slot="drawer" {...props} />
-}
-
-function DrawerTrigger({
-  ...props
-}: React.ComponentProps<typeof DrawerPrimitive.Trigger>) {
-  return <DrawerPrimitive.Trigger data-slot="drawer-trigger" {...props} />
-}
-
-function DrawerPortal({
-  ...props
-}: React.ComponentProps<typeof DrawerPrimitive.Portal>) {
-  return <DrawerPrimitive.Portal data-slot="drawer-portal" {...props} />
-}
-
-function DrawerClose({
-  ...props
-}: React.ComponentProps<typeof DrawerPrimitive.Close>) {
-  return <DrawerPrimitive.Close data-slot="drawer-close" {...props} />
-}
-
-function DrawerOverlay({
-  className,
-  ...props
-}: React.ComponentProps<typeof DrawerPrimitive.Overlay>) {
-  return (
-    <DrawerPrimitive.Overlay
-      data-slot="drawer-overlay"
-      className={cn(
-        'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-black/50',
-        className
-      )}
-      {...props}
-    />
+  children,
+  direction = 'bottom',
+  dismissible = true,
+  autoFocus = false,
+  onClose,
+  snapPoints,
+  activeSnapPoint,
+  setActiveSnapPoint,
+  ...options
+}: LazyRootOptions & {
+  children?: React.ReactNode
+  direction?: 'top' | 'right' | 'bottom' | 'left'
+  dismissible?: boolean
+  autoFocus?: boolean
+  onClose?: () => void
+  snapPoints?: SnapPoint[]
+  // vaul's null, nothing chosen, opens at the first point.
+  activeSnapPoint?: SnapPoint | null
+  setActiveSnapPoint?: (snapPoint: SnapPoint) => void
+}) {
+  const root = useLazyRoot(options)
+  const drawer = React.useMemo(
+    () => ({
+      side: direction,
+      dismissible,
+      autoFocus,
+      onClose,
+      snapPoints,
+      activeSnapPoint: activeSnapPoint ?? undefined,
+      setActiveSnapPoint
+    }),
+    [
+      direction,
+      dismissible,
+      autoFocus,
+      onClose,
+      snapPoints,
+      activeSnapPoint,
+      setActiveSnapPoint
+    ]
   )
+  return (
+    <LazyRootProvider root={root}>
+      <DrawerOptionsContext.Provider value={drawer}>
+        {children}
+      </DrawerOptionsContext.Provider>
+    </LazyRootProvider>
+  )
+}
+
+function DrawerTrigger(props: LightButtonProps) {
+  const root = useLazyRootContext('DrawerTrigger')
+  return renderLazyTrigger(root, 'drawer-trigger', loadDrawerPopup, props)
+}
+
+/**
+ * @deprecated Renders its children. ui-sdk drawers open in the browser's top
+ * layer where they are, so they need no portal.
+ */
+function DrawerPortal({ children }: { children?: React.ReactNode }) {
+  return children
+}
+
+function DrawerClose(props: LightButtonProps) {
+  const root = useLazyRootContext('DrawerClose')
+  const parts = React.useContext(LoadedPartsContext)
+  return renderLazyClose(root, parts, 'drawer-close', props)
+}
+
+/**
+ * @deprecated Renders nothing. DrawerContent renders the backdrop itself, from
+ * the chunk it loads.
+ */
+function DrawerOverlay(_props: React.ComponentProps<'div'>) {
+  return null
 }
 
 function DrawerContent({
   className,
   children,
   ...props
-}: React.ComponentProps<typeof DrawerPrimitive.Content>) {
+}: React.ComponentProps<'div'> &
+  Pick<DrawerContentProps, 'initialFocus' | 'finalFocus' | 'keepMounted'> & {
+    // As in vaul: preventDefault() keeps the drawer open.
+    onEscapeKeyDown?: (event: KeyboardEvent) => void
+  }) {
+  const root = useLazyRootContext('DrawerContent')
+  const {
+    side,
+    dismissible,
+    autoFocus,
+    onClose,
+    snapPoints,
+    activeSnapPoint,
+    setActiveSnapPoint
+  } = React.useContext(DrawerOptionsContext)
+  if (!root.mounted) return null
   return (
-    <DrawerPortal data-slot="drawer-portal">
-      <DrawerOverlay />
-      <DrawerPrimitive.Content
-        data-slot="drawer-content"
-        className={cn(
-          'group/drawer-content bg-background fixed z-50 flex h-auto flex-col',
-          'data-[vaul-drawer-direction=top]:inset-x-0 data-[vaul-drawer-direction=top]:top-0 data-[vaul-drawer-direction=top]:mb-24 data-[vaul-drawer-direction=top]:max-h-[80vh] data-[vaul-drawer-direction=top]:rounded-b-lg data-[vaul-drawer-direction=top]:border-b',
-          'data-[vaul-drawer-direction=bottom]:inset-x-0 data-[vaul-drawer-direction=bottom]:bottom-0 data-[vaul-drawer-direction=bottom]:mt-24 data-[vaul-drawer-direction=bottom]:max-h-[80vh] data-[vaul-drawer-direction=bottom]:rounded-t-lg data-[vaul-drawer-direction=bottom]:border-t',
-          'data-[vaul-drawer-direction=right]:inset-y-0 data-[vaul-drawer-direction=right]:right-0 data-[vaul-drawer-direction=right]:w-3/4 data-[vaul-drawer-direction=right]:border-l data-[vaul-drawer-direction=right]:sm:max-w-sm',
-          'data-[vaul-drawer-direction=left]:inset-y-0 data-[vaul-drawer-direction=left]:left-0 data-[vaul-drawer-direction=left]:w-3/4 data-[vaul-drawer-direction=left]:border-r data-[vaul-drawer-direction=left]:sm:max-w-sm',
-          className
-        )}
-        {...props}
-      >
-        <div className="bg-muted mx-auto mt-4 hidden h-2 w-[100px] shrink-0 rounded-full group-data-[vaul-drawer-direction=bottom]/drawer-content:block" />
-        {children}
-      </DrawerPrimitive.Content>
-    </DrawerPortal>
+    <DrawerPopup
+      root={root}
+      side={side}
+      dismissible={dismissible}
+      onClose={onClose}
+      snapPoints={snapPoints}
+      snapPoint={activeSnapPoint}
+      onSnapPointChange={setActiveSnapPoint}
+      // vaul kept focus where it was unless `autoFocus` was set.
+      initialFocus={props.initialFocus ?? (autoFocus ? 'auto' : 'none')}
+      backdropClassName="bg-black/50"
+      className={cn(
+        'group/drawer-content bg-background flex h-auto flex-col',
+        'data-[side=top]:mb-24 data-[side=top]:max-h-[80vh] data-[side=top]:w-full data-[side=top]:rounded-b-lg data-[side=top]:border-b',
+        'data-[side=bottom]:mt-24 data-[side=bottom]:max-h-[80vh] data-[side=bottom]:w-full data-[side=bottom]:rounded-t-lg data-[side=bottom]:border-t',
+        'data-[side=right]:h-full data-[side=right]:w-3/4 data-[side=right]:border-l data-[side=right]:sm:max-w-sm',
+        'data-[side=left]:h-full data-[side=left]:w-3/4 data-[side=left]:border-r data-[side=left]:sm:max-w-sm',
+        className
+      )}
+      {...props}
+    >
+      <div
+        aria-hidden
+        className="bg-muted mx-auto mt-4 hidden h-2 w-[100px] shrink-0 rounded-full group-data-[side=bottom]/drawer-content:block"
+      />
+      {children}
+    </DrawerPopup>
   )
 }
 
@@ -92,26 +191,22 @@ function DrawerFooter({ className, ...props }: React.ComponentProps<'div'>) {
   )
 }
 
-function DrawerTitle({
-  className,
-  ...props
-}: React.ComponentProps<typeof DrawerPrimitive.Title>) {
+function DrawerTitle({ className, ...props }: React.ComponentProps<'h2'>) {
   return (
-    <DrawerPrimitive.Title
-      data-slot="drawer-title"
+    <LoadedPart
+      kind="Title"
+      fallback="h2"
       className={cn('text-foreground font-semibold', className)}
       {...props}
     />
   )
 }
 
-function DrawerDescription({
-  className,
-  ...props
-}: React.ComponentProps<typeof DrawerPrimitive.Description>) {
+function DrawerDescription({ className, ...props }: React.ComponentProps<'p'>) {
   return (
-    <DrawerPrimitive.Description
-      data-slot="drawer-description"
+    <LoadedPart
+      kind="Description"
+      fallback="p"
       className={cn('text-muted-foreground text-sm', className)}
       {...props}
     />
