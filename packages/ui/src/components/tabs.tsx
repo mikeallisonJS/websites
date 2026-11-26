@@ -1,30 +1,47 @@
 'use client'
 
+import * as TabsPrimitive from '@ui-sdk/react/tabs'
 import * as React from 'react'
-import * as TabsPrimitive from '@radix-ui/react-tabs'
 
+import { asChildProps } from '@mikeallisonjs/ui/lib/as-child'
 import { cn } from '@mikeallisonjs/ui/lib/utils'
+
+// The API matches the Radix-based shadcn Tabs this replaced. Radix uses '' for
+// "no tab selected"; ui-sdk uses null.
+const toSdkValue = (value: string | undefined) =>
+  value === undefined ? undefined : value === '' ? null : value
 
 function Tabs({
   className,
+  value,
+  defaultValue,
+  onValueChange,
+  orientation,
+  activationMode,
   ...props
-}: React.ComponentProps<typeof TabsPrimitive.Root>) {
+}: Omit<React.ComponentProps<'div'>, 'defaultValue' | 'onChange'> & {
+  value?: string
+  defaultValue?: string
+  onValueChange?: (value: string) => void
+  orientation?: 'horizontal' | 'vertical'
+  activationMode?: 'automatic' | 'manual'
+}) {
   return (
-    <TabsPrimitive.Root
-      data-slot="tabs"
+    <TabsPrimitive.Tabs<string>
+      value={toSdkValue(value)}
+      defaultValue={toSdkValue(defaultValue)}
+      onValueChange={(next) => onValueChange?.(next ?? '')}
+      orientation={orientation}
+      activation={activationMode}
       className={cn('flex flex-col gap-2', className)}
       {...props}
     />
   )
 }
 
-function TabsList({
-  className,
-  ...props
-}: React.ComponentProps<typeof TabsPrimitive.List>) {
+function TabsList({ className, ...props }: React.ComponentProps<'div'>) {
   return (
-    <TabsPrimitive.List
-      data-slot="tabs-list"
+    <TabsPrimitive.TabsList
       className={cn(
         'bg-muted text-muted-foreground inline-flex h-9 w-fit items-center justify-center rounded-lg p-[3px]',
         className
@@ -36,27 +53,36 @@ function TabsList({
 
 function TabsTrigger({
   className,
+  asChild,
+  children,
   ...props
-}: React.ComponentProps<typeof TabsPrimitive.Trigger>) {
+}: React.ComponentProps<'button'> & {
+  value: string
+  asChild?: boolean
+}) {
   return (
-    <TabsPrimitive.Trigger
-      data-slot="tabs-trigger"
+    <TabsPrimitive.TabsTab
       className={cn(
-        "data-[state=active]:bg-background dark:data-[state=active]:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:outline-ring dark:data-[state=active]:border-input dark:data-[state=active]:bg-input/30 text-foreground dark:text-muted-foreground inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center gap-1.5 rounded-md border border-transparent px-2 py-1 text-sm font-medium whitespace-nowrap transition-[color,box-shadow] focus-visible:ring-[3px] focus-visible:outline-1 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:shadow-sm [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        "data-selected:bg-background dark:data-selected:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:outline-ring dark:data-selected:border-input dark:data-selected:bg-input/30 text-foreground dark:text-muted-foreground inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center gap-1.5 rounded-md border border-transparent px-2 py-1 text-sm font-medium whitespace-nowrap transition-[color,box-shadow] focus-visible:ring-[3px] focus-visible:outline-1 data-disabled:pointer-events-none data-disabled:opacity-50 data-selected:shadow-sm [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
         className
       )}
       {...props}
+      {...asChildProps(asChild, children)}
     />
   )
 }
 
 function TabsContent({
   className,
+  forceMount,
   ...props
-}: React.ComponentProps<typeof TabsPrimitive.Content>) {
+}: React.ComponentProps<'div'> & {
+  value: string
+  forceMount?: boolean
+}) {
   return (
-    <TabsPrimitive.Content
-      data-slot="tabs-content"
+    <TabsPrimitive.TabsPanel
+      keepMounted={forceMount}
       className={cn('flex-1 outline-none', className)}
       {...props}
     />
