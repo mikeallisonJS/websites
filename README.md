@@ -16,7 +16,7 @@ This is a [Vite+](https://viteplus.dev) monorepo for my personal websites. Every
 - Deployment: [Vercel](https://vercel.com)
 - IDE: [Cursor](https://cursor.com)
 - Styles: [Tailwind](https://tailwindcss.com)
-- Components: [ShadCN](https://ui.shadcn.com)
+- Components: [ShadCN](https://ui.shadcn.com)-style, on [UI SDK](https://ui-sdk.dev)
 - Analytics: [Posthog](https://posthog.com)
 - Logging: [Sentry](https://sentry.io)
 - Formatting: [Oxfmt](https://oxc.rs)
