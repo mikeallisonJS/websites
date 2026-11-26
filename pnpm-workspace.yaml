@@ -20,6 +20,7 @@ allowBuilds:
 # GHSA-9wv6-86v2-598j, GHSA-j3q9-mxjg-w52f: path-to-regexp via vercel.
 overrides:
   '@fastify/busboy': 3.2.1
+  smol-toml: 1.7.1
   path-to-regexp@6.1.0: 6.3.0
   path-to-regexp@8.3.0: 8.4.0
   'minimatch@10.1.1': 10.2.3
