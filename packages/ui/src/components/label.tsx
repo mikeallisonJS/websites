@@ -1,17 +1,18 @@
 'use client'
 
+import { Label as LabelPrimitive } from '@ui-sdk/react/label'
 import * as React from 'react'
-import * as LabelPrimitive from '@radix-ui/react-label'
 
 import { cn } from '@mikeallisonjs/ui/lib/utils'
 
 function Label({
   className,
   ...props
-}: React.ComponentProps<typeof LabelPrimitive.Root>) {
+}: Omit<React.ComponentProps<typeof LabelPrimitive>, 'className'> & {
+  className?: string
+}) {
   return (
-    <LabelPrimitive.Root
-      data-slot="label"
+    <LabelPrimitive
       className={cn(
         'flex items-center gap-2 text-sm leading-none font-medium select-none group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50',
         className

@@ -1,3 +1,6 @@
+/* Declared before Tailwind so ui-sdk's injected popup CSS loses to utilities. */
+@layer ui-sdk;
+
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
