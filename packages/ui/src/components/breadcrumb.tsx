@@ -1,7 +1,8 @@
-import * as React from 'react'
-import { Slot } from '@radix-ui/react-slot'
+import { renderElement } from '@ui-sdk/react/primitive'
 import { ChevronRight, MoreHorizontal } from 'lucide-react'
+import * as React from 'react'
 
+import { asChildProps } from '@mikeallisonjs/ui/lib/as-child'
 import { cn } from '@mikeallisonjs/ui/lib/utils'
 
 function Breadcrumb({ ...props }: React.ComponentProps<'nav'>) {
@@ -34,18 +35,21 @@ function BreadcrumbItem({ className, ...props }: React.ComponentProps<'li'>) {
 function BreadcrumbLink({
   asChild,
   className,
+  children,
   ...props
 }: React.ComponentProps<'a'> & {
   asChild?: boolean
 }) {
-  const Comp = asChild ? Slot : 'a'
-
-  return (
-    <Comp
-      data-slot="breadcrumb-link"
-      className={cn('hover:text-foreground transition-colors', className)}
-      {...props}
-    />
+  const { render, ...content } = asChildProps(asChild, children)
+  return renderElement(
+    'a',
+    {
+      'data-slot': 'breadcrumb-link',
+      className: cn('hover:text-foreground transition-colors', className),
+      ...props,
+      ...content
+    },
+    render
   )
 }
 
