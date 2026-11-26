@@ -1,17 +1,18 @@
 'use client'
 
+import * as AvatarPrimitive from '@ui-sdk/react/avatar'
 import * as React from 'react'
-import * as AvatarPrimitive from '@radix-ui/react-avatar'
 
 import { cn } from '@mikeallisonjs/ui/lib/utils'
 
 function Avatar({
   className,
   ...props
-}: React.ComponentProps<typeof AvatarPrimitive.Root>) {
+}: Omit<React.ComponentProps<typeof AvatarPrimitive.Avatar>, 'className'> & {
+  className?: string
+}) {
   return (
-    <AvatarPrimitive.Root
-      data-slot="avatar"
+    <AvatarPrimitive.Avatar
       className={cn(
         'relative flex size-8 shrink-0 overflow-hidden rounded-full',
         className
@@ -24,10 +25,12 @@ function Avatar({
 function AvatarImage({
   className,
   ...props
-}: React.ComponentProps<typeof AvatarPrimitive.Image>) {
+}: Omit<
+  React.ComponentProps<typeof AvatarPrimitive.AvatarImage>,
+  'className'
+> & { className?: string }) {
   return (
-    <AvatarPrimitive.Image
-      data-slot="avatar-image"
+    <AvatarPrimitive.AvatarImage
       className={cn('aspect-square size-full', className)}
       {...props}
     />
@@ -36,15 +39,19 @@ function AvatarImage({
 
 function AvatarFallback({
   className,
+  delayMs,
   ...props
-}: React.ComponentProps<typeof AvatarPrimitive.Fallback>) {
+}: Omit<
+  React.ComponentProps<typeof AvatarPrimitive.AvatarFallback>,
+  'className' | 'delay'
+> & { className?: string; delayMs?: number }) {
   return (
-    <AvatarPrimitive.Fallback
-      data-slot="avatar-fallback"
+    <AvatarPrimitive.AvatarFallback
       className={cn(
         'bg-muted flex size-full items-center justify-center rounded-full',
         className
       )}
+      delay={delayMs}
       {...props}
     />
   )
