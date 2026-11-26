@@ -1,10 +1,9 @@
 'use client'
 
-import * as React from 'react'
-import { Command as CommandPrimitive } from 'cmdk'
+import * as CommandPrimitive from '@ui-sdk/react/command'
 import { SearchIcon } from 'lucide-react'
+import * as React from 'react'
 
-import { cn } from '@mikeallisonjs/ui/lib/utils'
 import {
   Dialog,
   DialogContent,
@@ -12,20 +11,58 @@ import {
   DialogHeader,
   DialogTitle
 } from '@mikeallisonjs/ui/components/dialog'
+import { cn } from '@mikeallisonjs/ui/lib/utils'
+
+// The API matches the cmdk-based shadcn Command this replaced. cmdk uses ''
+// for "nothing highlighted"; ui-sdk uses null.
+const toSdkValue = (value: string | undefined) =>
+  value === undefined ? undefined : value === '' ? null : value
+
+const LabelContext = React.createContext<string | undefined>(undefined)
 
 function Command({
   className,
+  label,
+  value,
+  defaultValue,
+  onValueChange,
+  shouldFilter,
+  filter,
+  loop = false,
   ...props
-}: React.ComponentProps<typeof CommandPrimitive>) {
+}: Omit<
+  React.ComponentProps<'div'>,
+  'defaultValue' | 'onChange' | 'onSelect'
+> & {
+  label?: string
+  value?: string
+  defaultValue?: string
+  onValueChange?: (value: string) => void
+  shouldFilter?: boolean
+  filter?: (value: string, search: string, keywords?: string[]) => number
+  loop?: boolean
+}) {
   return (
-    <CommandPrimitive
-      data-slot="command"
-      className={cn(
-        'bg-popover text-popover-foreground flex h-full w-full flex-col overflow-hidden rounded-md',
-        className
-      )}
-      {...props}
-    />
+    <LabelContext.Provider value={label}>
+      <CommandPrimitive.Command
+        value={toSdkValue(value)}
+        defaultValue={toSdkValue(defaultValue)}
+        onValueChange={(next) => onValueChange?.(next ?? '')}
+        filter={
+          shouldFilter === false
+            ? false
+            : filter &&
+              ((item, query) =>
+                filter(item.label ?? item.value, query, item.keywords))
+        }
+        loop={loop}
+        className={cn(
+          'bg-popover text-popover-foreground flex h-full w-full flex-col overflow-hidden rounded-md',
+          className
+        )}
+        {...props}
+      />
+    </LabelContext.Provider>
   )
 }
 
@@ -40,12 +77,12 @@ function CommandDialog({
 }) {
   return (
     <Dialog {...props}>
-      <DialogHeader className="sr-only">
-        <DialogTitle>{title}</DialogTitle>
-        <DialogDescription>{description}</DialogDescription>
-      </DialogHeader>
       <DialogContent className="overflow-hidden p-0">
-        <Command className="[&_[cmdk-group-heading]]:text-muted-foreground **:data-[slot=command-input-wrapper]:h-12 [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group]]:px-2 [&_[cmdk-group]:not([hidden])_~[cmdk-group]]:pt-0 [&_[cmdk-input-wrapper]_svg]:h-5 [&_[cmdk-input-wrapper]_svg]:w-5 [&_[cmdk-input]]:h-12 [&_[cmdk-item]]:px-2 [&_[cmdk-item]]:py-3 [&_[cmdk-item]_svg]:h-5 [&_[cmdk-item]_svg]:w-5">
+        <DialogHeader className="sr-only">
+          <DialogTitle>{title}</DialogTitle>
+          <DialogDescription>{description}</DialogDescription>
+        </DialogHeader>
+        <Command className="**:data-[slot=command-group-label]:text-muted-foreground **:data-[slot=command-input-wrapper]:h-12 **:data-[slot=command-group-label]:px-2 **:data-[slot=command-group-label]:font-medium **:data-[slot=command-group]:px-2 [&_[data-slot=command-group]:not([hidden])_~[data-slot=command-group]]:pt-0 [&_[data-slot=command-input-wrapper]_svg]:h-5 [&_[data-slot=command-input-wrapper]_svg]:w-5 **:data-[slot=command-input]:h-12 **:data-[slot=command-item]:px-2 **:data-[slot=command-item]:py-3 [&_[data-slot=command-item]_svg]:h-5 [&_[data-slot=command-item]_svg]:w-5">
           {children}
         </Command>
       </DialogContent>
@@ -56,15 +93,16 @@ function CommandDialog({
 function CommandInput({
   className,
   ...props
-}: React.ComponentProps<typeof CommandPrimitive.Input>) {
+}: Omit<React.ComponentProps<'input'>, 'value' | 'defaultValue'>) {
+  const label = React.useContext(LabelContext)
   return (
     <div
       data-slot="command-input-wrapper"
       className="flex h-9 items-center gap-2 border-b px-3"
     >
-      <SearchIcon className="size-4 shrink-0 opacity-50" />
-      <CommandPrimitive.Input
-        data-slot="command-input"
+      <SearchIcon aria-hidden className="size-4 shrink-0 opacity-50" />
+      <CommandPrimitive.CommandInput
+        aria-label={label}
         className={cn(
           'placeholder:text-muted-foreground flex h-10 w-full rounded-md bg-transparent py-3 text-sm outline-hidden disabled:cursor-not-allowed disabled:opacity-50',
           className
@@ -75,29 +113,41 @@ function CommandInput({
   )
 }
 
+// cmdk let CommandEmpty sit inside the list. ui-sdk's list is a listbox, which
+// may only hold options and groups, so a direct CommandEmpty moves out before it.
 function CommandList({
   className,
+  children,
   ...props
-}: React.ComponentProps<typeof CommandPrimitive.List>) {
+}: React.ComponentProps<'div'>) {
+  const empty: React.ReactNode[] = []
+  const items: React.ReactNode[] = []
+  React.Children.forEach(children, (child) => {
+    ;(React.isValidElement(child) && child.type === CommandEmpty
+      ? empty
+      : items
+    ).push(child)
+  })
   return (
-    <CommandPrimitive.List
-      data-slot="command-list"
-      className={cn(
-        'max-h-[300px] scroll-py-1 overflow-x-hidden overflow-y-auto',
-        className
-      )}
-      {...props}
-    />
+    <>
+      {empty}
+      <CommandPrimitive.CommandList
+        className={cn(
+          'max-h-[300px] scroll-py-1 overflow-x-hidden overflow-y-auto',
+          className
+        )}
+        {...props}
+      >
+        {items}
+      </CommandPrimitive.CommandList>
+    </>
   )
 }
 
-function CommandEmpty({
-  ...props
-}: React.ComponentProps<typeof CommandPrimitive.Empty>) {
+function CommandEmpty({ className, ...props }: React.ComponentProps<'div'>) {
   return (
-    <CommandPrimitive.Empty
-      data-slot="command-empty"
-      className="py-6 text-center text-sm"
+    <CommandPrimitive.CommandEmpty
+      className={cn('text-center text-sm data-empty:py-6', className)}
       {...props}
     />
   )
@@ -105,27 +155,31 @@ function CommandEmpty({
 
 function CommandGroup({
   className,
+  heading,
+  children,
   ...props
-}: React.ComponentProps<typeof CommandPrimitive.Group>) {
+}: React.ComponentProps<'div'> & { heading?: React.ReactNode }) {
   return (
-    <CommandPrimitive.Group
-      data-slot="command-group"
-      className={cn(
-        'text-foreground [&_[cmdk-group-heading]]:text-muted-foreground overflow-hidden p-1 [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:text-xs [&_[cmdk-group-heading]]:font-medium',
-        className
-      )}
+    <CommandPrimitive.CommandGroup
+      className={cn('text-foreground overflow-hidden p-1', className)}
       {...props}
-    />
+    >
+      {heading != null && (
+        <CommandPrimitive.CommandGroupLabel className="text-muted-foreground px-2 py-1.5 text-xs font-medium">
+          {heading}
+        </CommandPrimitive.CommandGroupLabel>
+      )}
+      {children}
+    </CommandPrimitive.CommandGroup>
   )
 }
 
 function CommandSeparator({
   className,
   ...props
-}: React.ComponentProps<typeof CommandPrimitive.Separator>) {
+}: React.ComponentProps<'div'>) {
   return (
-    <CommandPrimitive.Separator
-      data-slot="command-separator"
+    <CommandPrimitive.CommandSeparator
       className={cn('bg-border -mx-1 h-px', className)}
       {...props}
     />
@@ -134,13 +188,43 @@ function CommandSeparator({
 
 function CommandItem({
   className,
+  value,
+  keywords,
+  disabled,
+  onSelect,
+  ref,
   ...props
-}: React.ComponentProps<typeof CommandPrimitive.Item>) {
+}: Omit<React.ComponentProps<'div'>, 'onSelect'> & {
+  value?: string
+  keywords?: string[]
+  disabled?: boolean
+  onSelect?: (value: string) => void
+}) {
+  const node = React.useRef<HTMLDivElement | null>(null)
+  const setRef = React.useCallback(
+    (element: HTMLDivElement | null) => {
+      node.current = element
+      if (typeof ref === 'function') ref(element)
+      else if (ref) ref.current = element
+    },
+    [ref]
+  )
+  // cmdk searched an item's value, or its text without one, and passed the
+  // same string to onSelect.
+  const text = value?.trim()
   return (
-    <CommandPrimitive.Item
-      data-slot="command-item"
+    <CommandPrimitive.CommandItem
+      ref={setRef}
+      value={text}
+      label={text}
+      keywords={keywords}
+      disabled={disabled}
+      onSelect={
+        onSelect &&
+        (() => onSelect(text ?? node.current?.textContent?.trim() ?? ''))
+      }
       className={cn(
-        "data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground [&_svg:not([class*='text-'])]:text-muted-foreground relative flex cursor-default items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-hidden select-none data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        "data-highlighted:bg-accent data-highlighted:text-accent-foreground [&_svg:not([class*='text-'])]:text-muted-foreground relative flex cursor-default items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-hidden select-none data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
         className
       )}
       {...props}

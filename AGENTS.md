@@ -32,6 +32,29 @@ Lint (Oxlint) and format (Oxfmt) settings live in the `lint` and `fmt` blocks of
 the root `vite.config.ts`; there is no ESLint or Prettier config in this repo.
 `vp install` delegates to pnpm, pinned by `packageManager` in `package.json`.
 
+## Shared UI (`packages/ui`)
+
+shadcn-style components on [UI SDK](https://ui-sdk.dev) (`@ui-sdk/react`,
+pinned beta). They keep the shadcn/Radix props apps use, `asChild` included.
+Before editing one, read `packages/ui/node_modules/@ui-sdk/react/docs/llms.txt`
+and the component's page there.
+
+- **Lazy popups:** `Dialog`, `Sheet` and `Drawer` render in site layouts, so
+  their roots, triggers and close parts stay light, and the content loads
+  `dialog-popup.tsx` / `drawer-popup.tsx` on first open or trigger
+  hover/press/focus (`lib/lazy-popup.ts`). Import those two files only through
+  `import()`; a static import puts UI SDK's ~40 KB gzip popup engine on every
+  page.
+- **Top layer:** UI SDK popups open in the browser's top layer, above any
+  `z-index`. Keep what must stay visible outside the popup's box (e.g. the
+  captainofbass.com player bar sits below the playlist drawer's margin).
+- `asChild` maps to UI SDK's `render` via `lib/as-child.ts`; popups render into
+  `document.body` via `lib/popup-container.ts`.
+- Each app's `global.css` declares `@layer ui-sdk;` above Tailwind.
+- Component tests sit beside each component, start with
+  `// @vitest-environment jsdom`, import `@mikeallisonjs/ui/lib/test-dom`, and
+  run with `vp test`.
+
 ## Agent skills
 
 Skills live in `.agents/skills/` (from `mattpocock/skills`), symlinked into

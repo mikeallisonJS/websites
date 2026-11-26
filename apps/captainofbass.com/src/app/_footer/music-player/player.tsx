@@ -137,9 +137,9 @@ export default function Player({
         onClose={closeDrawer}
         modal={false}
       >
-        <DrawerContent
-          className={cn('z-20 md:z-0 md:pb-[62px]', className, 'bg-white/60')}
-        >
+        {/* The drawer opens in the browser's top layer, above any z-index, so on
+            wide screens it stops above the player bar instead of under it. */}
+        <DrawerContent className={cn('md:mb-[62px]', className, 'bg-white/60')}>
           <DrawerTitle>Playlist</DrawerTitle>
           <div className="flex pt-2 md:hidden">
             <div

@@ -1,8 +1,7 @@
 'use client'
 
+import { renderElement } from '@ui-sdk/react/primitive'
 import * as React from 'react'
-import * as LabelPrimitive from '@radix-ui/react-label'
-import { Slot } from '@radix-ui/react-slot'
 import {
   Controller,
   FormProvider,
@@ -13,8 +12,9 @@ import {
   type FieldValues
 } from 'react-hook-form'
 
-import { cn } from '@mikeallisonjs/ui/lib/utils'
 import { Label } from '@mikeallisonjs/ui/components/label'
+import { asChildProps } from '@mikeallisonjs/ui/lib/as-child'
+import { cn } from '@mikeallisonjs/ui/lib/utils'
 
 const Form = FormProvider
 
@@ -90,12 +90,11 @@ function FormItem({ className, ...props }: React.ComponentProps<'div'>) {
 function FormLabel({
   className,
   ...props
-}: React.ComponentProps<typeof LabelPrimitive.Root>) {
+}: React.ComponentProps<typeof Label>) {
   const { error, formItemId } = useFormField()
 
   return (
     <Label
-      data-slot="form-label"
       data-error={!!error}
       className={cn('data-[error=true]:text-destructive', className)}
       htmlFor={formItemId}
@@ -104,21 +103,25 @@ function FormLabel({
   )
 }
 
-function FormControl({ ...props }: React.ComponentProps<typeof Slot>) {
+function FormControl({
+  children,
+  ...props
+}: React.HTMLAttributes<HTMLElement> & { ref?: React.Ref<HTMLElement> }) {
   const { error, formItemId, formDescriptionId, formMessageId } = useFormField()
+  const { render, ...content } = asChildProps(true, children)
 
-  return (
-    <Slot
-      data-slot="form-control"
-      id={formItemId}
-      aria-describedby={
-        !error
-          ? `${formDescriptionId}`
-          : `${formDescriptionId} ${formMessageId}`
-      }
-      aria-invalid={!!error}
-      {...props}
-    />
+  return renderElement(
+    'div',
+    {
+      id: formItemId,
+      'aria-describedby': !error
+        ? `${formDescriptionId}`
+        : `${formDescriptionId} ${formMessageId}`,
+      'aria-invalid': !!error,
+      ...props,
+      ...content
+    },
+    render
   )
 }
 
