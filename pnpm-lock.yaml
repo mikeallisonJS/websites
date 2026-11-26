@@ -173,7 +173,7 @@ settings:
 
 overrides:
   '@fastify/busboy': 3.2.1
-  undici@>=5 <7: 6.29.1
+  undici@>=5 <7: 7.30.1
   undici@>=7 <8: 7.30.1
   smol-toml: 1.7.1
   path-to-regexp@6.1.0: 6.3.0
@@ -4939,10 +4939,6 @@ packages:
   undici-types@8.9.0:
     resolution: {integrity: sha512-KTDyRTYX8sWmKXAikPHHSyc63CRPETMctyjKFupcC6OBLXT3xsN0e9aF7m+mIXutFWpUXuedtowG7iLOzp0kQg==}
 
-  undici@6.29.1:
-    resolution: {integrity: sha512-EvRlUt/QqAEvXdQeRMYUfwOQsfzpDztykrG2owGEE/rBOBoYv9uF39ZzsNDh4lTFHhTr2XOZjKkYgueD12ZmGA==}
-    engines: {node: '>=18.17'}
-
   undici@7.30.1:
     resolution: {integrity: sha512-03KrMbjIFDWQR5RNPrSw3bd1r12JpyFQl9/yxjUbJtqkjmllqC5lFjZh6ujeuJCKr8EOQvRW872Oy/az+nLYxg==}
     engines: {node: '>=20.18.1'}
@@ -6855,7 +6851,7 @@ snapshots:
       is-buffer: 2.0.5
       is-node-process: 1.2.0
       throttleit: 2.1.0
-      undici: 6.29.1
+      undici: 7.30.1
     optional: true
 
   '@vercel/build-utils@15.5.0':
@@ -6944,7 +6940,7 @@ snapshots:
       luxon: 3.7.2
       sandbox: 4.11.1(supports-color@8.1.1)
       smol-toml: 1.7.1
-      undici: 6.29.1
+      undici: 7.30.1
       uuid: 14.0.1
       zod: 4.6.7
     transitivePeerDependencies:
@@ -7183,7 +7179,7 @@ snapshots:
       ts-morph: 12.0.0
       tsx: 4.21.0
       typescript: 5.9.3
-      undici: 6.29.1
+      undici: 7.30.1
     transitivePeerDependencies:
       - '@emnapi/core'
       - '@emnapi/runtime'
@@ -9344,9 +9340,6 @@ snapshots:
     optional: true
 
   undici-types@8.9.0: {}
-
-  undici@6.29.1:
-    optional: true
 
   undici@7.30.1:
     optional: true
