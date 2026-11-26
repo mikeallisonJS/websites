@@ -174,6 +174,9 @@ settings:
 overrides:
   '@fastify/busboy': 3.2.1
   brace-expansion@1: 1.1.20
+  undici@>=5 <7: 6.29.1
+  undici@>=7 <8: 7.30.1
+  smol-toml: 1.7.1
   path-to-regexp@6.1.0: 6.3.0
   path-to-regexp@8.3.0: 8.4.0
   minimatch@10.1.1: 10.2.3
@@ -793,9 +796,6 @@ packages:
     peerDependenciesMeta:
       '@noble/hashes':
         optional: true
-
-  '@fastify/busboy@3.2.1':
-    resolution: {integrity: sha512-tgK4O+57iz5ycYNGXE5ZWj1ES03lD2XnnBYWSbU/3wYZRMQzCUq7Ycds/RdyBZQeL5MU4fxBt6lzbIWf/Bickw==}
 
   '@fortawesome/fontawesome-common-types@7.3.1':
     resolution: {integrity: sha512-k0C0sdHmZtAo6dRDtd1Z/qcpyHbL0CKsjV8seMY/21xGhY5Wsv0XRmiI/xEEH4y2c9b1+jvgNs/3EqhV27yUEA==}
@@ -4716,8 +4716,8 @@ packages:
     resolution: {integrity: sha512-2wcC/oGxHis/BoHkkPwldgiPSYcpZK3JU28WoMVv55yHJgcZ8rlXvuG9iZggz+sU1d4bRgIGASwyWqjxu3FM0g==}
     engines: {node: '>=18'}
 
-  smol-toml@1.5.2:
-    resolution: {integrity: sha512-QlaZEqcAH3/RtNyet1IPIYPsEWAaYyXXv1Krsi+1L/QHppjX4Ifm8MQsBISz9vE8cHicIq3clogsheili5vhaQ==}
+  smol-toml@1.7.1:
+    resolution: {integrity: sha512-PPlsspAZ4jbMBu5DMFhfUGDQLu/vrL4SyBROVS37x8ynnVmFIs1VPBz1Co8Xks3TvpIaZXmU85y4DrQ+UyVFoQ==}
     engines: {node: '>= 18'}
 
   sonner@2.0.8:
@@ -4940,20 +4940,12 @@ packages:
   undici-types@8.9.0:
     resolution: {integrity: sha512-KTDyRTYX8sWmKXAikPHHSyc63CRPETMctyjKFupcC6OBLXT3xsN0e9aF7m+mIXutFWpUXuedtowG7iLOzp0kQg==}
 
-  undici@5.28.4:
-    resolution: {integrity: sha512-72RFADWFqKmUb2hmmvNODKL3p9hcB6Gt2DOQMis1SEBaV6a4MH8soBvzg+95CYhCKPFedut2JY9bMfrDl9D23g==}
-    engines: {node: '>=14.0'}
-
-  undici@5.29.0:
-    resolution: {integrity: sha512-raqeBD6NQK4SkWhQzeYKd1KmIG6dllBOTt55Rmkt4HtI9mwdWtJljnrXjAFUBLTSN67HWrOIZ3EPF4kjUw80Bg==}
-    engines: {node: '>=14.0'}
-
-  undici@6.28.1:
-    resolution: {integrity: sha512-zWpdTVD54H48CIybL0rWQ3ukpb9d23wM7eH5RtfdmeP70cWHNjtfo7P4vZX+5CoDcO53J4Pu5uXp7lNfjc6DRA==}
+  undici@6.29.1:
+    resolution: {integrity: sha512-EvRlUt/QqAEvXdQeRMYUfwOQsfzpDztykrG2owGEE/rBOBoYv9uF39ZzsNDh4lTFHhTr2XOZjKkYgueD12ZmGA==}
     engines: {node: '>=18.17'}
 
-  undici@7.29.1:
-    resolution: {integrity: sha512-RYONW2MeafgYlkVOKYKkA/Ag7BmXqgIWCa8t1m0JcxrQg9pI9lEqRhAOruOBCbAohOa/gkCF+iPi9hrgvTzu6Q==}
+  undici@7.30.1:
+    resolution: {integrity: sha512-03KrMbjIFDWQR5RNPrSw3bd1r12JpyFQl9/yxjUbJtqkjmllqC5lFjZh6ujeuJCKr8EOQvRW872Oy/az+nLYxg==}
     engines: {node: '>=20.18.1'}
 
   undici@8.13.1:
@@ -5542,9 +5534,6 @@ snapshots:
     optional: true
 
   '@exodus/bytes@1.16.0': {}
-
-  '@fastify/busboy@3.2.1':
-    optional: true
 
   '@fortawesome/fontawesome-common-types@7.3.1': {}
 
@@ -6867,7 +6856,7 @@ snapshots:
       is-buffer: 2.0.5
       is-node-process: 1.2.0
       throttleit: 2.1.0
-      undici: 6.28.1
+      undici: 6.29.1
     optional: true
 
   '@vercel/build-utils@15.5.0':
@@ -6955,8 +6944,8 @@ snapshots:
       jsonc-parser: 3.3.1
       luxon: 3.7.2
       sandbox: 4.11.1(supports-color@8.1.1)
-      smol-toml: 1.5.2
-      undici: 5.29.0
+      smol-toml: 1.7.1
+      undici: 6.29.1
       uuid: 14.0.1
       zod: 4.6.7
     transitivePeerDependencies:
@@ -6975,7 +6964,7 @@ snapshots:
   '@vercel/container@27.0.0(@vercel/build-utils@15.5.0)':
     dependencies:
       '@vercel/build-utils': 15.5.0
-      smol-toml: 1.5.2
+      smol-toml: 1.7.1
       tar: 7.5.11
     optional: true
 
@@ -7195,7 +7184,7 @@ snapshots:
       ts-morph: 12.0.0
       tsx: 4.21.0
       typescript: 5.9.3
-      undici: 5.28.4
+      undici: 6.29.1
     transitivePeerDependencies:
       - '@emnapi/core'
       - '@emnapi/runtime'
@@ -7229,7 +7218,7 @@ snapshots:
       fs-extra: 11.1.1
       js-yaml: 4.3.2
       minimatch: 10.2.3
-      smol-toml: 1.5.2
+      smol-toml: 1.7.1
       zod: 3.22.4
     optional: true
 
@@ -7281,7 +7270,7 @@ snapshots:
       '@vercel/build-utils': 15.5.0
       execa: 5.1.1
       get-port: 5.1.1
-      smol-toml: 1.5.2
+      smol-toml: 1.7.1
     optional: true
 
   '@vercel/sandbox@3.9.1':
@@ -7296,7 +7285,7 @@ snapshots:
       ms: 2.1.3
       picocolors: 1.1.1
       tar-stream: 3.1.7
-      undici: 7.29.1
+      undici: 7.30.1
       xdg-app-paths: 5.1.0
       zod: 4.6.7
     transitivePeerDependencies:
@@ -9105,7 +9094,7 @@ snapshots:
       mrmime: 2.0.1
       totalist: 3.0.1
 
-  smol-toml@1.5.2:
+  smol-toml@1.7.1:
     optional: true
 
   sonner@2.0.8(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1):
@@ -9357,20 +9346,10 @@ snapshots:
 
   undici-types@8.9.0: {}
 
-  undici@5.28.4:
-    dependencies:
-      '@fastify/busboy': 3.2.1
+  undici@6.29.1:
     optional: true
 
-  undici@5.29.0:
-    dependencies:
-      '@fastify/busboy': 3.2.1
-    optional: true
-
-  undici@6.28.1:
-    optional: true
-
-  undici@7.29.1:
+  undici@7.30.1:
     optional: true
 
   undici@8.13.1: {}
