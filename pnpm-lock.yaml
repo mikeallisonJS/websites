@@ -176,7 +176,7 @@ overrides:
   smol-toml: 1.7.1
   path-to-regexp@6.1.0: 6.3.0
   path-to-regexp@8.3.0: 8.4.0
-  minimatch@10.1.1: 10.2.3
+  minimatch@10.1.1: 11.0.1
   js-yaml@4.1.1: 4.3.2
 
 importers:
@@ -4162,12 +4162,12 @@ packages:
     resolution: {integrity: sha512-OqbOk5oEQeAZ8WXWydlu9HJjz9WVdEIvamMCcXmuqUYjTknH/sqsWvhQ3vgwKFRR1HpjvNBKQ37nbJgYzGqGcg==}
     engines: {node: '>=6'}
 
-  minimatch@10.2.3:
-    resolution: {integrity: sha512-Rwi3pnapEqirPSbWbrZaa6N3nmqq4Xer/2XooiOKyV3q12ML06f7MOuc5DVH8ONZIFhwIYQ3yzPH4nt7iWHaTg==}
-    engines: {node: 18 || 20 || >=22}
-
   minimatch@10.2.6:
     resolution: {integrity: sha512-vpLQEs+VLCr1nU0BXS07maYoFwlDAH0gngQuuttxIwutDFEMHq2blX+8vpgxDdK3J1PwjCJiep77OitTZ4Ll1A==}
+    engines: {node: 18 || 20 || >=22}
+
+  minimatch@11.0.1:
+    resolution: {integrity: sha512-t+Vn6DX4wPCxS23y03C0uhF7S1jpi1GfqPrnlEipCJaA2ykiNbMkVlDutZtmvLfRcUN6R8AYVlzTsQrT4RZoLQ==}
     engines: {node: 18 || 20 || >=22}
 
   minimatch@11.0.8:
@@ -7228,7 +7228,7 @@ snapshots:
       '@bytecodealliance/preview2-shim': 0.17.6
       fs-extra: 11.1.1
       js-yaml: 4.3.2
-      minimatch: 10.2.3
+      minimatch: 11.0.1
       smol-toml: 1.7.1
       zod: 3.22.4
     optional: true
@@ -8454,13 +8454,14 @@ snapshots:
   mimic-fn@2.1.0:
     optional: true
 
-  minimatch@10.2.3:
+  minimatch@10.2.6:
     dependencies:
       brace-expansion: 5.0.13
     optional: true
 
-  minimatch@10.2.6:
+  minimatch@11.0.1:
     dependencies:
+      '@isaacs/nonrecursive-glob-match': 1.1.0
       brace-expansion: 5.0.13
     optional: true
 
