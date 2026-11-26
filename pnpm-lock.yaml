@@ -182,6 +182,7 @@ overrides:
   path-to-regexp@8.3.0: 8.4.0
   minimatch@10.1.1: 10.2.3
   js-yaml@4.1.1: 4.3.2
+  '@vercel/container>tar': 7.5.21
 
 importers:
 
@@ -4798,8 +4799,8 @@ packages:
   tar-stream@3.1.7:
     resolution: {integrity: sha512-qJj60CXt7IU1Ffyc3NJMjh6EkuCFej46zUqJ4J7pqYlThyd9bO0XBTmcOIhSzZJVWfsLks0+nle/j538YAW9RQ==}
 
-  tar@7.5.11:
-    resolution: {integrity: sha512-ChjMH33/KetonMTAtpYdgUFr0tbz69Fp2v7zWxQfYZX4g5ZN2nOBXm1R2xyA+lMIKrLKIoKAwFj93jE/avX9cQ==}
+  tar@7.5.21:
+    resolution: {integrity: sha512-XdhtCvlMywwxpCW8YEq3lOXBJpUPTR2OHHcwLPO3HwsJqOHa2Ok/oJ7ruGzp+JrKoRPVCzJwAdEjqLW/vNRPHA==}
     engines: {node: '>=18'}
 
   tar@7.5.22:
@@ -6960,7 +6961,7 @@ snapshots:
     dependencies:
       '@vercel/build-utils': 15.5.0
       smol-toml: 1.7.1
-      tar: 7.5.11
+      tar: 7.5.21
     optional: true
 
   '@vercel/detect-agent@1.2.5':
@@ -9166,7 +9167,7 @@ snapshots:
       - react-native-b4a
     optional: true
 
-  tar@7.5.11:
+  tar@7.5.21:
     dependencies:
       '@isaacs/fs-minipass': 4.0.1
       chownr: 3.0.0
