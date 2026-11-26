@@ -54,6 +54,11 @@ function ModeToggle({
   )
 }
 
+// A child component with its own onClick, which the menu item doesn't see.
+function Row(props: React.ComponentProps<'div'>) {
+  return <div {...props} />
+}
+
 async function openWithKeyboard(user: ReturnType<typeof userEvent.setup>) {
   const trigger = screen.getByRole('button', { name: 'Toggle theme' })
   trigger.focus()
@@ -112,6 +117,32 @@ describe('DropdownMenu', () => {
     await settle()
     expect(setTheme).toHaveBeenLastCalledWith('system')
     expect(setTheme).toHaveBeenCalledTimes(2)
+    expect(screen.queryByRole('menu')).toBeNull()
+  })
+
+  test("Enter runs an asChild item's own onClick once", async () => {
+    const user = userEvent.setup()
+    const save = vi.fn()
+    render(
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button>Toggle theme</Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent>
+          <DropdownMenuItem asChild>
+            <Row onClick={save}>Save</Row>
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    )
+    await settle()
+    await openWithKeyboard(user)
+    expect(document.activeElement).toBe(
+      screen.getByRole('menuitem', { name: 'Save' })
+    )
+    await user.keyboard('{Enter}')
+    await settle()
+    expect(save).toHaveBeenCalledOnce()
     expect(screen.queryByRole('menu')).toBeNull()
   })
 

@@ -64,6 +64,22 @@ function useLazyRoot({
   )
 }
 
+// Each root starts a fresh LoadedPartsContext, so a Close beside a nested
+// popup's content closes that popup, not the loaded one around it.
+function LazyRootProvider({
+  root,
+  children
+}: {
+  root: LazyRoot
+  children?: React.ReactNode
+}) {
+  return React.createElement(
+    LazyRootContext.Provider,
+    { value: root },
+    React.createElement(LoadedPartsContext.Provider, { value: null }, children)
+  )
+}
+
 function useLazyRootContext(part: string) {
   const root = React.useContext(LazyRootContext)
   if (!root) throw new Error(`${part} must be inside its root`)
@@ -94,6 +110,66 @@ function LoadedPart({
   return React.createElement(parts?.[kind] ?? fallback, props)
 }
 
+// A popup chunk that fails to load (offline, or a deployment that removed it)
+// closes the popup and loads again on the next open, instead of
+// reaching the page's error boundary. React.lazy keeps a failed load, so a
+// retry needs a new lazy component.
+class PopupLoadError extends Error {}
+
+function createLazyPopup<P extends { root: LazyRoot }>(
+  load: () => Promise<{ default: React.ComponentType<P> }>
+) {
+  const loadOnce = () =>
+    load().catch((error: unknown) => {
+      throw new PopupLoadError('A popup failed to load', { cause: error })
+    })
+  let Lazy = React.lazy(loadOnce)
+  // Loading ahead of an open is a hint, so its failure is left to the open.
+  const preload = () => void load().catch(() => {})
+
+  type BoundaryProps = { popup: P }
+  class Boundary extends React.Component<
+    BoundaryProps,
+    { error: unknown; failed: boolean }
+  > {
+    state = { error: undefined as unknown, failed: false }
+    static getDerivedStateFromError(error: unknown) {
+      return { error, failed: true }
+    }
+    componentDidCatch(error: unknown) {
+      // React logs the error it caught.
+      if (!(error instanceof PopupLoadError)) return
+      Lazy = React.lazy(loadOnce)
+      this.props.popup.root.setOpen(false, { reason: 'load-error' })
+    }
+    componentDidUpdate(previous: BoundaryProps) {
+      const { open } = this.props.popup.root
+      if (this.state.failed && open && !previous.popup.root.open) {
+        this.setState({ error: undefined, failed: false })
+      }
+    }
+    render() {
+      if (!this.state.failed) {
+        return React.createElement(
+          React.Suspense,
+          { fallback: null },
+          React.createElement(Lazy as React.ComponentType<P>, this.props.popup)
+        )
+      }
+      // Anything else the content throws is the page's to handle.
+      if (!(this.state.error instanceof PopupLoadError)) throw this.state.error
+      return null
+    }
+  }
+
+  // A function component, so `ref` reaches the popup's content.
+  function Popup(props: P) {
+    return React.createElement(Boundary, { popup: props })
+  }
+
+  return { preload, Popup }
+}
+
 function chain<E>(...handlers: (((event: E) => void) | undefined)[]) {
   return (event: E) => {
     for (const handler of handlers) handler?.(event)
@@ -108,7 +184,7 @@ type LightButtonProps = Omit<React.ComponentProps<'button'>, 'value'> & {
 function renderLazyTrigger(
   root: LazyRoot,
   slot: string,
-  preload: () => unknown,
+  preload: () => void,
   {
     asChild,
     children,
@@ -121,11 +197,11 @@ function renderLazyTrigger(
   }: LightButtonProps
 ) {
   const { render, ...content } = asChildProps(asChild, children)
-  const load = () => void preload()
   return renderElement(
     'button',
     {
-      type: render ? undefined : 'button',
+      // As Radix did, also for an asChild child; a type on the child wins.
+      type: 'button',
       'data-slot': slot,
       'aria-haspopup': 'dialog',
       // As in ui-sdk: a modal's trigger is inert while it's open, so
@@ -134,9 +210,9 @@ function renderLazyTrigger(
       'data-open': root.open ? '' : undefined,
       'data-closed': root.open ? undefined : '',
       ref: mergeRefs(root.triggerRef, ref),
-      onPointerEnter: chain(onPointerEnter, load),
-      onPointerDown: chain(onPointerDown, load),
-      onFocus: chain(onFocus, load),
+      onPointerEnter: chain(onPointerEnter, preload),
+      onPointerDown: chain(onPointerDown, preload),
+      onFocus: chain(onFocus, preload),
       onClick: chain<React.MouseEvent<HTMLButtonElement>>(onClick, (event) => {
         if (event.defaultPrevented) return
         root.setOpen(!root.open, {
@@ -169,7 +245,7 @@ function renderLazyClose(
   return renderElement(
     'button',
     {
-      type: render ? undefined : 'button',
+      type: 'button',
       'data-slot': slot,
       onClick: chain<React.MouseEvent<HTMLButtonElement>>(onClick, (event) => {
         if (event.defaultPrevented) return
@@ -204,7 +280,8 @@ function mergeRefs<T>(...refs: (React.Ref<T> | undefined)[]) {
 }
 
 export {
-  LazyRootContext,
+  createLazyPopup,
+  LazyRootProvider,
   LoadedPart,
   LoadedPartsContext,
   renderLazyClose,

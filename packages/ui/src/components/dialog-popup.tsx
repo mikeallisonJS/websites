@@ -8,6 +8,7 @@ import * as DialogPrimitive from '@ui-sdk/react/dialog'
 import { XIcon } from 'lucide-react'
 import * as React from 'react'
 
+import { escapePrevented } from '@mikeallisonjs/ui/lib/escape-prevented'
 import {
   LoadedPartsContext,
   type LazyRoot,
@@ -30,6 +31,7 @@ type DialogPopupProps = React.ComponentProps<'div'> &
     backdropClassName: string
     closeClassName?: string
     closeIconClassName?: string
+    onEscapeKeyDown?: (event: KeyboardEvent) => void
   }
 
 function DialogPopup({
@@ -38,6 +40,7 @@ function DialogPopup({
   closeClassName,
   closeIconClassName,
   finalFocus,
+  onEscapeKeyDown,
   children,
   ...props
 }: DialogPopupProps) {
@@ -45,7 +48,10 @@ function DialogPopup({
   return (
     <DialogPrimitive.Dialog
       open={root.open}
-      onOpenChange={(open, details) => root.setOpen(open, details)}
+      onOpenChange={(open, details) => {
+        if (escapePrevented(details, onEscapeKeyDown)) return
+        root.setOpen(open, details)
+      }}
       modal={root.modal}
       container={container}
     >

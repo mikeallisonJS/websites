@@ -7,6 +7,7 @@
 import * as DrawerPrimitive from '@ui-sdk/react/drawer'
 import * as React from 'react'
 
+import { escapePrevented } from '@mikeallisonjs/ui/lib/escape-prevented'
 import {
   LoadedPartsContext,
   type LazyRoot,
@@ -27,9 +28,13 @@ type DrawerPopupProps = React.ComponentProps<'div'> &
   > & {
     root: LazyRoot
     side: 'top' | 'right' | 'bottom' | 'left'
+    snapPoints?: DrawerPrimitive.SnapPoint[]
+    snapPoint?: DrawerPrimitive.SnapPoint
+    onSnapPointChange?: (snapPoint: DrawerPrimitive.SnapPoint) => void
     dismissible: boolean
     onClose?: () => void
     backdropClassName: string
+    onEscapeKeyDown?: (event: KeyboardEvent) => void
   }
 
 function DrawerPopup({
@@ -37,8 +42,12 @@ function DrawerPopup({
   side,
   dismissible,
   onClose,
+  snapPoints,
+  snapPoint,
+  onSnapPointChange,
   backdropClassName,
   finalFocus,
+  onEscapeKeyDown,
   children,
   ...props
 }: DrawerPopupProps) {
@@ -55,17 +64,21 @@ function DrawerPopup({
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key !== 'Escape' || event.isComposing) return
       if (document.activeElement?.closest('[popover]')) return
+      if (escapePrevented({ reason: 'escape-key', event }, onEscapeKeyDown)) {
+        return
+      }
       onClose?.()
       setOpen(false, { reason: 'escape-key', event })
     }
     document.addEventListener('keydown', onKeyDown)
     return () => document.removeEventListener('keydown', onKeyDown)
-  }, [open, modal, dismissible, onClose, setOpen])
+  }, [open, modal, dismissible, onClose, onEscapeKeyDown, setOpen])
 
   return (
     <DrawerPrimitive.Drawer
       open={root.open}
       onOpenChange={(open, details) => {
+        if (escapePrevented(details, onEscapeKeyDown)) return
         // vaul ran onClose when the drawer itself closed, not when its
         // parent closed it.
         if (!open) onClose?.()
@@ -74,6 +87,11 @@ function DrawerPopup({
       modal={root.modal}
       side={side}
       dismissible={dismissible}
+      snapPoints={snapPoints}
+      snapPoint={snapPoint}
+      onSnapPointChange={
+        onSnapPointChange && ((next) => onSnapPointChange(next))
+      }
       container={container}
     >
       <LoadedPartsContext.Provider value={parts}>

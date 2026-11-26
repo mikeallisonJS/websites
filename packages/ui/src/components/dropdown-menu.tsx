@@ -106,9 +106,10 @@ function DropdownMenuItem({
       onKeyDown={(event) => {
         onKeyDown?.(event)
         // Radix chose an item from the keyboard by clicking it, so an onClick
-        // ran for Enter and Space too. ui-sdk calls only onSelect.
+        // ran for Enter and Space too, the item's or its asChild child's.
+        // ui-sdk calls only onSelect.
         if (
-          onClick &&
+          (onClick || childHasOnClick(asChild, children)) &&
           !event.defaultPrevented &&
           !props.disabled &&
           (event.key === 'Enter' || event.key === ' ')
@@ -120,6 +121,17 @@ function DropdownMenuItem({
       {...props}
       {...asChildProps(asChild, children)}
     />
+  )
+}
+
+function childHasOnClick(
+  asChild: boolean | undefined,
+  children: React.ReactNode
+) {
+  return (
+    !!asChild &&
+    React.isValidElement<{ onClick?: unknown }>(children) &&
+    typeof children.props.onClick === 'function'
   )
 }
 

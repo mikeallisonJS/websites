@@ -20,6 +20,17 @@ const toSdkValue = (value: string | undefined) =>
 
 const LabelContext = React.createContext<string | undefined>(undefined)
 
+// cmdk let CommandInput control the search text; ui-sdk keeps it on the root.
+// The root always controls its query, from CommandInput's value when it has
+// one, and tells CommandInput's onValueChange when it changes.
+type SearchBridge = {
+  setInputValue: (value: string | undefined) => void
+  setOnInputValueChange: (
+    onValueChange: ((search: string) => void) | undefined
+  ) => void
+}
+const SearchContext = React.createContext<SearchBridge | null>(null)
+
 function Command({
   className,
   label,
@@ -29,6 +40,7 @@ function Command({
   shouldFilter,
   filter,
   loop = false,
+  children,
   ...props
 }: Omit<
   React.ComponentProps<'div'>,
@@ -42,9 +54,26 @@ function Command({
   filter?: (value: string, search: string, keywords?: string[]) => number
   loop?: boolean
 }) {
+  const [ownQuery, setOwnQuery] = React.useState('')
+  const [inputValue, setInputValue] = React.useState<string>()
+  const onInputValueChange = React.useRef<(search: string) => void>(undefined)
+  const search = React.useMemo<SearchBridge>(
+    () => ({
+      setInputValue,
+      setOnInputValueChange: (onValueChange) => {
+        onInputValueChange.current = onValueChange
+      }
+    }),
+    []
+  )
   return (
     <LabelContext.Provider value={label}>
       <CommandPrimitive.Command
+        query={inputValue ?? ownQuery}
+        onQueryChange={(query) => {
+          setOwnQuery(query)
+          onInputValueChange.current?.(query)
+        }}
         value={toSdkValue(value)}
         defaultValue={toSdkValue(defaultValue)}
         onValueChange={(next) => onValueChange?.(next ?? '')}
@@ -61,7 +90,11 @@ function Command({
           className
         )}
         {...props}
-      />
+      >
+        <SearchContext.Provider value={search}>
+          {children}
+        </SearchContext.Provider>
+      </CommandPrimitive.Command>
     </LabelContext.Provider>
   )
 }
@@ -92,9 +125,24 @@ function CommandDialog({
 
 function CommandInput({
   className,
+  value,
+  onValueChange,
   ...props
-}: Omit<React.ComponentProps<'input'>, 'value' | 'defaultValue'>) {
+}: Omit<React.ComponentProps<'input'>, 'value' | 'defaultValue'> & {
+  value?: string
+  onValueChange?: (search: string) => void
+}) {
   const label = React.useContext(LabelContext)
+  const search = React.useContext(SearchContext)
+  React.useLayoutEffect(() => {
+    if (!search) return
+    search.setInputValue(value)
+    search.setOnInputValueChange(onValueChange)
+    return () => {
+      search.setInputValue(undefined)
+      search.setOnInputValueChange(undefined)
+    }
+  }, [search, value, onValueChange])
   return (
     <div
       data-slot="command-input-wrapper"
@@ -209,9 +257,9 @@ function CommandItem({
     },
     [ref]
   )
-  // cmdk searched an item's value, or its text without one, and passed the
-  // same string to onSelect.
-  const text = value?.trim()
+  // cmdk identified an item by its value, or its text without one, for
+  // searching, highlighting and onSelect alike.
+  const text = (value ?? (textOf(props.children) || undefined))?.trim()
   return (
     <CommandPrimitive.CommandItem
       ref={setRef}
@@ -230,6 +278,16 @@ function CommandItem({
       {...props}
     />
   )
+}
+
+// The text an item's children render, as cmdk read it from the DOM.
+function textOf(node: React.ReactNode): string {
+  if (typeof node === 'string' || typeof node === 'number') return String(node)
+  if (Array.isArray(node)) return node.map(textOf).join('')
+  if (React.isValidElement<{ children?: React.ReactNode }>(node)) {
+    return textOf(node.props.children)
+  }
+  return ''
 }
 
 function CommandShortcut({

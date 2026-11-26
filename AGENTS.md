@@ -42,9 +42,10 @@ and the component's page there.
 - **Lazy popups:** `Dialog`, `Sheet` and `Drawer` render in site layouts, so
   their roots, triggers and close parts stay light, and the content loads
   `dialog-popup.tsx` / `drawer-popup.tsx` on first open or trigger
-  hover/press/focus (`lib/lazy-popup.ts`). Import those two files only through
-  `import()`; a static import puts UI SDK's ~40 KB gzip popup engine on every
-  page.
+  hover/press/focus (`createLazyPopup` in `lib/lazy-popup.ts`, which also
+  closes the popup and retries on the next open if its chunk fails to load).
+  Import those two files only through `import()`; a static import puts UI
+  SDK's ~40 KB gzip popup engine on every page.
 - **Top layer:** UI SDK popups open in the browser's top layer, above any
   `z-index`. Keep what must stay visible outside the popup's box (e.g. the
   captainofbass.com player bar sits below the playlist drawer's margin).

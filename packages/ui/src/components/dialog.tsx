@@ -4,7 +4,8 @@ import type { DialogContentProps } from '@ui-sdk/react/dialog'
 import * as React from 'react'
 
 import {
-  LazyRootContext,
+  createLazyPopup,
+  LazyRootProvider,
   LoadedPart,
   LoadedPartsContext,
   renderLazyClose,
@@ -18,18 +19,16 @@ import { cn } from '@mikeallisonjs/ui/lib/utils'
 
 // The ui-sdk dialog loads with the content, not with the page. See
 // lib/lazy-popup.ts.
-const loadDialogPopup = () =>
-  import('@mikeallisonjs/ui/components/dialog-popup')
-const DialogPopup = React.lazy(loadDialogPopup)
+const { preload: loadDialogPopup, Popup: DialogPopup } = createLazyPopup(
+  () => import('@mikeallisonjs/ui/components/dialog-popup')
+)
 
 function Dialog({
   children,
   ...options
 }: LazyRootOptions & { children?: React.ReactNode }) {
   const root = useLazyRoot(options)
-  return (
-    <LazyRootContext.Provider value={root}>{children}</LazyRootContext.Provider>
-  )
+  return <LazyRootProvider root={root}>{children}</LazyRootProvider>
 }
 
 function DialogTrigger(props: LightButtonProps) {
@@ -63,7 +62,10 @@ function DialogOverlay(_props: React.ComponentProps<'div'>) {
 }
 
 type LazyContentProps = React.ComponentProps<'div'> &
-  Pick<DialogContentProps, 'initialFocus' | 'finalFocus' | 'keepMounted'>
+  Pick<DialogContentProps, 'initialFocus' | 'finalFocus' | 'keepMounted'> & {
+    // As in Radix: preventDefault() keeps the dialog open.
+    onEscapeKeyDown?: (event: KeyboardEvent) => void
+  }
 
 function DialogContent({
   className,
@@ -73,22 +75,20 @@ function DialogContent({
   const root = useLazyRootContext('DialogContent')
   if (!root.mounted) return null
   return (
-    <React.Suspense fallback={null}>
-      <DialogPopup
-        root={root}
-        backdropClassName={overlayClassName}
-        className={cn(
-          'bg-background data-open:animate-in data-ending-style:animate-out data-ending-style:fade-out-0 data-open:fade-in-0 data-ending-style:zoom-out-95 data-open:zoom-in-95 fixed top-[50%] left-[50%] grid w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] gap-4 rounded-lg border p-6 shadow-lg duration-200 sm:max-w-lg',
-          className
-        )}
-        closeClassName={
-          showCloseButton
-            ? "ring-offset-background focus:ring-ring absolute top-4 right-4 rounded-xs opacity-70 transition-opacity hover:opacity-100 focus:ring-2 focus:ring-offset-2 focus:outline-hidden disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
-            : undefined
-        }
-        {...props}
-      />
-    </React.Suspense>
+    <DialogPopup
+      root={root}
+      backdropClassName={overlayClassName}
+      className={cn(
+        'bg-background data-open:animate-in data-ending-style:animate-out data-ending-style:fade-out-0 data-open:fade-in-0 data-ending-style:zoom-out-95 data-open:zoom-in-95 fixed top-[50%] left-[50%] grid w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] gap-4 rounded-lg border p-6 shadow-lg duration-200 sm:max-w-lg',
+        className
+      )}
+      closeClassName={
+        showCloseButton
+          ? "ring-offset-background focus:ring-ring absolute top-4 right-4 rounded-xs opacity-70 transition-opacity hover:opacity-100 focus:ring-2 focus:ring-offset-2 focus:outline-hidden disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
+          : undefined
+      }
+      {...props}
+    />
   )
 }
 

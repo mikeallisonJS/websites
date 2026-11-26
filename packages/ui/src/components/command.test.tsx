@@ -259,4 +259,82 @@ describe('Command', () => {
     await settle()
     expect(onValueChange).toHaveBeenLastCalledWith('b')
   })
+
+  test('an item without a value is highlighted and chosen by its text', async () => {
+    const user = userEvent.setup()
+    const onValueChange = vi.fn()
+    render(
+      <Command onValueChange={onValueChange}>
+        <CommandInput aria-label="Search" />
+        <CommandList>
+          <CommandItem>
+            <span>All Authors</span>
+          </CommandItem>
+          <CommandItem>Arturia</CommandItem>
+        </CommandList>
+      </Command>
+    )
+    await settle()
+    screen.getByRole('combobox').focus()
+    await user.keyboard('{ArrowDown}')
+    await settle()
+    expect(onValueChange).toHaveBeenLastCalledWith('Arturia')
+    await user.keyboard('{ArrowUp}')
+    await settle()
+    expect(onValueChange).toHaveBeenLastCalledWith('All Authors')
+  })
+
+  test('a controlled CommandInput owns the search, as in cmdk', async () => {
+    const user = userEvent.setup()
+    const searches: string[] = []
+    function Controlled() {
+      const [search, setSearch] = React.useState('val')
+      return (
+        <Command>
+          <CommandInput
+            aria-label="Search"
+            value={search}
+            onValueChange={(next) => {
+              searches.push(next)
+              setSearch(next.toLowerCase())
+            }}
+          />
+          <CommandList>
+            <CommandItem value="Arturia">Arturia</CommandItem>
+            <CommandItem value="Valhalla">Valhalla</CommandItem>
+          </CommandList>
+        </Command>
+      )
+    }
+    render(<Controlled />)
+    await settle()
+    const input = screen.getByRole<HTMLInputElement>('combobox')
+    expect(input.value).toBe('val')
+    expect(options()).toEqual(['Valhalla'])
+    await user.clear(input)
+    await user.type(input, 'ART')
+    await settle()
+    expect(searches.at(-1)).toBe('arT')
+    expect(input.value).toBe('art')
+    expect(options()).toEqual(['Arturia'])
+  })
+
+  test('an uncontrolled CommandInput still reports onValueChange', async () => {
+    const user = userEvent.setup()
+    const onValueChange = vi.fn()
+    render(
+      <Command>
+        <CommandInput aria-label="Search" onValueChange={onValueChange} />
+        <CommandList>
+          <CommandItem value="Arturia">Arturia</CommandItem>
+          <CommandItem value="Valhalla">Valhalla</CommandItem>
+        </CommandList>
+      </Command>
+    )
+    await settle()
+    await user.type(screen.getByRole('combobox'), 'va')
+    await settle()
+    expect(onValueChange).toHaveBeenLastCalledWith('va')
+    expect(options()).toEqual(['Valhalla'])
+  })
 })

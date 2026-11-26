@@ -1,10 +1,11 @@
 'use client'
 
-import type { DrawerContentProps } from '@ui-sdk/react/drawer'
+import type { DrawerContentProps, SnapPoint } from '@ui-sdk/react/drawer'
 import * as React from 'react'
 
 import {
-  LazyRootContext,
+  createLazyPopup,
+  LazyRootProvider,
   LoadedPart,
   LoadedPartsContext,
   renderLazyClose,
@@ -18,15 +19,18 @@ import { cn } from '@mikeallisonjs/ui/lib/utils'
 
 // The ui-sdk drawer loads with the content, not with the page. See
 // lib/lazy-popup.ts.
-const loadDrawerPopup = () =>
-  import('@mikeallisonjs/ui/components/drawer-popup')
-const DrawerPopup = React.lazy(loadDrawerPopup)
+const { preload: loadDrawerPopup, Popup: DrawerPopup } = createLazyPopup(
+  () => import('@mikeallisonjs/ui/components/drawer-popup')
+)
 
 type DrawerOptions = {
   side: 'top' | 'right' | 'bottom' | 'left'
   dismissible: boolean
   autoFocus: boolean
   onClose?: () => void
+  snapPoints?: SnapPoint[]
+  activeSnapPoint?: SnapPoint
+  setActiveSnapPoint?: (snapPoint: SnapPoint) => void
 }
 
 const DrawerOptionsContext = React.createContext<DrawerOptions>({
@@ -36,13 +40,17 @@ const DrawerOptionsContext = React.createContext<DrawerOptions>({
 })
 
 // The vaul props callers used. `onClose` runs when the drawer closes itself:
-// Escape, a swipe, an outside press or a Close part.
+// Escape, a swipe, an outside press or a Close part. Snap points are
+// fractions of the screen or pixels, as in vaul, and also rem, % or 'content'.
 function Drawer({
   children,
   direction = 'bottom',
   dismissible = true,
   autoFocus = false,
   onClose,
+  snapPoints,
+  activeSnapPoint,
+  setActiveSnapPoint,
   ...options
 }: LazyRootOptions & {
   children?: React.ReactNode
@@ -50,18 +58,38 @@ function Drawer({
   dismissible?: boolean
   autoFocus?: boolean
   onClose?: () => void
+  snapPoints?: SnapPoint[]
+  // vaul's null, nothing chosen, opens at the first point.
+  activeSnapPoint?: SnapPoint | null
+  setActiveSnapPoint?: (snapPoint: SnapPoint) => void
 }) {
   const root = useLazyRoot(options)
   const drawer = React.useMemo(
-    () => ({ side: direction, dismissible, autoFocus, onClose }),
-    [direction, dismissible, autoFocus, onClose]
+    () => ({
+      side: direction,
+      dismissible,
+      autoFocus,
+      onClose,
+      snapPoints,
+      activeSnapPoint: activeSnapPoint ?? undefined,
+      setActiveSnapPoint
+    }),
+    [
+      direction,
+      dismissible,
+      autoFocus,
+      onClose,
+      snapPoints,
+      activeSnapPoint,
+      setActiveSnapPoint
+    ]
   )
   return (
-    <LazyRootContext.Provider value={root}>
+    <LazyRootProvider root={root}>
       <DrawerOptionsContext.Provider value={drawer}>
         {children}
       </DrawerOptionsContext.Provider>
-    </LazyRootContext.Provider>
+    </LazyRootProvider>
   )
 }
 
@@ -97,38 +125,49 @@ function DrawerContent({
   children,
   ...props
 }: React.ComponentProps<'div'> &
-  Pick<DrawerContentProps, 'initialFocus' | 'finalFocus' | 'keepMounted'>) {
+  Pick<DrawerContentProps, 'initialFocus' | 'finalFocus' | 'keepMounted'> & {
+    // As in vaul: preventDefault() keeps the drawer open.
+    onEscapeKeyDown?: (event: KeyboardEvent) => void
+  }) {
   const root = useLazyRootContext('DrawerContent')
-  const { side, dismissible, autoFocus, onClose } =
-    React.useContext(DrawerOptionsContext)
+  const {
+    side,
+    dismissible,
+    autoFocus,
+    onClose,
+    snapPoints,
+    activeSnapPoint,
+    setActiveSnapPoint
+  } = React.useContext(DrawerOptionsContext)
   if (!root.mounted) return null
   return (
-    <React.Suspense fallback={null}>
-      <DrawerPopup
-        root={root}
-        side={side}
-        dismissible={dismissible}
-        onClose={onClose}
-        // vaul kept focus where it was unless `autoFocus` was set.
-        initialFocus={props.initialFocus ?? (autoFocus ? 'auto' : 'none')}
-        backdropClassName="bg-black/50"
-        className={cn(
-          'group/drawer-content bg-background flex h-auto flex-col',
-          'data-[side=top]:mb-24 data-[side=top]:max-h-[80vh] data-[side=top]:w-full data-[side=top]:rounded-b-lg data-[side=top]:border-b',
-          'data-[side=bottom]:mt-24 data-[side=bottom]:max-h-[80vh] data-[side=bottom]:w-full data-[side=bottom]:rounded-t-lg data-[side=bottom]:border-t',
-          'data-[side=right]:h-full data-[side=right]:w-3/4 data-[side=right]:border-l data-[side=right]:sm:max-w-sm',
-          'data-[side=left]:h-full data-[side=left]:w-3/4 data-[side=left]:border-r data-[side=left]:sm:max-w-sm',
-          className
-        )}
-        {...props}
-      >
-        <div
-          aria-hidden
-          className="bg-muted mx-auto mt-4 hidden h-2 w-[100px] shrink-0 rounded-full group-data-[side=bottom]/drawer-content:block"
-        />
-        {children}
-      </DrawerPopup>
-    </React.Suspense>
+    <DrawerPopup
+      root={root}
+      side={side}
+      dismissible={dismissible}
+      onClose={onClose}
+      snapPoints={snapPoints}
+      snapPoint={activeSnapPoint}
+      onSnapPointChange={setActiveSnapPoint}
+      // vaul kept focus where it was unless `autoFocus` was set.
+      initialFocus={props.initialFocus ?? (autoFocus ? 'auto' : 'none')}
+      backdropClassName="bg-black/50"
+      className={cn(
+        'group/drawer-content bg-background flex h-auto flex-col',
+        'data-[side=top]:mb-24 data-[side=top]:max-h-[80vh] data-[side=top]:w-full data-[side=top]:rounded-b-lg data-[side=top]:border-b',
+        'data-[side=bottom]:mt-24 data-[side=bottom]:max-h-[80vh] data-[side=bottom]:w-full data-[side=bottom]:rounded-t-lg data-[side=bottom]:border-t',
+        'data-[side=right]:h-full data-[side=right]:w-3/4 data-[side=right]:border-l data-[side=right]:sm:max-w-sm',
+        'data-[side=left]:h-full data-[side=left]:w-3/4 data-[side=left]:border-r data-[side=left]:sm:max-w-sm',
+        className
+      )}
+      {...props}
+    >
+      <div
+        aria-hidden
+        className="bg-muted mx-auto mt-4 hidden h-2 w-[100px] shrink-0 rounded-full group-data-[side=bottom]/drawer-content:block"
+      />
+      {children}
+    </DrawerPopup>
   )
 }
 

@@ -97,6 +97,62 @@ describe('Dialog', () => {
     expect(document.activeElement).toBe(trigger)
   })
 
+  test('onEscapeKeyDown can keep it open, as in Radix', async () => {
+    const user = userEvent.setup()
+    let dirty = true
+    const onOpenChange = vi.fn()
+    render(
+      <Dialog defaultOpen onOpenChange={onOpenChange}>
+        <DialogContent
+          onEscapeKeyDown={(event) => {
+            expect(event.key).toBe('Escape')
+            if (dirty) event.preventDefault()
+          }}
+        >
+          <DialogTitle>Edit post</DialogTitle>
+          <input aria-label="Post" />
+        </DialogContent>
+      </Dialog>
+    )
+    await settle()
+    screen.getByRole('textbox', { name: 'Post' }).focus()
+    await user.keyboard('{Escape}')
+    await settle()
+    expect(screen.getByRole('dialog')).toBeTruthy()
+    expect(onOpenChange).not.toHaveBeenCalled()
+    dirty = false
+    await user.keyboard('{Escape}')
+    await settle()
+    expect(screen.queryByRole('dialog')).toBeNull()
+  })
+
+  test("a Close beside a nested dialog's content closes only that dialog", async () => {
+    const user = userEvent.setup()
+    render(
+      <Dialog defaultOpen>
+        <DialogContent showCloseButton={false}>
+          <DialogTitle>Account</DialogTitle>
+          {/* Non-modal, so pressing Close outside it isn't an outside press. */}
+          <Dialog modal={false}>
+            <DialogTrigger>Change password</DialogTrigger>
+            <DialogClose>Close password</DialogClose>
+            <DialogContent showCloseButton={false}>
+              <DialogTitle>Password</DialogTitle>
+            </DialogContent>
+          </Dialog>
+        </DialogContent>
+      </Dialog>
+    )
+    await settle()
+    await user.click(screen.getByRole('button', { name: 'Change password' }))
+    await settle()
+    expect(screen.getByRole('dialog', { name: 'Password' })).toBeTruthy()
+    await user.click(screen.getByRole('button', { name: 'Close password' }))
+    await settle()
+    expect(screen.queryByRole('dialog', { name: 'Password' })).toBeNull()
+    expect(screen.getByRole('dialog', { name: 'Account' })).toBeTruthy()
+  })
+
   test('the close button and an asChild DialogClose close it', async () => {
     const user = userEvent.setup()
     render(<Merge defaultOpen />)
@@ -166,7 +222,10 @@ describe('Dialog inside a form', () => {
     render(
       <form aria-label="Plugin" onSubmit={onSubmit}>
         <Dialog>
-          <DialogTrigger type="button">Search images</DialogTrigger>
+          <DialogTrigger>Search images</DialogTrigger>
+          <DialogTrigger asChild>
+            <button>Search icons</button>
+          </DialogTrigger>
           <DialogContent>
             <DialogTitle>Image search</DialogTitle>
             <Button>Cancel</Button>
@@ -180,6 +239,12 @@ describe('Dialog inside a form', () => {
     const form = screen.getByRole('form', { name: 'Plugin' })
     expect(form.contains(screen.getByRole('dialog'))).toBe(false)
     await user.click(screen.getByRole('button', { name: 'Cancel' }))
+    await user.keyboard('{Escape}')
+    await settle()
+    expect(screen.queryByRole('dialog')).toBeNull()
+    await user.click(screen.getByRole('button', { name: 'Search icons' }))
+    await settle()
+    expect(screen.getByRole('dialog')).toBeTruthy()
     expect(onSubmit).not.toHaveBeenCalled()
   })
 })
